@@ -64,7 +64,7 @@ public class EnvironmentSelectDialogFragment extends DialogFragment {
         //Update the indicator
         environmentIndicatorListener.onEnvironmentSelected(selectedEnvironment);
 
-        AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+        AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
         if (selectedEnvironment.equalsIgnoreCase(UCSSwitchConstants.PRODUCTION_ENV)) {
             updateUrl(BuildConfig.opensrp_url);
             Objects.requireNonNull(allSharedPreferences.getPreferences()).edit().putString(UCSSwitchConstants.UCS_ENVIRONMENT, UCSSwitchConstants.PRODUCTION_ENV).apply();
@@ -84,7 +84,7 @@ public class EnvironmentSelectDialogFragment extends DialogFragment {
 
     // To be safe lets set the default environment to Production
     private void setDefaultEnvironment() {
-        AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+        AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
         updateUrl(BuildConfig.opensrp_url);
         Objects.requireNonNull(allSharedPreferences.getPreferences()).edit().putString(UCSSwitchConstants.UCS_ENVIRONMENT, UCSSwitchConstants.PRODUCTION_ENV).apply();
         restartLoginActivity();

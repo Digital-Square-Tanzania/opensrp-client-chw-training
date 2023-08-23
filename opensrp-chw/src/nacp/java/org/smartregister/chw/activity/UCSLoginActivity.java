@@ -16,6 +16,7 @@ import org.smartregister.chw.fragment.EnvironmentSelectDialogFragment;
 import org.smartregister.chw.util.UCSSwitchConstants;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.util.PermissionUtils;
+import org.smartregister.util.Utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -64,7 +65,7 @@ public class UCSLoginActivity extends LoginActivity {
     private void setServerUrl(){
         try {
 
-            AllSharedPreferences sharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+            AllSharedPreferences sharedPreferences = Utils.getAllSharedPreferences();
             // Check if the preferences for the environment have been set yet
             if (!sharedPreferences.getPreference(UCSSwitchConstants.UCS_ENVIRONMENT).isEmpty()) {
                 if (sharedPreferences.getPreference(UCSSwitchConstants.UCS_ENVIRONMENT).equalsIgnoreCase(UCSSwitchConstants.PRODUCTION_ENV)) {
@@ -102,7 +103,7 @@ public class UCSLoginActivity extends LoginActivity {
     private void updateEnvironmentUrl(String baseUrl) {
         try {
 
-            AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+            AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
 
             URL url = new URL(baseUrl);
 

@@ -28,6 +28,7 @@ import org.smartregister.chw.presenter.FamilyProfilePresenter;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.fragment.BaseFamilyProfileMemberFragment;
 import org.smartregister.family.util.Constants;
+import org.smartregister.family.util.JsonFormUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -110,9 +111,9 @@ public class FamilyProfileActivityTest {
         ReflectionHelpers.setField(spyActivity, "presenter", presenter);
 
         int resultCode = Activity.RESULT_OK;
-        int requestCode = org.smartregister.family.util.JsonFormUtils.REQUEST_CODE_GET_JSON;
+        int requestCode = JsonFormUtils.REQUEST_CODE_GET_JSON;
         Intent data = new Intent();
-        data.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, form.toString());
+        data.putExtra(Constants.JSON_FORM_EXTRA.JSON, form.toString());
 
         Mockito.when(presenter.updatePrimaryCareGiver(spyActivity.getApplicationContext(), form.toString(), null, null)).thenReturn(true);
 

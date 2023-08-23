@@ -2,7 +2,6 @@ package org.smartregister.chw.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -12,12 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.smartregister.chw.R;
-import org.smartregister.chw.util.UCSSwitchConstants;
 
 import java.io.File;
 
@@ -50,7 +47,6 @@ public class UCSEnvironmentSwitchActivity extends AppCompatActivity {
     public static class PreferenceFragment extends PreferenceFragmentCompat implements
             Preference.OnPreferenceClickListener {
 
-        private Preference pref;
         private int countClick = 0;
 
         @Override
@@ -58,7 +54,7 @@ public class UCSEnvironmentSwitchActivity extends AppCompatActivity {
             //super.onCreatePreferences(savedInstanceState, rootKey);
             setPreferencesFromResource(R.xml.ucs_switch_env_preference, rootKey);
 
-            pref = findPreference("preference");
+            Preference pref = findPreference("preference");
             if (pref != null)
                 pref.setOnPreferenceClickListener(this);
         }
@@ -73,9 +69,9 @@ public class UCSEnvironmentSwitchActivity extends AppCompatActivity {
                     confirmSwitchingEnvironment(getActivity(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if (i == -1){
+                            if (i == -1) {
                                 clearApplicationData();
-                            }else {
+                            } else {
                                 countClick = 0;
                                 preference.setVisible(true);
                                 dialogInterface.dismiss();
@@ -89,10 +85,10 @@ public class UCSEnvironmentSwitchActivity extends AppCompatActivity {
 
         private void confirmSwitchingEnvironment(Context context, final DialogInterface.OnClickListener onDialogButtonClick) {
             final Boolean[] userResponse = {false};
-            final androidx.appcompat.app.AlertDialog alert = new androidx.appcompat.app.AlertDialog.Builder(context, R.style.SettingsAlertDialog).create();
+            final AlertDialog alert = new AlertDialog.Builder(context, R.style.SettingsAlertDialog).create();
             View title_view = this.getLayoutInflater().inflate(R.layout.switch_env_dialog, null);
             alert.setCustomTitle(title_view);
-            alert.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> {
+            alert.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> {
                 onDialogButtonClick.onClick(dialog, which);
                 userResponse[0] = true;
                 alert.dismiss();

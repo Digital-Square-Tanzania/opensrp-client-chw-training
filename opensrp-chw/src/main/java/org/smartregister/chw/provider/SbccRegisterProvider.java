@@ -17,7 +17,7 @@ import timber.log.Timber;
 public class SbccRegisterProvider extends HvlResultsViewProvider {
     private Set<org.smartregister.configurableviews.model.View> visibleColumns;
 
-    public SbccRegisterProvider(Context context, View.OnClickListener paginationClickListener, View.OnClickListener onClickListener, java.util.Set visibleColumns) {
+    public SbccRegisterProvider(Context context, View.OnClickListener paginationClickListener, View.OnClickListener onClickListener, Set visibleColumns) {
         super(context, paginationClickListener, onClickListener, visibleColumns);
         this.visibleColumns = visibleColumns;
     }
