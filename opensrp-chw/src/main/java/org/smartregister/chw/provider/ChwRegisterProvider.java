@@ -152,7 +152,6 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
         private List<Map<String, String>> list;
         private int ancWomanCount;
         private int pncWomanCount;
-        private int malariaCount;
         private ChildVisit childVisit;
 
         private UpdateAsyncTask(Context context, RegisterViewHolder viewHolder, String familyBaseEntityId) {
@@ -167,7 +166,7 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
             list = getChildren(familyBaseEntityId);
             ancWomanCount = getAncWomenCount(familyBaseEntityId);
             pncWomanCount = getPncWomenCount(familyBaseEntityId);
-            malariaCount = ChwApplication.malariaRegisterRepository().getMalariaCount(familyBaseEntityId, CoreConstants.TABLE_NAME.PNC_MEMBER);
+            int malariaCount = ChwApplication.malariaRegisterRepository().getMalariaCount(familyBaseEntityId, CoreConstants.TABLE_NAME.PNC_MEMBER);
             childVisit = mergeChildVisits(retrieveChildVisitList(rules, list));
 
             return null;

@@ -42,8 +42,6 @@ import static org.mockito.Mockito.times;
 @Config(application = ChwApplication.class, sdk = 22)
 public class FamilyProfileActivityTest {
 
-    private final String TEST_CARE_GIVER = "45645sdfs64564544";
-    private final String TEST_FAMILY_HEAD = "hsdf34453";
     private FamilyProfileActivity activity;
     private ActivityController<FamilyProfileActivity> controller;
     @Mock
@@ -63,7 +61,9 @@ public class FamilyProfileActivityTest {
 
         MockitoAnnotations.initMocks(this);
         Intent testIntent = new Intent();
+        String TEST_CARE_GIVER = "45645sdfs64564544";
         testIntent.putExtra(Constants.INTENT_KEY.FAMILY_HEAD, TEST_CARE_GIVER);
+        String TEST_FAMILY_HEAD = "hsdf34453";
         testIntent.putExtra(Constants.INTENT_KEY.PRIMARY_CAREGIVER, TEST_FAMILY_HEAD);
         controller = Robolectric.buildActivity(FamilyProfileActivity.class, testIntent).create().start();
 

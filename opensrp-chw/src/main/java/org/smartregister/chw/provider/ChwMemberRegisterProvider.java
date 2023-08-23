@@ -48,13 +48,12 @@ import timber.log.Timber;
 public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
     private Context context;
     private View.OnClickListener onClickListener;
-    private ImageRenderHelper imageRenderHelper;
 
     public ChwMemberRegisterProvider(Context context, CommonRepository commonRepository, Set visibleColumns, View.OnClickListener onClickListener, View.OnClickListener paginationClickListener, String familyHead, String primaryCaregiver) {
         super(context, commonRepository, visibleColumns, onClickListener, paginationClickListener, familyHead, primaryCaregiver);
         this.onClickListener = onClickListener;
         this.context = context;
-        this.imageRenderHelper = new ImageRenderHelper(context);
+        ImageRenderHelper imageRenderHelper = new ImageRenderHelper(context);
     }
 
 
@@ -313,23 +312,20 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
     }
 
     private class UpdateAsyncTask extends AsyncTask<Void, Void, Void> {
-        private final RegisterViewHolder viewHolder;
         private final CommonPersonObjectClient pc;
 
         private final Rules rules;
 
-        private Map<String, String> map;
         private ChildVisit childVisit;
 
         private UpdateAsyncTask(RegisterViewHolder viewHolder, CommonPersonObjectClient pc) {
-            this.viewHolder = viewHolder;
             this.pc = pc;
             this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.HOME_VISIT);
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            map = getChildDetails(pc.getCaseId());
+            Map<String, String> map = getChildDetails(pc.getCaseId());
             if (map != null) {
                 childVisit = retrieveChildVisitList(rules, pc, map);
             }

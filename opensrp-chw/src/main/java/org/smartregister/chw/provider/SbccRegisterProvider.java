@@ -30,18 +30,8 @@ public class SbccRegisterProvider extends HvlResultsViewProvider {
 
     private void populatePatientColumn(final RegisterViewHolder viewHolder) {
         try {
-
-//            String sampleId = Utils.getValue(pc.getColumnmaps(), Constants.DBConstants.SBCC_DATE, false);
-//            String collectionDate = Utils.getValue(pc.getColumnmaps(), Constants.DBConstants.SBCC_DATE, false);
-
-
-
             viewHolder.hvlWrapper.setVisibility(View.GONE);
             viewHolder.dueWrapper.setVisibility(View.VISIBLE);
-
-           // viewHolder.sampleId.setText(sampleId);
-           // viewHolder.collectionDate.setText(collectionDate);
-
         } catch (Exception e) {
             Timber.e(e);
         }

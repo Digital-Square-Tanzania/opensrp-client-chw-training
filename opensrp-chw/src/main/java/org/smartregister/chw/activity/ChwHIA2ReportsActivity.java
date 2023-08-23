@@ -18,8 +18,6 @@ import timber.log.Timber;
 
 public class ChwHIA2ReportsActivity extends HIA2ReportsActivity {
 
-    private ChwSectionsPagerAdapter mSectionsPagerAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +26,7 @@ public class ChwHIA2ReportsActivity extends HIA2ReportsActivity {
         setSupportActionBar(toolbar);
 
         tabLayout = findViewById(R.id.hia_tabs);
-        mSectionsPagerAdapter = new ChwSectionsPagerAdapter(getSupportFragmentManager(), this);
+        ChwSectionsPagerAdapter mSectionsPagerAdapter = new ChwSectionsPagerAdapter(getSupportFragmentManager(), this);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);

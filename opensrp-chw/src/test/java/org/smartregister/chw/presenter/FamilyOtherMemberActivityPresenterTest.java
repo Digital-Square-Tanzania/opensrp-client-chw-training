@@ -44,25 +44,20 @@ public class FamilyOtherMemberActivityPresenterTest extends BaseUnitTest {
 
     private Context context = RuntimeEnvironment.application;
 
-    private String viewConfigurationIdentifier;
     private String familyBaseEntityId;
     private String baseEntityId;
-    private String familyHead;
-    private String primaryCaregiver;
-    private String villageTown;
-    private String familyName;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        viewConfigurationIdentifier = "viewConfigurationIdentifier";
+        String viewConfigurationIdentifier = "viewConfigurationIdentifier";
         familyBaseEntityId = "familyBaseEntityId";
         baseEntityId = "baseEntityId";
-        familyHead = "familyHead";
-        primaryCaregiver = "primaryCaregiver";
-        villageTown = "villageTown";
-        familyName = "familyName";
+        String familyHead = "familyHead";
+        String primaryCaregiver = "primaryCaregiver";
+        String villageTown = "villageTown";
+        String familyName = "familyName";
 
         presenter = new FamilyOtherMemberActivityPresenter(view, model, viewConfigurationIdentifier, familyBaseEntityId, baseEntityId, familyHead, primaryCaregiver, villageTown, familyName);
     }

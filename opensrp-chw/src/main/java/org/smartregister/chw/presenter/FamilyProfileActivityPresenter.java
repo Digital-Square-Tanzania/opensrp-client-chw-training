@@ -13,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyProfileActivityPresenter extends BaseFamilyProfileActivityPresenter {
-    private WashCheckModel washCheckModel;
 
     public FamilyProfileActivityPresenter(FamilyProfileActivityContract.View view, FamilyProfileActivityContract.Model model, String viewConfigurationIdentifier, String familyBaseEntityId) {
         super(view, model, viewConfigurationIdentifier, familyBaseEntityId);
-        washCheckModel = new WashCheckModel(familyBaseEntityId);
+        WashCheckModel washCheckModel = new WashCheckModel(familyBaseEntityId);
     }
 
     @Override

@@ -28,12 +28,6 @@ public class UCSEnvironmentSwitchActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-        //Get language from preferences
-
-        //String lang = LangUtils.getLanguage(base.getApplicationContext());
-        //Context newBaseContext = LangUtils.setAppLocale(base, lang);
-        //applyOverrideConfiguration(newBaseContext);
-
         super.attachBaseContext(base);
     }
 
