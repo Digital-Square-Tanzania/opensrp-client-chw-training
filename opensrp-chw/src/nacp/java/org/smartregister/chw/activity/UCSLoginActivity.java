@@ -47,22 +47,20 @@ public class UCSLoginActivity extends LoginActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getTitle().toString().equalsIgnoreCase(getString(R.string.environment_switch))) {
-            if (hasPermissions()) {
-                this.startActivity(new Intent(this, UCSEnvironmentSwitchActivity.class));
-                return true;
-            }
+        if (item.getTitle().toString().equalsIgnoreCase(getString(R.string.environment_switch)) && hasPermissions()) {
+            this.startActivity(new Intent(this, UCSEnvironmentSwitchActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean hasPermissions(){
+    public boolean hasPermissions() {
         return PermissionUtils.isPermissionGranted(this
                 , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}
                 , CoreConstants.RQ_CODE.STORAGE_PERMISIONS);
     }
 
-    private void setServerUrl(){
+    private void setServerUrl() {
         try {
 
             AllSharedPreferences sharedPreferences = Utils.getAllSharedPreferences();
@@ -75,7 +73,7 @@ public class UCSLoginActivity extends LoginActivity {
                 } else if (sharedPreferences.getPreference(UCSSwitchConstants.UCS_ENVIRONMENT).equalsIgnoreCase(UCSSwitchConstants.STAGING_ENV)) {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_debug);
                     setEnvironmentIndicator(UCSSwitchConstants.STAGING_ENV);
-                }else{
+                } else {
                     //This is testing env
                     updateEnvironmentUrl(BuildConfig.opensrp_url_debug);
                     setEnvironmentIndicator(UCSSwitchConstants.DEVELOPMENT_ENV);
@@ -96,8 +94,8 @@ public class UCSLoginActivity extends LoginActivity {
         }
     }
 
-    private void updateSyncFilter(){
-
+    private void updateSyncFilter() {
+        //NOT REQUIRED
     }
 
     private void updateEnvironmentUrl(String baseUrl) {
@@ -126,7 +124,7 @@ public class UCSLoginActivity extends LoginActivity {
     }
 
     private void setEnvironmentIndicator(String selectedEnv) {
-        switch (selectedEnv){
+        switch (selectedEnv) {
             case UCSSwitchConstants.PRODUCTION_ENV:
                 environmentIndicator.setText("");
                 break;
@@ -141,7 +139,7 @@ public class UCSLoginActivity extends LoginActivity {
         }
     }
 
-    public interface UpdateEnvironmentIndicator{
+    public interface UpdateEnvironmentIndicator {
         void onEnvironmentSelected(String indicator);
     }
 

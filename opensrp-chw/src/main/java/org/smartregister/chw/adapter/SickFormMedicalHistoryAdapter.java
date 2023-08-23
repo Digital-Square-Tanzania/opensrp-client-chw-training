@@ -58,7 +58,6 @@ public class SickFormMedicalHistoryAdapter extends RecyclerView.Adapter<SickForm
             super(view);
             this.parentView = view;
             tvDetails = view.findViewById(R.id.tvDetails);
-            ImageView ivNext = view.findViewById(R.id.ivNext);
         }
     }
 }

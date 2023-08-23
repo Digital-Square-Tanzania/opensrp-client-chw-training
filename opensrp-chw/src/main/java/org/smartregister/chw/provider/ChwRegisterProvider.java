@@ -1,5 +1,7 @@
 package org.smartregister.chw.provider;
 
+import static org.smartregister.chw.core.utils.Utils.getDuration;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -11,7 +13,6 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.model.ChildVisit;
 import org.smartregister.chw.core.provider.CoreRegisterProvider;
 import org.smartregister.chw.core.utils.ChildDBConstants;
-import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.util.ChildUtils;
 import org.smartregister.chw.util.Constants;
@@ -25,8 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static org.smartregister.chw.core.utils.Utils.getDuration;
 
 public class ChwRegisterProvider extends CoreRegisterProvider {
 
@@ -166,7 +165,6 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
             list = getChildren(familyBaseEntityId);
             ancWomanCount = getAncWomenCount(familyBaseEntityId);
             pncWomanCount = getPncWomenCount(familyBaseEntityId);
-            int malariaCount = ChwApplication.malariaRegisterRepository().getMalariaCount(familyBaseEntityId, CoreConstants.TABLE_NAME.PNC_MEMBER);
             childVisit = mergeChildVisits(retrieveChildVisitList(rules, list));
 
             return null;

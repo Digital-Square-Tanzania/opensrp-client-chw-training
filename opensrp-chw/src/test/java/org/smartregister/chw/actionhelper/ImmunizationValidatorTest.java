@@ -29,6 +29,7 @@ public class ImmunizationValidatorTest extends BaseUnitTest {
 
     private final List<VaccineGroup> vaccinesGroups = new ArrayList<>();
     private final List<org.smartregister.immunization.domain.jsonmapping.Vaccine> specialVaccines = new ArrayList<>();
+
     private final List<Vaccine> vaccines = new ArrayList<>();
 
     private ImmunizationValidator validator;

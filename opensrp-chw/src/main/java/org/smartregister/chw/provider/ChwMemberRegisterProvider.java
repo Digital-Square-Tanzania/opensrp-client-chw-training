@@ -30,7 +30,6 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.family.fragment.BaseFamilyProfileMemberFragment;
-import org.smartregister.family.helper.ImageRenderHelper;
 import org.smartregister.family.provider.FamilyMemberRegisterProvider;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.view.contract.SmartRegisterClient;
@@ -53,7 +52,6 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
         super(context, commonRepository, visibleColumns, onClickListener, paginationClickListener, familyHead, primaryCaregiver);
         this.onClickListener = onClickListener;
         this.context = context;
-        ImageRenderHelper imageRenderHelper = new ImageRenderHelper(context);
     }
 
 
