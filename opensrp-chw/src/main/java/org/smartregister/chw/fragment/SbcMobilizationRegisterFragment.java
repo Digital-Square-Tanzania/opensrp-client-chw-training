@@ -20,10 +20,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.adapter.SbccRegisterAdapter;
+import org.smartregister.chw.adapter.SbcMobilizationRegisterAdapter;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
-import org.smartregister.chw.dao.ChwSbccDao;
+import org.smartregister.chw.dao.ChwSbcDao;
+import org.smartregister.chw.dao.MotherChampionSbccDao;
+import org.smartregister.chw.model.SbcMobilizationSessionModel;
 import org.smartregister.chw.model.SbcMobilizationSessionRegisterFragmentModel;
 import org.smartregister.chw.model.SbccSessionModel;
 import org.smartregister.chw.presenter.SbcMobilizationRegisterFragmentPresenter;
@@ -49,12 +51,12 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
         SbccRegisterProvider sbcMobilizationRegisterProvider = new SbccRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
-        List<SbccSessionModel> sbcMobilizationSessionModels = ChwSbccDao.getSbccSessions();
+        List<SbcMobilizationSessionModel> sbcMobilizationSessionModels = ChwSbcDao.getSbcMobilizationSessions();
         clientAdapter = new RecyclerViewPaginatedAdapter(null, sbcMobilizationRegisterProvider, null);
         clientAdapter.setTotalcount(0);
         clientAdapter.setCurrentlimit(20);
         if (sbcMobilizationSessionModels != null && !sbcMobilizationSessionModels.isEmpty()) {
-            clientsView.setAdapter(new SbccRegisterAdapter(sbcMobilizationSessionModels, requireActivity()));
+            clientsView.setAdapter(new SbcMobilizationRegisterAdapter(sbcMobilizationSessionModels, requireActivity()));
         }
     }
 

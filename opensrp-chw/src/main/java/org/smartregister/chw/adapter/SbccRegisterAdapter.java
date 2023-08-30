@@ -55,7 +55,7 @@ public class SbccRegisterAdapter extends RecyclerView.Adapter<SbccRegisterAdapte
         public void bindData(SbccSessionModel sbccSessionModel) {
             sbccSessionDate = itemView.findViewById(R.id.sbcc_session_date);
             sbccSessionParticipants = itemView.findViewById(R.id.sbcc_session_participants);
-            sbccSessionLocation = itemView.findViewById(R.id.sbcc_session_location);
+            sbccSessionLocation = itemView.findViewById(R.id.sbcc_activity_provided);
 
             sbccSessionDate.setText(context.getString(R.string.sbcc_session_date, sbccSessionModel.getSessionDate()));
             sbccSessionParticipants.setText(context.getString(R.string.sbcc_participants, sbccSessionModel.getSessionParticipants()));

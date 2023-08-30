@@ -92,81 +92,55 @@
         "options": [
           {
             "key": "campaign",
-            "text": "Campaign",
-            "value": false,
-            "openmrs_choice_id": "campaign"
+            "text": "Campaign"
           },
           {
             "key": "religious_events",
-            "text": "Religious events",
-            "value": false,
-            "openmrs_choice_id": "religious_events"
+            "text": "Religious events"
           },
           {
             "key": "community_meetings",
-            "text": "Community meetings",
-            "value": false,
-            "openmrs_choice_id": "community_meetings"
+            "text": "Community meetings"
           },
           {
             "key": "community_theater",
-            "text": "Community theater",
-            "value": false,
-            "openmrs_choice_id": "community_theater"
+            "text": "Community theater"
           },
           {
             "key": "community_drama",
-            "text": "Community drama",
-            "value": false,
-            "openmrs_choice_id": "community_drama"
+            "text": "Community drama"
           },
           {
             "key": "tales_discussions",
-            "text": "Tales and discussions",
-            "value": false,
-            "openmrs_choice_id": "tales_discussions"
+            "text": "Tales and discussions"
           },
           {
             "key": "learning_events",
-            "text": "Learning institution events",
-            "value": false,
-            "openmrs_choice_id": "learning_events"
+            "text": "Learning institution events"
           },
           {
             "key": "advocacy_meetings",
-            "text": "Advocacy meetings",
-            "value": false,
-            "openmrs_choice_id": "advocacy_meetings"
+            "text": "Advocacy meetings"
           },
           {
             "key": "workplace_education",
-            "text": "Workplace HIV & AIDs Education",
-            "value": false,
-            "openmrs_choice_id": "workplace_education"
+            "text": "Workplace HIV & AIDs Education"
           },
           {
             "key": "income_activities",
-            "text": "Income Generation Activities",
-            "value": false,
-            "openmrs_choice_id": "income_activities"
+            "text": "Income Generation Activities"
           },
           {
             "key": "health_edutainment",
-            "text": "Health edutainment",
-            "value": false,
-            "openmrs_choice_id": "health_edutainment"
+            "text": "Health edutainment"
           },
           {
             "key": "outreach",
-            "text": "Outreach",
-            "value": false,
-            "openmrs_choice_id": "outreach"
+            "text": "Outreach"
           },
           {
             "key": "other",
-            "text": "Other (Specify)",
-            "value": false,
-            "openmrs_choice_id": "other"
+            "text": "Other (Specify)"
           }
         ],
         "v_required": {
@@ -210,21 +184,15 @@
         "options": [
           {
             "key": "audio_visual",
-            "text": "Audio visual",
-            "value": false,
-            "openmrs_choice_id": "audio_visual"
+            "text": "Audio visual"
           },
           {
             "key": "audio",
-            "text": "Audio",
-            "value": false,
-            "openmrs_choice_id": "audio"
+            "text": "Audio"
           },
           {
             "key": "print_materials",
-            "text": "Print Materials",
-            "value": false,
-            "openmrs_choice_id": "print_materials"
+            "text": "Print Materials"
           }
         ],
         "v_required": {
@@ -317,21 +285,15 @@
         "options": [
           {
             "key": "audio_visual",
-            "text": "Audio visual",
-            "value": false,
-            "openmrs_choice_id": "audio_visual"
+            "text": "Audio visual"
           },
           {
             "key": "audio",
-            "text": "Audio",
-            "value": false,
-            "openmrs_choice_id": "audio"
+            "text": "Audio"
           },
           {
             "key": "print_materials",
-            "text": "Print Materials",
-            "value": false,
-            "openmrs_choice_id": "print_materials"
+            "text": "Print Materials"
           }
         ],
         "v_required": {

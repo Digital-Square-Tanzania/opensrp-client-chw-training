@@ -15,7 +15,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.adapter.SbccRegisterAdapter;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
-import org.smartregister.chw.dao.ChwSbccDao;
+import org.smartregister.chw.dao.MotherChampionSbccDao;
 import org.smartregister.chw.model.MotherChampionSbccRegisterFragmentModel;
 import org.smartregister.chw.model.SbccSessionModel;
 import org.smartregister.chw.pmtct.fragment.BasePmtctRegisterFragment;
@@ -48,7 +48,7 @@ public class MotherChampionSbccRegisterFragment extends BasePmtctRegisterFragmen
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
         SbccRegisterProvider sbccRegisterProvider = new SbccRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
-        List<SbccSessionModel> sbccSessionModels = ChwSbccDao.getSbccSessions();
+        List<SbccSessionModel> sbccSessionModels = MotherChampionSbccDao.getSbccSessions();
         clientAdapter = new RecyclerViewPaginatedAdapter(null, sbccRegisterProvider, null);
         clientAdapter.setTotalcount(0);
         clientAdapter.setCurrentlimit(20);

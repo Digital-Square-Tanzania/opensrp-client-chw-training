@@ -8,7 +8,7 @@ import org.smartregister.family.util.DBConstants;
 
 import java.util.List;
 
-public class ChwSbccDao extends SbccDao {
+public class MotherChampionSbccDao extends SbccDao {
 
     public static List<SbccSessionModel> getSbccSessions() {
         String sql = "SELECT * FROM " + Constants.TableName.SBCC;
