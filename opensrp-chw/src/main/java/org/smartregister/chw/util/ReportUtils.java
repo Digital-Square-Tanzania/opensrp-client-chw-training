@@ -2,12 +2,13 @@ package org.smartregister.chw.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import androidx.webkit.WebViewAssetLoader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -16,6 +17,7 @@ import org.smartregister.chw.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.domain.cdp_reports.CdpIssuingReportObject;
 import org.smartregister.chw.domain.cdp_reports.CdpReceivingReportObject;
 import org.smartregister.chw.domain.mother_champion_report.MotherChampionReportObject;
+import org.smartregister.chw.domain.sbc_reports.SbcReportObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,8 +25,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import androidx.annotation.RequiresApi;
-import androidx.webkit.WebViewAssetLoader;
 import timber.log.Timber;
 
 public class ReportUtils {
@@ -86,7 +86,6 @@ public class ReportUtils {
         ReportUtils.reportPeriod = reportPeriod;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void printTheWebPage(WebView webView, Context context) {
 
         // Creating  PrintManager instance
@@ -110,9 +109,9 @@ public class ReportUtils {
         mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader));
         mWebView.addJavascriptInterface(new ChwWebAppInterface(context, reportType), "Android");
 
-        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
+        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
-        }else {
+        } else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
         }
 
@@ -180,4 +179,17 @@ public class ReportUtils {
             return report;
         }
     }
+
+    public static class SbcReports {
+        public static String computeClientsReports(Date startDate) {
+            SbcReportObject sbcReportObject = new SbcReportObject(startDate);
+            try {
+                return sbcReportObject.getIndicatorDataAsGson(sbcReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
 }

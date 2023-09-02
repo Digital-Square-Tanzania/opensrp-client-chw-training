@@ -151,6 +151,7 @@ public class Constants extends CoreConstants {
            String MOTHER_CHAMPION_REPORT = "mother_champion_report";
            String CONDOM_DISTRIBUTION_REPORT = "condom_distribution_report";
            String AGYW_REPORT = "agyw_report";
+           String SBC_REPORT = "sbc_report";
         }
 
         public interface CDPReportKeys {
@@ -163,6 +164,7 @@ public class Constants extends CoreConstants {
             String MOTHER_CHAMPION_REPORT_PATH = "mother-champion-report";
             String CONDOM_DISTRIBUTION_ISSUING_REPORT_PATH = "condom-distribution-issuing-report";
             String CONDOM_DISTRIBUTION_RECEIVING_REPORT_PATH = "condom-distribution-receiving-report";
+            String SBC_REPORT_PATH = "sbc-report";
         }
     }
 }

@@ -28,6 +28,8 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
     protected ConstraintLayout condomDistributionReports;
     protected ConstraintLayout agyweports;
 
+    protected ConstraintLayout sbcReports;
+
     @Override
     protected void onCreation() {
         ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
@@ -47,9 +49,14 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         motherChampionReportsLayout = findViewById(R.id.mother_champion_reports);
         condomDistributionReports = findViewById(R.id.cdp_reports);
         agyweports = findViewById(R.id.agyw_reports);
+        sbcReports = findViewById(R.id.sbc_reports);
 
         if (ChwApplication.getApplicationFlavor().hasAGYW()) {
             agyweports.setVisibility(View.VISIBLE);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasSbc()) {
+            sbcReports.setVisibility(View.VISIBLE);
         }
 
         if (ChwApplication.getApplicationFlavor().hasCdp()) {
@@ -59,6 +66,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         condomDistributionReports.setOnClickListener(this);
         cbhsReportsLayout.setOnClickListener(this);
         agyweports.setOnClickListener(this);
+        sbcReports.setOnClickListener(this);
     }
 
     public void setUpToolbar() {
@@ -77,9 +85,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         toolBarTextView.setText(R.string.reports_title);
         toolBarTextView.setOnClickListener(v -> finish());
         appBarLayout = findViewById(org.smartregister.chw.core.R.id.app_bar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            appBarLayout.setOutlineProvider(null);
-        }
+        appBarLayout.setOutlineProvider(null);
     }
 
 
@@ -105,6 +111,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         }
         if (id == R.id.agyw_reports) {
             Intent intent = new Intent(this, AGYWReportsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.sbc_reports) {
+            Intent intent = new Intent(this, SbcReportsActivity.class);
             startActivity(intent);
         }
     }
