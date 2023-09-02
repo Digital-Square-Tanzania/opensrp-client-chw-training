@@ -13,12 +13,16 @@ import java.util.Map;
 
 public class SbcReportObject extends ReportObject {
     private final List<String> indicatorCodesWithAgeGroups = new ArrayList<>();
+
     private final String[] indicatorCodes = new String[]{"sbc-1", "sbc-2", "sbc-3"};
+
     private final String[] indicatorSex = new String[]{"male", "female"};
+
     private final String[] indicatorAgeGroups = new String[]{"10-14", "15-19", "20-24", "25-29", "30-34",
             "35-39", "40-44", "45-49", "50+"
 
     };
+
     private final Date reportDate;
 
     public SbcReportObject(Date reportDate) {

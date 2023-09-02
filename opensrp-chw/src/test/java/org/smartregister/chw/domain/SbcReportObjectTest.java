@@ -20,7 +20,9 @@ import java.util.HashMap;
 
 public class SbcReportObjectTest {
     private SbcReportObject sbcReportObject;
+
     private HashMap<String, Integer> testIndicators;
+
     private Date reportDate;
 
     @Before

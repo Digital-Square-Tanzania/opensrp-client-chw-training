@@ -11,25 +11,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.model.SbcMobilizationSessionModel;
-import org.smartregister.chw.model.SbccSessionModel;
 
 import java.util.List;
 
 public class SbcMobilizationRegisterAdapter extends RecyclerView.Adapter<SbcMobilizationRegisterAdapter.SbcMobilizationViewHolder> {
-    private static Context context;
+    private final Context context;
+
     private final List<SbcMobilizationSessionModel> sbccSessionModels;
 
 
     public SbcMobilizationRegisterAdapter(List<SbcMobilizationSessionModel> sbccSessionModels, Context context) {
         this.sbccSessionModels = sbccSessionModels;
-        SbcMobilizationRegisterAdapter.context = context;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public SbcMobilizationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View followupLayout = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sbc_mobilization_session_card_view, viewGroup, false);
-        return new SbcMobilizationViewHolder(followupLayout);
+        return new SbcMobilizationViewHolder(followupLayout, context);
     }
 
     @Override
@@ -46,10 +46,14 @@ public class SbcMobilizationRegisterAdapter extends RecyclerView.Adapter<SbcMobi
 
     protected static class SbcMobilizationViewHolder extends RecyclerView.ViewHolder {
         public TextView sbccSessionDate;
+
         public TextView typeOfCommunitySbcActivity;
 
-        public SbcMobilizationViewHolder(@NonNull View itemView) {
+        private Context context;
+
+        public SbcMobilizationViewHolder(@NonNull View itemView, Context context) {
             super(itemView);
+            this.context = context;
         }
 
         public void bindData(SbcMobilizationSessionModel sbccSessionModel) {

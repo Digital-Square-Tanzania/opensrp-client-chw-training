@@ -136,6 +136,7 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     public boolean hasAGYW() {
         return false;
     }
+
     @Override
     public boolean hasSbc() {
         return true;

@@ -26,6 +26,7 @@ import java.util.List;
 public class AncMedicalHistoryActivityTest extends BaseUnitTest {
 
     protected AncMedicalHistoryActivity activity;
+
     protected ActivityController<AncMedicalHistoryActivity> controller;
 
     @Before

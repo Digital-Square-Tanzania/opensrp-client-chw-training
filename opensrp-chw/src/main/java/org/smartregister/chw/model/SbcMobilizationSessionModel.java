@@ -2,7 +2,9 @@ package org.smartregister.chw.model;
 
 public class SbcMobilizationSessionModel {
     private String sessionDate;
+
     private String communitySbcActivityType;
+
     private String sessionId;
 
     public String getSessionDate() {

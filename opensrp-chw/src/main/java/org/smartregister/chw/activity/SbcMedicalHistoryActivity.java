@@ -40,7 +40,9 @@ import timber.log.Timber;
 
 public class SbcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
     private static MemberObject sbcMemberObject;
+
     private final Flavor flavor = new SbcMedicalHistoryActivityFlv();
+
     private ProgressBar progressBar;
 
     public static void startMe(Activity activity, MemberObject memberObject) {
