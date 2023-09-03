@@ -1,0 +1,172 @@
+{
+  "count": "1",
+  "encounter_type": "(SBC) Uliyoshiriki",
+  "validate_on_submit": true,
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "(SBC) Uliyoshiriki",
+    "fields": [
+      {
+        "key": "activity_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activity_type",
+        "openmrs_data_type": "select one",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Aina ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
+        "hint": "Aina ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
+        "options": [
+          {
+            "key": "campaign",
+            "text": "Kampeni",
+            "value": false,
+            "openmrs_choice_id": "campaign"
+          },
+          {
+            "key": "religious",
+            "text": "Uelimishaji katika nyumba za ibada ",
+            "value": false,
+            "openmrs_choice_id": "religious"
+          },
+          {
+            "key": "meetings",
+            "text": "Mikutano ya kijamii",
+            "value": false,
+            "openmrs_choice_id": "meetings"
+          },
+          {
+            "key": "theater",
+            "text": "Kuonesha filamu",
+            "value": false,
+            "openmrs_choice_id": "theater"
+          },
+          {
+            "key": "drama",
+            "text": "Uelimishaji kwa njia ya sanaa",
+            "value": false,
+            "openmrs_choice_id": "drama"
+          },
+          {
+            "key": "tales",
+            "text": "Hadithi na majadiliano",
+            "value": false,
+            "openmrs_choice_id": "tales"
+          },
+          {
+            "key": "institution",
+            "text": "Uelimishaji katika taasisi za elimu",
+            "value": false,
+            "openmrs_choice_id": "institution"
+          },
+          {
+            "key": "advocacy",
+            "text": "Mikutano ya uraghibishi",
+            "value": false,
+            "openmrs_choice_id": "advocacy"
+          },
+          {
+            "key": "workplace",
+            "text": "Uelimishaji mahala pa kazi",
+            "value": false,
+            "openmrs_choice_id": "workplace"
+          },
+          {
+            "key": "income_generating_activity",
+            "text": "Elimu ya uwezeshaji kiuchumi",
+            "value": false,
+            "openmrs_choice_id": "income_generating_activity"
+          },
+          {
+            "key": "edutainment",
+            "text": "Uelimishaji maeneo ya burudani",
+            "value": false,
+            "openmrs_choice_id": "edutainment"
+          },
+          {
+            "key": "other",
+            "text": "Nyinginezo (Taja)",
+            "value": false,
+            "openmrs_choice_id": "other"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua angalau moja"
+        }
+      },
+      {
+        "key": "other_activity_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_activity_type",
+        "type": "edit_text",
+        "hint": "Nyinginezo (Taja)",
+        "v_required": {
+          "value": true,
+          "err": "Tafadhali jaza"
+        },
+        "relevance": {
+          "step1:activity_type": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

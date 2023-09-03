@@ -129,5 +129,4 @@ public class SbcReportsActivity extends SecuredActivity implements View.OnClickL
             Timber.e(e);
         }
     }
-
 }
