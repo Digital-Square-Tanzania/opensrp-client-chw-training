@@ -112,6 +112,9 @@ public class ChwRepositoryFlv {
                 case 26:
                     upgradeToVersion26(db);
                     break;
+                case 27:
+                    upgradeToVersion27(db);
+                    break;
                 default:
                     break;
             }
@@ -419,6 +422,25 @@ public class ChwRepositoryFlv {
 
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion26");
+        }
+    }
+
+    private static void upgradeToVersion27(SQLiteDatabase db) {
+        try {
+            ReportingLibrary reportingLibrary = ReportingLibrary.getInstance();
+            String indicatorDataInitialisedPref = "INDICATOR_DATA_INITIALISED";
+
+            String sbcIndicatorsConfigFile = "config/sbc-monthly-report.yml";
+            for (String configFile : Collections.singletonList(sbcIndicatorsConfigFile)) {
+                reportingLibrary.readConfigFile(configFile, db);
+            }
+
+            reportingLibrary.initIndicatorData(sbcIndicatorsConfigFile, db); // This will persist the data in the DB
+            reportingLibrary.getContext().allSharedPreferences().savePreference(indicatorDataInitialisedPref, "true");
+            reportingLibrary.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(BuildConfig.VERSION_CODE));
+
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion27");
         }
     }
 }
