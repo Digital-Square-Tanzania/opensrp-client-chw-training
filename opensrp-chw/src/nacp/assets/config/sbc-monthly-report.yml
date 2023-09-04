@@ -1,20 +1,18 @@
 indicators:
-  #  Question 1
-  #  Male
-
   - key: "sbc-1-female-20-24"
-      description: "Number of individuals reached by specific SBC HIV community activity"
-      indicatorQuery: "SELECT count(DISTINCT esr.base_entity_id) as count
-                      FROM ec_sbc_register esr
-                      INNER JOIN ec_family_member efm ON efm.base_entity_id = esr.base_entity_id
-                      WHERE 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-                      AND (efm.gender='Female')
-                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
-                      date(substr(strftime('%Y-%m-%d', datetime(last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
-                      '-' || substr(strftime('%Y-%m-%d', datetime(last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
-
-  #  Female
+    grouping: "SBC"
+    description: "Number of Female individuals from 20-24 years old who were reached by specific SBC HIV community activity"
+    indicatorQuery: "SELECT count(DISTINCT esr.base_entity_id) as count
+                    FROM ec_sbc_register esr
+                    INNER JOIN ec_family_member efm ON efm.base_entity_id = esr.base_entity_id
+                    WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+                    AND (efm.gender='Female')
+                    AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                    date(substr(strftime('%Y-%m-%d', datetime(esr.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                    '-' || substr(strftime('%Y-%m-%d', datetime(esr.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
   - key: "sbc-1-female-30-34"
+    grouping: "SBC"
     description: "Number of individuals reached by specific SBC HIV community activity"
     indicatorQuery: "SELECT count(DISTINCT esr.base_entity_id) as count
                       FROM ec_sbc_register esr
@@ -22,31 +20,21 @@ indicators:
                       WHERE 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
                       AND (efm.gender='Female')
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
-                      date(substr(strftime('%Y-%m-%d', datetime(last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
-                      '-' || substr(strftime('%Y-%m-%d', datetime(last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
-
-
-    #  Question 2
-    #  Male
-
-    #  Female
-
+                      date(substr(strftime('%Y-%m-%d', datetime(esr.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(esr.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
   - key: "sbc-2-female-20-24"
-      description: "Number of individuals received HIV health education"
-      indicatorQuery: "SELECT count(DISTINCT esv.entity_id) as count
-                      FROM ec_sbc_visit esv
-                      INNER JOIN ec_family_member efm ON efm.base_entity_id = esv.entity_id
-                      WHERE 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-                      AND (efm.gender='Female')
-                      AND (esv.health_education_received LIKE '%condom_use%' OR esv.health_education_received LIKE '%risk_behavior%' OR esv.health_education_received LIKE '%art_adherence%'
-                      OR esv.health_education_received LIKE '%family_planning%' OR esv.health_education_received LIKE '%sti%' OR esv.health_education_received LIKE '%tb%'
-                      OR esv.health_education_received LIKE '%hepatitis%' OR esv.health_education_received LIKE '%gbv%'
-                      OR esv.health_education_received LIKE '%cervical_cancer%' OR esv.health_education_received LIKE '%other%' )
-                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
-                      date(substr(strftime('%Y-%m-%d', datetime(last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
-                      '-' || substr(strftime('%Y-%m-%d', datetime(last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
-
-      #  Question 3
-      #  Male
-
-      #  Female
+    grouping: "SBC"
+    description: "Number of individuals received HIV health education"
+    indicatorQuery: "SELECT count(DISTINCT esv.entity_id) as count
+                    FROM ec_sbc_visit esv
+                    INNER JOIN ec_family_member efm ON efm.base_entity_id = esv.entity_id
+                    WHERE 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+                    AND (efm.gender='Female')
+                    AND (esv.health_education_received LIKE '%condom_use%' OR esv.health_education_received LIKE '%risk_behavior%' OR esv.health_education_received LIKE '%art_adherence%'
+                    OR esv.health_education_received LIKE '%family_planning%' OR esv.health_education_received LIKE '%sti%' OR esv.health_education_received LIKE '%tb%'
+                    OR esv.health_education_received LIKE '%hepatitis%' OR esv.health_education_received LIKE '%gbv%'
+                    OR esv.health_education_received LIKE '%cervical_cancer%' OR esv.health_education_received LIKE '%other%' )
+                    AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                    date(substr(strftime('%Y-%m-%d', datetime(esr.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                    '-' || substr(strftime('%Y-%m-%d', datetime(esr.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
