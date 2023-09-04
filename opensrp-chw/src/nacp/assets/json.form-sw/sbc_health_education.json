@@ -124,7 +124,7 @@
             "key": "other",
             "text": "Nyinginezo (Taja)",
             "value": false,
-            "openmrs_choice_id": "activity_other"
+            "openmrs_choice_id": "other"
           }
         ],
         "v_required": {

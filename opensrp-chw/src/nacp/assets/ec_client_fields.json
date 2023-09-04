@@ -5472,11 +5472,11 @@
           }
         },
         {
-          "column_name": "sbc_activity_type",
+          "column_name": "activity_type",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "sbc_activity_type"
+            "concept": "activity_type"
           }
         },
         {
