@@ -42,5 +42,7 @@ public class SbcMemberProfileActivity extends BaseSbcProfileActivity {
     protected void onResume() {
         super.onResume();
         setupViews();
+        fetchProfileData();
+        profilePresenter.refreshProfileBottom();
     }
 }

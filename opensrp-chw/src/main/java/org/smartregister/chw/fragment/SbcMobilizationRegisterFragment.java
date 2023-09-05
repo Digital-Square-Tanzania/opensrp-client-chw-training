@@ -9,6 +9,8 @@ import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -133,12 +135,20 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
     @Override
     public void onResume() {
         super.onResume();
-
         Toolbar toolbar = view.findViewById(org.smartregister.R.id.register_toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         toolbar.setContentInsetsRelative(0, 0);
         toolbar.setContentInsetStartWithNavigation(0);
         NavigationMenu.getInstance(getActivity(), null, toolbar);
+
+        try {
+            new Handler(Looper.getMainLooper()).postDelayed(this::updateTheList, 2000);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void updateTheList() {
         if (clientsView.getAdapter() != null) {
             clientsView.getAdapter().notifyDataSetChanged();
         }
