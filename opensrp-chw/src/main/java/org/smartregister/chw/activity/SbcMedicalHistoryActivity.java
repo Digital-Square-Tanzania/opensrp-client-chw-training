@@ -5,6 +5,7 @@ import static org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -85,7 +86,7 @@ public class SbcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
     }
 
     private static class SbcMedicalHistoryActivityFlv extends DefaultAncMedicalHistoryActivityFlv {
-        private final StyleSpan boldSpan = new StyleSpan(android.graphics.Typeface.BOLD);
+        private final StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
 
         @Override
         protected void processAncCard(String has_card, Context context) {
@@ -272,7 +273,7 @@ public class SbcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                 return context.getString(resourceId);
             } catch (Exception e) {
                 Timber.e(e);
-                return prefix + resourceName;
+                return  resourceName;
             }
         }
     }

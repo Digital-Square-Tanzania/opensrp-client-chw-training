@@ -547,9 +547,22 @@
     <string name="sbc_received_condom_education">Did the client received education on comprehensive condom use:</string>
     <string name="sbc_sbc_comments">Comments:</string>
     <string name="sbc_mobilization_sessions_title">SBC Mobilizations</string>
-    <string name="sbc_type_of_sbc_activity">Type of Community SBC Activity: %s</string>
+    <string name="sbc_type_of_sbc_activity">Type of Community SBC Activity</string>
     <string name="sbc_reports_title">SBC Report</string>
     <string name="sbc_reports">SBC Reports</string>
     <string name="sbc_reports_subtitle">View SBC Report</string>
+    <string name="sbc_campaign">Campaign</string>
+    <string name="sbc_religious_events">Religious events</string>
+    <string name="sbc_community_meetings">Community meetings</string>
+    <string name="sbc_community_theater">Community theater</string>
+    <string name="sbc_community_drama">Community drama</string>
+    <string name="sbc_tales_discussions">Tales and discussions</string>
+    <string name="sbc_learning_events">Learning institution events</string>
+    <string name="sbc_advocacy_meetings">Advocacy meetings</string>
+    <string name="sbc_workplace_education">Workplace HIV &amp; AIDs Education</string>
+    <string name="sbc_income_activities">Income Generation Activities</string>
+    <string name="sbc_health_edutainment">Health edutainment</string>
+    <string name="sbc_outreach">Outreach</string>
+    <string name="sbc_other">Other</string>
 
 </resources>

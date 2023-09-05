@@ -32,11 +32,9 @@
                 style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:ellipsize="none"
                 android:scrollHorizontally="false"
-                android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:visibility="visible"/>
@@ -51,13 +49,14 @@
             style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_below="@id/sbcc_session_title"
             android:layout_marginTop="5dp"
             android:ellipsize="none"
             android:scrollHorizontally="false"
             android:singleLine="true"
             android:textColor="@android:color/black"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:visibility="visible"
             tools:text="@string/sbcc_session_date" />
@@ -67,14 +66,15 @@
             style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/iv_sbcc_session"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/iv_sbcc_session"
             android:gravity="center_horizontal"
             android:text="@string/sbcc_session_title"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

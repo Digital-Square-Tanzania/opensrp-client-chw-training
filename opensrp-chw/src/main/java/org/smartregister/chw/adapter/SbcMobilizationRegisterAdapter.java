@@ -1,6 +1,12 @@
 package org.smartregister.chw.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.BulletSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +20,14 @@ import org.smartregister.chw.model.SbcMobilizationSessionModel;
 
 import java.util.List;
 
+import timber.log.Timber;
+
 public class SbcMobilizationRegisterAdapter extends RecyclerView.Adapter<SbcMobilizationRegisterAdapter.SbcMobilizationViewHolder> {
     private final Context context;
 
     private final List<SbcMobilizationSessionModel> sbccSessionModels;
+
+    private static final StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
 
 
     public SbcMobilizationRegisterAdapter(List<SbcMobilizationSessionModel> sbccSessionModels, Context context) {
@@ -61,7 +71,36 @@ public class SbcMobilizationRegisterAdapter extends RecyclerView.Adapter<SbcMobi
             typeOfCommunitySbcActivity = itemView.findViewById(R.id.sbc_activity_provided);
 
             sbccSessionDate.setText(context.getString(R.string.sbcc_session_date, sbccSessionModel.getSessionDate()));
-            typeOfCommunitySbcActivity.setText(context.getString(R.string.sbc_type_of_sbc_activity, sbccSessionModel.getCommunitySbcActivityType()));
+
+            evaluateView(typeOfCommunitySbcActivity,context,sbccSessionModel.getCommunitySbcActivityType());
+        }
+    }
+
+
+    private static void evaluateView(TextView tv, Context context, String stringValue) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append(context.getString(R.string.sbc_type_of_sbc_activity), boldSpan, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE).append("\n");
+
+        String[] stringValueArray;
+        if (stringValue.contains(",")) {
+            stringValueArray = stringValue.substring(1, stringValue.length() - 1).split(",");
+            for (String value : stringValueArray) {
+                spannableStringBuilder.append(getStringResource(context, "sbc_", value.trim()) + "\n", new BulletSpan(10), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        } else {
+            spannableStringBuilder.append(getStringResource(context, "sbc_", stringValue)).append("\n");
+        }
+        tv.setText(spannableStringBuilder);
+    }
+
+    private static String getStringResource(Context context, String prefix, String resourceName) {
+        int resourceId = context.getResources().
+                getIdentifier(prefix + resourceName.trim(), "string", context.getPackageName());
+        try {
+            return context.getString(resourceId);
+        } catch (Exception e) {
+            Timber.e(e);
+            return resourceName;
         }
     }
 }
