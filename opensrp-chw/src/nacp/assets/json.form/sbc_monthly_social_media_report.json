@@ -213,44 +213,44 @@
           {
             "key": "facebook",
             "text": "Facebook",
-            "value": false,
-            "openmrs_choice_id": "facebook"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "facebook"
           },
           {
             "key": "twitter",
             "text": "X(Twitter)",
-            "value": false,
-            "openmrs_choice_id": "twitter"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "twitter"
           },
           {
             "key": "whatsapp",
             "text": "Whatsapp",
-            "value": false,
-            "openmrs_choice_id": "community_meetings"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community_meetings"
           },
           {
             "key": "instagram",
             "text": "Instagram",
-            "value": false,
-            "openmrs_choice_id": "instagram"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "instagram"
           },
           {
             "key": "telegram",
             "text": "Telegram",
-            "value": false,
-            "openmrs_choice_id": "telegram"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "telegram"
           },
           {
             "key": "youtube",
             "text": "Youtube",
-            "value": false,
-            "openmrs_choice_id": "youtube"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "youtube"
           },
           {
             "key": "other",
             "text": "Other (Specify)",
-            "value": false,
-            "openmrs_choice_id": "other"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {

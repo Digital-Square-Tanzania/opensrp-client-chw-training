@@ -69,104 +69,104 @@
           {
             "key": "htc",
             "text": "HTS",
-            "value": false,
-            "openmrs_choice_id": "htc"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "htc"
           },
           {
             "key": "vmmc",
             "text": "VMMC",
-            "value": false,
-            "openmrs_choice_id": "vmmc"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vmmc"
           },
           {
             "key": "pmtct",
             "text": "PMTCT",
-            "value": false,
-            "openmrs_choice_id": "pmtct"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pmtct"
           },
           {
             "key": "treatment",
             "text": "Care and Treatment",
-            "value": false,
-            "openmrs_choice_id": "treatment"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "treatment"
           },
           {
             "key": "cervical",
             "text": "Cervical Cancer Screening",
-            "value": false,
-            "openmrs_choice_id": "cervical"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cervical"
           },
           {
             "key": "stigma",
             "text": "Stigma",
-            "value": false,
-            "openmrs_choice_id": "stigma"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stigma"
           },
           {
             "key": "prep",
             "text": "PrEP",
-            "value": false,
-            "openmrs_choice_id": "prep"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "prep"
           },
           {
             "key": "gbv",
             "text": "GBV",
-            "value": false,
-            "openmrs_choice_id": "gbv"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "gbv"
           },
           {
             "key": "agyw",
             "text": "AGYW",
-            "value": false,
-            "openmrs_choice_id": "agyw"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "agyw"
           },
           {
             "key": "abym",
             "text": "ABYM",
-            "value": false,
-            "openmrs_choice_id": "abym"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "abym"
           },
           {
             "key": "tb",
             "text": "TB/HIV",
-            "value": false,
-            "openmrs_choice_id": "tb"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "tb"
           },
           {
             "key": "hepatitis",
             "text": "Hepatitis",
-            "value": false,
-            "openmrs_choice_id": "hepatitis"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "hepatitis"
           },
           {
             "key": "sti",
             "text": "STI/RTI",
-            "value": false,
-            "openmrs_choice_id": "sti"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sti"
           },
           {
             "key": "injection",
             "text": "Injection safety",
-            "value": false,
-            "openmrs_choice_id": "injection"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "injection"
           },
           {
             "key": "mat",
             "text": "MAT",
-            "value": false,
-            "openmrs_choice_id": "mat"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mat"
           },
           {
             "key": "overdose",
             "text": "Overdose Prevention and Management Education",
-            "value": false,
-            "openmrs_choice_id": "overdose"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "overdose"
           },
           {
             "key": "other",
             "text": "Other (Specify)",
-            "value": false,
-            "openmrs_choice_id": "other"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {

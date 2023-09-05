@@ -69,62 +69,62 @@
           {
             "key": "condom_use",
             "text": "Condom use",
-            "value": false,
-            "openmrs_choice_id": "condom_use"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "condom_use"
           },
           {
             "key": "risk_behavior",
             "text": "Risk behavior and transmission",
-            "value": false,
-            "openmrs_choice_id": "risk_behavior"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "risk_behavior"
           },
           {
             "key": "art_adherence",
             "text": "ART Adherence",
-            "value": false,
-            "openmrs_choice_id": "art_adherence"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "art_adherence"
           },
           {
             "key": "family_planning",
             "text": "Family Planning",
-            "value": false,
-            "openmrs_choice_id": "family_planning"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "family_planning"
           },
           {
             "key": "sti",
             "text": "STI/RTI",
-            "value": false,
-            "openmrs_choice_id": "sti"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sti"
           },
           {
             "key": "tb",
             "text": "TB",
-            "value": false,
-            "openmrs_choice_id": "tb"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "tb"
           },
           {
             "key": "hepatitis",
             "text": "Hepatitis",
-            "value": false,
-            "openmrs_choice_id": "hepatitis"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "hepatitis"
           },
           {
             "key": "gbv",
             "text": "GBV",
-            "value": false,
-            "openmrs_choice_id": "gbv"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "gbv"
           },
           {
             "key": "cervical_cancer",
             "text": "Cervical Cancer",
-            "value": false,
-            "openmrs_choice_id": "cervical_cancer"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cervical_cancer"
           },
           {
             "key": "other",
             "text": "Other (Specify)",
-            "value": false,
-            "openmrs_choice_id": "other"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {

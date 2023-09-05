@@ -81,56 +81,56 @@
           {
             "key": "meetings",
             "text": "Community meetings",
-            "value": false,
-            "openmrs_choice_id": "meetings"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "meetings"
           },
           {
             "key": "theater",
             "text": "Community theater",
-            "value": false,
-            "openmrs_choice_id": "theater"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "theater"
           },
           {
             "key": "tales",
             "text": "Tales and discussions",
-            "value": false,
-            "openmrs_choice_id": "tales"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "tales"
           },
           {
             "key": "drama",
             "text": "Drama",
-            "value": false,
-            "openmrs_choice_id": "drama"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "drama"
           },
           {
             "key": "institution",
             "text": "Learning institution events",
-            "value": false,
-            "openmrs_choice_id": "institution"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "institution"
           },
           {
             "key": "advocacy",
             "text": "Advocacy meetings",
-            "value": false,
-            "openmrs_choice_id": "advocacy"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "advocacy"
           },
           {
             "key": "workplace",
             "text": "Workplace Health Education",
-            "value": false,
-            "openmrs_choice_id": "workplace"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "workplace"
           },
           {
             "key": "edutainment",
             "text": "Health edutainment",
-            "value": false,
-            "openmrs_choice_id": "edutainment"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "edutainment"
           },
           {
             "key": "other",
             "text": "Other (Specify)",
-            "value": false,
-            "openmrs_choice_id": "other"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {

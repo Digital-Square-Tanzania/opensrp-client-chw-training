@@ -92,55 +92,81 @@
         "options": [
           {
             "key": "campaign",
-            "text": "Campaign"
+            "text": "Campaign",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "campaign"
           },
           {
             "key": "religious_events",
-            "text": "Religious events"
+            "text": "Religious events",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "religious_events"
           },
           {
             "key": "community_meetings",
-            "text": "Community meetings"
+            "text": "Community meetings",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community_meetings"
           },
           {
             "key": "community_theater",
-            "text": "Community theater"
+            "text": "Community theater",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community_theater"
           },
           {
             "key": "community_drama",
-            "text": "Community drama"
+            "text": "Community drama",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community_drama"
           },
           {
             "key": "tales_discussions",
-            "text": "Tales and discussions"
+            "text": "Tales and discussions",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "tales_discussions"
           },
           {
             "key": "learning_events",
-            "text": "Learning institution events"
+            "text": "Learning institution events",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "learning_events"
           },
           {
             "key": "advocacy_meetings",
-            "text": "Advocacy meetings"
+            "text": "Advocacy meetings",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "advocacy_meetings"
           },
           {
             "key": "workplace_education",
-            "text": "Workplace HIV & AIDs Education"
+            "text": "Workplace HIV & AIDs Education",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "workplace_education"
           },
           {
             "key": "income_activities",
-            "text": "Income Generation Activities"
+            "text": "Income Generation Activities",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "income_activities"
           },
           {
             "key": "health_edutainment",
-            "text": "Health edutainment"
+            "text": "Health edutainment",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_edutainment"
           },
           {
             "key": "outreach",
-            "text": "Outreach"
+            "text": "Outreach",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "outreach"
           },
           {
             "key": "other",
-            "text": "Other (Specify)"
+            "text": "Other (Specify)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {
@@ -184,15 +210,21 @@
         "options": [
           {
             "key": "audio_visual",
-            "text": "Audio visual"
+            "text": "Audio visual",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio_visual"
           },
           {
             "key": "audio",
-            "text": "Audio"
+            "text": "Audio",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio"
           },
           {
             "key": "print_materials",
-            "text": "Print Materials"
+            "text": "Print Materials",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "print_materials"
           }
         ],
         "v_required": {
@@ -285,15 +317,22 @@
         "options": [
           {
             "key": "audio_visual",
-            "text": "Audio visual"
+            "text": "Audio visual",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio_visual"
           },
           {
             "key": "audio",
-            "text": "Audio"
+            "text": "Audio",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio"
           },
           {
             "key": "print_materials",
-            "text": "Print Materials"
+            "text": "Print Materials",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "print_materials"
+
           }
         ],
         "v_required": {
