@@ -69,14 +69,14 @@
           {
             "key": "campaign",
             "text": "Campaign",
-            "value": false,
-            "openmrs_choice_id": "campaign"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "campaign"
           },
           {
             "key": "religious",
             "text": "Religious events ",
-            "value": false,
-            "openmrs_choice_id": "religious"
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "religious"
           },
           {
             "key": "meetings",
