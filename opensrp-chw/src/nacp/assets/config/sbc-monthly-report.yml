@@ -767,25 +767,18 @@ indicators:
   - key: "sbc-4-male-total"
     grouping: "SBC"
     description: "Total Number of HIV and AIDS IEC materials distributed to Male"
-    indicatorQuery: "SELECT count(DISTINCT esv.entity_id) as count
-                   FROM ec_sbc_visit esv
-                   INNER JOIN ec_family_member efm ON efm.base_entity_id = esv.entity_id
-                   WHERE   (efm.gender='Male')
-                   AND  esv.distributed_any_hiv_materials = 'yes'
-                   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
-                   date(substr(strftime('%Y-%m-%d', datetime(esv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
-                   '-' || substr(strftime('%Y-%m-%d', datetime(esv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    indicatorQuery: "SELECT SUM(esmbs.number_pmtct_audio_distributed_male + esmbs.number_pmtct_audio_visuals_distributed_male + esmbs.number_pmtct_print_materials_distributed_male) as count
+                     FROM ec_sbc_mobilization_session esmbs
+                     WHERE
+                     strftime('%m', CURRENT_TIMESTAMP) AND  strftime('%Y', CURRENT_TIMESTAMP)"
+
 
   #Female
 
   - key: "sbc-4-female-total"
     grouping: "SBC"
     description: "Total Number of HIV and AIDS IEC materials distributed to Female"
-    indicatorQuery: "SELECT count(DISTINCT esv.entity_id) as count
-                   FROM ec_sbc_visit esv
-                   INNER JOIN ec_family_member efm ON efm.base_entity_id = esv.entity_id
-                   WHERE   (efm.gender='Female')
-                   AND  esv.distributed_any_hiv_materials = 'yes'
-                   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
-                   date(substr(strftime('%Y-%m-%d', datetime(esv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
-                   '-' || substr(strftime('%Y-%m-%d', datetime(esv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    indicatorQuery: "SELECT SUM(esmbs.number_pmtct_audio_distributed_female + esmbs.number_pmtct_audio_visuals_distributed_female + esmbs.number_pmtct_print_materials_distributed_female) as count
+                     FROM ec_sbc_mobilization_session esmbs
+                     WHERE
+                     strftime('%m', CURRENT_TIMESTAMP) AND  strftime('%Y', CURRENT_TIMESTAMP)"
