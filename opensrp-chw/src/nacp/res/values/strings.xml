@@ -580,5 +580,17 @@
     <string name="sbc_number_pmtct_audio_distributed_female">Number of PMTCT Audio  distributed for Female Clients:</string>
     <string name="sbc_number_pmtct_print_materials_distributed_male">Number of PMTCT Print Materials  distributed for Male Clients:</string>
     <string name="sbc_number_pmtct_print_materials_distributed_female">Number of PMTCT Print Materials  distributed for Female Clients:</string>
+    <string name="sbc_monthly_social_media_report">SBC Monthly Social Media Report</string>
+    <string name="sbc_monthly_social_media_report_organization">Organization</string>
+    <string name="sbc_monthly_social_media_report_month">Reporting Month: %s</string>
+    <string name="sbc_back_to_all_monthly_social_media_reports">Back to All Monthly Social Media Reports</string>
+    <string name="sbc_monthly_social_media_report_details">SBC Monthly Social Media Details</string>
+    <string name="sbc_reporting_month">Reporting Month</string>
+    <string name="sbc_organization_name">Name of Organization</string>
+    <string name="sbc_other_organization_name">Name of Other Organization</string>
+    <string name="sbc_social_media_hiv_msg_distribution">Social Media used for HIV &amp; AIDS message distribution</string>
+    <string name="sbc_number_beneficiaries_reached_facebook">Number of beneficiaries reached  through Facebook</string>
+    <string name="sbc_number_messages_publications">Number of messages publications published through Mass Media</string>
+    <string name="sbc_number_aired_messages_broadcasted">Number of aired messages broadcast through Mass Media</string>
 
 </resources>

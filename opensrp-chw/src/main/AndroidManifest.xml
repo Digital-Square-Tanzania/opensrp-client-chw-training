@@ -389,6 +389,12 @@
             android:name=".activity.SbcMobilizationSessionDetailsActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
+            android:name=".activity.SbcMonthlySocialMediaReportRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcMonthlySocialMediaReportDetailsActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
             android:name=".activity.MotherChampionMedicalHistoryActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity

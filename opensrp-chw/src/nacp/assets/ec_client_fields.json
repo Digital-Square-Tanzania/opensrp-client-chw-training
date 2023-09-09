@@ -5722,6 +5722,89 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_sbc_monthly_social_media_report",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        },
+        {
+          "column_name": "reporting_month",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reporting_month"
+          }
+        },
+        {
+          "column_name": "organization_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "organization_name"
+          }
+        },
+        {
+          "column_name": "other_organization_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_organization_name"
+          }
+        },
+        {
+          "column_name": "social_media_hiv_msg_distribution",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "social_media_hiv_msg_distribution"
+          }
+        },
+        {
+          "column_name": "number_beneficiaries_reached_facebook",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_beneficiaries_reached_facebook"
+          }
+        },
+        {
+          "column_name": "number_messages_publications",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_messages_publications"
+          }
+        },
+        {
+          "column_name": "number_aired_messages_broadcasted",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_aired_messages_broadcasted"
+          }
+        }
+      ]
     }
   ]
 }

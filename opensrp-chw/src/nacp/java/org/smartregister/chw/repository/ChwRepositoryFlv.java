@@ -427,6 +427,11 @@ public class ChwRepositoryFlv {
 
     private static void upgradeToVersion27(SQLiteDatabase db) {
         try {
+
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_sbc_register", "ec_sbc_visit", "ec_sbc_monthly_social_media_report")),
+                    ChwApplication.createCommonFtsObject());
+
             ReportingLibrary reportingLibrary = ReportingLibrary.getInstance();
             String indicatorDataInitialisedPref = "INDICATOR_DATA_INITIALISED";
 

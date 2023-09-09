@@ -226,7 +226,7 @@
             "key": "whatsapp",
             "text": "Whatsapp",
             "value": false,
-            "openmrs_choice_id": "community_meetings"
+            "openmrs_choice_id": "whatsapp"
           },
           {
             "key": "instagram",

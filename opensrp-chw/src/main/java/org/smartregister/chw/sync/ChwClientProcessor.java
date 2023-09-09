@@ -80,6 +80,7 @@ public class ChwClientProcessor extends CoreClientProcessor {
                 case Constants.Events.KVP_PREP_FOLLOWUP_VISIT:
                 case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
                 case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_HEALTH_EDUCATION_MOBILIZATION:
+                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_MONTHLY_SOCIAL_MEDIA_REPORT:
                     if (eventClient.getEvent() == null) {
                         return;
                     }

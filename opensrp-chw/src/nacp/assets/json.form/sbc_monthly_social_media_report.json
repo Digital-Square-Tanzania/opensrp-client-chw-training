@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Monthly Social Media Report ",
+  "encounter_type": "Monthly Social Media Report",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -226,7 +226,7 @@
             "key": "whatsapp",
             "text": "Whatsapp",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "community_meetings"
+            "openmrs_entity_id": "whatsapp"
           },
           {
             "key": "instagram",
