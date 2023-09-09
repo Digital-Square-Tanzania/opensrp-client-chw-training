@@ -395,7 +395,7 @@
         "openmrs_entity_id": "number_pmtct_audio_distributed_male",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Number of PMTCT Audio  distributed for Male Clients ",
+        "hint": "Number of PMTCT Audio  distributed for Male Client",
         "v_required": {
           "value": true,
           "err": "Required"

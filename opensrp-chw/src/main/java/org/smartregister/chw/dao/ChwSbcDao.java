@@ -14,7 +14,7 @@ public class ChwSbcDao extends SbcDao {
 
         DataMap<SbcMobilizationSessionModel> dataMap = cursor -> {
             SbcMobilizationSessionModel sbcMobilizationSessionModel = new SbcMobilizationSessionModel();
-            sbcMobilizationSessionModel.setSessionId(cursor.getString(cursor.getColumnIndex(DBConstants.KEY.BASE_ENTITY_ID)));
+            sbcMobilizationSessionModel.setSessionId(cursor.getString(cursor.getColumnIndex("id")));
 
             String communitySbcActivity = cursor.getString(cursor.getColumnIndex("community_sbc_activity_provided"));
             sbcMobilizationSessionModel.setCommunitySbcActivityType(communitySbcActivity);

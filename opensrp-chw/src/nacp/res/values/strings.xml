@@ -525,6 +525,9 @@
     <string name="last_appointment_date">Last Appointment date</string>
 
     <!--    SBC -->
+    <string name="sbc_mobilization_session_details">SBC Mobilization Session Details</string>
+    <string name="sbc_mobilization_session">SBC Mobilization Session</string>
+    <string name="sbc_back_to_all_mobilization_sessions">Back to All mobilization sessions</string>
     <string name="sbc_visit">SBC Visits</string>
     <string name="sbc_followup_visit">SBC Follow-up Visit</string>
     <string name="sbc_activity_type">Type of Community SBC activity provided:</string>
@@ -564,5 +567,18 @@
     <string name="sbc_health_edutainment">Health edutainment</string>
     <string name="sbc_outreach">Outreach</string>
     <string name="sbc_other">Other</string>
+    <string name="sbc_community_sbc_activity_provided">Type of Community SBC activity provided:</string>
+    <string name="sbc_other_community_sbc_activity_provided">Other Type of Community SBC activity provided:</string>
+    <string name="sbc_iec_materials_distributed">IEC materials distributed:</string>
+    <string name="sbc_number_audio_visuals_distributed">Number of Audio visual distributed:</string>
+    <string name="sbc_number_audio_distributed">Number of Audio distributed:</string>
+    <string name="sbc_number_print_materials_distributed">Number of print materials distributed:</string>
+    <string name="sbc_pmtct_iec_materials_distributed">PMTCT IEC materials distributed:</string>
+    <string name="sbc_number_pmtct_audio_visuals_distributed_male">Number of PMTCT Audio visual distributed for Male Clients:</string>
+    <string name="sbc_number_pmtct_audio_visuals_distributed_female">Number of PMTCT Audio visual distributed for Female Clients:</string>
+    <string name="sbc_number_pmtct_audio_distributed_male">Number of PMTCT Audio  distributed for Male Clients:</string>
+    <string name="sbc_number_pmtct_audio_distributed_female">Number of PMTCT Audio  distributed for Female Clients:</string>
+    <string name="sbc_number_pmtct_print_materials_distributed_male">Number of PMTCT Print Materials  distributed for Male Clients:</string>
+    <string name="sbc_number_pmtct_print_materials_distributed_female">Number of PMTCT Print Materials  distributed for Female Clients:</string>
 
 </resources>
