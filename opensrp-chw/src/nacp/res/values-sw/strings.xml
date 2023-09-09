@@ -477,5 +477,47 @@
 
     <string name="last_appointment_date">Tarehe ya mwisho ya Miadi</string>
 
+    <!--    SBC -->
+    <string name="sbc_visit">SBC Uliyoshiriki</string>
+    <string name="sbc_followup_visit">SBC Ziara ya Kufuatilia</string>
+    <string name="sbc_activity_type">Aina ya shughuli ya SBC kwa jamii iliyotolewa:</string>
+    <string name="sbc_other_activity_type">Aina Nyingine ya Shughuli ya SBC kwa Jamii iliyotolewa:</string>
+    <string name="sbc_received_any_hiv_sms">Je, mteja amepokea ujumbe mfupi wa simu kuhusu VVU na UKIMWI ndani ya mwezi huu:</string>
+    <string name="sbc_received_message">Maudhui ya ujumbe yaliyopokelewa:</string>
+    <string name="sbc_other_received_message">Maudhui mengine ya ujumbe yaliyopokelewa:</string>
+    <string name="sbc_reason_not_receiving_hiv_sms">Sababu ya kutokupata ujumbe mfupi wa simu kuhusu VVU na UKIMWI:</string>
+    <string name="sbc_other_reason_not_receiving_hiv_sms">Sababu nyingine ya kutokupata ujumbe mfupi wa simu kuhusu VVU na UKIMWI:</string>
+    <string name="sbc_used_toll_free">Je, mteja amewahi kutumia huduma Toll free:</string>
+    <string name="sbc_toll_free_service_accessed">Je, mteja ametumia huduma gani ya Toll free:</string>
+    <string name="sbc_health_education_received">Kikao cha Elimu ya Afya ya SBC kilichopokelewa (vikao):</string>
+    <string name="sbc_other_health_education_received">Kikao cha Elimu ya Afya ya SBC kingine (vikao) kilichopokelewa:</string>
+    <string name="sbc_health_education_hiv_intervention">Elimu ya afya katika afua za VVU na UKIMWI:</string>
+    <string name="sbc_other_health_education_hiv_intervention">Elimu nyingine ya afya katika afua za VVU na UKIMWI:</string>
+    <string name="sbc_distributed_any_hiv_materials">Je, umesambaza vifaa vya Elimu ya Afya kuhusu VVU na UKIMWI (SBC) kwa wanufaika:</string>
+    <string name="sbc_type_of_materials_content_distributed">Aina za maudhui au vifaa vilivyosambazwa:</string>
+    <string name="sbc_other_type_of_materials_content_distributed">Aina nyingine ya maudhui au vifaa vilivyosambazwa:</string>
+    <string name="sbc_received_art_counseling">Je, mteja amepata elimu ya ufuasi mzuri wa ARV:</string>
+    <string name="sbc_received_condom_education">Je, mteja amepata elimu sahihi na endelevu ya matumizi sahihi ya kondomu:</string>
+    <string name="sbc_sbc_comments">Maoni:</string>
+    <string name="sbc_mobilization_sessions_title">Mobilizesheni (SBC)</string>
+    <string name="sbc_type_of_sbc_activity">Aina ya uelimishaji ngazi ya jamii (SBC)</string>
+    <string name="sbc_reports_title">Ripoti ya SBC</string>
+    <string name="sbc_reports">Ripoti ya SBC</string>
+    <string name="sbc_reports_subtitle">Tazama Ripoti za SBC</string>
+    <string name="sbc_campaign">Kampeni</string>
+    <string name="sbc_religious_events">Uelimishaji katika nyumba za ibada</string>
+    <string name="sbc_community_meetings">Mikutano ya kijamii</string>
+    <string name="sbc_community_theater">Kuonesha filamu</string>
+    <string name="sbc_community_drama">Uelimishaji kwa njia ya sanaa</string>
+    <string name="sbc_tales_discussions">Hadithi na majadiliano</string>
+    <string name="sbc_learning_events">Uelimishaji katika taasisi za elimu</string>
+    <string name="sbc_advocacy_meetings">Mikutano ya uraghibishi</string>
+    <string name="sbc_workplace_education">Uelimishaji mahala pa kazi</string>
+    <string name="sbc_income_activities">Elimu ya uwezeshaji kiuchumi</string>
+    <string name="sbc_health_edutainment">Uelimishaji maeneo ya burudani</string>
+    <string name="sbc_outreach">Kuwafikia</string>
+    <string name="sbc_other">Nyinginezo</string>
+
+
 
 </resources>
