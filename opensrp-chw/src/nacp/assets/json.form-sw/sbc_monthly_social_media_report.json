@@ -283,6 +283,150 @@
         }
       },
       {
+        "key": "number_beneficiaries_reached_twitter",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_beneficiaries_reached_twitter",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Idadi ya watu waliofikiwa na ujumbe kupitia Twitter",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:social_media_hiv_msg_distribution": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "twitter"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "number_beneficiaries_reached_whatsapp",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_beneficiaries_reached_whatsapp",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Idadi ya watu waliofikiwa na ujumbe kupitia Whatsapp",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:social_media_hiv_msg_distribution": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "whatsapp"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "number_beneficiaries_reached_instagram",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_beneficiaries_reached_instagram",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Idadi ya watu waliofikiwa na ujumbe kupitia Instagram",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:social_media_hiv_msg_distribution": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "instagram"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "number_beneficiaries_reached_telegram",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_beneficiaries_reached_telegram",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Idadi ya watu waliofikiwa na ujumbe kupitia Telegram",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:social_media_hiv_msg_distribution": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "telegram"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "number_beneficiaries_reached_youtube",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_beneficiaries_reached_youtube",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Idadi ya watu waliofikiwa na ujumbe kupitia Youtube",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:social_media_hiv_msg_distribution": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "youtube"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "number_beneficiaries_reached_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_beneficiaries_reached_other",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Idadi ya watu waliofikiwa na ujumbe kupitia Njia Nyinginezo",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:social_media_hiv_msg_distribution": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "number_messages_publications",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
