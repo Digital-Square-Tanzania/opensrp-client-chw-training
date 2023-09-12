@@ -807,14 +807,18 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     }
 
     private void evaluateCordCare(Person baby) throws Exception {
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()))
-                .withOptional(false)
-                .withDetails(details)
-                .withBaseEntityID(baby.getBaseEntityID())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                .withFormName(Constants.JsonForm.getChildHvCordCare())
-                .build();
-        actionList.put(MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()), action);
+        String visitID = pncVisitAlertRule().getVisitID();
+
+        if (visitID.equalsIgnoreCase("1") || visitID.equalsIgnoreCase("3") || visitID.equalsIgnoreCase("8")){
+            BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()))
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withBaseEntityID(baby.getBaseEntityID())
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                    .withFormName(Constants.JsonForm.getChildHvCordCare())
+                    .build();
+            actionList.put(MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()), action);
+        }
     }
 
     private class PNCHealthFacilityVisitHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
