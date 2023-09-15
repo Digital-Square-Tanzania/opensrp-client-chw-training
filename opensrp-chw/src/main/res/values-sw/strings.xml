@@ -611,4 +611,7 @@
     <string name="iccm_malaria">Malaria</string>
     <string name="iccm_pneumonia">Nimonia</string>
     <string name="iccm_diarrhea">Kuharisha</string>
+
+    <string name="child_hv_complementary_feeding"> Ushauri kuhusu kumlisha mtoto vyakula vya nyongeza </string>
+
 </resources>

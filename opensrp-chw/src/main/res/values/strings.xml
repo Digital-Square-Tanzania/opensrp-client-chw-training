@@ -480,4 +480,6 @@
     <string name="visit_in_progress">%s visit still in progress</string>
 
     <string name="iccm_referral">iCCM Referral</string>
+
+    <string name="child_hv_complementary_feeding"> Complementary Feeding Counseling </string>
 </resources>
