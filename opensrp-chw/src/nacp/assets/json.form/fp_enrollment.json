@@ -53,6 +53,7 @@
       "value": ""
     }
   },
+  "global": {},
   "step1": {
     "title": "FP Enrollment",
     "fields": [
