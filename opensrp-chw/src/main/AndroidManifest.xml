@@ -164,6 +164,9 @@
             android:name=".activity.MalariaRegisterActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
+            android:name=".activity.IccmRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
             android:name=".activity.FpRegisterActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity android:name=".core.activity.ChwP2pModeSelectActivity" />
@@ -249,6 +252,13 @@
         <activity
             android:name=".activity.MalariaProfileActivity"
             android:label="@string/malaria"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.IccmProfileActivity"
+            android:label="@string/iccm"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.IccmServicesActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".core.activity.CoreAncRegisterActivity"
@@ -422,6 +432,15 @@
 
         <activity
             android:name=".activity.AGYWReportsActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.IccmReportsActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.IccmReportsViewActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.IccmMedicalHistoryActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
 
         <meta-data

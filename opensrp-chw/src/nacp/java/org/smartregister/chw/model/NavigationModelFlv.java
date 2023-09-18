@@ -2,6 +2,8 @@ package org.smartregister.chw.model;
 
 import static org.smartregister.AllConstants.TEAM_ROLE_IDENTIFIER;
 
+import android.content.SharedPreferences;
+
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
@@ -42,13 +44,22 @@ public class NavigationModelFlv implements NavigationModel.Flavor {
             NavigationOption op17 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_cdp, CoreConstants.DrawerMenu.CDP, 0);
             NavigationOption op18 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_kvp, CoreConstants.DrawerMenu.KVP_PrEP, 0);
             NavigationOption op19 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_AGYW, CoreConstants.DrawerMenu.AGYW, 0);
-            NavigationOption op20 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc, CoreConstants.DrawerMenu.SBC, 0);
-            NavigationOption op21 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc_monthly_social_media_report, CoreConstants.DrawerMenu.SBC_MONTHLY_SOCIAL_MEDIA_REPORT, 0);
+            NavigationOption op20 = new NavigationOption(R.mipmap.sidemenu_malaria, R.mipmap.sidemenu_malaria_active, R.string.menu_iccm, CoreConstants.DrawerMenu.ICCM, 0);
 
-            if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH && BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {
-                AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
-                String teamRoleIdentifier = allSharedPreferences.getPreferences().getString(TEAM_ROLE_IDENTIFIER, "");
-                if (teamRoleIdentifier != null && teamRoleIdentifier.equals("mother_champion")) {
+            NavigationOption op21 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc, CoreConstants.DrawerMenu.SBC, 0);
+            NavigationOption op22 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc_monthly_social_media_report, CoreConstants.DrawerMenu.SBC_MONTHLY_SOCIAL_MEDIA_REPORT, 0);
+
+            AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
+            SharedPreferences preferences = allSharedPreferences.getPreferences();
+            String teamRoleIdentifier = "";
+            if (preferences != null) {
+                teamRoleIdentifier = preferences.getString(TEAM_ROLE_IDENTIFIER, "");
+            }
+
+            if (teamRoleIdentifier.equals("iccm_provider")) {
+                navigationOptions.addAll(Arrays.asList(op10, op20, op8));
+            } else if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH && BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {
+                if (teamRoleIdentifier.equals("mother_champion")) {
                     navigationOptions.addAll(Arrays.asList(op10, op13, op8));
                 } else if (teamRoleIdentifier != null && teamRoleIdentifier.equals("cbhs_provider")) {
                     navigationOptions.addAll(Arrays.asList(op10, op11, op12, op8, op15));
@@ -61,12 +72,21 @@ public class NavigationModelFlv implements NavigationModel.Flavor {
                 if (ChwApplication.getApplicationFlavor().hasCdp()) {
                     navigationOptions.add(4, op17);
                 }
+                if (ChwApplication.getApplicationFlavor().hasAGYW()) {
+                    navigationOptions.add(5, op19);
+                }
                 if (ChwApplication.getApplicationFlavor().hasKvp()) {
                     navigationOptions.add(5, op18);
                 }
+                if (ChwApplication.getApplicationFlavor().hasMalaria()) {
+                    navigationOptions.add(5, op7);
+                }
+                if (ChwApplication.getApplicationFlavor().hasICCM()) {
+                    navigationOptions.add(7, op20);
+                }
                 if (ChwApplication.getApplicationFlavor().hasSbc()) {
+                    navigationOptions.add(2, op22);
                     navigationOptions.add(2, op21);
-                    navigationOptions.add(2, op20);
                 }
             } else {
                 navigationOptions.addAll(Arrays.asList(op1, op3, op5, op2, op6, op7));

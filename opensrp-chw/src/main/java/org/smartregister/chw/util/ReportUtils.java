@@ -8,6 +8,9 @@ import android.print.PrintManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import androidx.annotation.RequiresApi;
+import androidx.webkit.WebViewAssetLoader;
+
 import androidx.webkit.WebViewAssetLoader;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +19,9 @@ import org.smartregister.chw.domain.agyw_reports.AGYWReportObject;
 import org.smartregister.chw.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.domain.cdp_reports.CdpIssuingReportObject;
 import org.smartregister.chw.domain.cdp_reports.CdpReceivingReportObject;
+import org.smartregister.chw.domain.iccm_reports.IccmClientsReportObject;
+import org.smartregister.chw.domain.iccm_reports.IccmDispensingSummaryReportObject;
+import org.smartregister.chw.domain.iccm_reports.MalariaTestReportObject;
 import org.smartregister.chw.domain.mother_champion_report.MotherChampionReportObject;
 import org.smartregister.chw.domain.sbc_reports.SbcReportObject;
 
@@ -94,8 +100,7 @@ public class ReportUtils {
 
         // Create a print job with name and adapter instance
         assert printManager != null;
-        printManager.print(getPrintJobName(), printAdapter,
-                new PrintAttributes.Builder().build());
+        printManager.print(getPrintJobName(), printAdapter, new PrintAttributes.Builder().build());
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -103,9 +108,7 @@ public class ReportUtils {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
-                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context))
-                .build();
+        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context)).build();
         mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader));
         mWebView.addJavascriptInterface(new ChwWebAppInterface(context, reportType), "Android");
 
@@ -179,6 +182,39 @@ public class ReportUtils {
             return report;
         }
     }
+
+    public static class ICCMReports {
+        public static String computeClientsReports(Date startDate) {
+            IccmClientsReportObject iccmClientsReportObject = new IccmClientsReportObject(startDate);
+            try {
+                return iccmClientsReportObject.getIndicatorDataAsGson(iccmClientsReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+
+        public static String computeDispensingSummaryReports(Date startDate) {
+            IccmDispensingSummaryReportObject iccmDispensingSummaryReportObject = new IccmDispensingSummaryReportObject(startDate);
+            try {
+                return iccmDispensingSummaryReportObject.getIndicatorDataAsGson(iccmDispensingSummaryReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+
+        public static String computeMalariaTestsReports(Date startDate) {
+            MalariaTestReportObject malariaTestReportObject = new MalariaTestReportObject(startDate);
+            try {
+                return malariaTestReportObject.getIndicatorDataAsGson(malariaTestReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
 
     public static class SbcReports {
         public static String computeClientsReports(Date startDate) {
