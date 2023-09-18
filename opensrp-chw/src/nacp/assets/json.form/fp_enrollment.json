@@ -171,7 +171,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "fp_enrollment_calculation.yml"
+              "rules-file": "fp_enrollment_relevance.yml"
             }
           }
         }
@@ -205,7 +205,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "fp_enrollment_calculation.yml"
+              "rules-file": "fp_enrollment_relevance.yml"
             }
           }
         }
