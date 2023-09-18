@@ -56,6 +56,66 @@
     "title": "Refill pills/condom",
     "fields": [
       {
+        "key": "pop",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pop",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Number cycles dispensed (POP)",
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp-condom-refill-rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "coc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "coc",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Number cycles dispensed (COC)",
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp-condom-refill-rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ecp",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "ecp",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Number tablets dispensed (ECP)",
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp-condom-refill-rule.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "condom_refilled",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -99,7 +159,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "fp_refill_condom_relevance.yml"
+              "rules-file": "fp-condom-refill-rule.yml"
             }
           }
         }
@@ -119,7 +179,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "fp_refill_condom_relevance.yml"
+              "rules-file": "fp-condom-refill-rule.yml"
             }
           }
         }
