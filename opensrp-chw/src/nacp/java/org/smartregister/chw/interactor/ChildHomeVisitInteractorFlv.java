@@ -33,7 +33,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCounselling();
             evaluateNutritionStatus();
             evaluateObsAndIllness();
-            evaluateComplementaryFeeding(serviceWrapperMap);
+            evaluateCompFeeding(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -270,7 +270,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.anc_home_visit_observations_n_illnes), observation);
     }
 
-    private void evaluateComplementaryFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+    private void evaluateCompFeeding(Map<String, ServiceWrapper> serviceWrapperMap)
+            throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complimentary feeding");
         if (serviceWrapper == null) return;
@@ -282,11 +283,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             @Override
             public void onPayloadReceived(String jsonPayload) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonPayload);
-                } catch (JSONException e) {
-                    Timber.e(e);
-                }
+
             }
 
             @Override
