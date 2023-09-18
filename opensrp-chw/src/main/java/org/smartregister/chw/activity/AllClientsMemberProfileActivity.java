@@ -61,7 +61,12 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             menu.findItem(R.id.action_cbhs_registration).setVisible(true);
         }
         menu.findItem(R.id.action_tb_registration).setVisible(false);
-        menu.findItem(R.id.action_fp_initiation).setVisible(false);
+
+        if (ChwApplication.getApplicationFlavor().hasFamilyPlanning() && flavor.isOfReproductiveAge(commonPersonObject, gender)) {
+            flavor.updateFpMenuItems(baseEntityId, menu);
+        } else {
+            menu.findItem(R.id.action_fp_initiation).setVisible(false);
+        }
 
         if (ChwApplication.getApplicationFlavor().hasANC() && !presenter().isWomanAlreadyRegisteredOnAnc(commonPersonObject) && flavor.isOfReproductiveAge(commonPersonObject, "Female") && gender.equalsIgnoreCase("Female")) {
             flavor.updateFpMenuItems(baseEntityId, menu);

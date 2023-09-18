@@ -44,14 +44,7 @@
           },
           {
             "field": "eventType",
-            "field_value": "Family Planning Registration",
-            "creates_case": [
-              "ec_family_planning"
-            ]
-          },
-          {
-            "field": "eventType",
-            "field_value": "Family Planning Change Method",
+            "field_value": "FP CBD Registration",
             "creates_case": [
               "ec_family_planning"
             ]

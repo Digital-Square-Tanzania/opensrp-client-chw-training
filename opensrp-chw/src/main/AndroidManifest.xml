@@ -121,7 +121,11 @@
             android:exported="false"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
-            android:name=".activity.FamilyPlanningMemberProfileActivity"
+            android:name=".activity.FPMemberProfileActivity"
+            android:label="@string/family_planning"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.FpCbdFollowupVisitProvisionOfServicesActivity"
             android:label="@string/family_planning"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity

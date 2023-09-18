@@ -1,7 +1,7 @@
 package org.smartregister.chw.activity;
 
 import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
-import static org.smartregister.chw.util.Constants.JSON_FORM;
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM;
 import static org.smartregister.chw.util.NotificationsUtil.handleNotificationRowClick;
 import static org.smartregister.chw.util.NotificationsUtil.handleReceivedNotifications;
 
@@ -43,15 +43,15 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMemberProfileActivity implements FamilyProfileExtendedContract.PresenterCallBack, OnRetrieveNotifications {
+public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActivity implements FamilyProfileExtendedContract.PresenterCallBack, OnRetrieveNotifications {
 
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
     private NotificationListAdapter notificationListAdapter = new NotificationListAdapter();
 
-    public static void startFpMemberProfileActivity(Activity activity, FpMemberObject memberObject) {
-        Intent intent = new Intent(activity, FamilyPlanningMemberProfileActivity.class);
+    public static void startFpMemberProfileActivity(Activity activity, String baseEntityId) {
+        Intent intent = new Intent(activity, FPMemberProfileActivity.class);
         passToolbarTitle(activity, intent);
-        intent.putExtra(FamilyPlanningConstants.ACTIVITY_PAYLOAD.MEMBER_OBJECT, memberObject);
+        intent.putExtra(FamilyPlanningConstants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         activity.startActivity(intent);
     }
 
@@ -72,7 +72,7 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
 
     @Override
     protected void removeMember() {
-        IndividualProfileRemoveActivity.startIndividualProfileActivity(FamilyPlanningMemberProfileActivity.this, getClientDetailsByBaseEntityID(fpMemberObject.getBaseEntityId()), fpMemberObject.getFamilyBaseEntityId(), fpMemberObject.getFamilyHead(), fpMemberObject.getPrimaryCareGiver(), FpRegisterActivity.class.getCanonicalName());
+        IndividualProfileRemoveActivity.startIndividualProfileActivity(FPMemberProfileActivity.this, getClientDetailsByBaseEntityID(fpMemberObject.getBaseEntityId()), fpMemberObject.getFamilyBaseEntityId(), fpMemberObject.getFamilyHead(), fpMemberObject.getPrimaryCareGiver(), FpRegisterActivity.class.getCanonicalName());
     }
 
     @Override
@@ -84,6 +84,7 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
     protected void initializePresenter() {
         showProgressBar(true);
         fpProfilePresenter = new FamilyPlanningMemberProfilePresenter(this, new CoreFamilyPlanningProfileInteractor(), fpMemberObject);
+        fpProfilePresenter.refreshProfileBottom();
     }
 
     @Override
@@ -129,6 +130,12 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
         boolean phoneNumberAvailable = (StringUtils.isNotBlank(fpMemberObject.getPhoneNumber()) || StringUtils.isNotBlank(fpMemberObject.getFamilyHeadPhoneNumber()));
 
         ((FamilyPlanningFloatingMenu) baseFpFloatingMenu).redraw(phoneNumberAvailable);
+    }
+
+    @Override
+    public void setupViews() {
+        super.setupViews();
+        textViewRecordFp.setText(org.smartregister.chw.fp.R.string.record_fp_followup_visit);
     }
 
     @Override
@@ -179,32 +186,32 @@ public class FamilyPlanningMemberProfileActivity extends CoreFamilyPlanningMembe
 
     @Override
     public void startPointOfServiceDeliveryForm() {
-
+        //Not Required
     }
 
     @Override
     public void startFpCounselingForm() {
-
+        //Not Required
     }
 
     @Override
     public void startFpScreeningForm() {
-
+        //Not Required
     }
 
     @Override
     public void startProvideFpMethod() {
-
+        //Not Required
     }
 
     @Override
     public void startProvideOtherServices() {
-
+        //Not Required
     }
 
     @Override
     public void startFpFollowupVisit() {
-
+        FpCbdFollowupVisitProvisionOfServicesActivity.startMe(this, fpMemberObject.getBaseEntityId(), false);
     }
 
     private void addFpReferralTypes() {

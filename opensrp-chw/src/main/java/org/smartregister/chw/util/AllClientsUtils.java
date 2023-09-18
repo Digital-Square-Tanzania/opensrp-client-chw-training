@@ -19,7 +19,7 @@ import org.smartregister.chw.activity.AllClientsMemberProfileActivity;
 import org.smartregister.chw.activity.AncMemberProfileActivity;
 import org.smartregister.chw.activity.ChildProfileActivity;
 import org.smartregister.chw.activity.FamilyOtherMemberProfileActivity;
-import org.smartregister.chw.activity.FamilyPlanningMemberProfileActivity;
+import org.smartregister.chw.activity.FPMemberProfileActivity;
 import org.smartregister.chw.activity.HivProfileActivity;
 import org.smartregister.chw.activity.IccmProfileActivity;
 import org.smartregister.chw.activity.KvpPrEPProfileActivity;
@@ -84,7 +84,7 @@ public class AllClientsUtils {
     }
 
     public static void goToFamilyPlanningProfile(Activity activity, CommonPersonObjectClient patient) {
-        FamilyPlanningMemberProfileActivity.startFpMemberProfileActivity(activity, FpDao.getMember(patient.getCaseId()));
+        FPMemberProfileActivity.startFpMemberProfileActivity(activity, patient.getCaseId());
     }
 
     public static void goToHivProfile(Activity activity, CommonPersonObjectClient patient) {
