@@ -152,12 +152,6 @@
             "openmrs_entity_id": "lam"
           },
           {
-            "key": "vasectomy",
-            "text": "Vasectomy",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "vasectomy"
-          },
-          {
             "key": "btl",
             "text": "BTL",
             "openmrs_entity": "concept",
