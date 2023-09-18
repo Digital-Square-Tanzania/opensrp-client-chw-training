@@ -26,7 +26,9 @@ import timber.log.Timber;
 
 public class SbcMonthlySocialMediaReportsRegisterAdapter extends RecyclerView.Adapter<SbcMonthlySocialMediaReportsRegisterAdapter.SbcMobilizationViewHolder> {
     private static final StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+
     private final Context context;
+
     private final List<SbcMonthlySocialMediaReportModel> sbcMonthlySocialMediaReportModels;
 
 

@@ -26,28 +26,28 @@ public class FpVisitScheduler extends BaseTaskExecutor {
         Integer fp_pillCycles = null;
         Rules rule = null;
         BaseScheduleTask baseScheduleTask = prepareNewTaskObject(baseEntityID);
-//        List<FpAlertObject> familyPlanningList = FpDao.getFpDetails(baseEntityID);
-//        if (familyPlanningList.size() > 0) {
-//            for (FpAlertObject familyPlanning : familyPlanningList) {
-//                fpMethod = familyPlanning.getFpMethod();
-//                fp_date = familyPlanning.getFpStartDate();
-//                fp_pillCycles = familyPlanning.getFpPillCycles();
-//                rule = FpUtil.getFpRules(fpMethod);
-//            }
-//        }
-//        if (fp_date == null)
-//            return new ArrayList<>();
-//        Date lastVisitDate = null;
-//        Visit lastVisit = null;
-//        Date fpDate = FpUtil.parseFpStartDate(fp_date);
-//        if (fpMethod.equalsIgnoreCase(FamilyPlanningConstants.DBConstants.FP_INJECTABLE)) {
-//            lastVisit = FpDao.getLatestInjectionVisit(baseEntityID, fpMethod);
-//        } else {
-//            lastVisit = FpDao.getLatestFpVisit(baseEntityID, FamilyPlanningConstants.EventType.FP_FOLLOW_UP_VISIT, fpMethod);
-//        }
-//        if (lastVisit != null) {
-//            lastVisitDate = lastVisit.getDate();
-//        }
+        //        List<FpAlertObject> familyPlanningList = FpDao.getFpDetails(baseEntityID);
+        //        if (familyPlanningList.size() > 0) {
+        //            for (FpAlertObject familyPlanning : familyPlanningList) {
+        //                fpMethod = familyPlanning.getFpMethod();
+        //                fp_date = familyPlanning.getFpStartDate();
+        //                fp_pillCycles = familyPlanning.getFpPillCycles();
+        //                rule = FpUtil.getFpRules(fpMethod);
+        //            }
+        //        }
+        //        if (fp_date == null)
+        //            return new ArrayList<>();
+        //        Date lastVisitDate = null;
+        //        Visit lastVisit = null;
+        //        Date fpDate = FpUtil.parseFpStartDate(fp_date);
+        //        if (fpMethod.equalsIgnoreCase(FamilyPlanningConstants.DBConstants.FP_INJECTABLE)) {
+        //            lastVisit = FpDao.getLatestInjectionVisit(baseEntityID, fpMethod);
+        //        } else {
+        //            lastVisit = FpDao.getLatestFpVisit(baseEntityID, FamilyPlanningConstants.EventType.FP_FOLLOW_UP_VISIT, fpMethod);
+        //        }
+        //        if (lastVisit != null) {
+        //            lastVisitDate = lastVisit.getDate();
+        //        }
         FpAlertRule alertRule = HomeVisitUtil.getFpVisitStatus(rule, null, null, fp_pillCycles, fpMethod);
 
         baseScheduleTask.setScheduleDueDate(alertRule.getDueDate());

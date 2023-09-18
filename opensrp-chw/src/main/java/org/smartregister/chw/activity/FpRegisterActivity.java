@@ -12,16 +12,11 @@ import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class FpRegisterActivity extends CoreFpRegisterActivity {
 
-    private static String baseEntityId;
-    private static String fpFormName;
-
     public static void startFpRegistrationActivity(Activity activity, String baseEntityID, String formName) {
         Intent intent = new Intent(activity, FpRegisterActivity.class);
         intent.putExtra(FamilyPlanningConstants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityID);
         intent.putExtra(FamilyPlanningConstants.ACTIVITY_PAYLOAD.FP_FORM_NAME, formName);
         intent.putExtra(FamilyPlanningConstants.ACTIVITY_PAYLOAD.ACTION, FamilyPlanningConstants.ACTIVITY_PAYLOAD_TYPE.REGISTRATION);
-        fpFormName = formName;
-        baseEntityId = baseEntityID;
         activity.startActivity(intent);
     }
 
@@ -37,20 +32,4 @@ public class FpRegisterActivity extends CoreFpRegisterActivity {
     protected BaseRegisterFragment getRegisterFragment() {
         return new FpRegisterFragment();
     }
-
-//    @Override
-//    public JSONObject getFpFormForEdit() {
-//
-//        NativeFormsDataBinder binder = new NativeFormsDataBinder(this, baseEntityId);
-//        binder.setDataLoader(new FPDataLoader(getString(R.string.fp_update_family_planning)));
-//
-//        JSONObject form = binder.getPrePopulatedForm(fpFormName);
-//
-//        try {
-//            form.put(JsonFormUtils.ENCOUNTER_TYPE, FamilyPlanningConstants.EventType.UPDATE_FAMILY_PLANNING_REGISTRATION);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return form;
-//    }
 }

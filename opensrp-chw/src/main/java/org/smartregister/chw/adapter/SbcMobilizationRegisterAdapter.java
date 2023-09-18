@@ -26,7 +26,9 @@ import timber.log.Timber;
 
 public class SbcMobilizationRegisterAdapter extends RecyclerView.Adapter<SbcMobilizationRegisterAdapter.SbcMobilizationViewHolder> {
     private static final StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+
     private final Context context;
+
     private final List<SbcMobilizationSessionModel> sbccSessionModels;
 
 

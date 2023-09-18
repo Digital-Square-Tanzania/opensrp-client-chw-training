@@ -62,7 +62,9 @@ import timber.log.Timber;
 
 public class SbcMobilizationSessionDetailsActivity extends CoreAncMedicalHistoryActivity {
     private static String baseEntityId;
+
     private final Flavor flavor = new SbcMobilizationSessionDetailsActivityFlv();
+
     private ProgressBar progressBar;
 
     public static void startMe(Activity activity, String baseEntityId) {

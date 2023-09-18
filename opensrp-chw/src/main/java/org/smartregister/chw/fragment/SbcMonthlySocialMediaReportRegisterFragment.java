@@ -1,10 +1,6 @@
 package org.smartregister.chw.fragment;
 
-import static com.vijay.jsonwizard.utils.FormUtils.fields;
-import static com.vijay.jsonwizard.utils.FormUtils.getFieldJSONObject;
 import static org.smartregister.util.JsonFormUtils.ENTITY_ID;
-import static org.smartregister.util.JsonFormUtils.STEP1;
-import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
 
 import android.database.Cursor;
@@ -22,12 +18,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.adapter.SbcMobilizationRegisterAdapter;
 import org.smartregister.chw.adapter.SbcMonthlySocialMediaReportsRegisterAdapter;
-import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.dao.ChwSbcDao;
-import org.smartregister.chw.model.SbcMobilizationSessionModel;
 import org.smartregister.chw.model.SbcMobilizationSessionRegisterFragmentModel;
 import org.smartregister.chw.model.SbcMonthlySocialMediaReportModel;
 import org.smartregister.chw.presenter.SbcMonthlySocialMediaReportRegisterFragmentPresenter;
@@ -37,7 +30,6 @@ import org.smartregister.chw.sbc.util.Constants;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.family.util.JsonFormUtils;
-import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 
