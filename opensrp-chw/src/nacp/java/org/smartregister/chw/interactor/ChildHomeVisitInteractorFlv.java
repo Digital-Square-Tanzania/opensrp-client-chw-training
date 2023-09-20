@@ -116,7 +116,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_malaria_prevention))
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.pnc_malaria_prevention))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getMalariaPrevention())
@@ -154,7 +155,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_counselling))
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.pnc_counselling))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.PNC_HOME_VISIT.getCOUNSELLING())
@@ -211,7 +213,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getNutritionStatus())
@@ -261,7 +264,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         }
 
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes))
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes))
                 .withOptional(true)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.getObsIllness())
@@ -297,7 +301,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_hv_complementary_feeding))
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.child_hv_complementary_feeding))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JsonForm.getChildHvCompFeeding())
