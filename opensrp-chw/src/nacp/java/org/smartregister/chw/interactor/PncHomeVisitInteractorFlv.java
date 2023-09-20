@@ -247,9 +247,9 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         if (getAgeInDays(baby.getDob()) <= DURATION_OF_CHILD_IN_PNC) {
             Map<String, List<VisitDetail>> details = null;
-            Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(baby.getBaseEntityID(), Constants.EventType.DANGER_SIGNS_BABY);
+            Visit lastVisit = getVisitRepository().getLatestVisit(baby.getBaseEntityID(), Constants.EventType.DANGER_SIGNS_BABY);
             if (editMode && lastVisit != null) {
-                details = VisitUtils.getVisitGroups(AncLibrary.getInstance().visitDetailsRepository().getVisits(lastVisit.getVisitId()));
+                details = VisitUtils.getVisitGroups(getVisitDetailsRepository().getVisits(lastVisit.getVisitId()));
             }
             BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_danger_signs_baby), baby.getFullName()))
                     .withOptional(false)
