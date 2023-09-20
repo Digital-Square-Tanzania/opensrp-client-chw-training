@@ -138,8 +138,12 @@ public class Constants extends CoreConstants {
         public static String getIccmDiarrhea() {
             return ICCM_DIARRHEA;
         }
-        public static String getSkinToSkin() { return SKIN_TO_SKIN; }
-        public static String getChildHvCompFeeding() { return CHILD_HV_COMP_FEEDING; }
+        public static String getSkinToSkin() {
+            return SKIN_TO_SKIN;
+        }
+        public static String getChildHvCompFeeding() {
+            return CHILD_HV_COMP_FEEDING;
+        }
 
     }
 
