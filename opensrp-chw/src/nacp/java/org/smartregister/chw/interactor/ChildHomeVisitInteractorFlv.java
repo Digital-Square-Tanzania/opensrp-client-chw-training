@@ -270,7 +270,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.anc_home_visit_observations_n_illnes), observation);
     }
 
-    private void evaluateCompFeeding(Map<String, ServiceWrapper> serviceWrapperMap)
+    void evaluateCompFeeding(Map<String, ServiceWrapper> serviceWrapperMap)
             throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complimentary feeding");
