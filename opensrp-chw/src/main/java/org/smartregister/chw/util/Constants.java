@@ -123,21 +123,27 @@ public class Constants extends CoreConstants {
         public static String getIccmMedicalHistory() {
             return ICCM_MEDICAL_HISTORY;
         }
+
         public static String getIccmPhysicalExamination() {
             return ICCM_PHYSICAL_EXAMINATION;
         }
+
         public static String getIccmMalaria() {
             return ICCM_MALARIA;
         }
+
         public static String getIccmPneumonia(){
             return ICCM_PNEUMONIA;
         }
+
         public static String getIccmDiarrhea(){
             return ICCM_DIARRHEA;
         }
+
         public static String getSkinToSkin(){
             return SKIN_TO_SKIN;
         }
+
         public static String getChildHvCompFeeding(){
             return CHILD_HV_COMP_FEEDING;
         }
