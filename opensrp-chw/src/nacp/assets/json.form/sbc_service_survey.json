@@ -261,7 +261,7 @@
           },
           {
             "key": "no_phone",
-            "text": "Do not have a phone.",
+            "text": "Do not have a phone",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no_phone"
           },

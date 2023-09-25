@@ -225,7 +225,7 @@ public class SbcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                         try {
                             int resource = context.getResources().getIdentifier("sbc_" + entry.getKey(), "string", context.getPackageName());
-                            evaluateView(context, vals, visitDetailTv, entry.getKey(), resource, "");
+                            evaluateView(context, vals, visitDetailTv, entry.getKey(), resource, "sbc_");
                         } catch (Exception e) {
                             Timber.e(e);
                         }

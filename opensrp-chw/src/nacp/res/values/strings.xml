@@ -593,5 +593,51 @@
     <string name="sbc_number_beneficiaries_reached_facebook">Number of beneficiaries reached  through Facebook</string>
     <string name="sbc_number_messages_publications">Number of messages publications published through Mass Media</string>
     <string name="sbc_number_aired_messages_broadcasted">Number of aired messages broadcast through Mass Media</string>
+    <string name="sbc_religious">Religious events</string>
+    <string name="sbc_meetings">Community meetings</string>
+    <string name="sbc_theater">Community theater</string>
+    <string name="sbc_tales">Tales and discussions</string>
+    <string name="sbc_drama"> Drama</string>
+    <string name="sbc_institution">Learning institution events</string>
+    <string name="sbc_advocacy">Advocacy meetings</string>
+    <string name="sbc_workplace">Workplace Health Education</string>
+    <string name="sbc_edutainment">Health edutainment</string>
+    <string name="sbc_condom_use">Condom use</string>
+    <string name="sbc_risk_behavior">Risk behavior and transmission</string>
+    <string name="sbc_art_adherence">ART Adherence</string>
+    <string name="sbc_family_planning">Family Planning</string>
+    <string name="sbc_sti">STI/RTI</string>
+    <string name="sbc_tb">TB</string>
+    <string name="sbc_hepatitis">Hepatitis</string>
+    <string name="sbc_gbv">GBV</string>
+    <string name="sbc_cervical_cancer">Cervical Cancer</string>
+    <string name="sbc_htc">HTS</string>
+    <string name="sbc_vmmc">VMMC</string>
+    <string name="sbc_pmtct">PMTCT</string>
+    <string name="sbc_treatment">Care and Treatment</string>
+    <string name="sbc_cervical">Cervical Cancer Screening</string>
+    <string name="sbc_stigma">Stigma</string>
+    <string name="sbc_prep">PrEP</string>
+    <string name="sbc_agyw">AGYW</string>
+    <string name="sbc_abym">ABYM</string>
+    <string name="sbc_injection">injection</string>
+    <string name="sbc_sbc_mat">MAT</string>
+    <string name="sbc_overdose">Overdose</string>
+    <string name="sbc_not_subscribed">Not Subscribed</string>
+    <string name="sbc_lost_phone">Lost Phone</string>
+    <string name="sbc_changed_phone_number">Changed Phone Number</string>
+    <string name="sbc_no_phone">Do not have a phone</string>
+    <string name="sbc_network_access">Network access</string>
+    <string name="sbc_toll_free_ivr">Interactive Voice Response (IVR)</string>
+    <string name="sbc_toll_free_provider">Communication with a service provider</string>
+    <string name="sbc_yes">Yes</string>
+    <string name="sbc_no">No</string>
+
+    <string name="sbc_audio_visual">Audio visual</string>
+    <string name="sbc_audio">Audio</string>
+    <string name="sbc_print_materials">Print Materials</string>
+
+
+
 
 </resources>
