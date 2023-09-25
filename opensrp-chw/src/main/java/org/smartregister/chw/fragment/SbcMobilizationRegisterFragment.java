@@ -1,5 +1,6 @@
 package org.smartregister.chw.fragment;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.COUNT;
 import static com.vijay.jsonwizard.utils.FormUtils.fields;
 import static com.vijay.jsonwizard.utils.FormUtils.getFieldJSONObject;
 import static org.smartregister.util.JsonFormUtils.ENTITY_ID;
@@ -7,6 +8,8 @@ import static org.smartregister.util.JsonFormUtils.STEP1;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+import com.vijay.jsonwizard.domain.Form;
 import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -210,12 +215,34 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
                         JSONObject chwName = getFieldJSONObject(fields(form, STEP1), "chw_name");
                         AllSharedPreferences preferences = ChwApplication.getInstance().getContext().allSharedPreferences();
                         chwName.put(VALUE, preferences.getANMPreferredName(preferences.fetchRegisteredANM()));
-                        requireActivity().startActivityForResult(org.smartregister.chw.core.utils.FormUtils.getStartFormActivity(form, requireActivity().getString(R.string.sbc_mobilization_sessions_title), requireActivity()), JsonFormUtils.REQUEST_CODE_GET_JSON);
+                        requireActivity().startActivityForResult(getStartEditFormIntent(form, requireActivity().getString(R.string.sbc_mobilization_sessions_title), requireActivity()), JsonFormUtils.REQUEST_CODE_GET_JSON);
                     }
                 } catch (JSONException e) {
                     Timber.e(e);
                 }
             });
         }
+    }
+
+
+
+    public Intent getStartEditFormIntent(JSONObject jsonForm, String title, Context context) {
+        Intent intent = org.smartregister.chw.core.utils.FormUtils.getStartFormActivity(jsonForm, null, context);
+        intent.putExtra(Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
+
+        Form form = new Form();
+        form.setDatePickerDisplayFormat("dd-MM-yyyy");
+        form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
+        form.setName(title);
+        form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
+
+        try {
+            form.setWizard(jsonForm.getInt(COUNT) > 1);
+        } catch (JSONException e) {
+            Timber.e(e);
+            form.setWizard(false);
+        }
+        intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+        return intent;
     }
 }
