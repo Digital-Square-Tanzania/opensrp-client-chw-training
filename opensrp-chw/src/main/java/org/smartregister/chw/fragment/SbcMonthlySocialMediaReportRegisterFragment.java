@@ -1,8 +1,11 @@
 package org.smartregister.chw.fragment;
 
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
 import static org.smartregister.util.JsonFormUtils.ENTITY_ID;
 import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+import com.vijay.jsonwizard.domain.Form;
 import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +35,7 @@ import org.smartregister.chw.sbc.util.Constants;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.family.util.JsonFormUtils;
+import org.smartregister.family.util.Utils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 
@@ -200,12 +206,34 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
                     if (form != null) {
                         String randomId = generateRandomUUIDString();
                         form.put(ENTITY_ID, randomId);
-                        requireActivity().startActivityForResult(org.smartregister.chw.core.utils.FormUtils.getStartFormActivity(form, requireActivity().getString(R.string.sbc_monthly_social_media_report), requireActivity()), JsonFormUtils.REQUEST_CODE_GET_JSON);
+                        requireActivity().startActivityForResult(getStartFormActivity(form, requireActivity().getString(R.string.sbc_monthly_social_media_report), requireActivity()), JsonFormUtils.REQUEST_CODE_GET_JSON);
                     }
                 } catch (JSONException e) {
                     Timber.e(e);
                 }
             });
         }
+    }
+
+    public static Intent getStartFormActivity(JSONObject jsonForm, String title, Context context) {
+        Intent intent = new Intent(context, Utils.metadata().familyMemberFormActivity);
+        intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
+        Form form = new Form();
+        form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
+        form.setWizard(false);
+        form.setHomeAsUpIndicator(org.smartregister.chw.core.R.mipmap.ic_cross_white);
+        form.setSaveLabel(context.getResources().getString(org.smartregister.chw.core.R.string.save));
+        form.setDatePickerDisplayFormat("MMM yyyy");
+
+        if (isMultiPartForm(jsonForm)) {
+            form.setWizard(true);
+            form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
+            form.setName(title);
+            form.setNextLabel(context.getResources().getString(org.smartregister.chw.core.R.string.next));
+            form.setPreviousLabel(context.getResources().getString(org.smartregister.chw.core.R.string.back));
+        }
+        intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+        return intent;
+
     }
 }

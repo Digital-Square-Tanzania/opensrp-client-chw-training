@@ -63,7 +63,6 @@
         "type": "date_picker",
         "hint": "Reporting Month",
         "expanded": false,
-        "default": "12-12-2023",
         "min_date": "today-5y",
         "max_date": "today",
         "v_required": {

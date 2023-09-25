@@ -333,6 +333,7 @@ public class SbcMonthlySocialMediaReportDetailsActivity extends CoreAncMedicalHi
             intent.putExtra(Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
 
             Form form = new Form();
+            form.setDatePickerDisplayFormat("MMM yyyy");
             form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
             form.setName(title);
             form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
