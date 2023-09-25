@@ -120,6 +120,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateExclusiveBreastFeeding(baby);
             evaluateNutritionStatusBaby(baby);
             evaluateObsIllnessBaby(baby);
+            evaluatePlayAssessmentCounseling(baby);
         }
     }
 
@@ -999,6 +1000,18 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(new ChildNewBornCareIntroductionActionHelper(context, visitID))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()), action);
+    }
+
+    private void evaluatePlayAssessmentCounseling(Person baby) throws Exception {
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), baby.getFullName()))
+                .withOptional(false)
+                .withDetails(details)
+                .withBaseEntityID(baby.getBaseEntityID())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
+                .build();
+        actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), baby.getFullName()), action);
     }
 
     private String getTranslatedValue(String name) {
