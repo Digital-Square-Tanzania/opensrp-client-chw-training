@@ -162,8 +162,20 @@ public class SbcMobilizationSessionDetailsActivity extends CoreAncMedicalHistory
                         days = Days.daysBetween(new DateTime(visits.get(visits.size() - 1).getDate()), new DateTime()).getDays();
                     }
 
-                    String[] mobilizationSessionDetails = {"heath_education_mobility_location", "community_sbc_activity_provided", "other_community_sbc_activity_provided", "other_interventions_iec_materials_distributed", "number_audio_visuals_distributed", "number_audio_distributed", "number_print_materials_distributed", "pmtct_iec_materials_distributed", "number_pmtct_audio_visuals_distributed_male", "number_pmtct_audio_visuals_distributed_female", "number_pmtct_audio_distributed_male", "number_pmtct_audio_distributed_female", "number_pmtct_print_materials_distributed_male", "number_pmtct_print_materials_distributed_female"};
+                    String[] healthEducationMobilizationLocation = {"heath_education_mobility_location"};
+                    extractVisitDetails(visits, healthEducationMobilizationLocation, visitDetails, x, context);
+
+                    String[] sbcActivityProvided = {"community_sbc_activity_provided", "other_community_sbc_activity_provided",};
+                    extractVisitDetails(visits, sbcActivityProvided, visitDetails, x, context);
+
+                    String[] hasDistributedIecMaterials = {"has_distributed_iec_materials", "eic_interventions"};
+                    extractVisitDetails(visits, hasDistributedIecMaterials, visitDetails, x, context);
+
+                    String[] mobilizationSessionDetails = {"other_interventions_iec_materials_distributed", "number_audio_visuals_distributed", "number_audio_distributed", "number_print_materials_distributed"};
                     extractVisitDetails(visits, mobilizationSessionDetails, visitDetails, x, context);
+
+                    String[] pmtctIecMaterialsDistribution = {"pmtct_iec_materials_distributed", "number_pmtct_audio_visuals_distributed_male", "number_pmtct_audio_visuals_distributed_female", "number_pmtct_audio_distributed_male", "number_pmtct_audio_distributed_female", "number_pmtct_print_materials_distributed_male", "number_pmtct_print_materials_distributed_female"};
+                    extractVisitDetails(visits, pmtctIecMaterialsDistribution, visitDetails, x, context);
 
 
                     hf_visits.add(visitDetails);
