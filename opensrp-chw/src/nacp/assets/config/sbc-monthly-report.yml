@@ -762,23 +762,34 @@ indicators:
 
 
   #Question 4
-  #Male
+  #Audio Visuals
 
-  - key: "sbc-4-male-total"
+  - key: "sbc-4-audio-visuals-total"
     grouping: "SBC"
-    description: "Total Number of HIV and AIDS IEC materials distributed to Male"
-    indicatorQuery: "SELECT SUM(esmbs.number_pmtct_audio_distributed_male + esmbs.number_pmtct_audio_visuals_distributed_male + esmbs.number_pmtct_print_materials_distributed_male) as count
+    description: "Total Number of Audio Visuals in HIV and AIDS IEC materials distributed"
+    indicatorQuery: "SELECT SUM(esmbs.number_audio_visuals_distributed + esmbs.number_pmtct_audio_visuals_distributed_male + esmbs.number_pmtct_audio_visuals_distributed_female) as count
                      FROM ec_sbc_mobilization_session esmbs
                      WHERE
                      strftime('%m', CURRENT_TIMESTAMP) AND  strftime('%Y', CURRENT_TIMESTAMP)"
 
 
-  #Female
+  #Audio
 
-  - key: "sbc-4-female-total"
+  - key: "sbc-4-audio-total"
     grouping: "SBC"
-    description: "Total Number of HIV and AIDS IEC materials distributed to Female"
-    indicatorQuery: "SELECT SUM(esmbs.number_pmtct_audio_distributed_female + esmbs.number_pmtct_audio_visuals_distributed_female + esmbs.number_pmtct_print_materials_distributed_female) as count
+    description: "Total Number of Audio in HIV and AIDS IEC materials distributed"
+    indicatorQuery: "SELECT SUM(esmbs.number_pmtct_audio_distributed_female + esmbs.number_audio_distributed + esmbs.number_pmtct_audio_distributed_male) as count
+                     FROM ec_sbc_mobilization_session esmbs
+                     WHERE
+                     strftime('%m', CURRENT_TIMESTAMP) AND  strftime('%Y', CURRENT_TIMESTAMP)"
+
+
+  #Materials
+
+  - key: "sbc-4-print-total"
+    grouping: "SBC"
+    description: "Total Number of Print Materials in HIV and AIDS IEC materials distributed"
+    indicatorQuery: "SELECT SUM(esmbs.number_print_materials_distributed + esmbs.number_pmtct_print_materials_distributed_female + esmbs.number_pmtct_print_materials_distributed_male) as count
                      FROM ec_sbc_mobilization_session esmbs
                      WHERE
                      strftime('%m', CURRENT_TIMESTAMP) AND  strftime('%Y', CURRENT_TIMESTAMP)"
