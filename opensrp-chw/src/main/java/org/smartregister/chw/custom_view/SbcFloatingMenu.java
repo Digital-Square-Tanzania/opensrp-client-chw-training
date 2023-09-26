@@ -20,16 +20,27 @@ import org.smartregister.chw.sbc.fragment.BaseSbcCallDialogFragment;
 
 public class SbcFloatingMenu extends BaseSbcFloatingMenu {
     public FloatingActionButton fab;
+
     private Animation fabOpen;
+
     private Animation fabClose;
+
     private Animation rotateForward;
+
     private Animation rotateBack;
+
     private View callLayout;
+
     private View referLayout;
+
     private RelativeLayout activityMain;
+
     private boolean isFabMenuOpen = false;
+
     private LinearLayout menuBar;
+
     private OnClickFloatingMenu onClickFloatingMenu;
+
     private MemberObject MEMBER_OBJECT;
 
 
