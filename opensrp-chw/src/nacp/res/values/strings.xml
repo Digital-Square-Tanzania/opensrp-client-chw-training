@@ -632,10 +632,10 @@
     <string name="sbc_toll_free_provider">Communication with a service provider</string>
     <string name="sbc_yes">Yes</string>
     <string name="sbc_no">No</string>
-
     <string name="sbc_audio_visual">Audio visual</string>
     <string name="sbc_audio">Audio</string>
     <string name="sbc_print_materials">Print Materials</string>
+    <string name="other_hiv_interventions">Other HIV Interventions</string>
 
 
 
