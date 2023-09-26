@@ -25,6 +25,7 @@ import org.smartregister.chw.activity.IccmProfileActivity;
 import org.smartregister.chw.activity.KvpPrEPProfileActivity;
 import org.smartregister.chw.activity.MalariaProfileActivity;
 import org.smartregister.chw.activity.PncMemberProfileActivity;
+import org.smartregister.chw.activity.SbcMemberProfileActivity;
 import org.smartregister.chw.activity.TbProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.core.application.CoreChwApplication;
@@ -101,6 +102,10 @@ public class AllClientsUtils {
 
     public static void goToKvpPrepProfile(Activity activity, CommonPersonObjectClient client) {
         KvpPrEPProfileActivity.startProfileActivity(activity, client.getCaseId());
+    }
+
+    public static void goToSbcProfile(Activity activity, CommonPersonObjectClient client) {
+        SbcMemberProfileActivity.startMe(activity, client.getCaseId());
     }
 
     private static Intent initProfileActivityIntent(Activity activity, CommonPersonObjectClient patient, Bundle bundle, Class clazz) {
