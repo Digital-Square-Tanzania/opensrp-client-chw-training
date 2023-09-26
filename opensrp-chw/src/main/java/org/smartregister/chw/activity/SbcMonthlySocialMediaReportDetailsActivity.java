@@ -223,7 +223,6 @@ public class SbcMonthlySocialMediaReportDetailsActivity extends CoreAncMedicalHi
 
                         if (visit.getBaseEntityId() != null) {
                             startFormForEdit(R.string.sbc_monthly_social_media_report, Constants.FORMS.SBC_MONTHLY_SOCIAL_MEDIA_REPORT, visit.getBaseEntityId(), visit.getVisitId(), context);
-
                         }
                     });
 
@@ -245,7 +244,7 @@ public class SbcMonthlySocialMediaReportDetailsActivity extends CoreAncMedicalHi
 
                         try {
                             int resource = context.getResources().getIdentifier("sbc_" + entry.getKey(), "string", context.getPackageName());
-                            evaluateView(context, vals, visitDetailTv, entry.getKey(), resource, "");
+                            evaluateView(context, vals, visitDetailTv, entry.getKey(), resource, "sbc_");
                         } catch (Exception e) {
                             Timber.e(e);
                         }
