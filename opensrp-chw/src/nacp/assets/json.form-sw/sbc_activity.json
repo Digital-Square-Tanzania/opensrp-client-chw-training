@@ -60,11 +60,8 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "activity_type",
-        "openmrs_data_type": "select one",
-        "type": "check_box",
-        "combine_checkbox_option_values": "true",
+        "type": "native_radio",
         "label": "Aina ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
-        "hint": "Aina ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
         "options": [
           {
             "key": "campaign",
@@ -137,6 +134,12 @@
             "text": "Nyinginezo (Taja)",
             "value": false,
             "openmrs_choice_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "Hakuna",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -165,6 +168,38 @@
               }
             ]
           }
+        }
+      },
+      {
+        "key": "location_of_service_provision",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "location_of_service_provision",
+        "type": "native_radio",
+        "label": "Location of service provision",
+        "options": [
+          {
+            "key": "community",
+            "text": "Community",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community"
+          },
+          {
+            "key": "facility",
+            "text": "Facility",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "facility"
+          },
+          {
+            "key": "workplace",
+            "text": "Workplace",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "workplace"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please choose SBC activity"
         }
       }
     ]
