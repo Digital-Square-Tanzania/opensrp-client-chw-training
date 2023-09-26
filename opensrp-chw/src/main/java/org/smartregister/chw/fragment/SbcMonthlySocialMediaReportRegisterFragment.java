@@ -1,5 +1,6 @@
 package org.smartregister.chw.fragment;
 
+import static android.view.View.GONE;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
 import static org.smartregister.util.JsonFormUtils.ENTITY_ID;
 import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
@@ -10,6 +11,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,9 +25,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.adapter.SbcMobilizationRegisterAdapter;
 import org.smartregister.chw.adapter.SbcMonthlySocialMediaReportsRegisterAdapter;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.dao.ChwSbcDao;
+import org.smartregister.chw.model.SbcMobilizationSessionModel;
 import org.smartregister.chw.model.SbcMobilizationSessionRegisterFragmentModel;
 import org.smartregister.chw.model.SbcMonthlySocialMediaReportModel;
 import org.smartregister.chw.presenter.SbcMonthlySocialMediaReportRegisterFragmentPresenter;
@@ -45,18 +49,42 @@ import java.util.Set;
 import timber.log.Timber;
 
 public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegisterFragment {
+    protected Toolbar toolbar;
+
+    protected LinearLayout emptyViewLayout;
 
     private android.view.View view;
+
+
+
+    private SbcMonthlySocialMediaReportsRegisterAdapter adapter;
 
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
         SbccRegisterProvider sbcMobilizationRegisterProvider = new SbccRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
-        List<SbcMonthlySocialMediaReportModel> sbcMonthlySocialMediaReportModels = ChwSbcDao.getSbcMonthlySocialMediaReport();
         clientAdapter = new RecyclerViewPaginatedAdapter(null, sbcMobilizationRegisterProvider, null);
         clientAdapter.setTotalcount(0);
         clientAdapter.setCurrentlimit(20);
+        setUpAdapter();
+    }
+
+    protected void setUpAdapter() {
+        List<SbcMonthlySocialMediaReportModel> sbcMonthlySocialMediaReportModels = ChwSbcDao.getSbcMonthlySocialMediaReport();
         if (sbcMonthlySocialMediaReportModels != null && !sbcMonthlySocialMediaReportModels.isEmpty()) {
-            clientsView.setAdapter(new SbcMonthlySocialMediaReportsRegisterAdapter(sbcMonthlySocialMediaReportModels, requireActivity()));
+            showEmptyState();
+            adapter = new SbcMonthlySocialMediaReportsRegisterAdapter(sbcMonthlySocialMediaReportModels, requireActivity());
+            clientsView.setAdapter(adapter);
+        } else {
+            showEmptyState();
+        }
+    }
+    protected void showEmptyState() {
+        if (emptyViewLayout != null) {
+            if (clientAdapter.getItemCount() >= 1) {
+                emptyViewLayout.setVisibility(GONE);
+            } else {
+                emptyViewLayout.setVisibility(android.view.View.VISIBLE);
+            }
         }
     }
 
@@ -66,7 +94,9 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
         super.setupViews(view);
         this.view = view;
 
-        Toolbar toolbar = view.findViewById(org.smartregister.R.id.register_toolbar);
+        emptyViewLayout = view.findViewById(org.smartregister.hivst.R.id.empty_view_ll);
+//        emptyViewLayout.setVisibility(GONE);
+        toolbar = view.findViewById(org.smartregister.R.id.register_toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         toolbar.setContentInsetsRelative(0, 0);
         toolbar.setContentInsetStartWithNavigation(0);
@@ -142,15 +172,9 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
         NavigationMenu.getInstance(getActivity(), null, toolbar);
 
         try {
-            new Handler(Looper.getMainLooper()).postDelayed(this::updateTheList, 2000);
+            new Handler(Looper.getMainLooper()).postDelayed(this::setUpAdapter, 2000);
         } catch (Exception e) {
             Timber.e(e);
-        }
-    }
-
-    private void updateTheList() {
-        if (clientsView.getAdapter() != null) {
-            clientsView.getAdapter().notifyDataSetChanged();
         }
     }
 
@@ -213,6 +237,11 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
                 }
             });
         }
+    }
+
+    @Override
+    protected int getLayout() {
+        return org.smartregister.hivst.R.layout.fragment_mobilization_register;
     }
 
     public static Intent getStartFormActivity(JSONObject jsonForm, String title, Context context) {

@@ -1,5 +1,6 @@
 package org.smartregister.chw.fragment;
 
+import static android.view.View.GONE;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.COUNT;
 import static com.vijay.jsonwizard.utils.FormUtils.fields;
 import static com.vijay.jsonwizard.utils.FormUtils.getFieldJSONObject;
@@ -14,6 +15,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,19 +52,21 @@ import java.util.Set;
 import timber.log.Timber;
 
 public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
+    protected Toolbar toolbar;
+
+    protected LinearLayout emptyViewLayout;
 
     private android.view.View view;
+
+    private SbcMobilizationRegisterAdapter adapter;
 
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
         SbccRegisterProvider sbcMobilizationRegisterProvider = new SbccRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
-        List<SbcMobilizationSessionModel> sbcMobilizationSessionModels = ChwSbcDao.getSbcMobilizationSessions();
         clientAdapter = new RecyclerViewPaginatedAdapter(null, sbcMobilizationRegisterProvider, null);
         clientAdapter.setTotalcount(0);
         clientAdapter.setCurrentlimit(20);
-        if (sbcMobilizationSessionModels != null && !sbcMobilizationSessionModels.isEmpty()) {
-            clientsView.setAdapter(new SbcMobilizationRegisterAdapter(sbcMobilizationSessionModels, requireActivity()));
-        }
+        setUpAdapter();
     }
 
     @Override
@@ -71,45 +75,43 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
         super.setupViews(view);
         this.view = view;
 
-        Toolbar toolbar = view.findViewById(org.smartregister.R.id.register_toolbar);
+        emptyViewLayout = view.findViewById(org.smartregister.hivst.R.id.empty_view_ll);
+        emptyViewLayout.setVisibility(GONE);
+        toolbar = view.findViewById(org.smartregister.R.id.register_toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         toolbar.setContentInsetsRelative(0, 0);
         toolbar.setContentInsetStartWithNavigation(0);
 
-        try {
-            NavigationMenu.getInstance(getActivity(), null, toolbar);
-        } catch (NullPointerException e) {
-            Timber.e(e);
-        }
-        android.view.View navbarContainer = view.findViewById(org.smartregister.chw.core.R.id.register_nav_bar_container);
+
+        android.view.View navbarContainer = view.findViewById(org.smartregister.hivst.R.id.register_nav_bar_container);
         navbarContainer.setFocusable(false);
 
-        CustomFontTextView titleView = view.findViewById(org.smartregister.chw.core.R.id.txt_title_label);
+        CustomFontTextView titleView = view.findViewById(org.smartregister.hivst.R.id.txt_title_label);
         if (titleView != null) {
             titleView.setText(getString(R.string.sbc_mobilization_sessions_title));
             titleView.setPadding(0, titleView.getTop(), titleView.getPaddingRight(), titleView.getPaddingBottom());
         }
 
-        android.view.View searchBarLayout = view.findViewById(org.smartregister.chw.core.R.id.search_bar_layout);
-        searchBarLayout.setVisibility(android.view.View.GONE);
+        android.view.View searchBarLayout = view.findViewById(org.smartregister.hivst.R.id.search_bar_layout);
+        searchBarLayout.setVisibility(GONE);
 
-        android.view.View topLeftLayout = view.findViewById(org.smartregister.chw.core.R.id.top_left_layout);
-        topLeftLayout.setVisibility(android.view.View.GONE);
+        android.view.View topLeftLayout = view.findViewById(org.smartregister.hivst.R.id.top_left_layout);
+        topLeftLayout.setVisibility(GONE);
 
-        android.view.View topRightLayout = view.findViewById(org.smartregister.chw.core.R.id.top_right_layout);
+        android.view.View topRightLayout = view.findViewById(org.smartregister.hivst.R.id.top_right_layout);
         topRightLayout.setVisibility(android.view.View.VISIBLE);
 
-        android.view.View sortFilterBarLayout = view.findViewById(org.smartregister.chw.core.R.id.register_sort_filter_bar_layout);
-        sortFilterBarLayout.setVisibility(android.view.View.GONE);
+        android.view.View sortFilterBarLayout = view.findViewById(org.smartregister.hivst.R.id.register_sort_filter_bar_layout);
+        sortFilterBarLayout.setVisibility(GONE);
 
-        android.view.View filterSortLayout = view.findViewById(org.smartregister.chw.core.R.id.filter_sort_layout);
-        filterSortLayout.setVisibility(android.view.View.GONE);
+        android.view.View filterSortLayout = view.findViewById(org.smartregister.hivst.R.id.filter_sort_layout);
+        filterSortLayout.setVisibility(GONE);
 
-        android.view.View dueOnlyLayout = view.findViewById(org.smartregister.chw.core.R.id.due_only_layout);
-        dueOnlyLayout.setVisibility(android.view.View.GONE);
+        android.view.View dueOnlyLayout = view.findViewById(org.smartregister.hivst.R.id.due_only_layout);
+        dueOnlyLayout.setVisibility(GONE);
         dueOnlyLayout.setOnClickListener(registerActionHandler);
         if (getSearchView() != null) {
-            getSearchView().setVisibility(android.view.View.GONE);
+            getSearchView().setVisibility(GONE);
         }
     }
 
@@ -147,16 +149,37 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
         NavigationMenu.getInstance(getActivity(), null, toolbar);
 
         try {
-            new Handler(Looper.getMainLooper()).postDelayed(this::updateTheList, 2000);
+            new Handler(Looper.getMainLooper()).postDelayed(this::setUpAdapter, 2000);
         } catch (Exception e) {
             Timber.e(e);
         }
     }
 
-    private void updateTheList() {
-        if (clientsView.getAdapter() != null) {
-            clientsView.getAdapter().notifyDataSetChanged();
+
+    protected void setUpAdapter() {
+        List<SbcMobilizationSessionModel> sbcMobilizationSessionModels = ChwSbcDao.getSbcMobilizationSessions();
+        if (sbcMobilizationSessionModels != null && !sbcMobilizationSessionModels.isEmpty()) {
+            showEmptyState();
+            adapter = new SbcMobilizationRegisterAdapter(sbcMobilizationSessionModels, requireActivity());
+            clientsView.setAdapter(adapter);
+        } else {
+            showEmptyState();
         }
+    }
+
+    protected void showEmptyState() {
+        if (emptyViewLayout != null) {
+            if (adapter.getItemCount() >= 1) {
+                emptyViewLayout.setVisibility(GONE);
+            } else {
+                emptyViewLayout.setVisibility(android.view.View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    protected int getLayout() {
+        return org.smartregister.hivst.R.layout.fragment_mobilization_register;
     }
 
     @Override
@@ -198,7 +221,7 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
     @Override
     protected void refreshSyncProgressSpinner() {
         if (syncProgressBar != null) {
-            syncProgressBar.setVisibility(android.view.View.GONE);
+            syncProgressBar.setVisibility(GONE);
         }
         if (syncButton != null) {
             syncButton.setVisibility(android.view.View.VISIBLE);
@@ -223,7 +246,6 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
             });
         }
     }
-
 
 
     public Intent getStartEditFormIntent(JSONObject jsonForm, String title, Context context) {
