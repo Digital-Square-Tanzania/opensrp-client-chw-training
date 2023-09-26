@@ -171,30 +171,30 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "location_of_service_provision",
         "type": "native_radio",
-        "label": "Location of service provision",
+        "label": "Mahali pa utoaji wa huduma",
         "options": [
           {
             "key": "community",
-            "text": "Community",
+            "text": "Jumuiya",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "community"
           },
           {
             "key": "facility",
-            "text": "Facility",
+            "text": "Kituoni",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "facility"
           },
           {
             "key": "workplace",
-            "text": "Workplace",
+            "text": "Mahali pa Kazi",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "workplace"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please choose SBC activity"
+          "err": "Tafadhali chagua"
         }
       }
     ]
