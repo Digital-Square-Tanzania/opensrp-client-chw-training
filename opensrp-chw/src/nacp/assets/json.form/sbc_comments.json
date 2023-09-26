@@ -61,11 +61,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sbc_comments",
         "type": "edit_text",
-        "hint": "Comments",
-        "v_required": {
-          "value": true,
-          "err": "Required"
-        }
+        "hint": "IEC/SBC intervention recommended"
       }
     ]
   }

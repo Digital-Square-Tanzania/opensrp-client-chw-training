@@ -61,7 +61,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "received_art_counseling",
         "type": "native_radio",
-        "label": "Je, umepata elimu ya ufuasi mzuri wa ARV?",
+        "label": "Je, mteja amepata elimu ya ufuasi mzuri wa ARV?",
         "text_color": "#000000",
         "options": [
           {
@@ -88,7 +88,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "received_condom_education",
         "type": "native_radio",
-        "label": "Je, umepata elimu sahihi na endelevu ya matumizi sahihi ya kondomu?",
+        "label": "Je, mteja amepata elimu sahihi na endelevu ya matumizi sahihi ya kondomu?",
         "text_color": "#000000",
         "options": [
           {

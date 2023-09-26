@@ -56,6 +56,38 @@
     "title": "SBC Activity",
     "fields": [
       {
+        "key": "point_of_service_provision",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "point_of_service_provision",
+        "type": "native_radio",
+        "label": "Point of service provision",
+        "options": [
+          {
+            "key": "community",
+            "text": "Community",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community"
+          },
+          {
+            "key": "facility",
+            "text": "Facility",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "facility"
+          },
+          {
+            "key": "workplace",
+            "text": "Workplace",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "workplace"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select SBC activity"
+        }
+      },
+      {
         "key": "activity_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -159,38 +191,7 @@
           }
         }
       },
-      {
-        "key": "location_of_service_provision",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "location_of_service_provision",
-        "type": "native_radio",
-        "label": "Location of service provision",
-        "options": [
-          {
-            "key": "community",
-            "text": "Community",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "community"
-          },
-          {
-            "key": "facility",
-            "text": "Facility",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "facility"
-          },
-          {
-            "key": "workplace",
-            "text": "Workplace",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "workplace"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select SBC activity"
-        }
-      }
+
     ]
   }
 }

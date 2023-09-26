@@ -63,8 +63,8 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Vipindi  vya elimu ya mabadiliko ya tabia",
-        "hint": "Vipindi  vya elimu ya mabadiliko ya tabia",
+        "label": "Vipindi  vya elimu ya mabadiliko ya tabia vilivyo tolewa",
+        "hint": "Vipindi  vya elimu ya mabadiliko ya tabia vilivyo tolewa",
         "options": [
           {
             "key": "condom_use",
@@ -125,7 +125,16 @@
             "text": "Nyinginezo (Taja)",
             "value": false,
             "openmrs_choice_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "Hakuna",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
+        ],
+        "exclusive": [
+          "none"
         ],
         "v_required": {
           "value": "true",
