@@ -25,11 +25,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.adapter.SbcMobilizationRegisterAdapter;
 import org.smartregister.chw.adapter.SbcMonthlySocialMediaReportsRegisterAdapter;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.dao.ChwSbcDao;
-import org.smartregister.chw.model.SbcMobilizationSessionModel;
 import org.smartregister.chw.model.SbcMobilizationSessionRegisterFragmentModel;
 import org.smartregister.chw.model.SbcMonthlySocialMediaReportModel;
 import org.smartregister.chw.presenter.SbcMonthlySocialMediaReportRegisterFragmentPresenter;
@@ -56,8 +54,29 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
     private android.view.View view;
 
 
-
     private SbcMonthlySocialMediaReportsRegisterAdapter adapter;
+
+    public static Intent getStartFormActivity(JSONObject jsonForm, String title, Context context) {
+        Intent intent = new Intent(context, Utils.metadata().familyMemberFormActivity);
+        intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
+        Form form = new Form();
+        form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
+        form.setWizard(false);
+        form.setHomeAsUpIndicator(org.smartregister.chw.core.R.mipmap.ic_cross_white);
+        form.setSaveLabel(context.getResources().getString(org.smartregister.chw.core.R.string.save));
+        form.setDatePickerDisplayFormat("MMM yyyy");
+
+        if (isMultiPartForm(jsonForm)) {
+            form.setWizard(true);
+            form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
+            form.setName(title);
+            form.setNextLabel(context.getResources().getString(org.smartregister.chw.core.R.string.next));
+            form.setPreviousLabel(context.getResources().getString(org.smartregister.chw.core.R.string.back));
+        }
+        intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+        return intent;
+
+    }
 
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
@@ -78,9 +97,10 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
             showEmptyState();
         }
     }
+
     protected void showEmptyState() {
         if (emptyViewLayout != null) {
-            if (clientAdapter.getItemCount() >= 1) {
+            if (clientAdapter != null && clientAdapter.getItemCount() >= 1) {
                 emptyViewLayout.setVisibility(GONE);
             } else {
                 emptyViewLayout.setVisibility(android.view.View.VISIBLE);
@@ -138,7 +158,6 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
         }
     }
 
-
     @Override
     protected void initializePresenter() {
         if (getActivity() == null) {
@@ -160,7 +179,6 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
             clientsView.getAdapter().notifyDataSetChanged();
         }
     }
-
 
     @Override
     public void onResume() {
@@ -207,12 +225,10 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
         }
     }
 
-
     @Override
     protected void openProfile(String baseEntityId) {
         //implement when needed
     }
-
 
     @Override
     protected void refreshSyncProgressSpinner() {
@@ -242,27 +258,5 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
     @Override
     protected int getLayout() {
         return org.smartregister.hivst.R.layout.fragment_mobilization_register;
-    }
-
-    public static Intent getStartFormActivity(JSONObject jsonForm, String title, Context context) {
-        Intent intent = new Intent(context, Utils.metadata().familyMemberFormActivity);
-        intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
-        Form form = new Form();
-        form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
-        form.setWizard(false);
-        form.setHomeAsUpIndicator(org.smartregister.chw.core.R.mipmap.ic_cross_white);
-        form.setSaveLabel(context.getResources().getString(org.smartregister.chw.core.R.string.save));
-        form.setDatePickerDisplayFormat("MMM yyyy");
-
-        if (isMultiPartForm(jsonForm)) {
-            form.setWizard(true);
-            form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
-            form.setName(title);
-            form.setNextLabel(context.getResources().getString(org.smartregister.chw.core.R.string.next));
-            form.setPreviousLabel(context.getResources().getString(org.smartregister.chw.core.R.string.back));
-        }
-        intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
-        return intent;
-
     }
 }

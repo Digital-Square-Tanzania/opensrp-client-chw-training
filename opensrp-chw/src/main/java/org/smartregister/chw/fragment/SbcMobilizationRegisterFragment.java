@@ -169,7 +169,7 @@ public class SbcMobilizationRegisterFragment extends BaseSbcRegisterFragment {
 
     protected void showEmptyState() {
         if (emptyViewLayout != null) {
-            if (adapter.getItemCount() >= 1) {
+            if (adapter != null && adapter.getItemCount() >= 1) {
                 emptyViewLayout.setVisibility(GONE);
             } else {
                 emptyViewLayout.setVisibility(android.view.View.VISIBLE);

@@ -17,6 +17,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.BulletSpan;
 import android.text.style.StyleSpan;
+import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -131,6 +132,11 @@ public class SbcMobilizationSessionDetailsActivity extends CoreAncMedicalHistory
                 Timber.e(e, "SbcMobilizationSessionDetailsActivity -- > onActivityResult");
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return false;
     }
 
     private static class SbcMobilizationSessionDetailsActivityFlv extends DefaultAncMedicalHistoryActivityFlv {
