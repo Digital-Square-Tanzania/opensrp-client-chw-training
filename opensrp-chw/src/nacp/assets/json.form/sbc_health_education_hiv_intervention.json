@@ -63,8 +63,8 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Health Education on HIV Intervention",
-        "hint": "Health Education on HIV Intervention",
+        "label": "Health Education on HIV Intervention provided",
+        "hint": "Health Education on HIV Intervention provided",
         "options": [
           {
             "key": "htc",

@@ -61,7 +61,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "received_any_hiv_sms",
         "type": "native_radio",
-        "label": "Have you received any SMS about HIV and AIDS within this month?",
+        "label": "Has the client received any SMS about HIV and AIDS within this month?",
         "text_color": "#000000",
         "options": [
           {
@@ -190,6 +190,12 @@
             "openmrs_entity_id": "overdose"
           },
           {
+            "key": "condom_use",
+            "text": "Condom use",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "condom_use"
+          },
+          {
             "key": "other",
             "text": "Other (Specify)",
             "openmrs_entity": "concept",
@@ -267,7 +273,7 @@
           },
           {
             "key": "network_access",
-            "text": "Network access",
+            "text": "No network access",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "network_access"
           },
@@ -318,7 +324,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "used_toll_free",
         "type": "native_radio",
-        "label": "Have you used Toll-Free service?",
+        "label": "Has the client used Toll-Free service?",
         "text_color": "#000000",
         "options": [
           {

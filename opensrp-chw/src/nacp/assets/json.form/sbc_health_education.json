@@ -63,8 +63,8 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "SBC Health Education Session(s) received",
-        "hint": "SBC Health Education Session(s) received",
+        "label": "SBC Health Education session(s) provided",
+        "hint": "SBC Health Education session(s) provided",
         "options": [
           {
             "key": "condom_use",
@@ -125,7 +125,16 @@
             "text": "Other (Specify)",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
+        ],
+        "exclusive": [
+          "none"
         ],
         "v_required": {
           "value": "true",

@@ -61,11 +61,8 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sbc_comments",
         "type": "edit_text",
-        "hint": "Maoni/Maelezo ya Ziada",
-        "v_required": {
-          "value": true,
-          "err": "Tafadhali jaza"
-        }
+        "hint": "Maoni/Maelezo ya Ziada"
+
       }
     ]
   }

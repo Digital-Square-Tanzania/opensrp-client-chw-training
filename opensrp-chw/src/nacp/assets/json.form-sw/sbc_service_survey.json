@@ -190,6 +190,12 @@
             "openmrs_choice_id": "overdose"
           },
           {
+            "key": "condom_use",
+            "text": "Matumizi ya kondomu",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "condom_use"
+          },
+          {
             "key": "other",
             "text": "Nyinginezo (taja)",
             "value": false,
@@ -267,7 +273,7 @@
           },
           {
             "key": "network_access",
-            "text": "Mtandao",
+            "text": "Hakuna Mtandao",
             "value": false,
             "openmrs_choice_id": "network_access"
           },
