@@ -192,38 +192,112 @@
         }
       },
       {
-        "key": "iec_materials_distributed",
+        "key": "has_distributed_iec_materials",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "iec_materials_distributed",
-        "openmrs_data_type": "select one",
-        "type": "check_box",
-        "combine_checkbox_option_values": "true",
-        "label": "Idadi ya nyenzo za uelimishaji na uhamasishaji zilizosambazwa",
-        "hint": "Idadi ya nyenzo za uelimishaji na uhamasishaji zilizosambazwa",
+        "openmrs_entity_id": "has_distributed_iec_materials",
+        "label": "Have you distributed any IEC Materials?",
+        "text_color": "#000000",
+        "type": "native_radio",
         "options": [
           {
-            "key": "audio_visual",
-            "text": "Video",
-            "value": false,
-            "openmrs_choice_id": "audio_visual"
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
           },
           {
-            "key": "audio",
-            "text": "Sauti",
-            "value": false,
-            "openmrs_choice_id": "audio"
-          },
-          {
-            "key": "print_materials",
-            "text": "Machapisho",
-            "value": false,
-            "openmrs_choice_id": "print_materials"
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua angalau moja"
+          "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "eic_interventions",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "eic_interventions",
+        "openmrs_data_type": "select one",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Select  Interventions",
+        "hint": "Select  Interventions",
+        "options": [
+          {
+            "key": "other_interventions",
+            "text": "Other Interventions",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_interventions"
+          },
+          {
+            "key": "pmtct",
+            "text": "PMTCT",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pmtct"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:has_distributed_iec_materials": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "other_iec_materials_distributed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_iec_materials_distributed",
+        "openmrs_data_type": "select one",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Select Other IEC materials distributed",
+        "options": [
+          {
+            "key": "audio_visual",
+            "text": "Audio visual",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio_visual"
+          },
+          {
+            "key": "audio",
+            "text": "Audio",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio"
+          },
+          {
+            "key": "print_materials",
+            "text": "Print Materials",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "print_materials"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:eic_interventions": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other_interventions"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -233,13 +307,13 @@
         "openmrs_entity_id": "number_audio_visuals_distributed",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Idadi ya video zilizosambazwa",
+        "hint": "Number of Audio visual distributed",
         "v_required": {
           "value": true,
-          "err": "Tafadhali jaza"
+          "err": "Required"
         },
         "relevance": {
-          "step1:iec_materials_distributed": {
+          "step1:other_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -257,13 +331,13 @@
         "openmrs_entity_id": "number_audio_distributed",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Idadi ya Sauti zilizosambazwa",
+        "hint": "Number of Audio distributed",
         "v_required": {
           "value": true,
-          "err": "Tafadhali jaza"
+          "err": "Required"
         },
         "relevance": {
-          "step1:iec_materials_distributed": {
+          "step1:other_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -281,13 +355,13 @@
         "openmrs_entity_id": "number_print_materials_distributed",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Idadi ya Machapisho zilizosambazwa",
+        "hint": "Number of print materials distributed",
         "v_required": {
           "value": true,
-          "err": "Tafadhali jaza"
+          "err": "Required"
         },
         "relevance": {
-          "step1:iec_materials_distributed": {
+          "step1:other_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -306,31 +380,42 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Idadi ya nyenzo za uelimishaji na uhamasishaji wa PMTCT zilizosambazwa",
-        "hint": "Idadi ya nyenzo za uelimishaji na uhamasishaji wa PMTCT zilizosambazwa",
+        "label": "Select PMTCT IEC materials distributed",
+        "hint": "Select PMTCT IEC materials distributed",
         "options": [
           {
             "key": "audio_visual",
-            "text": "Nyenzo za kusikia na kuona",
-            "value": false,
-            "openmrs_choice_id": "audio_visual"
+            "text": "Audio visual",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio_visual"
           },
           {
             "key": "audio",
-            "text": "Nyenzo za kusikia",
-            "value": false,
-            "openmrs_choice_id": "audio"
+            "text": "Audio",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "audio"
           },
           {
             "key": "print_materials",
-            "text": "Machapisho",
-            "value": false,
-            "openmrs_choice_id": "print_materials"
+            "text": "Print Materials",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "print_materials"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua angalau moja"
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:eic_interventions": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "pmtct"
+                ]
+              }
+            ]
+          }
         }
       },
       {

@@ -162,7 +162,7 @@ public class SbcMobilizationSessionDetailsActivity extends CoreAncMedicalHistory
                         days = Days.daysBetween(new DateTime(visits.get(visits.size() - 1).getDate()), new DateTime()).getDays();
                     }
 
-                    String[] mobilizationSessionDetails = {"heath_education_mobility_location", "community_sbc_activity_provided", "other_community_sbc_activity_provided", "iec_materials_distributed", "number_audio_visuals_distributed", "number_audio_distributed", "number_print_materials_distributed", "pmtct_iec_materials_distributed", "number_pmtct_audio_visuals_distributed_male", "number_pmtct_audio_visuals_distributed_female", "number_pmtct_audio_distributed_male", "number_pmtct_audio_distributed_female", "number_pmtct_print_materials_distributed_male", "number_pmtct_print_materials_distributed_female"};
+                    String[] mobilizationSessionDetails = {"heath_education_mobility_location", "community_sbc_activity_provided", "other_community_sbc_activity_provided", "other_iec_materials_distributed", "number_audio_visuals_distributed", "number_audio_distributed", "number_print_materials_distributed", "pmtct_iec_materials_distributed", "number_pmtct_audio_visuals_distributed_male", "number_pmtct_audio_visuals_distributed_female", "number_pmtct_audio_distributed_male", "number_pmtct_audio_distributed_female", "number_pmtct_print_materials_distributed_male", "number_pmtct_print_materials_distributed_female"};
                     extractVisitDetails(visits, mobilizationSessionDetails, visitDetails, x, context);
 
 

@@ -198,15 +198,78 @@
         }
       },
       {
-        "key": "iec_materials_distributed",
+        "key": "has_distributed_iec_materials",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "iec_materials_distributed",
+        "openmrs_entity_id": "has_distributed_iec_materials",
+        "label": "Have you distributed any IEC Materials?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "eic_interventions",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "eic_interventions",
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select IEC materials distributed",
-        "hint": "Select IEC materials distributed",
+        "label": "Select  Interventions",
+        "hint": "Select  Interventions",
+        "options": [
+          {
+            "key": "other_interventions",
+            "text": "Other Interventions",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_interventions"
+          },
+          {
+            "key": "pmtct",
+            "text": "PMTCT",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pmtct"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:has_distributed_iec_materials": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "other_iec_materials_distributed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_iec_materials_distributed",
+        "openmrs_data_type": "select one",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Select Other IEC materials distributed",
         "options": [
           {
             "key": "audio_visual",
@@ -230,6 +293,17 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "step1:eic_interventions": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other_interventions"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -245,7 +319,7 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:iec_materials_distributed": {
+          "step1:other_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -269,7 +343,7 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:iec_materials_distributed": {
+          "step1:other_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -293,7 +367,7 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:iec_materials_distributed": {
+          "step1:other_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -332,12 +406,22 @@
             "text": "Print Materials",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "print_materials"
-
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "step1:eic_interventions": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "pmtct"
+                ]
+              }
+            ]
+          }
         }
       },
       {
