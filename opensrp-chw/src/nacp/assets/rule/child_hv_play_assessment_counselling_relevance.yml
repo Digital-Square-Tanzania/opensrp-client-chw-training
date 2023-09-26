@@ -1,0 +1,28 @@
+---
+name: step1_spend_time_with_other
+description: Spend time with other
+priority: 1
+condition: "step1_spend_time_with.contains('chk_other_person')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_demonstrate_play_child
+description: Demonstrate play child
+priority: 1
+condition: "step1_play_with_child == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_interacts_with_child_note
+description: Interacts with child note
+priority: 1
+condition: "step1_demonstrate_play_child.contains('chk_move_baby_arms_legs') || step1_demonstrate_play_child.contains('chk_baby_attention_shaker_toy')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_spacer_praise
+description: Spacer praise
+priority: 1
+condition: "step1_demonstrate_play_child.contains('chk_move_baby_arms_legs') || step1_demonstrate_play_child.contains('chk_baby_attention_shaker_toy')"
+actions:
+  - "isRelevant = true"
