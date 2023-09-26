@@ -76,11 +76,13 @@ public class SbcReportObject extends ReportObject {
             indicatorDataObject.put("sbc-" + i + "-grand-total", maleTotal + femaleTotal);
         }
 
-        int sbc4maleTotal = ReportDao.getReportPerIndicatorCode("sbc-4-male-total", reportDate);
-        int sbc4femaleTotal = ReportDao.getReportPerIndicatorCode("sbc-4-female-total", reportDate);
-        indicatorDataObject.put("sbc-4-male-total", sbc4maleTotal);
-        indicatorDataObject.put("sbc-4-female-total", sbc4femaleTotal);
-        indicatorDataObject.put("sbc-4-grand-total", sbc4maleTotal + sbc4femaleTotal);
+        int sbc4audioVisualTotal = ReportDao.getReportPerIndicatorCode("sbc-4-audio-visuals-total", reportDate);
+        int sbc4audioTotal = ReportDao.getReportPerIndicatorCode("sbc-4-audio-total", reportDate);
+        int sbc4printTotal = ReportDao.getReportPerIndicatorCode("sbc-4-print-total", reportDate);
+        indicatorDataObject.put("sbc-4-audio-visuals-total", sbc4audioVisualTotal);
+        indicatorDataObject.put("sbc-4-audio-total", sbc4audioTotal);
+        indicatorDataObject.put("sbc-4-print-total", sbc4printTotal);
+        indicatorDataObject.put("sbc-4-grand-total", sbc4audioVisualTotal + sbc4audioTotal + sbc4printTotal);
 
 
         return indicatorDataObject;
