@@ -238,10 +238,10 @@
         "hint": "Select  Interventions",
         "options": [
           {
-            "key": "other_interventions",
-            "text": "Other Interventions",
+            "key": "other_hiv_interventions",
+            "text": "Other HIV Interventions",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "other_interventions"
+            "openmrs_entity_id": "other_hiv_interventions"
           },
           {
             "key": "pmtct",
@@ -262,14 +262,14 @@
         }
       },
       {
-        "key": "other_iec_materials_distributed",
+        "key": "other_interventions_iec_materials_distributed",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "other_iec_materials_distributed",
+        "openmrs_entity_id": "other_interventions_iec_materials_distributed",
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select Other IEC materials distributed",
+        "label": "Select Other Interventions IEC materials distributed",
         "options": [
           {
             "key": "audio_visual",
@@ -299,7 +299,7 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "other_interventions"
+                  "other_hiv_interventions"
                 ]
               }
             ]
@@ -319,7 +319,7 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:other_iec_materials_distributed": {
+          "step1:other_interventions_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -343,7 +343,7 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:other_iec_materials_distributed": {
+          "step1:other_interventions_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [
@@ -367,7 +367,7 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:other_iec_materials_distributed": {
+          "step1:other_interventions_iec_materials_distributed": {
             "ex-checkbox": [
               {
                 "or": [

@@ -5726,11 +5726,11 @@
           }
         },
         {
-          "column_name": "other_iec_materials_distributed",
+          "column_name": "other_interventions_iec_materials_distributed",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "other_iec_materials_distributed"
+            "concept": "other_interventions_iec_materials_distributed"
           }
         },
         {
