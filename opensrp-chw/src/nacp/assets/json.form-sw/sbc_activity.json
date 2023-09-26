@@ -160,13 +160,8 @@
         },
         "relevance": {
           "step1:activity_type": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "other"
-                ]
-              }
-            ]
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
           }
         }
       },
