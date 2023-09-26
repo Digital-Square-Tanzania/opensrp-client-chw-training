@@ -246,7 +246,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali jaza"
+          "err": "Tafadhali chagua"
         },
         "relevance": {
           "step1:has_distributed_iec_materials": {
@@ -286,7 +286,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali Taja"
+          "err": "Tafadhali chagua"
         },
         "relevance": {
           "step1:eic_interventions": {
@@ -307,10 +307,10 @@
         "openmrs_entity_id": "number_audio_visuals_distributed",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Number of Audio visual distributed",
+        "hint": "Idadi ya Nyenzo za kusikia na kuona zilizosambazwa",
         "v_required": {
           "value": true,
-          "err": "Required"
+          "err": "Tafadhali Jaza"
         },
         "relevance": {
           "step1:other_interventions_iec_materials_distributed": {
@@ -331,10 +331,10 @@
         "openmrs_entity_id": "number_audio_distributed",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Number of Audio distributed",
+        "hint": "Idadi ya Nyenzo za kusikia zilizosambazwa",
         "v_required": {
           "value": true,
-          "err": "Required"
+          "err": "Tafadhali Jaza"
         },
         "relevance": {
           "step1:other_interventions_iec_materials_distributed": {
@@ -355,10 +355,10 @@
         "openmrs_entity_id": "number_print_materials_distributed",
         "type": "edit_text",
         "edit_type": "number",
-        "hint": "Number of print materials distributed",
+        "hint": "Idadi ya Nyenzo za Machapisho zilizosambazwa",
         "v_required": {
           "value": true,
-          "err": "Required"
+          "err": "Tafadhali Jaza"
         },
         "relevance": {
           "step1:other_interventions_iec_materials_distributed": {
@@ -380,31 +380,31 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select PMTCT IEC materials distributed",
-        "hint": "Select PMTCT IEC materials distributed",
+        "label": "Changua nyenzo za PMTCT IEC zilizosambazwa",
+        "hint": "Changua nyenzo za PMTCT IEC zilizosambazwa",
         "options": [
           {
             "key": "audio_visual",
-            "text": "Audio visual",
+            "text": "Nyenzo za kusikia na kuona",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "audio_visual"
           },
           {
             "key": "audio",
-            "text": "Audio",
+            "text": "Nyenzo za kusikia",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "audio"
           },
           {
             "key": "print_materials",
-            "text": "Print Materials",
+            "text": "Machapisho",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "print_materials"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Required"
+          "err": "Tafadhali chagua"
         },
         "relevance": {
           "step1:eic_interventions": {
