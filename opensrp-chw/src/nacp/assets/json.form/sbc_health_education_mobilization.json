@@ -87,8 +87,8 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Type of Community SBC activity provided",
-        "hint": "Type of Community SBC activity provided",
+        "label": "Type of Community SBC activity conducted",
+        "hint": "Type of Community SBC activity conducted",
         "options": [
           {
             "key": "campaign",

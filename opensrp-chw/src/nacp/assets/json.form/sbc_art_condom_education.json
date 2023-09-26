@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "ART & Condom Education",
+  "encounter_type": "ART Adherence Counselling",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -53,7 +53,7 @@
     }
   },
   "step1": {
-    "title": "ART & Condom Education",
+    "title": "ART Adherence Counselling",
     "fields": [
       {
         "key": "received_art_counseling",
@@ -62,33 +62,6 @@
         "openmrs_entity_id": "received_art_counseling",
         "type": "native_radio",
         "label": "Has the client received ART adherence counseling?",
-        "text_color": "#000000",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Required"
-        }
-      },
-      {
-        "key": "received_condom_education",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "received_condom_education",
-        "type": "native_radio",
-        "label": "Has the client received education on comprehensive condom use?",
         "text_color": "#000000",
         "options": [
           {

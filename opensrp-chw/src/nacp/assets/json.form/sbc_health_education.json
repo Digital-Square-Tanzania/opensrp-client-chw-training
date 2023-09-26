@@ -68,7 +68,7 @@
         "options": [
           {
             "key": "condom_use",
-            "text": "Condom use",
+            "text": "Comprehensive Condom use",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "condom_use"
           },
@@ -79,28 +79,10 @@
             "openmrs_entity_id": "risk_behavior"
           },
           {
-            "key": "art_adherence",
-            "text": "ART Adherence",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "art_adherence"
-          },
-          {
             "key": "family_planning",
             "text": "Family Planning",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "family_planning"
-          },
-          {
-            "key": "sti",
-            "text": "STI/RTI",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "sti"
-          },
-          {
-            "key": "tb",
-            "text": "TB",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "tb"
           },
           {
             "key": "hepatitis",

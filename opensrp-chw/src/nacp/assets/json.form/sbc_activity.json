@@ -93,7 +93,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "activity_type",
         "type": "native_radio",
-        "label": "Type of Community SBC activity provided",
+        "label": "Type of SBC activity conducted",
         "options": [
           {
             "key": "campaign",

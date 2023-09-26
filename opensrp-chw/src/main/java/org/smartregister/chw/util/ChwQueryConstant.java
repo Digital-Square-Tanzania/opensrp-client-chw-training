@@ -55,6 +55,9 @@ public interface ChwQueryConstant {
             "    FROM ec_tb_register\n" +
             "    WHERE ec_tb_register.tb_case_closure_date is null\n" +
             "    UNION ALL\n" +
+            "    SELECT ec_sbc_register.base_entity_id AS base_entity_id\n" +
+            "    FROM ec_sbc_register\n" +
+            "    UNION ALL\n" +
             "    SELECT ec_cbhs_register.base_entity_id AS base_entity_id\n" +
             "    FROM ec_cbhs_register\n" +
             "    WHERE is_closed is 0 \n" +

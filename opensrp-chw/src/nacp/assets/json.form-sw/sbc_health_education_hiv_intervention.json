@@ -163,6 +163,12 @@
             "openmrs_choice_id": "overdose"
           },
           {
+            "key": "art_adherence",
+            "text": "Ufuasi mzuri wa ARV",
+            "value": false,
+            "openmrs_choice_id": "art_adherence"
+          },
+          {
             "key": "other",
             "text": "Nyinginezo (taja)",
             "value": false,

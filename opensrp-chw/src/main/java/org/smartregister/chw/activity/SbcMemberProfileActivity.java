@@ -112,7 +112,7 @@ public class SbcMemberProfileActivity extends BaseSbcProfileActivity {
                     ((SbcFloatingMenu) baseSbcFloatingMenu).animateFAB();
                     break;
                 case R.id.sbc_refer_to_facility_layout:
-                    org.smartregister.chw.util.Utils.launchClientReferralActivity(SbcMemberProfileActivity.this, org.smartregister.chw.util.Utils.getCommonReferralTypes(SbcMemberProfileActivity.this, memberObject.getBaseEntityId()), memberObject.getBaseEntityId());
+                    org.smartregister.chw.util.Utils.launchClientReferralActivity(SbcMemberProfileActivity.this, getReferralTypeModels(), memberObject.getBaseEntityId());
                     ((SbcFloatingMenu) baseSbcFloatingMenu).animateFAB();
                     break;
                 default:

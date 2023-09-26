@@ -163,6 +163,12 @@
             "openmrs_entity_id": "overdose"
           },
           {
+            "key": "art_adherence",
+            "text": "ART Adherence",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "art_adherence"
+          },
+          {
             "key": "other",
             "text": "Other (Specify)",
             "openmrs_entity": "concept",

@@ -112,7 +112,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         if (ChwApplication.getApplicationFlavor().hasSbc()) {
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
-            menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 15);
+            menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 10);
         }
         return true;
     }

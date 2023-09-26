@@ -79,28 +79,10 @@
             "openmrs_choice_id": "risk_behavior"
           },
           {
-            "key": "art_adherence",
-            "text": "Ufuasi mzuri wa ARV",
-            "value": false,
-            "openmrs_choice_id": "art_adherence"
-          },
-          {
             "key": "family_planning",
             "text": "Uzazi wa mpango",
             "value": false,
             "openmrs_choice_id": "family_planning"
-          },
-          {
-            "key": "sti",
-            "text": "Magonjwa ya ngono",
-            "value": false,
-            "openmrs_choice_id": "sti"
-          },
-          {
-            "key": "tb",
-            "text": "Kifua kikuu",
-            "value": false,
-            "openmrs_choice_id": "tb"
           },
           {
             "key": "hepatitis",

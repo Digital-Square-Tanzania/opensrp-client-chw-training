@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Elimu ya ARV na Kondomu",
+  "encounter_type": "ART Adherence Counselling",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -53,7 +53,7 @@
     }
   },
   "step1": {
-    "title": "Elimu ya ARV na Kondomu",
+    "title": "Elimu ya Ufuasi mzuri wa ARV",
     "fields": [
       {
         "key": "received_art_counseling",
@@ -62,33 +62,6 @@
         "openmrs_entity_id": "received_art_counseling",
         "type": "native_radio",
         "label": "Je, mteja amepata elimu ya ufuasi mzuri wa ARV?",
-        "text_color": "#000000",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Ndiyo",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "Hapana",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali chagua angalau moja"
-        }
-      },
-      {
-        "key": "received_condom_education",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "received_condom_education",
-        "type": "native_radio",
-        "label": "Je, mteja amepata elimu sahihi na endelevu ya matumizi sahihi ya kondomu?",
         "text_color": "#000000",
         "options": [
           {
