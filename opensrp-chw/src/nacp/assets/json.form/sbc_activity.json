@@ -193,7 +193,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please choose SBC activity"
+          "err": "Please select SBC activity"
         }
       }
     ]
