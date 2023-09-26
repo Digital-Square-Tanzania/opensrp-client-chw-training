@@ -87,8 +87,8 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Aina ya uelimishaji ngazi ya jamii (SBC)",
-        "hint": "Aina ya uelimishaji ngazi ya jamii (SBC)",
+        "label": "Aina ya uelimishaji (SBC)",
+        "hint": "Aina ya uelimishaji (SBC)",
         "options": [
           {
             "key": "campaign",
@@ -263,7 +263,7 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select Other Interventions IEC materials distributed",
+        "label": "Nyenzo za uhamasishaji na uelimishaji kuhusu VVU na ukimwi nyinginezo zilisambazwa",
         "options": [
           {
             "key": "audio_visual",
