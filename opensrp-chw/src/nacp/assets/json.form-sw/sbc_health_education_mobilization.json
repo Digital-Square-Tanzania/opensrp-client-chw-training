@@ -196,20 +196,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "has_distributed_iec_materials",
-        "label": "Have you distributed any IEC Materials?",
+        "label": "Je, Umegawa Vifaa vyovyote vya (IEC)?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "Ndio",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "Hapana",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -217,7 +217,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "Tafadhali jaza"
         }
       },
       {
@@ -228,25 +228,25 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select  Interventions",
-        "hint": "Select  Interventions",
+        "label": "Chagua Afua",
+        "hint": "Chagua Afua",
         "options": [
           {
             "key": "other_interventions",
-            "text": "Other Interventions",
+            "text": "Afua nyinginezo",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other_interventions"
           },
           {
             "key": "pmtct",
-            "text": "PMTCT",
+            "text": "Kuzuia maambukizi kutoka kwa mama kwenda kwa mtoto (PMTCT)",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pmtct"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Required"
+          "err": "Tafadhali jaza"
         },
         "relevance": {
           "step1:has_distributed_iec_materials": {
@@ -263,30 +263,30 @@
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select Other IEC materials distributed",
+        "label": "Select Other HIV IEC materials distributed",
         "options": [
           {
             "key": "audio_visual",
-            "text": "Audio visual",
+            "text": "Nyenzo za kusikia na kuona",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "audio_visual"
           },
           {
             "key": "audio",
-            "text": "Audio",
+            "text": "Nyenzo za kusikia",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "audio"
           },
           {
             "key": "print_materials",
-            "text": "Print Materials",
+            "text": "Machapisho",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "print_materials"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Required"
+          "err": "Tafadhali Taja"
         },
         "relevance": {
           "step1:eic_interventions": {
