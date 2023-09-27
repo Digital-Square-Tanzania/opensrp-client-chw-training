@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Usajili wa SBC",
+  "encounter_type": "SBC HIV Status",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -53,7 +53,7 @@
     }
   },
   "step1": {
-    "title": "Usajili wa SBC",
+    "title": "SBC HIV Status",
     "fields": [
       {
         "key": "hiv_status",
@@ -61,31 +61,31 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hiv_status",
         "type": "native_radio",
-        "label": "Hali ya maambukizi ya VVU",
+        "label": "Client HIV Status",
         "text_color": "#000000",
         "options": [
           {
             "key": "known_positive",
-            "text": "Anaishi na maambukizi",
+            "text": "Known Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "known_positive"
           },
           {
             "key": "negative",
-            "text": "Hana maambukizi",
+            "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },
           {
             "key": "unknown",
-            "text": "Haijulikani",
+            "text": "Unknown",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "unknown"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Tafadhali jaza"
+          "err": "Required"
         }
       },
       {
@@ -97,20 +97,20 @@
         "mask": "##-##-####-######",
         "mask_hint": "12345678912345",
         "allowed_chars": "0123456789",
-        "hint": "Nambari ya CTC",
+        "hint": "CTC Number",
         "edit_type": "number",
         "v_regex": {
           "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
-          "err": "Nambari ya CTC inapaswa kuwa ya muundo (XX-XX-XXXX-XXXXXX)"
+          "err": "CTC number should be of the format (XX-XX-XXXX-XXXXXX)"
         },
         "v_max_length": {
           "value": "17",
           "is_fixed_size": "true",
-          "err": "Tafadhali jaza nambari sahihi ya ctc"
+          "err": "Please enter a valid CTC Number"
         },
         "v_required": {
           "value": true,
-          "err": "Tafadhali jaza nambari sahihi ya ctc"
+          "err": "Please enter a valid CTC Number"
         },
         "relevance": {
           "step1:hiv_status": {
@@ -125,14 +125,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "unknown_hiv_status_prompt",
         "type": "toaster_notes",
-        "text": "Mpe rufaa kwenda kupata huduma za unasii na upimaji  wa VVU",
+        "text": "Refer to HIV counselling and testing services",
         "toaster_type": "info",
         "toaster_info_text": "",
         "toaster_info_title": "",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "sbc_enrollment_relevance.yml"
+              "rules-file": "sbc_hiv_status_relevance.yml"
             }
           }
         }

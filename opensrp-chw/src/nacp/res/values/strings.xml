@@ -611,7 +611,7 @@
     <string name="sbc_hepatitis">Hepatitis</string>
     <string name="sbc_gbv">GBV</string>
     <string name="sbc_cervical_cancer">Cervical Cancer</string>
-    <string name="sbc_htc">HTS</string>
+    <string name="sbc_hts">HTS</string>
     <string name="sbc_vmmc">VMMC</string>
     <string name="sbc_pmtct">PMTCT</string>
     <string name="sbc_treatment">Care and Treatment</string>
@@ -635,7 +635,8 @@
     <string name="sbc_audio_visual">Audio visual</string>
     <string name="sbc_audio">Audio</string>
     <string name="sbc_print_materials">Print Materials</string>
-    <string name="other_hiv_interventions">Other HIV Interventions</string>
+    <string name="sbc_other_hiv_interventions">Other HIV Interventions</string>
+    <string name="sbc_income_generating_activity">Income Generating Activity (IGA)</string>
 
 
 

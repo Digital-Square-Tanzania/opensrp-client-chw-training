@@ -118,6 +118,24 @@
             "ex": "equalTo(., \"known_positive\")"
           }
         }
+      },
+      {
+        "key": "unknown_hiv_status_prompt",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "unknown_hiv_status_prompt",
+        "type": "toaster_notes",
+        "text": "Refer to HIV counselling and testing services",
+        "toaster_type": "info",
+        "toaster_info_text": "",
+        "toaster_info_title": "",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "sbc_enrollment_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }

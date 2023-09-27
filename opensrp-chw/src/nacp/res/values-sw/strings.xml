@@ -564,7 +564,7 @@
     <string name="sbc_hepatitis">Homa ya ini</string>
     <string name="sbc_gbv">Ukatili wa kijinsia</string>
     <string name="sbc_cervical_cancer">Saratani ya shingo ya kizazi</string>
-    <string name="sbc_htc">Upimaji wa VVU</string>
+    <string name="sbc_hts">Upimaji wa VVU</string>
     <string name="sbc_vmmc">Tohara ya kitabibu</string>
     <string name="sbc_pmtct">Kuzuia maambukizi kutoka kwa mama kwenda kwa mtoto</string>
     <string name="sbc_treatment">Huduma za tiba na matunzo</string>
@@ -588,7 +588,8 @@
     <string name="sbc_audio_visual">Nyenzo za kusikia na kuona</string>
     <string name="sbc_audio">Nyenzo za kusikia</string>
     <string name="sbc_print_materials">Machapisho</string>
-    <string name="other_hiv_interventions">Afua nyinginezo za VVU</string>
+    <string name="sbc_other_hiv_interventions">Afua nyinginezo za VVU</string>
+    <string name="sbc_income_generating_activity">Elimu ya uwezeshaji kiuchumi</string>
 
     <!--    ICCM Visit History-->
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>

@@ -67,10 +67,10 @@
         "hint": "Elimu ya afya katika afua za VVU na UKIMWI?",
         "options": [
           {
-            "key": "htc",
+            "key": "hts",
             "text": "Upimaji wa VVU",
             "value": false,
-            "openmrs_choice_id": "htc"
+            "openmrs_choice_id": "hts"
           },
           {
             "key": "vmmc",

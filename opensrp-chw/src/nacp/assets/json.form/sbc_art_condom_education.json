@@ -61,7 +61,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "received_art_counseling",
         "type": "native_radio",
-        "label": "Has the client received ART adherence counseling?",
+        "label": "Have you provided ART adherence counseling to the client?",
         "text_color": "#000000",
         "options": [
           {

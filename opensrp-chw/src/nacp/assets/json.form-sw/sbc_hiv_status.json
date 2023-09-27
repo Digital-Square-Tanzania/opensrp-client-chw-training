@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Usajili wa SBC",
+  "encounter_type": "Hali ya VVU SBC",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -53,7 +53,7 @@
     }
   },
   "step1": {
-    "title": "Usajili wa SBC",
+    "title": "Hali ya VVU SBC",
     "fields": [
       {
         "key": "hiv_status",
@@ -132,7 +132,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "sbc_enrollment_relevance.yml"
+              "rules-file": "sbc_hiv_status_relevance.yml"
             }
           }
         }

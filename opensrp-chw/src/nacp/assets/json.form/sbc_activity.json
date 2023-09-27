@@ -88,10 +88,62 @@
         }
       },
       {
-        "key": "activity_type",
+        "key": "activity_type_workplace",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "activity_type",
+        "type": "native_radio",
+        "label": "Type of SBC activity conducted",
+        "options": [
+
+          {
+            "key": "advocacy",
+            "text": "Advocacy meetings",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "advocacy"
+          },
+          {
+            "key": "workplace",
+            "text": "Workplace HIV and AIDS Education",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "workplace"
+          },
+          {
+            "key": "edutainment",
+            "text": "Health edutainment",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "edutainment"
+          },
+          {
+            "key": "other",
+            "text": "Other (Specify)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please choose SBC activity"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "sbc_activity_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "activity_type_community",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activity_type_community",
         "type": "native_radio",
         "label": "Type of SBC activity conducted",
         "options": [
@@ -120,16 +172,16 @@
             "openmrs_entity_id": "theater"
           },
           {
+            "key": "drama",
+            "text": "Community drama",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "drama"
+          },
+          {
             "key": "tales",
             "text": "Tales and discussions",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "tales"
-          },
-          {
-            "key": "drama",
-            "text": "Drama",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "drama"
           },
           {
             "key": "institution",
@@ -138,22 +190,22 @@
             "openmrs_entity_id": "institution"
           },
           {
-            "key": "advocacy",
-            "text": "Advocacy meetings",
+            "key": "income_generating_activity",
+            "text": "Income Generating Activity (IGA)",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "advocacy"
-          },
-          {
-            "key": "workplace",
-            "text": "Workplace Health Education",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "workplace"
+            "openmrs_entity_id": "income_generating_activity"
           },
           {
             "key": "edutainment",
             "text": "Health edutainment",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "edutainment"
+          },
+          {
+            "key": "outreach",
+            "text": "Outreach",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "outreach"
           },
           {
             "key": "other",
@@ -171,6 +223,27 @@
         "v_required": {
           "value": "true",
           "err": "Please choose SBC activity"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "sbc_activity_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "activity_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activity_type",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "sbc_activity_calculation.yml"
+            }
+          }
         }
       },
       {
@@ -185,9 +258,10 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:activity_type": {
-            "type": "string",
-            "ex": "equalTo(., \"other\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "sbc_activity_relevance.yml"
+            }
           }
         }
       }

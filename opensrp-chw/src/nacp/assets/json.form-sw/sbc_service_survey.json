@@ -94,10 +94,10 @@
         "hint": "Aina ya ujumbe uliopokelewa",
         "options": [
           {
-            "key": "htc",
+            "key": "hts",
             "text": "Upimaji wa VVU",
             "value": false,
-            "openmrs_choice_id": "htc"
+            "openmrs_choice_id": "hts"
           },
           {
             "key": "vmmc",
@@ -191,7 +191,7 @@
           },
           {
             "key": "condom_use",
-            "text": "Matumizi ya kondomu",
+            "text": "Matumizi kamili ya kondomu",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "condom_use"
           },
@@ -273,7 +273,7 @@
           },
           {
             "key": "network_access",
-            "text": "Hakuna Mtandao",
+            "text": "Hakuna mtandao",
             "value": false,
             "openmrs_choice_id": "network_access"
           },

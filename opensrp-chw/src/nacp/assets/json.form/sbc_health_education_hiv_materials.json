@@ -94,10 +94,10 @@
         "hint": "Type of material contents distributed",
         "options": [
           {
-            "key": "htc",
+            "key": "hts",
             "text": "HTS",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "htc"
+            "openmrs_entity_id": "hts"
           },
           {
             "key": "vmmc",
