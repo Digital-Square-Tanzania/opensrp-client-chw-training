@@ -57,7 +57,7 @@ public class SbcMonthlySocialMediaReportDetailsInteractor extends CoreBaseAncMed
             String[] eventTypes = new String[]{SBC_MONTHLY_SOCIAL_MEDIA_REPORT};
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);
-            appExecutors.mainThread().execute(() -> callBack.onDataFetched(Collections.singletonList(all_visits.get(0))));
+            appExecutors.mainThread().execute(() -> callBack.onDataFetched(Collections.singletonList(all_visits.get(all_visits.size() - 1))));
         };
 
         appExecutors.diskIO().execute(runnable);

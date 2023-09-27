@@ -57,7 +57,7 @@ public class SbcMobilizationSessionDetailsInteractor extends CoreBaseAncMedicalH
             String[] eventTypes = new String[]{SBC_HEALTH_EDUCATION_MOBILIZATION};
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);
-            appExecutors.mainThread().execute(() -> callBack.onDataFetched(Collections.singletonList(all_visits.get(all_visits.size()-1))));
+            appExecutors.mainThread().execute(() -> callBack.onDataFetched(Collections.singletonList(all_visits.get(all_visits.size() - 1))));
         };
 
         appExecutors.diskIO().execute(runnable);
