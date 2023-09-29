@@ -61,6 +61,9 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
         addFpReferralTypes();
         notificationAndReferralRecyclerView.setAdapter(notificationListAdapter);
         notificationListAdapter.setOnClickListener(this);
+        Visit lastVisit = FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT);
+        if (lastVisit != null)
+            refreshMedicalHistory(true);
     }
 
     @Override
