@@ -4,7 +4,6 @@
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
-  "global": {},
   "metadata": {
     "start": {
       "openmrs_entity_parent": "",
@@ -68,10 +67,6 @@
           "value": "true",
           "err": "Required"
         },
-        "v_max": {
-          "value": "3",
-          "err": "POP value must be equal or less than 3"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -92,10 +87,6 @@
           "value": "true",
           "err": "Required"
         },
-        "v_max": {
-          "value": "3",
-          "err": "COC value must be equal or less than 3"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -115,10 +106,6 @@
         "v_required": {
           "value": "true",
           "err": "Required"
-        },
-        "v_max": {
-          "value": "3",
-          "err": "ECP value must be equal or less than 3"
         },
         "relevance": {
           "rules-engine": {
