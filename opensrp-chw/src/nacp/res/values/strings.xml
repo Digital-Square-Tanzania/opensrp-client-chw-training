@@ -638,6 +638,26 @@
     <string name="sbc_other_hiv_interventions">Other HIV Interventions</string>
     <string name="sbc_income_generating_activity">Income Generating Activity (IGA)</string>
 
+    <!--    FP-->
+    <string name="fp_client_registration_number">Family planning registration number should be of the format (XXXX/XXX):</string>
+    <string name="fp_provided_fp_method_female">Client family planning method used:</string>
+    <string name="fp_provided_fp_method_male">Client family planning method used:</string>
+    <string name="fp_provided_fp_method">Client family planning method used:</string>
+    <string name="fp_family_planning_education_provided">Was family planning health education provided:</string>
+    <string name="fp_client_satisfied_with_fp_method">Is the client satisfied with the family planning method:</string>
+    <string name="fp_client_want_to_continue">Does the client want to continue with family planning method:</string>
+    <string name="fp_reason_for_discontinue">Reason for discontinue:</string>
+    <string name="fp_client_want_to_continue_same_method">Does the client want to continue the same method:</string>
+    <string name="fp_specify_other_discontinue_reason">Specify Reason for discontinue:</string>
+    <string name="fp_next_appointment_date">Select appointment date:</string>
+    <string name="fp_pop">POP:</string>
+    <string name="fp_coc">COC:</string>
+    <string name="fp_ecp">ECP:</string>
+    <string name="fp_client_provided_condom">Does the client wants to be provided condom:</string>
+    <string name="fp_condom_refilled">Select the type of condom provided:</string>
+    <string name="fp_number_male_condoms_refilled">Specify quantity (Male):</string>
+    <string name="fp_number_female_condoms_refilled">Specify quantity (Female):</string>
+
 
 
 
