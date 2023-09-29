@@ -61,9 +61,6 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
         addFpReferralTypes();
         notificationAndReferralRecyclerView.setAdapter(notificationListAdapter);
         notificationListAdapter.setOnClickListener(this);
-        Visit lastVisit = FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT);
-        if (lastVisit != null)
-            refreshMedicalHistory(true);
     }
 
     @Override
@@ -143,6 +140,10 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
     public void setupViews() {
         super.setupViews();
         textViewRecordFp.setText(org.smartregister.chw.fp.R.string.record_fp_followup_visit);
+
+        Visit lastVisit = FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT);
+        if (lastVisit != null)
+            refreshMedicalHistory(true);
     }
 
     @Override
