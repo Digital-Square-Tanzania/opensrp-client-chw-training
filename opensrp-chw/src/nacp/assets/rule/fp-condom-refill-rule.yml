@@ -45,3 +45,11 @@ priority: 1
 condition: "global_fp_method_selected.equalsIgnoreCase('ecp')"
 actions:
   - "isRelevant = true"
+
+---
+name: step1_condom_refilled
+description: Check if the client wants to be provided with condom relevance
+priority: 1
+condition: "step1_client_provided_condom.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"

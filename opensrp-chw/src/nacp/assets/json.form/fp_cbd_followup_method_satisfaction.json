@@ -144,48 +144,12 @@
         }
       },
       {
-        "key": "dissatisfaction_prompt",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "dissatisfaction_prompt",
-        "type": "toaster_notes",
-        "text": "Refer the client to the facility",
-        "toaster_type": "info",
-        "toaster_info_text": "",
-        "toaster_info_title": "",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "fp_cbd_followup_method_satisfaction_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "client_want_to_switch_prompt",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "client_want_to_switch_prompt",
-        "type": "toaster_notes",
-        "text": "Provide FP counseling for informed choice",
-        "toaster_type": "info",
-        "toaster_info_text": "",
-        "toaster_info_title": "",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "fp_cbd_followup_method_satisfaction_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "client_want_to_continue",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_want_to_continue",
         "type": "native_radio",
-        "label": "Does the client want to continue?",
+        "label": "Does the client want to continue with family planning method?",
         "text_color": "#000000",
         "options": [
           {
@@ -204,18 +168,7 @@
         "v_required": {
           "value": "true",
           "err": "Required"
-        }
-      },
-      {
-        "key": "client_want_to_continue_prompt",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "client_want_to_continue_prompt",
-        "type": "toaster_notes",
-        "text": "Refer the client to the facility",
-        "toaster_type": "info",
-        "toaster_info_text": "",
-        "toaster_info_title": "",
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -280,24 +233,6 @@
         }
       },
       {
-        "key": "reason_for_discontinue_prompt",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "reason_for_discontinue_prompt",
-        "type": "toaster_notes",
-        "text": "Refer the client to the facility",
-        "toaster_type": "info",
-        "toaster_info_text": "",
-        "toaster_info_title": "",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "fp_cbd_followup_method_satisfaction_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "client_want_to_continue_same_method",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -322,6 +257,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_cbd_followup_method_satisfaction_relevance.yml"
+            }
+          }
         }
       },
       {

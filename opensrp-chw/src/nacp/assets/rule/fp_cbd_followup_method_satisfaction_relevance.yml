@@ -5,14 +5,6 @@ priority: 1
 condition: "step1_client_satisfied_with_fp_method.equalsIgnoreCase('no')"
 actions:
   - "isRelevant = true"
-
----
-name: step1_dissatisfaction_prompt
-description: dissatisfaction_prompt relevance
-priority: 1
-condition: "step1_client_satisfied_with_fp_method.equalsIgnoreCase('no')"
-actions:
-  - "isRelevant = true"
 ---
 name: step1_specify_other
 description: specify_other relevance
@@ -31,14 +23,7 @@ actions:
 name: step1_reason_for_discontinue
 description: reason_for_discontinue relevance
 priority: 1
-condition: "step1_client_want_to_continue.equalsIgnoreCase('no')"
-actions:
-  - "isRelevant = true"
----
-name: step1_reason_for_discontinue_prompt
-description: reason_for_discontinue_prompt relevance
-priority: 1
-condition: "step1_reason_for_discontinue.contains('need_to_conceive') || step1_reason_for_discontinue.contains('other')"
+condition: "step1_client_satisfied_with_fp_method.equalsIgnoreCase('yes') && step1_client_want_to_continue.equalsIgnoreCase('no')"
 actions:
   - "isRelevant = true"
 ---
@@ -52,6 +37,25 @@ actions:
 name: step1_continue_same_method_prompt
 description: continue_same_method_prompt relevance
 priority: 1
-condition: "step1_client_want_to_continue_same_method.equalsIgnoreCase('no')"
+condition: "step1_client_want_to_continue_same_method.equalsIgnoreCase('no') || 
+            (step1_client_satisfied_with_fp_method.equalsIgnoreCase('no')) ||
+            (step1_reason_for_discontinue.contains('need_to_conceive') || step1_reason_for_discontinue.contains('other'))
+            "
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_client_want_to_continue_same_method
+description: client_want_to_continue_same_method relevance
+priority: 1
+condition: "step1_client_want_to_continue.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_client_want_to_continue
+description: client_want_to_continue relevance
+priority: 1
+condition: "step1_client_satisfied_with_fp_method.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true"

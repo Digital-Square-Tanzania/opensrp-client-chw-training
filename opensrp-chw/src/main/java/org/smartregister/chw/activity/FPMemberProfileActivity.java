@@ -237,5 +237,15 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
     public void onReceivedNotifications(List<Pair<String, String>> notifications) {
         handleReceivedNotifications(this, notifications, notificationListAdapter);
     }
+
+    @Override
+    public void setFollowUpButtonOverdue() {
+        showFollowUpVisitButton();
+        textViewRecordFp.setBackground(getResources().getDrawable(org.smartregister.chw.fp.R.drawable.record_btn_selector));
+    }
+
+
+
+
 }
 
