@@ -1,7 +1,7 @@
 package org.smartregister.chw.activity;
 
-import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM;
+import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
 import static org.smartregister.chw.util.NotificationsUtil.handleNotificationRowClick;
 import static org.smartregister.chw.util.NotificationsUtil.handleReceivedNotifications;
 
@@ -68,6 +68,10 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
         super.onResume();
         notificationListAdapter.canOpen = true;
         ChwNotificationUtil.retrieveNotifications(ChwApplication.getApplicationFlavor().hasReferrals(), fpMemberObject.getBaseEntityId(), this);
+
+        Visit lastVisit = FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT);
+        if (lastVisit != null)
+            refreshMedicalHistory(true);
     }
 
     @Override
@@ -171,10 +175,6 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
     }
 
     @Override
-    public void openMedicalHistory() {
-    }
-
-    @Override
     public Visit getLastVisit() {
         return null;
     }
@@ -244,7 +244,10 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
         textViewRecordFp.setBackground(getResources().getDrawable(org.smartregister.chw.fp.R.drawable.record_btn_selector));
     }
 
-
+    @Override
+    public void openMedicalHistory() {
+        FpMedicalHistoryActivity.startMe(FPMemberProfileActivity.this, fpMemberObject);
+    }
 
 
 }
