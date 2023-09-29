@@ -8,6 +8,8 @@ import static org.smartregister.chw.util.NotificationsUtil.handleReceivedNotific
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
@@ -140,10 +142,20 @@ public class FPMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
     public void setupViews() {
         super.setupViews();
         textViewRecordFp.setText(org.smartregister.chw.fp.R.string.record_fp_followup_visit);
+        delayRefreshSetupViews();
+    }
 
-        Visit lastVisit = FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT);
-        if (lastVisit != null)
-            refreshMedicalHistory(true);
+    private void delayRefreshSetupViews() {
+        try {
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                Visit lastVisit = FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT);
+                if (lastVisit != null) {
+                    refreshMedicalHistory(true);
+                }
+            }, 500);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
     }
 
     @Override
