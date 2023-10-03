@@ -484,8 +484,8 @@
     <string name="sbc_back_to_all_mobilization_sessions">Rudi kwenye vikao vyote vya mobilizesheni</string>
     <string name="sbc_visit">SBC Uliyoshiriki</string>
     <string name="sbc_followup_visit">SBC Ziara ya Kufuatilia</string>
-    <string name="sbc_activity_type">Aina ya shughuli ya SBC kwa jamii iliyotolewa:</string>
-    <string name="sbc_other_activity_type">Aina Nyingine ya Shughuli ya SBC kwa Jamii iliyotolewa:</string>
+    <string name="sbc_activity_type">Aina ya shughuli ya SBC iliyotolewa:</string>
+    <string name="sbc_other_activity_type">Aina Nyingine ya Shughuli ya SBC iliyotolewa:</string>
     <string name="sbc_received_any_hiv_sms">Je, mteja amepokea ujumbe mfupi wa simu kuhusu VVU na UKIMWI ndani ya mwezi huu:</string>
     <string name="sbc_received_message">Maudhui ya ujumbe yaliyopokelewa:</string>
     <string name="sbc_other_received_message">Maudhui mengine ya ujumbe yaliyopokelewa:</string>
@@ -504,7 +504,7 @@
     <string name="sbc_received_condom_education">Je, mteja amepata elimu sahihi na endelevu ya matumizi sahihi ya kondomu:</string>
     <string name="sbc_sbc_comments">Maoni:</string>
     <string name="sbc_mobilization_sessions_title">Mobilizesheni (SBC)</string>
-    <string name="sbc_type_of_sbc_activity">Aina ya uelimishaji ngazi ya jamii (SBC)</string>
+    <string name="sbc_type_of_sbc_activity">Aina ya uelimishaji (SBC)</string>
     <string name="sbc_reports_title">Ripoti ya SBC</string>
     <string name="sbc_reports">Ripoti za SBC</string>
     <string name="sbc_reports_subtitle">Tazama Ripoti za SBC</string>
@@ -521,8 +521,8 @@
     <string name="sbc_health_edutainment">Uelimishaji maeneo ya burudani</string>
     <string name="sbc_outreach">Kuwafikia</string>
     <string name="sbc_other">Nyinginezo</string>
-    <string name="sbc_community_sbc_activity_provided">Aina ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki:</string>
-    <string name="sbc_other_community_sbc_activity_provided">Aina nyingine ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki:</string>
+    <string name="sbc_community_sbc_activity_provided">Aina ya uelimishaji kuhusu mabadiliko ya tabia (SBC) uliyoshiriki:</string>
+    <string name="sbc_other_community_sbc_activity_provided">Aina nyingine ya uelimishaji kuhusu mabadiliko ya tabia (SBC) uliyoshiriki:</string>
     <string name="sbc_iec_materials_distributed">Idadi ya nyenzo za uelimishaji na uhamasishaji zilizosambazwa (IEC):</string>
     <string name="sbc_number_audio_visuals_distributed">Idadi ya nyenzo za kusikia na kuona zilizosambazwa:</string>
     <string name="sbc_number_audio_distributed">Idadi ya nyenzo za kusikia zilizosambazwa:</string>
@@ -540,6 +540,7 @@
     <string name="sbc_back_to_all_monthly_social_media_reports">Rudi kwenye ripoti zote za mwezi katika mitandao ya kijamii</string>
     <string name="sbc_monthly_social_media_report_details">Maelezo ya mwezi ya mitandao ya kijamii (SBC)</string>
     <string name="sbc_reporting_month">Mwezi wa Taarifa</string>
+    <string name="sbc_registration">Usajili wa SBC</string>
     <string name="sbc_organization_name">Jina la Shirika</string>
     <string name="sbc_other_organization_name">Jina lingine la shirika</string>
     <string name="sbc_social_media_hiv_msg_distribution">Mitandao ya kijamii ilitotumika kusambaza habari za maambukizi ya VVU</string>

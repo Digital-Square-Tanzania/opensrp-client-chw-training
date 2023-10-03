@@ -531,8 +531,8 @@
     <string name="sbc_back_to_all_mobilization_sessions">Back to All mobilization sessions</string>
     <string name="sbc_visit">SBC Visits</string>
     <string name="sbc_followup_visit">SBC Follow-up Visit</string>
-    <string name="sbc_activity_type">Type of Community SBC activity provided:</string>
-    <string name="sbc_other_activity_type">Other Type of Community SBC activity provided:</string>
+    <string name="sbc_activity_type">Type of SBC activity provided:</string>
+    <string name="sbc_other_activity_type">Other Type of SBC activity provided:</string>
     <string name="sbc_received_any_hiv_sms">Has the client received any SMS about HIV and AIDS within this month:</string>
     <string name="sbc_received_message">Message content received:</string>
     <string name="sbc_other_received_message">Other Message content received:</string>
@@ -551,10 +551,11 @@
     <string name="sbc_received_condom_education">Did the client received education on comprehensive condom use:</string>
     <string name="sbc_sbc_comments">Comments:</string>
     <string name="sbc_mobilization_sessions_title">SBC Mobilizations</string>
-    <string name="sbc_type_of_sbc_activity">Type of Community SBC Activity</string>
+    <string name="sbc_type_of_sbc_activity">Type of SBC Activity</string>
     <string name="sbc_reports_title">SBC Report</string>
     <string name="sbc_reports">SBC Reports</string>
     <string name="sbc_reports_subtitle">View SBC Report</string>
+    <string name="sbc_registration">SBC Registration</string>
     <string name="sbc_campaign">Campaign</string>
     <string name="sbc_religious_events">Religious events</string>
     <string name="sbc_community_meetings">Community meetings</string>
@@ -568,7 +569,7 @@
     <string name="sbc_health_edutainment">Health edutainment</string>
     <string name="sbc_outreach">Outreach</string>
     <string name="sbc_other">Other</string>
-    <string name="sbc_community_sbc_activity_provided">Type of Community SBC activity provided:</string>
+    <string name="sbc_community_sbc_activity_provided">Type of SBC activity provided:</string>
     <string name="sbc_other_community_sbc_activity_provided">Other Type of Community SBC activity provided:</string>
     <string name="sbc_iec_materials_distributed">IEC materials distributed:</string>
     <string name="sbc_number_audio_visuals_distributed">Number of Audio visual distributed:</string>

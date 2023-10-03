@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "(SBC) Uliyoshiriki",
+  "encounter_type": "SBC Activity",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -16,11 +16,6 @@
       "openmrs_entity": "concept",
       "openmrs_data_type": "end",
       "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    },
-    "today": {
-      "openmrs_entity_parent": "",
-      "openmrs_entity": "encounter",
-      "openmrs_entity_id": "encounter_date"
     },
     "deviceid": {
       "openmrs_entity_parent": "",
@@ -93,7 +88,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "activity_type",
         "type": "native_radio",
-        "label": "Aina ya uelimishaji ngazi ya jamii kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
+        "label": "Aina ya uelimishaji kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
         "options": [
 
           {
@@ -145,7 +140,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "activity_type_community",
         "type": "native_radio",
-        "label": "Type of SBC activity conducted",
+        "label": "Aina ya uelimishaji kuhusu mabadiliko ya tabia (SBC) uliyoshiriki",
         "options": [
           {
             "key": "campaign",
