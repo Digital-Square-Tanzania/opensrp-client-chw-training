@@ -18,6 +18,7 @@ import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.core.domain.Person;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
@@ -44,6 +45,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateObsAndIllness();
             evaluateMalnutritionScreening(serviceWrapperMap);
             evaluateProblemSolving();
+            evaluateCCDIntroduction();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -382,5 +384,18 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
         actionList.put(title, action);
+    }
+
+    private void evaluateCCDIntroduction() throws Exception {
+            String title = context.getString(R.string.ccd_introduction_title);
+            title = title.replace("({0})", "");
+
+            BaseAncHomeVisitAction action = getBuilder(title)
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                    .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
+                    .build();
+            actionList.put(title, action);
     }
 }
