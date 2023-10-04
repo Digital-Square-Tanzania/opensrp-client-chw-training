@@ -125,6 +125,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateNutritionStatusBaby(baby);
             evaluateObsIllnessBaby(baby);
             evaluateSkinToSkin(baby);
+            evaluateCCDIntroduction(baby);
         }
     }
 
@@ -1082,4 +1083,17 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         return deliveryDate;
     }
 
+    private void evaluateCCDIntroduction(Person baby) throws Exception {
+        if (getAgeInDays(baby.getDob()) <= DURATION_OF_CHILD_IN_PNC) {
+            String title = MessageFormat.format(context.getString(R.string.ccd_introduction_title), baby.getFullName());
+
+            BaseAncHomeVisitAction action = getBuilder(title)
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                    .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
+                    .build();
+            actionList.put(title, action);
+        }
+    }
 }
