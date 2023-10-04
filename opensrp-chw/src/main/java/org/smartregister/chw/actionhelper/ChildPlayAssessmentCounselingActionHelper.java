@@ -87,13 +87,11 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
             visitNumberMap.put("visit_3_visit_17", true);
             visitNumberMap.put("visit_2_visit_25", true);
             visitNumberMap.put("visit_3_visit_25", true);
-            visitNumberMap.put("visit_17_visit_27", true);
+            visitNumberMap.put("visit_17_visit_25", true);
         } else if (visitNumber > 17 && visitNumber <= 25) {
             visitNumberMap.put("visit_2_visit_25", true);
             visitNumberMap.put("visit_3_visit_25", true);
-            visitNumberMap.put("visit_17_visit_27", true);
-        } else if (visitNumber < 25) {
-            visitNumberMap.put("visit_17_visit_27", true);
+            visitNumberMap.put("visit_17_visit_25", true);
         }
     }
 

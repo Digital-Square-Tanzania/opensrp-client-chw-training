@@ -629,20 +629,6 @@
             "offset": "+66m"
           }
         }
-      },
-      {
-        "id": "73",
-        "name": "Play Assessment and Counselling26",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+6m"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+6y"
-          }
-        }
       }
     ]
   }

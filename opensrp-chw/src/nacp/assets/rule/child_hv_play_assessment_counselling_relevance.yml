@@ -30,7 +30,7 @@ actions:
 name: step1_spend_time_with
 description: Spend time with
 priority: 1
-condition: "step1_visit_3_visit_16 == 'true'"
+condition: "step1_visit_2_visit_25 == 'true'"
 actions:
   - "isRelevant = true"
 ---
@@ -44,7 +44,7 @@ actions:
 name: step1_child_attend_daycare
 description: Child attend daycare
 priority: 1
-condition: "step1_visit_17_visit_27 == 'true'"
+condition: "step1_visit_17_visit_25 == 'true'"
 actions:
   - "isRelevant = true"
 ---
