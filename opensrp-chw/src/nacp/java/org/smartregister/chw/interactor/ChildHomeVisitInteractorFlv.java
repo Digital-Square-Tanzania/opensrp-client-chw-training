@@ -9,10 +9,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
+import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
@@ -35,6 +37,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateNutritionStatus();
             evaluateObsAndIllness();
             evaluateProblemSolving();
+            evaluatePlayAssessmentCounseling(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -280,5 +283,23 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                     .withHelper(new ChildHVProblemSolvingHelper())
                     .build();
             actionList.put(context.getString(R.string.child_problem_solving), action);
+    }
+
+    private void evaluatePlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""))
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
+                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper))
+                .build();
+        actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""), action);
     }
 }
