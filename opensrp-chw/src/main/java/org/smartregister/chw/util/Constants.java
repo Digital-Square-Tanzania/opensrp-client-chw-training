@@ -109,6 +109,8 @@ public class Constants extends CoreConstants {
             return CBHS_REGISTRATION_FORM;
         }
 
+        private static final String CHILD_HV_CCD_INTRODUCTION = "child_hv_ccd_introduction";
+
         public static String getMotherChampionFollowupForm() {
             return MOTHER_CHAMPION_FOLLOWUP_FORM;
         }
@@ -162,6 +164,9 @@ public class Constants extends CoreConstants {
 
         public static String getSkinToSkin() { return SKIN_TO_SKIN; }
 
+        public static String getChildHVCCDIntroduction() {
+            return CHILD_HV_CCD_INTRODUCTION;
+        }
     }
 
     public static final class Events {
