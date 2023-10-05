@@ -2,6 +2,7 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +33,8 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     private String jsonString;
 
+    private String spend_time_with;
+
     public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
         this.context = context;
         this.visitId = visitId;
@@ -39,8 +42,13 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
     }
 
     @Override
-    public void onPayloadReceived(String s) {
-
+    public void onPayloadReceived(String jsonPayload) {
+        try{
+            JSONObject jsonObject = new JSONObject(jsonPayload);
+            spend_time_with = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "spend_time_with");
+        }catch (JSONException e){
+            Timber.e(e);
+        }
     }
 
     @Override
@@ -84,7 +92,11 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return BaseAncHomeVisitAction.Status.COMPLETED;
+        if (StringUtils.isBlank(spend_time_with)) {
+            return BaseAncHomeVisitAction.Status.PENDING;
+        }else {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
     }
 
     private void populateVisitNumber() {
