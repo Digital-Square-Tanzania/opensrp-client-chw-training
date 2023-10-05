@@ -373,7 +373,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "toaster_type": "info",
+        "toaster_type": "warning",
         "text": "Taarifa za Mja :Fuatilia endapo kulikuwa na changamoto yoyote ya ulinzi na usalama mliyokubaliana kama imetekelezwa kama bado saidia kupata ufumbuzi au kwenda mamlaka husika mf ofisi ya kata",
         "relevance": {
           "rules-engine": {
@@ -486,7 +486,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "spacer",
-        "spacer_height": "15dp"
+        "spacer_height": "15dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "importance_of_child_play",
@@ -519,9 +526,11 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "toaster_type": "info",
+        "type": "label",
         "text": "Taarifa za MJA: Umefikia hatua ambayo utajadiliana na mama/baba au walezi juu ya shughuli za michezo zinazoendana na umri. Shughuli hizi kawaida zinahitaji ushirikiano wa moja kwa moja kati yako na mama/baba au mlezi. \nMuelekeze mama/baba au mlezi kufanya michezo na mawasiliano na mtoto wakati unaangalia. \nKumbuka wewe hautakiwi kucheza na mtoto",
+        "text_color": "#2D2E2D",
+        "label_text_style": "italic",
+        "has_bg": true,
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -563,6 +572,21 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "hidden"
+      },
+      {
+        "key": "spacer_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "10dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "bango_kitita_reference",

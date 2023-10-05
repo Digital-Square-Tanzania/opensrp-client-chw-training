@@ -373,7 +373,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "toaster_type": "info",
+        "toaster_type": "warning",
         "text": "CHW Information: Follow up to know if there was any issues regarding the safety and security of the child and if what was agreed upon was followed up with. If not, help to resolve issues or report to the right institution.",
         "relevance": {
           "rules-engine": {
@@ -486,7 +486,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "spacer",
-        "spacer_height": "15dp"
+        "spacer_height": "15dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "importance_of_child_play",
@@ -519,9 +526,11 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "toaster_type": "info",
+        "type": "label",
         "text": "CHW information: You have reached a stage where you will coach the parents/caregivers on specific age appropriate play activities. These activities usually needs direct interaction between you and the parents/caregiver. Direct the mother/father or caregiver to do the  play or communication activity while you observe.\nRemember you are not supposed to directly partake in these play or communication activities",
+        "text_color": "#2D2E2D",
+        "label_text_style": "italic",
+        "has_bg": true,
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -563,6 +572,21 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "hidden"
+      },
+      {
+        "key": "spacer_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "10dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "bango_kitita_reference",
