@@ -5,12 +5,14 @@ import android.content.Context;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +57,17 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
             for (Map.Entry<String, Boolean> entry : visitNumberMap.entrySet()) {
                 if (entry.getValue()) {
                     JsonFormUtils.getFieldJSONObject(fields, entry.getKey()).put("value", "true");
+                }
+            }
+            String pages = bangoKitataPages();
+            if (!pages.isEmpty()) {
+                JSONObject bango_kitita_reference_skip_logic = JsonFormUtils.getFieldJSONObject(fields, "bango_kitita_reference_skip_logic");
+                if (bango_kitita_reference_skip_logic != null) {
+                    bango_kitita_reference_skip_logic.put("value", "true");
+                }
+                JSONObject bango_kitita_reference = JsonFormUtils.getFieldJSONObject(fields, "bango_kitita_reference");
+                if (bango_kitita_reference != null) {
+                    bango_kitita_reference.put("text", MessageFormat.format("{0}: {1}", context.getString(R.string.bango_kitita_message), pages));
                 }
             }
             return jsonObject.toString();
@@ -125,10 +138,30 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
         Matcher matcher = lastIntPattern.matcher(serviceWrapper.getName());
         if (matcher.find()) {
             String someNumberStr = matcher.group(1);
-            if(someNumberStr != null){
+            if (someNumberStr != null) {
                 return Integer.parseInt(someNumberStr);
             }
         }
         return 0;
+    }
+
+    private String bangoKitataPages() {
+        int visitNumber = visitNumber();
+        Map<Integer, String> bangoKititaPages = new HashMap<>();
+        bangoKititaPages.put(3, String.format(context.getString(R.string.bango_kitita_two_pages), "17", "19"));
+        bangoKititaPages.put(4, String.format(context.getString(R.string.bango_kitita_one_page), "21"));
+        bangoKititaPages.put(5, String.format(context.getString(R.string.bango_kitita_one_page), "27"));
+        bangoKititaPages.put(6, String.format(context.getString(R.string.bango_kitita_two_pages), "33", "37"));
+        bangoKititaPages.put(7, String.format(context.getString(R.string.bango_kitita_two_pages), "39", "43"));
+        bangoKititaPages.put(8, String.format(context.getString(R.string.bango_kitita_two_pages), "45", "49"));
+        bangoKititaPages.put(9, String.format(context.getString(R.string.bango_kitita_two_pages), "51", "57"));
+        bangoKititaPages.put(10, String.format(context.getString(R.string.bango_kitita_two_pages), "59", "61"));
+        bangoKititaPages.put(11, String.format(context.getString(R.string.bango_kitita_two_pages), "65", "67"));
+        bangoKititaPages.put(12, String.format(context.getString(R.string.bango_kitita_one_page), "75"));
+        bangoKititaPages.put(13, String.format(context.getString(R.string.bango_kitita_one_page), "79"));
+        bangoKititaPages.put(14, String.format(context.getString(R.string.bango_kitita_one_page), "85"));
+        bangoKititaPages.put(15, String.format(context.getString(R.string.bango_kitita_one_page), "93"));
+        String pages = bangoKititaPages.get(visitNumber);
+        return (pages != null) ? pages : "";
     }
 }

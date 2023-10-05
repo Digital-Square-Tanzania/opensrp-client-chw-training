@@ -110,3 +110,10 @@ priority: 1
 condition: "step1_visit_3_visit_16 == 'true'"
 actions:
   - "isRelevant = true"
+---
+name: step1_bango_kitita_reference
+description: Bango kitita reference
+priority: 1
+condition: "step1_bango_kitita_reference_skip_logic == 'true'"
+actions:
+  - "isRelevant = true"
