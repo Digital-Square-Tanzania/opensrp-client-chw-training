@@ -44,6 +44,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateObsAndIllness();
             evaluateMalnutritionScreening(serviceWrapperMap);
             evaluateProblemSolving();
+            evaluateDevelopmentScreening();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -382,5 +383,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
         actionList.put(title, action);
+    }
+
+    private void evaluateDevelopmentScreening() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""))
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
+                .build();
+        actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }
 }

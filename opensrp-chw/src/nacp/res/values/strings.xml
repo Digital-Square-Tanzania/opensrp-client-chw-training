@@ -177,6 +177,7 @@
 
     <string name="pnc_newborn_care_introduction">Essential New Born Care: Introduction ({0})</string>
     <string name="baby_premature">Baby premature/underweight</string>
+    <string name="pnc_child_development_screening_assessment">Child development screening assessment {0}</string>
 
     <!---KVP/PrEP Strings -->
     <string name="kvp_prep_visit_type">Visit Type</string>
