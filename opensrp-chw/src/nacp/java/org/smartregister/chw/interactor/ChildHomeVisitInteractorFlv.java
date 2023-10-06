@@ -11,6 +11,8 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
 import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.VisitDetail;
+import org.smartregister.chw.anc.fragment.BaseAncHomeVisitFragment;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -18,6 +20,7 @@ import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -292,6 +295,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
+        Map<String, List<VisitDetail>> details = getDetails(Constants.Events.PLAY_ASSESSMENT_COUNSELLING);
 
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""))
                 .withOptional(false)
