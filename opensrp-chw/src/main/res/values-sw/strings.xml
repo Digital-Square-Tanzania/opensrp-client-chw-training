@@ -619,4 +619,6 @@
 
     <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
     <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu</string>
+    <string name="good">Nzuri</string>
+    <string name="poor">Mbaya</string>
 </resources>

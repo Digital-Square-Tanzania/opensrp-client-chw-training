@@ -84,10 +84,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 }
 
                 if (!TextUtils.isEmpty(llinCondition1m5yr)) {
-                    if ("Okay".equals(llinCondition1m5yr)) {
-                        llinCondition1m5yr = context.getString(R.string.okay);
-                    } else if ("Bad".equals(llinCondition1m5yr)) {
-                        llinCondition1m5yr = context.getString(R.string.bad);
+                    if ("Good".equals(llinCondition1m5yr)) {
+                        llinCondition1m5yr = context.getString(R.string.good);
+                    } else if ("Poor".equals(llinCondition1m5yr)) {
+                        llinCondition1m5yr = context.getString(R.string.poor);
                     }
                 }
 
@@ -118,7 +118,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                     return BaseAncHomeVisitAction.Status.PENDING;
                 }
 
-                if (famllin1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llin2days1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llinCondition1m5yr.equalsIgnoreCase(context.getString(R.string.okay))) {
+                if (famllin1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llin2days1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llinCondition1m5yr.equalsIgnoreCase(context.getString(R.string.good))) {
                     return BaseAncHomeVisitAction.Status.COMPLETED;
                 } else {
                     return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
