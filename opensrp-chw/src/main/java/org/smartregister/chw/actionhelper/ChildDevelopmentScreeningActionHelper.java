@@ -2,6 +2,7 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +31,8 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
 
     private final Map<String, Boolean> visitNumberMap = new HashMap<>();
 
+    private String child_development_issues;
+
     public ChildDevelopmentScreeningActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
         this.context = context;
         this.visitId = visitId;
@@ -37,8 +40,13 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
     }
 
     @Override
-    public void onPayloadReceived(String s) {
-
+    public void onPayloadReceived(String jsonPayload) {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonPayload);
+            child_development_issues = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
     }
 
     @Override
@@ -71,7 +79,11 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return BaseAncHomeVisitAction.Status.COMPLETED;
+        if (StringUtils.isBlank(child_development_issues)) {
+            return BaseAncHomeVisitAction.Status.PENDING;
+        } else {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
     }
 
     private void populateVisitNumber() {
