@@ -43,10 +43,10 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             spend_time_with = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "spend_time_with");
-        }catch (JSONException e){
+        } catch (JSONException e) {
             Timber.e(e);
         }
     }
@@ -94,7 +94,7 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         if (StringUtils.isBlank(spend_time_with)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        }else {
+        } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
     }
