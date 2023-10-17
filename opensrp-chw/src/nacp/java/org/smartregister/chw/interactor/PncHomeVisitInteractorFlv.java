@@ -18,6 +18,7 @@ import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ChildNewBornCareIntroductionActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.ImmunizationActionHelper;
+import org.smartregister.chw.actionhelper.PNCVisitLocationActionHelper;
 import org.smartregister.chw.actionhelper.PNCMalariaPreventionActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
@@ -95,6 +96,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         try {
+            evaluateVisitLocation();
             evaluateDangerSignsMother();
             for (Person baby : children) {
                 evaluateDangerSignsBaby(baby);
@@ -190,6 +192,17 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
         }
+    }
+
+    private void evaluateVisitLocation() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_hv_location))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getPncHvLocation())
+                .withHelper(new PNCVisitLocationActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .build();
+        actionList.put(context.getString(R.string.pnc_hv_location), action);
     }
 
     private void evaluateDangerSignsMother() throws Exception {
