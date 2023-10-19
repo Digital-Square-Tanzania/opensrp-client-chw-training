@@ -400,7 +400,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
-                .withHelper(new ChildDevelopmentScreeningActionHelper(context, null,serviceWrapper))
+                .withHelper(new ChildDevelopmentScreeningActionHelper(null,serviceWrapper))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }

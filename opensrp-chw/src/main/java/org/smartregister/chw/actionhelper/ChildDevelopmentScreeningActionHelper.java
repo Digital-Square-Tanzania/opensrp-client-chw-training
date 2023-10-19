@@ -21,8 +21,6 @@ import java.util.regex.Pattern;
 import timber.log.Timber;
 
 public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper {
-    private final Context context;
-
     private final String visitId;
 
     private final ServiceWrapper serviceWrapper;
@@ -33,8 +31,7 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
 
     private String child_development_issues;
 
-    public ChildDevelopmentScreeningActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
-        this.context = context;
+    public ChildDevelopmentScreeningActionHelper(String visitId, ServiceWrapper serviceWrapper) {
         this.visitId = visitId;
         this.serviceWrapper = serviceWrapper;
     }
