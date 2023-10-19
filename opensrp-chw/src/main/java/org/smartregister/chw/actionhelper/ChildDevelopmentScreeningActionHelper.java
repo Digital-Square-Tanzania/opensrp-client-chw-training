@@ -40,7 +40,7 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            child_development_issues = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
+            child_development_issues = JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
         } catch (JSONException e) {
             Timber.e(e);
         }
