@@ -73,9 +73,7 @@ public class FnList<T> implements Iterable<T>{
         List<Function<T,T>> ops = new ArrayList<>(this.operations);
         ops.add(input -> (T) function.invoke(input));
         // Cast is safe here because we're just transforming data.
-        @SuppressWarnings("unchecked")
-        FnList<S> newPipeline = (FnList<S>) new FnList<>(source,ops);
-        return newPipeline;
+        return (FnList<S>) new FnList<>(source,ops);
     }
 
     public <A> A reduce(A identity,Accumulator<A, T> accumulator) {
