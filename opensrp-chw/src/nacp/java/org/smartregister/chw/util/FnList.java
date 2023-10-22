@@ -47,6 +47,9 @@ public class FnList<T> implements Iterable<T>{
     public FnList(Collection<T> collection) {
         source=new ArrayList<>(collection);
     }
+    private FnList(Iterable<T> source,List<Function<T,T>> operations){
+        this.source=source; this.operations.addAll(operations);
+    }
 
     public static FnList<Integer> range(int lower, int upper){
         List<Integer> numbers=new ArrayList<>();
@@ -61,14 +64,18 @@ public class FnList<T> implements Iterable<T>{
     }
 
     public FnList<T> filter(FnInterfaces.Predicate<T> predicate) {
-        operations.add(input -> predicate.test(input) ? input : null);
-        return this;
+        List<Function<T,T>> ops = new ArrayList<>(this.operations);
+        ops.add(input -> predicate.test(input) ? input : null);
+        return new FnList<>(source,ops);
     }
 
     public <S> FnList<S> map(Function<T, S> function) {
-        operations.add(input -> (T) function.invoke(input));
+        List<Function<T,T>> ops = new ArrayList<>(this.operations);
+        ops.add(input -> (T) function.invoke(input));
         // Cast is safe here because we're just transforming data.
-        return (FnList<S>)this;
+        @SuppressWarnings("unchecked")
+        FnList<S> newPipeline = (FnList<S>) new FnList<>(source,ops);
+        return newPipeline;
     }
 
     public <A> A reduce(A identity,Accumulator<A, T> accumulator) {
