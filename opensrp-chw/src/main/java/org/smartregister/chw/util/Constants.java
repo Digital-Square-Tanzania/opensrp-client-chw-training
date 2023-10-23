@@ -105,11 +105,11 @@ public class Constants extends CoreConstants {
 
         public static final String SKIN_TO_SKIN = "child_skin_to_skin";
 
+        private static final String CHILD_HV_CCD_INTRODUCTION = "child_hv_ccd_introduction";
+
         public static String getCbhsRegistrationForm() {
             return CBHS_REGISTRATION_FORM;
         }
-
-        private static final String CHILD_HV_CCD_INTRODUCTION = "child_hv_ccd_introduction";
 
         public static String getMotherChampionFollowupForm() {
             return MOTHER_CHAMPION_FOLLOWUP_FORM;
