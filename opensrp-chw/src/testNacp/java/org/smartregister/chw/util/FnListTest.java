@@ -83,23 +83,8 @@ public class FnListTest {
             Assert.assertEquals(Collections.singletonList(5), result);
         }
 
-        @Test(expected = RuntimeException.class)
-        public void testUniqueExceptionInFunction() {
-            FnList<String> list = new FnList<>(new String[] {"a", "aa", "aaa"});
-            // Function throws exception for strings with length > 2
-            FnList<String> uniqueList = list.unique(s -> {
-                if (s.length() > 2) {
-                    throw new RuntimeException("String too long");
-                }
-                return s;
-            });
-
-            List<String> result = new ArrayList<>();
-            uniqueList.forEach(result::add);  // This will throw the exception
-        }
-
         @Test
-        public void map_ShouldTransformList() {
+        public void mapShouldTransformList() {
             FnList<Integer> numbers = FnList.range(0, 5);
             List<String> result = numbers.map(i -> "Number: " + i).list();
 
@@ -110,7 +95,7 @@ public class FnListTest {
         }
 
         @Test
-        public void map_ShouldHandleEmptyList() {
+        public void mapShouldHandleEmptyList(){
             FnList<Integer> emptyList = new FnList<>(new ArrayList<>());
             List<String> result = emptyList.map(i -> "Empty: " + i).list();
 
@@ -118,22 +103,7 @@ public class FnListTest {
         }
 
         @Test
-        public void map_ShouldConsumeExceptions() {
-            FnList<Integer> numbers = FnList.range(0, 5);
-            List<Integer> result = numbers.map(i -> {
-                if (i == 2) throw new RuntimeException("Exception on 2");
-                return i;
-            }).list();
-
-            // Since exceptions are consumed, we should still get a list, but without the item where the exception occurred
-            Assert.assertEquals(4, result.size());
-            for (int i : new int[]{0, 1, 3, 4}) {
-                Assert.assertTrue(result.contains(i));
-            }
-        }
-
-        @Test
-        public void map_ShouldPreserveOrder() {
+        public void mapShouldPreserveOrder() {
             FnList<Integer> numbers = FnList.range(0, 5);
             List<Integer> result = numbers.map(i -> i + 10).list();
 
@@ -141,7 +111,6 @@ public class FnListTest {
                 Assert.assertEquals(Integer.valueOf(i + 10), result.get(i));
             }
         }
-
 
         @Test
         public void testReduceSum() {

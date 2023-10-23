@@ -114,9 +114,7 @@ public class FnList<T> implements Iterable<T>{
     }
 
     public void forEachItem(Action<T> action) {
-        for(T t:this){
-            ex(()->action.apply(t));
-        }
+        for(T t:this){ ex(()->action.apply(t));}
     }
 
     @NonNull @Override

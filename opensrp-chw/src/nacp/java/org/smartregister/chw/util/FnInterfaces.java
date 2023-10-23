@@ -33,13 +33,13 @@ public interface FnInterfaces {
     class KeyValue<V> {
         public String key;
         public V value;
+        private static final Pattern PATTERN_KEY_VALUE=Pattern.compile("^\\W*([a-z]\\w+)\\W+(\\w.*)");
 
         public KeyValue(String key, V value) {
             this.key = key;
             this.value = value;
         }
         // Pattern pattern = Pattern.compile("^\\W*(?<key>[a-z]\\w+)\\W+(?<value>\\w.*)");//api >=26;
-        private static final Pattern PATTERN_KEY_VALUE=Pattern.compile("^\\W*([a-z]\\w+)\\W+(\\w.*)");
 
         public static KeyValue<String> create(String input){
             Matcher m=PATTERN_KEY_VALUE.matcher(input != null ? input : "");

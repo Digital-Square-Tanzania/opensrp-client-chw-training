@@ -1,7 +1,6 @@
 package org.smartregister.chw.fragment;
 
 import static org.smartregister.chw.util.FnInterfaces.KeyValue;
-
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -10,13 +9,10 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-
 import com.vijay.jsonwizard.customviews.CheckBox;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -28,14 +24,17 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.util.FnList;
 import org.smartregister.chw.util.UtilsFlv;
 import org.smartregister.view.customcontrols.CustomFontTextView;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitImmunizationFragment {
-
+    private View root;
+    private LinearLayout datesContainer;
+    private LinearLayout vaccinesContainer;
+    private FnList<CheckBox> vaccineCheckboxes;
+    private CustomFontTextView congratulationsView;
     public static BaseHomeVisitImmunizationFragmentFlv getInstance(final BaseAncHomeVisitContract.VisitView view, String baseEntityID, Map<String, List<VisitDetail>> details, List<VaccineDisplay> vaccineDisplays) {
         return getInstance(view, baseEntityID, details, vaccineDisplays, true);
     }
@@ -64,10 +63,6 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         init(view);
     }
 
-    private View root;
-    private LinearLayout datesContainer;
-    private LinearLayout vaccinesContainer;
-    private FnList<CheckBox> vaccineCheckboxes;
 
     private  void init(View view){
         root=view;
@@ -94,7 +89,6 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         layout.addView(reasonsContainer);
     }
 
-    private CustomFontTextView congratulationsView;
     private void addCongratulationsMessages(View root){
         ViewGroup parent = (ViewGroup)root.findViewById(R.id.vaccination_name_layout).getParent();
         congratulationsView = createTextViewUI(R.string.congratulate_vaccine_uptodate, parent);
@@ -159,7 +153,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
                     String label = v.findViewById(R.id.vaccine).toString();
                     CheckBox checkBox = v.findViewById(R.id.select);
                     checkBox.setTag(label);
-                    checkBox.setOnClickListener(this::onVaccineSelectStatusChange);
+                    checkBox.setOnClickListener(ch->this.onVaccineSelectStatusChange());
                     return checkBox;
                 });
     }
@@ -178,7 +172,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         return vaccineV;
     }
 
-    private void onVaccineSelectStatusChange(View view){
+    private void onVaccineSelectStatusChange(){
         Map<String,String> selectedVaccine = getVaccineValues()
                 .filter(v->v.selected)
                 .reduce(new HashMap<>(),(m,v)->{
@@ -243,7 +237,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
             CustomFontTextView tv = view.findViewById(R.id.vaccine);
             DatePicker dp = view.getRootView().findViewById(R.id.earlier_date_picker);
             CheckBox cb = view.findViewById(R.id.select);
-            cb.setOnClickListener(fg::onVaccineSelectStatusChange);
+            cb.setOnClickListener(v->fg.onVaccineSelectStatusChange());
 
             this.name = tv.getText().toString();
             this.selected = cb.isChecked();
