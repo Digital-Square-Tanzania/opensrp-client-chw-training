@@ -92,11 +92,18 @@ public class Constants extends CoreConstants {
         private static final String MOTHER_CHAMPION_FOLLOWUP_FORM = "mother_champion_followup";
         private static final String MOTHER_CHAMPION_SBCC_FORM = "mother_champion_sbcc_sessions";
         private static final String CBHS_REGISTRATION_FORM = "cbhs_registration";
+        private static final String PNC_HV_LOCATION = "pnc_hv_location";
+        private static final String CHILD_HV_BREASTFEEDING_FORM = "child_hv_breastfeeding_form";
+        private static  final  String CHILD_HOME_VISIT_DANGER_SIGN_FORM = "child_hv_danger_sign";
+        private static final String CHILD_HV_PROBLEM_SOLVING_FORM = "child_hv_problem_solving";
+        private static final String CHILD_HV_NEWBORN_CARE_INTRO_FORM = "child_hv_newborn_introduction";
         private static final String ICCM_MEDICAL_HISTORY = "iccm_medical_history";
         private static final String ICCM_PHYSICAL_EXAMINATION = "iccm_physical_examination";
         private static final String ICCM_MALARIA = "iccm_malaria";
         private static final String ICCM_PNEUMONIA = "iccm_pneumonia";
         private static final String ICCM_DIARRHEA = "iccm_diarrhea";
+        private static final String CHILD_HV_MALNUTRITION_SCREENING = "child_hv_malnutrition_screening";
+
         public static final String SKIN_TO_SKIN = "child_skin_to_skin";
         public static final String CHILD_HV_COMP_FEEDING = "child_complementary_feeding";
 
@@ -120,6 +127,26 @@ public class Constants extends CoreConstants {
             return MOTHER_CHAMPION_SBCC_FORM;
         }
 
+        public static String getPncHvLocation() {
+            return PNC_HV_LOCATION;
+        }
+
+        public static String getChildHvBreastfeedingForm() {
+            return CHILD_HV_BREASTFEEDING_FORM;
+        }
+
+        public static String getChildHomeVisitDangerSignForm() {
+            return CHILD_HOME_VISIT_DANGER_SIGN_FORM;
+        }
+
+        public static String getChildHvProblemSolvingForm() {
+            return CHILD_HV_PROBLEM_SOLVING_FORM;
+        }
+
+        public static String getChildHvNewBornCareIntroForm() {
+            return CHILD_HV_NEWBORN_CARE_INTRO_FORM;
+        }
+
         public static String getIccmMedicalHistory() {
             return ICCM_MEDICAL_HISTORY;
         }
@@ -140,9 +167,11 @@ public class Constants extends CoreConstants {
             return ICCM_DIARRHEA;
         }
 
-        public static String getSkinToSkin(){
-            return SKIN_TO_SKIN;
+        public static String getChildHvMalnutritionScreening() {
+            return CHILD_HV_MALNUTRITION_SCREENING;
         }
+
+        public static String getSkinToSkin() { return SKIN_TO_SKIN; }
 
         public static String getChildHvCompFeeding(){
             return CHILD_HV_COMP_FEEDING;
