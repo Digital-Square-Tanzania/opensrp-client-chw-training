@@ -308,6 +308,7 @@
     <!-- PNC Home visit subtitle text -->
     <string name="pnc_danger_signs_mama">Danger signs - Mama</string>
     <string name="pnc_danger_signs_baby_task">Danger signs - Baby</string>
+    <string name="pnc_skin_to_skin">KMC skin-to-skin counselling</string>
 
     <string name="pnc_health_facility_visit_within_fourty_eight_hours">PNC health facility visit - within 48 hours </string>
     <string name="pnc_health_facility_visit_days_three_to_seven">PNC health facility visit - days 3 - 7</string>
@@ -445,6 +446,9 @@
     <string name="agyw_reports_subtitle">View AGYW Report</string>
     <string name="view_visit_history">View visit history</string>
 
+    <string name="child_danger_signs_baby">Danger signs</string>
+    <string name="child_danger_signs_baby_task">Danger signs</string>
+
 
 
     <string name="menu_iccm">iCCM</string>
@@ -479,4 +483,11 @@
     <string name="visit_in_progress">%s visit still in progress</string>
 
     <string name="iccm_referral">iCCM Referral</string>
+
+    <string name="palm_pallor_green">Green</string>
+    <string name="palm_pallor_yellow">Yellow</string>
+    <string name="palm_pallor_red">Red</string>
+
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+    <string name="malnutrition_screening">Malnutrition/Anemia screening</string>
 </resources>
