@@ -162,6 +162,9 @@
     <string name="register">Sajili</string>
     <string name="all_male_clients">Wateja Wote wa Kiume</string>
 
+    <string name="pnc_hv_location">Eneo la tembeleo</string>
+    <string name="pnc_hv_location_captured">Eneo la tembeleo limeshachukuliwa</string>
+
     <string name="pnc_yes">Ndio</string>
     <string name="pnc_no">Hapana</string>
     <string name="pnc_good">Nzuri</string>
@@ -171,6 +174,7 @@
     <string name="pnc_normal">Kawaida</string>
     <string name="pnc_moderate">Wastani</string>
     <string name="pnc_severe">Mbaya</string>
+    <string name="pnc_hygiene_safety_counselling_title">Usafi wa mazingira</string>
 
     <string name="pnc_newborn_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi ({0})</string>
     <string name="baby_premature">Mtoto ni njiti au ana uzito pungufu</string>

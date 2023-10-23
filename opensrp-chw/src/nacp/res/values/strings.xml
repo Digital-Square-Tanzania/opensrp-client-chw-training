@@ -164,6 +164,8 @@
     <string name="vit_a_received_label">Vitamin A received</string>
     <string name="ifa_received_label">IFA tablets received</string>
 
+    <string name="pnc_hv_location">Visit Location</string>
+    <string name="pnc_hv_location_captured">Visit location has been captured</string>
 
     <string name="pnc_yes">Yes</string>
     <string name="pnc_no">No</string>
@@ -173,6 +175,7 @@
     <string name="pnc_normal">Normal</string>
     <string name="pnc_moderate">Moderate</string>
     <string name="pnc_severe">Severe</string>
+    <string name="pnc_hygiene_safety_counselling_title">Environmental Hygiene</string>
 
     <string name="pnc_newborn_care_introduction">Essential New Born Care: Introduction ({0})</string>
     <string name="baby_premature">Baby premature/underweight</string>
