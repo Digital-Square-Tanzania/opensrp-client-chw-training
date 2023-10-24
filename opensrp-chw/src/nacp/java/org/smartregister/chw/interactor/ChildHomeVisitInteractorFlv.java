@@ -331,7 +331,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""))
                 .withOptional(false)
                 .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
                 .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper))
                 .build();
