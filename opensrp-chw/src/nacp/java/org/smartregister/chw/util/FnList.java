@@ -56,12 +56,20 @@ public class FnList<T> implements Iterable<T>{
         lazy = new LazyIterator<>(collection.iterator()::next);
     }
 
-    public static FnList<Integer> range(int lower, int upper){
-        Integer[] n=new Integer[]{lower};
+    public static <T> FnList<T> generate(Function<Integer,T>generator){
+        int[] n=new int[]{0};
         return new FnList<>( ()->{
-            if(n[0]>=upper){ throw new NoSuchElementException();}
-            return n[0]++;
+            try {
+                T t = generator.invoke(n[0]++);
+                if (t == null) { throw new NoSuchElementException();}
+                return t;
+            }catch (IndexOutOfBoundsException e){
+                throw new NoSuchElementException();
+            }
         });
+    }
+    public static FnList<Integer> range(int lower, int upper){
+        return generate(x->lower+x<upper?lower+x:null);
     }
 
     public static FnList<Integer> range(int upper){

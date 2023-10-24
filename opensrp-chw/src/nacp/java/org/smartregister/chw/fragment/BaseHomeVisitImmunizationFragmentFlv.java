@@ -33,7 +33,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     private View root;
     private LinearLayout datesContainer;
     private LinearLayout vaccinesContainer;
-    private FnList<CheckBox> vaccineCheckboxes;
+    private List<CheckBox> vaccineCheckboxes;
     private CustomFontTextView congratulationsView;
     public static BaseHomeVisitImmunizationFragmentFlv getInstance(final BaseAncHomeVisitContract.VisitView view, String baseEntityID, Map<String, List<VisitDetail>> details, List<VaccineDisplay> vaccineDisplays) {
         return getInstance(view, baseEntityID, details, vaccineDisplays, true);
@@ -68,15 +68,16 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         root=view;
         datesContainer = root.getRootView().findViewById(R.id.single_vaccine_add_layout);
         vaccinesContainer = root.findViewById(R.id.vaccination_name_layout);
+        vaccineCheckboxes = getAllVaccineCheckboxes().list();
         createUIForReasonsNoVaccines(view);
         addCongratulationsMessages(view);
-        vaccineCheckboxes = getAllVaccineCheckboxes();
         view.findViewById(R.id.save_btn).setOnClickListener(this::save);
     }
 
     private void createUIForReasonsNoVaccines(View root){
         CheckBox noVaccine=root.findViewById(R.id.checkbox_no_vaccination).findViewById(R.id.select);
-        noVaccine.setOnClickListener(view->onSelectingNoVaccination(((CheckBox)view).isChecked()));
+        noVaccine.setOnClickListener(v->System.out.println("ignore"));
+        noVaccine.setOnCheckedChangeListener((checkbox, b) -> onSelectingNoVaccination(b));
 
         ViewGroup layout = (ViewGroup)noVaccine.getParent().getParent();
         LinearLayout reasonsContainer = createContainerForReasonsNoVaccines(layout);
@@ -97,6 +98,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         int color = ContextCompat.getColor(root.getContext(), R.color.congratulation_color);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) congratulationsView.getLayoutParams();
         params.addRule(RelativeLayout.BELOW, R.id.single_vaccine_add_layout);
+        params.addRule(RelativeLayout.ABOVE, R.id.save_btn);
 
         congratulationsView.setLayoutParams(params);
         congratulationsView.setVisibility(View.GONE);
@@ -104,6 +106,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         congratulationsView.setTextColor(color);
         parent.addView(congratulationsView);
     }
+
 
     private LinearLayout createContainerForReasonsNoVaccines(ViewGroup parent){
         LinearLayout reasonsContainer = (LinearLayout)LayoutInflater.from(parent.getContext()).inflate(R.layout.reasons_no_vaccination_container,parent,false);
@@ -141,15 +144,18 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     protected void onSelectingNoVaccination(boolean showReasons){
         root.getRootView().findViewById(R.id.reasons_no_vaccines).setVisibility(showReasons?View.VISIBLE:View.GONE);
         root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
+        root.findViewById(R.id.single_vaccine_add_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
         root.findViewById(R.id.vaccination_name_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        if(showReasons)vaccineCheckboxes.forEachItem(ch-> ch.setChecked(false));
+        if(showReasons){
+            new FnList<>(vaccineCheckboxes).forEachItem(ch-> ch.setChecked(false));
+            congratulationsView.setVisibility(View.GONE);
+        }
     }
 
     private FnList<CheckBox> getAllVaccineCheckboxes(){
         LinearLayout layout = root.findViewById(R.id.vaccination_name_layout);
-        return FnList.range(layout.getChildCount())
-                .map(i->{
-                    View v = layout.getChildAt(i);
+        return FnList.generate(layout::getChildAt)
+                .map(v->{
                     String label = v.findViewById(R.id.vaccine).toString();
                     CheckBox checkBox = v.findViewById(R.id.select);
                     checkBox.setTag(label);
@@ -160,14 +166,12 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
     private FnList<VaccineValue> getVaccineValues(){
         FnList<VaccineValue> vaccineV = FnList
-                .range(vaccinesContainer.getChildCount())
-                .map(vaccinesContainer::getChildAt)
+                .generate(vaccinesContainer::getChildAt)
                 .map(v->new VaccineValue(v,this));
 
         if(datesContainer.getVisibility() == View.VISIBLE) {
-            FnList.range(datesContainer.getChildCount())
-                    .map(datesContainer::getChildAt)
-                    .forEachItem(view -> vaccineV.forEachItem(vc -> vc.setDateFromMultiMode(view)));
+            FnList.generate(datesContainer::getChildAt)
+                  .forEachItem(view -> vaccineV.forEachItem(vc -> vc.setDateFromMultiMode(view)));
         }
         return vaccineV;
     }
@@ -185,15 +189,15 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         boolean isMultiDateMode = datesContainer.getVisibility() == View.VISIBLE;
 
         congratulationsView.setVisibility(allSelected?View.VISIBLE:View.GONE);
-        onSelectingNoVaccination(selectedVaccine.isEmpty());
-        super.updateSelectedVaccines(selectedVaccine,isMultiDateMode);
+//        onSelectingNoVaccination(selectedVaccine.isEmpty());
+//        super.updateSelectedVaccines(selectedVaccine,isMultiDateMode);
+//        vaccineCheckboxes = getAllVaccineCheckboxes();
     }
 
     protected FnList<String> getSelectedReasonsNoVaccines() {
         LinearLayout layout = root.getRootView().findViewById(R.id.reasons_no_vaccines);
-        return FnList.range(layout.getChildCount())
-                .map(i->{
-                    View v=layout.getChildAt(i);
+        return FnList.generate(layout::getChildAt)
+                .map(v->{
                     CheckBox ch=v.findViewById(R.id.select);
                     return ch == null || !ch.isChecked() ? "" : ch.getTag().toString();
                 }).filter(s->!s.isEmpty());
