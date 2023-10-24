@@ -104,12 +104,6 @@
             "openmrs_entity_id": "coc"
           },
           {
-            "key": "ecp",
-            "text": "ECP",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "ecp"
-          },
-          {
             "key": "injectable",
             "text": "Injectable",
             "openmrs_entity": "concept",
