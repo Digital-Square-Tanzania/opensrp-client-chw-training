@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -24,7 +25,7 @@ import timber.log.Timber;
 /**
  * Class FnList provides functional operations on a list of items.
  * <p>
- * WARNING: This class is designed to swallow exceptions occurring during its operations.
+ * WARNING: This class is designed to swallow both NULLS and Exceptions occurring during its operations.
  * Any exceptions thrown during operations such as map, filter, etc. will be caught
  * and will not propagate to the calling code. Instead, all errors are logged using Timber.e.
  * <p>
@@ -38,25 +39,29 @@ import timber.log.Timber;
 @SuppressWarnings({"unchecked","unused"})
 public class FnList<T> implements Iterable<T>{
 
-    private final Iterable<T> source;
-    private final List<Function<T,T>> operations = new ArrayList<>();
+    private final LazyIterator<T> lazy;
 
+    private FnList(LazyIterator<T> lazyIterator){
+        lazy = lazyIterator.copy();
+    }
+
+    public FnList(Producer<T> producer){
+        lazy = new LazyIterator<>(producer);
+    }
     public FnList(T[] data) {
-        source= new ArrayList<>(Arrays.asList(data));
+        lazy = new LazyIterator<>(Arrays.asList(data).iterator()::next);
     }
+
     public FnList(Collection<T> collection) {
-        source=new ArrayList<>(collection);
-    }
-    private FnList(Iterable<T> source,List<Function<T,T>> operations){
-        this.source=source; this.operations.addAll(operations);
+        lazy = new LazyIterator<>(collection.iterator()::next);
     }
 
     public static FnList<Integer> range(int lower, int upper){
-        List<Integer> numbers=new ArrayList<>();
-        for(int i=lower;i<upper;i++){
-            numbers.add(i);
-        }
-        return new FnList<>(numbers);
+        Integer[] n=new Integer[]{lower};
+        return new FnList<>( ()->{
+            if(n[0]>=upper){ throw new NoSuchElementException();}
+            return n[0]++;
+        });
     }
 
     public static FnList<Integer> range(int upper){
@@ -64,23 +69,29 @@ public class FnList<T> implements Iterable<T>{
     }
 
     public FnList<T> filter(FnInterfaces.Predicate<T> predicate) {
-        List<Function<T,T>> ops = new ArrayList<>(this.operations);
-        ops.add(input -> predicate.test(input) ? input : null);
-        return new FnList<>(source,ops);
+        lazy.addOperation(input -> predicate.test(input) ? input : null);
+        return new FnList<>(lazy);
     }
 
     public <S> FnList<S> map(Function<T, S> function) {
-        List<Function<T,T>> ops = new ArrayList<>(this.operations);
-        ops.add(input -> (T) function.invoke(input));
+        lazy.addOperation(input -> (T) function.invoke(input));
         // Cast is safe here because we're just transforming data.
-        return (FnList<S>) new FnList<>(source,ops);
+        return (FnList<S>) new FnList<>(lazy);
+    }
+
+    public <S> FnList<S> flatMap(Function<T, Collection<S>> function) {
+        return new FnList<S>( map(function)
+                .reduce(new ArrayList<>(),(a,b)->{
+                    a.addAll(b);
+                    return a;
+                }));
     }
 
     public <A> A reduce(A identity,Accumulator<A, T> accumulator) {
-        A result=identity;
+        A result = identity;
         for (T item : this) {
             try{ result = accumulator.combine(result, item);}
-            catch (Exception e){ Timber.e(e);}
+            catch (Exception e){Timber.e(e);}
         }
         return result;
     }
@@ -88,8 +99,22 @@ public class FnList<T> implements Iterable<T>{
     public FnList<T> unique(){ return unique(x->x); }
 
     public <S> FnList<T> unique(Function<T, S> giveId){
-        Set<S> ids=new LinkedHashSet<>();ids.add(null);
+        Set<S> ids = new LinkedHashSet<>();ids.add(null);
         return this.filter(x->ids.add(ex(()->giveId.invoke(x))));
+    }
+
+    public <S> Map<S, List<T>> group(Function<T, S> giveId){
+        Map<S,List<T>> map = new HashMap<>();
+        return this.reduce(map,(m,t)->{
+            S id=giveId.invoke(t);
+            List<T> list =m.get(id);
+            if(list==null) {
+                list=new ArrayList<>();
+                m.put(id,list);
+            }
+            list.add(t);
+            return m;
+        });
     }
 
     public List<T> list(){
@@ -102,7 +127,7 @@ public class FnList<T> implements Iterable<T>{
 
     @NonNull
     public String toString(){
-        return source.toString();
+        return list().toString();
     }
 
     public String toJson(){
@@ -110,11 +135,11 @@ public class FnList<T> implements Iterable<T>{
                 .setPrettyPrinting()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
-        return gson.toJson(source);
+        return gson.toJson(list());
     }
 
     public void forEachItem(Action<T> action) {
-        for(T t:this){ ex(()->action.apply(t));}
+        for(T t:this){ ex(()->action.apply(t)); }
     }
 
     @NonNull @Override
@@ -141,48 +166,5 @@ public class FnList<T> implements Iterable<T>{
     }
 
     @NonNull @Override
-    public Iterator<T> iterator() {
-        return new FnListIterator();
-    }
-
-
-    private class FnListIterator implements Iterator<T> {
-        private final Iterator<T> sourceIterator = source.iterator();
-        private T nextValue;
-        private boolean isEvaluated = false;
-
-        @Override
-        public boolean hasNext() {
-            if (isEvaluated) return nextValue != null;
-
-            while (sourceIterator.hasNext()) {
-                nextValue = sourceIterator.next();
-                for (Function<T, T> operation : operations) {
-                    nextValue = ex(() -> operation.invoke(nextValue));
-                    if (nextValue == null) break;
-                }
-                if (nextValue != null) {
-                    isEvaluated = true;
-                    return true;
-                }
-            }
-            isEvaluated = true;
-            return false;
-        }
-
-        @Override
-        public T next() {
-            if (!isEvaluated && !hasNext()) throw new NoSuchElementException();
-            isEvaluated = false;
-            T returnValue = nextValue;
-            nextValue = null;
-            return returnValue;
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
-    }
-
+    public Iterator<T> iterator() { return lazy;}
 }
