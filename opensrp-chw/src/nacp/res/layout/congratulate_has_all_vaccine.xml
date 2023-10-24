@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <org.smartregister.view.customcontrols.CustomFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
     android:id="@+id/congratulate_has_all_vaccine"
     style="@style/CustomFontTextViewStyle.ClientList.Medium"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
     android:layout_marginStart="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginEnd="@dimen/btn_margin_right"
-    android:layout_marginBottom="16dp"
+    android:layout_marginBottom="8dp"
     android:paddingStart="0dp"
     android:paddingLeft="0dp"
     android:singleLine="false"

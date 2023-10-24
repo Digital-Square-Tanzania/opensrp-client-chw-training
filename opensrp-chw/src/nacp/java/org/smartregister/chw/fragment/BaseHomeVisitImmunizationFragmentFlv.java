@@ -1,7 +1,10 @@
 package org.smartregister.chw.fragment;
 
 import static org.smartregister.chw.util.FnInterfaces.KeyValue;
+import static org.smartregister.clientandeventmodel.FormEntityConstants.Address.state;
+
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,19 +94,25 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     }
 
     private void addCongratulationsMessages(View root){
-        ViewGroup parent = (ViewGroup)root.findViewById(R.id.vaccination_name_layout).getParent();
+        ViewGroup parent = (ViewGroup)root.findViewById(R.id.vaccination_name_layout).getParent().getParent().getParent();
         congratulationsView = createTextViewUI(R.string.congratulate_vaccine_uptodate, parent);
 
         int pad = (int) TypedValue.applyDimension( TypedValue.COMPLEX_UNIT_DIP,16, getResources().getDisplayMetrics());
         int color = ContextCompat.getColor(root.getContext(), R.color.congratulation_color);
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) congratulationsView.getLayoutParams();
-        params.addRule(RelativeLayout.BELOW, R.id.single_vaccine_add_layout);
-        params.addRule(RelativeLayout.ABOVE, R.id.save_btn);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,  // Width
+                RelativeLayout.LayoutParams.WRAP_CONTENT   // Height
+        );
+        params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+
 
         congratulationsView.setLayoutParams(params);
         congratulationsView.setVisibility(View.GONE);
         congratulationsView.setPadding(pad,pad,pad,pad*2);
         congratulationsView.setTextColor(color);
+
+        params = (RelativeLayout.LayoutParams)root.findViewById(R.id.scroll_layout).getLayoutParams();
+        params.addRule(RelativeLayout.BELOW, congratulationsView.getId());
         parent.addView(congratulationsView);
     }
 
@@ -142,14 +151,17 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
 
     protected void onSelectingNoVaccination(boolean showReasons){
-        root.getRootView().findViewById(R.id.reasons_no_vaccines).setVisibility(showReasons?View.VISIBLE:View.GONE);
-        root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        root.findViewById(R.id.single_vaccine_add_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        root.findViewById(R.id.vaccination_name_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        if(showReasons){
-            new FnList<>(vaccineCheckboxes).forEachItem(ch-> ch.setChecked(false));
-            congratulationsView.setVisibility(View.GONE);
-        }
+        new Handler().postDelayed(() ->{
+            root.getRootView().findViewById(R.id.reasons_no_vaccines).setVisibility(showReasons?View.VISIBLE:View.GONE);
+            root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
+            root.findViewById(R.id.single_vaccine_add_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
+            root.findViewById(R.id.vaccination_name_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
+            if(showReasons){
+                new FnList<>(vaccineCheckboxes).forEachItem(ch-> ch.setChecked(false));
+                congratulationsView.setVisibility(View.GONE);
+            }
+
+        }, 600);
     }
 
     private FnList<CheckBox> getAllVaccineCheckboxes(){
@@ -186,12 +198,8 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
         boolean allSelected = vaccinesContainer.getChildCount() == selectedVaccine.size()
                 && !selectedVaccine.isEmpty();
-        boolean isMultiDateMode = datesContainer.getVisibility() == View.VISIBLE;
-
-        congratulationsView.setVisibility(allSelected?View.VISIBLE:View.GONE);
-//        onSelectingNoVaccination(selectedVaccine.isEmpty());
-//        super.updateSelectedVaccines(selectedVaccine,isMultiDateMode);
-//        vaccineCheckboxes = getAllVaccineCheckboxes();
+//        boolean isMultiDateMode = datesContainer.getVisibility() == View.VISIBLE;
+        new Handler().postDelayed(() ->congratulationsView.setVisibility(allSelected?View.VISIBLE:View.GONE) , 600);
     }
 
     protected FnList<String> getSelectedReasonsNoVaccines() {
