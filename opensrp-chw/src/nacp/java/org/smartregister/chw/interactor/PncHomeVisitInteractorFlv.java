@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ChildNewBornCareIntroductionActionHelper;
+import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.ImmunizationActionHelper;
 import org.smartregister.chw.actionhelper.PNCVisitLocationActionHelper;
@@ -130,6 +131,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateSkinToSkin(baby);
             evaluateSkinToSkin(baby);
             evaluateDevelopmentScreening(baby);
+            evaluatePlayAssessmentCounseling(baby);
         }
     }
 
@@ -1078,6 +1080,22 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     .build();
             actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), "(" + baby.getFullName() + ")"), action);
         }
+    }
+  
+    private void evaluatePlayAssessmentCounseling(Person baby) throws Exception {
+        String visitID = pncVisitAlertRule().getVisitID();
+
+        if(visitID.equalsIgnoreCase("1")) return;
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "(" + baby.getFullName() + ")"))
+                .withOptional(false)
+                .withDetails(details)
+                .withBaseEntityID(baby.getBaseEntityID())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
+                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, visitID, null))
+                .build();
+        actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "(" + baby.getFullName() + ")"), action);
     }
 
     private String getTranslatedValue(String name) {
