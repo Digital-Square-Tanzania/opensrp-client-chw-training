@@ -45,7 +45,7 @@ public class SbcReportsActivity extends SecuredActivity implements View.OnClickL
     }
 
     public void setupViews() {
-        sbcReport = findViewById(R.id.iccm_client_report);
+        sbcReport = findViewById(R.id.sbc_report);
 
         sbcReport.setOnClickListener(this);
     }
@@ -93,7 +93,7 @@ public class SbcReportsActivity extends SecuredActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.iccm_client_report) {
+        if (id == R.id.sbc_report) {
             SbcReportsViewActivity.startMe(this, Constants.ReportConstants.ReportPaths.SBC_REPORT_PATH, R.string.sbc_reports_title, reportPeriod);
         } else {
             Toast.makeText(this, "Action Not Defined", Toast.LENGTH_SHORT).show();
