@@ -46,6 +46,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateMalnutritionScreening(serviceWrapperMap);
             evaluateProblemSolving();
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluateCompFeeding(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -128,7 +129,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_malaria_prevention))
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.pnc_malaria_prevention))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getMalariaPrevention())
@@ -166,7 +168,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_counselling))
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.pnc_counselling))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.PNC_HOME_VISIT.getCOUNSELLING())
@@ -223,7 +226,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getNutritionStatus())
@@ -273,7 +277,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         }
 
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes))
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes))
                 .withOptional(true)
                 .withDetails(details)
                 .withFormName(Constants.JSON_FORM.getObsIllness())
@@ -281,7 +286,45 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_observations_n_illnes), observation);
     }
-  
+
+    void evaluateCompFeeding(Map<String, ServiceWrapper> serviceWrapperMap)
+            throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complimentary feeding");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        HomeVisitActionHelper compFeedingHelper = new HomeVisitActionHelper() {
+
+            @Override
+            public void onPayloadReceived(String jsonPayload) {
+                //Update the form before showing to the user
+            }
+
+            @Override
+            public String evaluateSubTitle() {
+                return "";
+            }
+
+            @Override
+            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+        };
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
+                .Builder(context, context.getString(R.string.child_hv_complementary_feeding))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvCompFeeding())
+                .withHelper(compFeedingHelper)
+                .build();
+        actionList.put(context.getString(R.string.child_hv_complementary_feeding), action);
+    }
+
+
     private void evaluateMalnutritionScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Malnutrition Screening");
         if (serviceWrapper == null) return;
