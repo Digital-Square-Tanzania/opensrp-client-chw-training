@@ -4,6 +4,9 @@ import static org.smartregister.chw.util.FnInterfaces.Accumulator;
 import static org.smartregister.chw.util.FnInterfaces.Action;
 import static org.smartregister.chw.util.FnInterfaces.Function;
 import static org.smartregister.chw.util.FnInterfaces.Producer;
+import static org.smartregister.chw.util.FnInterfaces.Predicate;
+import static org.smartregister.chw.util.FnInterfaces.Runnable;
+import static org.smartregister.chw.util.FnInterfaces.Mutable;
 import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,10 +60,10 @@ public class FnList<T> implements Iterable<T>{
     }
 
     public static <T> FnList<T> generate(Function<Integer,T>generator){
-        int[] n=new int[]{0};
+        Mutable<Integer> mutable=new Mutable<>(0);
         return new FnList<>( ()->{
             try {
-                T t = generator.invoke(n[0]++);
+                T t = generator.invoke(mutable.value++);
                 if (t == null) { throw new NoSuchElementException();}
                 return t;
             }catch (IndexOutOfBoundsException e){
@@ -76,7 +79,7 @@ public class FnList<T> implements Iterable<T>{
         return FnList.range(0,upper);
     }
 
-    public FnList<T> filter(FnInterfaces.Predicate<T> predicate) {
+    public FnList<T> filter(Predicate<T> predicate) {
         lazy.addOperation(input -> predicate.test(input) ? input : null);
         return new FnList<>(lazy);
     }
@@ -88,13 +91,32 @@ public class FnList<T> implements Iterable<T>{
     }
 
     public <S> FnList<S> flatMap(Function<T, Collection<S>> function) {
-        return new FnList<S>( map(function)
-                .reduce(new ArrayList<>(),(a,b)->{
-                    a.addAll(b);
-                    return a;
-                }));
+        lazy.addOperation(input -> (T) function.invoke(input));
+        return flat();
     }
 
+    public <S> FnList<S> flatMapArrays(Function<T, S[]> function) {
+        lazy.addOperation(input -> (T)Arrays.asList(function.invoke(input)));
+        return flat();
+    }
+
+    public <S> FnList<S> flat() {
+        LazyIterator<T> lazyCopy=lazy.copy();
+        Mutable<Iterator<S>> mutable=new Mutable<>(null);
+        return FnList.generate(i->{
+            while(mutable.value == null || !mutable.value.hasNext()){
+                T nextItem=lazyCopy.next();
+                if(nextItem instanceof Collection){
+                    mutable.value=((Collection<S>)nextItem).iterator();
+                }
+                else if (nextItem instanceof Object[]){
+                    mutable.value=(Iterator<S>)(Arrays.asList((T[])nextItem)).iterator();
+                }
+                else{ return (S)nextItem;}
+            }
+            return mutable.value.next();
+        });
+    }
     public <A> A reduce(A identity,Accumulator<A, T> accumulator) {
         A result = identity;
         for (T item : this) {
@@ -159,7 +181,7 @@ public class FnList<T> implements Iterable<T>{
         catch (Exception e) {Timber.e(e);}
         return null;
     }
-    private  static void ex(FnInterfaces.Runnable runnable){
+    private  static void ex(Runnable runnable){
         ex(()->{runnable.run(); return null;});
     }
 

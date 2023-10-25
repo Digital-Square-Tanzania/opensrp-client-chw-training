@@ -55,11 +55,12 @@ public class LazyIterator<T> implements Iterator<T> {
 
     public T processItem(T item) {
         if(item==null) return null;
+        T processed=item;
         for (FnInterfaces.Function<T, T> operation : operations) {
-            T copy=item;
-            item = ex(() -> operation.invoke(copy));
+            T copy=processed;
+            processed = ex(() -> operation.invoke(copy));
         }
-        return item;
+        return processed;
     }
 
     private  static <T> T ex(Producer<T> producer){
