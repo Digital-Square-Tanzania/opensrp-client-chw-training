@@ -56,7 +56,7 @@ public class LazyIterator<T> implements Iterator<T> {
     public T processItem(T item) {
         if(item==null) return null;
         T processed=item;
-        for (FnInterfaces.Function<T, T> operation : operations) {
+        for (Function<T, T> operation : operations) {
             T copy=processed;
             processed = ex(() -> operation.invoke(copy));
         }
