@@ -23,8 +23,6 @@ import java.util.Set;
 import java.util.Spliterator;
 import timber.log.Timber;
 
-
-
 /**
  * Class FnList provides functional operations on a list of items.
  * <p>
@@ -92,27 +90,27 @@ public class FnList<T> implements Iterable<T>{
 
     public <S> FnList<S> flatMap(Function<T, Collection<S>> function) {
         lazy.addOperation(input -> (T) function.invoke(input));
-        return flat();
+        return (FnList<S>)flat();
     }
 
     public <S> FnList<S> flatMapArrays(Function<T, S[]> function) {
         lazy.addOperation(input -> (T)Arrays.asList(function.invoke(input)));
-        return flat();
+        return (FnList<S>) flat();
     }
 
-    public <S> FnList<S> flat() {
+    public FnList<Object> flat() {
         LazyIterator<T> lazyCopy=lazy.copy();
-        Mutable<Iterator<S>> mutable=new Mutable<>(null);
+        Mutable<Iterator<?>> mutable=new Mutable<>(null);
         return FnList.generate(i->{
             while(mutable.value == null || !mutable.value.hasNext()){
                 T nextItem=lazyCopy.next();
                 if(nextItem instanceof Collection){
-                    mutable.value=((Collection<S>)nextItem).iterator();
+                    mutable.value=((Collection<?>)nextItem).iterator();
                 }
                 else if (nextItem instanceof Object[]){
-                    mutable.value=(Iterator<S>)(Arrays.asList((T[])nextItem)).iterator();
+                    mutable.value=(Iterator<?>)(Arrays.asList((T[])nextItem)).iterator();
                 }
-                else{ return (S)nextItem;}
+                else{ return nextItem;}
             }
             return mutable.value.next();
         });

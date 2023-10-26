@@ -54,10 +54,10 @@ public class LazyIterator<T> implements Iterator<T> {
     }
 
     public T processItem(T item) {
-        if(item==null) return null;
         T processed=item;
         for (Function<T, T> operation : operations) {
             T copy=processed;
+            if(copy==null)return null;
             processed = ex(() -> operation.invoke(copy));
         }
         return processed;
