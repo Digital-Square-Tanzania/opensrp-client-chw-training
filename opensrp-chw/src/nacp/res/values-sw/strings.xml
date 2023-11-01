@@ -194,6 +194,7 @@
     <string name="bango_kitita_one_page">Ukurasa wa %s</string>
     <string name="bango_kitita_two_pages">Ukurasa wa %s na Ukurasa wa %s</string>
     <string name="bango_kitita_message">Tafadhali rejea kurasa zifuatazo za Bango Kitita kueleza michezo kulingana na umri wa mtoto</string>
+    <string name="pnc_child_development_screening_assessment">Tathmini ya maendeleo ya mtoto {0}</string>
 
     <string name="visits_history_profile_title">Historia ya Matembeleo</string>
     <string name="view_visits_history">Angalia Historia ya Matembeleo</string>
