@@ -161,9 +161,23 @@
     <string name="penta_2">Penta 2</string>
     <string name="penta_3">Penta 3</string>
 
+    <string name="congratulate_vaccine_uptodate">Congratulate the mother and remind her of the next vaccination date according to the health card. Remind her how important it is that her child takes ALL the vaccines on time</string>
+    <!--    Reasons why not vaccinated-->
+    <string name="why_no_vaccine">Why did the child not receive the vaccine?</string>
+    <string-array name="reason_no_vaccine">
+        <item>not_available: Vaccine not available</item>
+        <item>family_refused: Family refused</item>
+        <item>clinic_closed: Clinic closed</item>
+        <item>return_another_day: Asked to return another day</item>
+        <item>did_not_know: I did not know about the vaccine</item>
+        <item>could_not_take_child: I could not take the child to receive the vaccine</item>
+    </string-array>
+
     <string name="vit_a_received_label">Vitamin A received</string>
     <string name="ifa_received_label">IFA tablets received</string>
 
+    <string name="pnc_hv_location">Visit Location</string>
+    <string name="pnc_hv_location_captured">Visit location has been captured</string>
 
     <string name="pnc_yes">Yes</string>
     <string name="pnc_no">No</string>
@@ -177,7 +191,12 @@
 
     <string name="pnc_newborn_care_introduction">Essential New Born Care: Introduction ({0})</string>
     <string name="baby_premature">Baby premature/underweight</string>
-
+    <string name="pnc_child_play_assessment_counselling">Play Assessment and Counselling {0}</string>
+    <string name="bango_kitita_one_page">Page %s</string>
+    <string name="bango_kitita_two_pages">Page %s and Page %s</string>
+    <string name="bango_kitita_message">Please refer to the following pages in Bango Kitita to explain the activities depending on the child\'s age</string>
+    <string name="pnc_child_development_screening_assessment">Child development screening assessment {0}</string>
+  
     <!---KVP/PrEP Strings -->
     <string name="kvp_prep_visit_type">Visit Type</string>
     <string name="kvp_prep_sbcc_services">SBCC Services</string>
