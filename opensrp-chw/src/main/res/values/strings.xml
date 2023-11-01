@@ -492,4 +492,5 @@
     <string name="malnutrition_screening">Malnutrition/Anemia screening</string>
     <string name="good">Good</string>
     <string name="poor">Poor</string>
+    <string name="child_hv_complementary_feeding"> Complementary Feeding Counseling </string>
 </resources>
