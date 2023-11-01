@@ -129,7 +129,6 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateNutritionStatusBaby(baby);
             evaluateObsIllnessBaby(baby);
             evaluateSkinToSkin(baby);
-            evaluateSkinToSkin(baby);
             evaluateDevelopmentScreening(baby);
             evaluatePlayAssessmentCounseling(baby);
         }
