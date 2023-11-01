@@ -38,9 +38,9 @@ public class ChildHVChildSafetyActionHelper extends HomeVisitActionHelper {
     }
 
     public String getYesNoTranslation(String subtitleText) {
-        if ("yes".equals(subtitleText)) {
+        if ("Yes".equals(subtitleText)) {
             return context.getString(R.string.yes);
-        } else if ("no".equals(subtitleText)) {
+        } else if ("No".equals(subtitleText)) {
             return context.getString(R.string.no);
         } else {
             return subtitleText;
