@@ -21,6 +21,7 @@ import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHel
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.core.domain.Person;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
@@ -48,6 +49,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateMalnutritionScreening(serviceWrapperMap);
             evaluateProblemSolving();
             evaluateChildSafety(serviceWrapperMap);
+            evaluateCCDIntroduction();
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
@@ -476,6 +478,18 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(childHVChildSafetyActionHelper)
                 .build();
         actionList.put(title, childSafetyAction);
+    }
+    private void evaluateCCDIntroduction() throws Exception {
+        String title = context.getString(R.string.ccd_introduction_title);
+        title = title.replace("({0})", "");
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
+                .build();
+        actionList.put(title, action);
     }
     private void evaluateDevelopmentScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
