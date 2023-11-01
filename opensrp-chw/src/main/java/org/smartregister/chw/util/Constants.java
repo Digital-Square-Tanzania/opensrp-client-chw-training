@@ -109,6 +109,8 @@ public class Constants extends CoreConstants {
         public static final String SKIN_TO_SKIN = "child_skin_to_skin";
         public static final String CHILD_HV_COMP_FEEDING = "child_complementary_feeding";
 
+        private static final String CHILD_HV_CCD_INTRODUCTION = "child_hv_ccd_introduction";
+
         public static String getCbhsRegistrationForm() {
             return CBHS_REGISTRATION_FORM;
         }
@@ -183,6 +185,9 @@ public class Constants extends CoreConstants {
 
         public static String getSkinToSkin() { return SKIN_TO_SKIN; }
 
+        public static String getChildHVCCDIntroduction() {
+            return CHILD_HV_CCD_INTRODUCTION;
+        }
         public static String getChildHvCompFeeding(){
             return CHILD_HV_COMP_FEEDING;
         }

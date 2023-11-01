@@ -1,0 +1,161 @@
+{
+  "count": "1",
+  "encounter_type": "Care for child development (CCD): Introduction",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Care for child development (CCD): Introduction",
+    "fields": [
+      {
+        "key": "child_development_intro_note1",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note1",
+        "type": "toaster_notes",
+        "text": "CHW information: READ TO MOTHER/FATHER OR CAREGIVER PC IF AND ONLY IF THIS IS YOUR FIRST VISIT WITH THIS FAMILY: Say \"We will start from this week onward with activities for you to interact and provide stimulation to your child. We will do this because: • Children’s development in the first 3 years is very important: it affects how well the child does at school, how well they behave and their success as an adult\". \n• The brain is developing very fast at this time and what happens to the child – love, play, care, nutrition and health – affects how the brain develops.\n• Adults looking after the child can change how the child develops. They can affect how smart the child will be, how they behave, how they relate to others and how happy they are. \nTherefore in the coming weeks and months, we will continue doing what we will do today: talking about your child's behavior and development and conducting activities corresponding to your child's age. The goal is that you continue stimulating your child and that the things we do together will give you some ideas! Remember: This is an important time in their life because the way they will grow and learn depends very much on behaviors that you (and other adults) show to your child.",
+        "toaster_type": "info"
+      },
+      {
+        "key": "child_development_intro_note2",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note2",
+        "type": "toaster_notes",
+        "text": "CHW information: READ TO PC IF AND ONLY IF THIS IS YOUR FIRST VISIT WITH THIS FAMILY: Say \"In the next weeks you will:\n\n·      Better understand infant and early childhood development,\nand the needs of infants and very young children in the early years.\n\n·      Better understand how primary caregivers can\nsupport infant and early childhood development through stimulation.\n\n·      Learn various approaches for interacting with and stimulating\nyour baby, in ways that will support their healthy development\".",
+        "toaster_type": "info",
+        "text_color": "#000000"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
+      },
+      {
+        "key": "child_development_intro_note3",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note3",
+        "type": "toaster_notes",
+        "text_color": "#000000",
+        "text": "CHW information: READ IN EVERY VISIT: Say \"You and your partner/ husband or family members are responsible for the infant's brain and mind development, and these early months and years should be used for his/her growth.\n\nA newborn baby can see things, feel things, and can respond to the voices and sounds she or he hears. A baby can tell us she or he is hungry or unhappy by the sounds she/he makes. A baby loves to see faces of her or his mum and dad (or other important caregivers).\n\nThe more opportunities we give our babies to explore the world (by playing, practicing new skills, seeing new things and copying what others do), the more information is given to the brain of the baby!\"",
+        "toaster_type": "info"
+      },
+      {
+        "key": "topic_21_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "topic_21_bango_kitita",
+        "type": "label",
+        "text": "Please refer to Topic 21 in Bango Kitita to explain the activity.",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "child_development_intro_note5",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note5",
+        "type": "toaster_notes",
+        "text": "CHW information: READ TO PC IF AND ONLY IF THIS IS YOUR FIRST VISIT WITH THIS FAMILY: Say \"Here are some important activities you can do to help the child to develop her/his skills.\"",
+        "toaster_type": "info"
+      },
+      {
+        "key": "topic_5_7_9_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "topic_5_7_9_bango_kitita",
+        "type": "label",
+        "text": "Please refer to Page 5, Page 7 and Page 9 in Kizazi Kijacho Bango Kitita to explain the activities.",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "child_development_intro_note6",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note6",
+        "type": "toaster_notes",
+        "text": "CHW information: READ IN EVERY VISIT: Say \"Here are some important things you can do to help the child to feel loved, safe, and happy.\"",
+        "toaster_type": "info"
+      },
+      {
+        "key": "topic_11_13_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "topic_11_13_bango_kitita",
+        "type": "label",
+        "text": "Please refer to Page 11 and Page 13 in Kizazi Kijacho Bango Kitita to explain IF this is the first time the activity is introduced to the PC or to reinforce the activities.",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      }
+    ]
+  }
+}

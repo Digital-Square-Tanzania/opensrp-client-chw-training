@@ -1,0 +1,161 @@
+{
+  "count": "1",
+  "encounter_type": "Care for child development (CCD): Introduction",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Malezi, Makuzi na Maendeleo ya mtoto (MMMM)",
+    "fields": [
+      {
+        "key": "child_development_intro_note1",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note1",
+        "type": "toaster_notes",
+        "text": "Taarifa za MJA: SOMA KWA MAMA/BABA AU MLEZI IKIWA HILI NDIO TEMBELEO LAKO LA KWANZA LA MTOTO KWENYE HII KAYA\nSema: \"Kuanzia wiki hii na kuendelea tutaanza kujadili  shughuli za wewe kuhusiana na kufanya uchangamshi kwa mtoto wako\nTutafanya hivi kwa sababu:\n •Miaka 3 ya mwanzo ya  Ukuaji wa watoto ni muhimu sana, huathiri jinsi mtoto anavyofanya vizuri shuleni, ubora wa tabia ya mtoto na mafanikio yake ya baadae\n• Ubongo unakua haraka sana kwa wakati huu na kile kinachotokea kwa mtoto kama vile upendo, kucheza, matunzo, lishe na afya huathiri jinsi ubongo unavyokua.\n• Watu wazima wanahusika na malezi ya mtoto wanaweza kubadilisha maendeleo ya mtoto. Wanaweza kuathiri jinsi mtoto atakavyokuwa na akili, tabia ya mtoto, jinsi anavyohusiana na wengine na furaha yake.\nKwa hiyo katika wiki na miezi ijayo, tutaendelea kufanya kile tutakachofanya leo: kuzungumzia juu ya tabia na maendeleo ya mtoto wako na kufanya shughuli zinazolingana na umri wa mtoto wako. Lengo ni kwamba uendelee kumchangamsha mtoto wako na shughuli ambazo tunafanya pamoja yatakusaidia itakupa mifano ya jinsi ya kumchangamsha mtoto! Kumbuka: Huu ni wakati muhimu katika maisha yao kwa sababu jinsi watakavyokua na kujifunza inategemea sana tabia ambazo wewe (na watu wengine wazima) huonyesha kwa mtoto wako.",
+        "toaster_type": "info"
+      },
+      {
+        "key": "child_development_intro_note2",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note2",
+        "type": "toaster_notes",
+        "text": "Taarifa za MJA: SOMA KWA MZAZI/MLEZI  IKIWA TU HII NDIYO TEMBELEO LAKO LA KWANZA  KWA MTOTO KWENYE HII KAYA: Sema \"Katika wiki zijazo utapata yafuatayo:\n\n· Uelewa zaidi juu ya maswala ya Malezi, Makuzi, na Maendeleo ya Awali ya Mtoto\nna mahitaji ya watoto wadogo katika miaka ya Awali\n\n· Uelewa zaidi wa jinsi unavyoweza kusaidia katika Malezi, Makuzi na Maendeleo ya Awali ya Mtoto kupitia uchangamshi\n· Mbinu mbalimbali za kuhusiana na kumchangamsha mtoto wako, kwa njia ambazo zitamsaida kukua na kuwa na afya bora",
+        "toaster_type": "info",
+        "text_color": "#000000"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
+      },
+      {
+        "key": "child_development_intro_note3",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note3",
+        "type": "toaster_notes",
+        "text_color": "#000000",
+        "text": "Taarifa za MJA: SOMA KATIKA KILA  TEMBELEO\nSema: \"Wewe na mwenza wako/mume au wanafamilia mna mchango mkubwa katika ukuaji wa ubongo na maendeleo ya akili ya mtoto. Miezi na miaka hii ya awali inapaswa kutumika katika ukuaji wake.\n\nMtoto mchanga anaweza kuona vitu, kuhisi , na kuitikia sauti na milio anayosikia. Mtoto anaweza kutuambia ana njaa au hana furaha kupitia sauti anazotoa. Mtoto anapenda kuona sura za mama na baba yake (au walezi wengine muhimu).\n\nKadiri tunavyowapa watoto wetu fursa za kuchunguza mazingira (kwa kucheza,kujifunza mambo mapya, kuona vitu vipya na kuiga kile ambacho wengine hufanya), ndivyo maarifa zaidi yanavyoongezeka katika ubongo wa mtoto!\"",
+        "toaster_type": "info"
+      },
+      {
+        "key": "topic_21_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "topic_21_bango_kitita",
+        "type": "label",
+        "text": "Tafadhali fungua mada ya 21 kwenye Bango Kititia ili kuelezea hii shughuli",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "child_development_intro_note5",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note5",
+        "type": "toaster_notes",
+        "text": "Taarifa za MJA: SOMA KWA MZAZI/MLEZI IKIWA HII NI ZIARA YAKO YA KWANZA KWENYE FAMILIA HII: Sema \"Hizi ni baadhi ya shughuli muhimu unazoweza kufanya ili kumsaidia mtoto kuongeza ujuzi wake.\"",
+        "toaster_type": "info"
+      },
+      {
+        "key": "topic_5_7_9_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "topic_5_7_9_bango_kitita",
+        "type": "label",
+        "text": "Tafadhali fungua ukurasa namba 5, 7 na 9 kwenye Kizazi Kijacho Bango Kititia ili kuelezea shughuli hizo",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "child_development_intro_note6",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "child_development_intro_note6",
+        "type": "toaster_notes",
+        "text": "Taarifa kwa MJA: Katika kila tembeleo soma \"Hivi hapa vitu muhimu vya kufanya kumsaidia mtoto kuhisi anapendwa, yupo salama na mwenye furaha.\"",
+        "toaster_type": "info"
+      },
+      {
+        "key": "topic_11_13_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "topic_11_13_bango_kitita",
+        "type": "label",
+        "text": "Tafadhali fungua ukurasa namba 11 na 13 kwenye Kizazi Kijacho Bango Kitita na elezea kama hii ndo mara ya kwanza shughuli hii imetambulishwa kwa mlezi",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      }
+    ]
+  }
+}
