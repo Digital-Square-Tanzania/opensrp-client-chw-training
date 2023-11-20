@@ -138,6 +138,11 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     }
 
     @Override
+    public boolean hasSbc() {
+        return true;
+    }
+
+    @Override
     public boolean hasKvp() {
         return true;
     }

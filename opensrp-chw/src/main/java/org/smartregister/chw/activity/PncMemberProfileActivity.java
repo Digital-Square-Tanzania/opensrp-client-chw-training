@@ -33,6 +33,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.presenter.BaseAncMemberProfilePresenter;
 import org.smartregister.chw.anc.util.Constants;
+import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.PncMemberProfileContract;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
@@ -49,7 +50,6 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.core.utils.UpdateDetailsUtil;
 import org.smartregister.chw.custom_view.AncFloatingMenu;
-import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
@@ -356,7 +356,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         }
         if (itemId == R.id.action_hivst_registration) {
             CommonPersonObjectClient commonPersonObjectClient = getCommonPersonObjectClient(memberObject.getBaseEntityId());
-            String gender = Utils.getValue(commonPersonObjectClient.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.GENDER, false);
+            String gender = Utils.getValue(commonPersonObjectClient.getColumnmaps(), DBConstants.KEY.GENDER, false);
             HivstRegisterActivity.startHivstRegistrationActivity(this, baseEntityID, gender);
         }
         if(itemId == R.id.action_kvp_prep_registration){
@@ -473,7 +473,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
 
     @Override
     protected void startFpRegister() {
-        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(), memberObject.getDob(), CoreConstants.JSON_FORM.getFpRegistrationForm("Female"), FamilyPlanningConstants.ActivityPayload.REGISTRATION_PAYLOAD_TYPE);
+        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(),  CoreConstants.JSON_FORM.getFpRegistrationForm("Female"));
     }
 
     @Override
@@ -508,10 +508,6 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
         }
     }
 
-    @Override
-    protected void startFpChangeMethod() {
-        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(), memberObject.getDob(), CoreConstants.JSON_FORM.getFpChangeMethodForm("female"), FamilyPlanningConstants.ActivityPayload.CHANGE_METHOD_PAYLOAD_TYPE);
-    }
 
     @Override
     protected void startMalariaFollowUpVisit() {
@@ -562,7 +558,7 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
             Timber.e(e);
         }
         try {
-            org.smartregister.chw.anc.util.NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
+            NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
         } catch (Exception e) {
             Timber.e(e);
         }

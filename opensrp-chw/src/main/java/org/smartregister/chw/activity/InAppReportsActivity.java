@@ -2,7 +2,6 @@ package org.smartregister.chw.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.Menu;
 import android.view.View;
 
@@ -19,14 +18,21 @@ import org.smartregister.view.activity.SecuredActivity;
 import org.smartregister.view.customcontrols.CustomFontTextView;
 
 public class InAppReportsActivity extends SecuredActivity implements View.OnClickListener {
-
-
     protected CustomFontTextView toolBarTextView;
+
     protected AppBarLayout appBarLayout;
+
     protected ConstraintLayout cbhsReportsLayout;
+
     protected ConstraintLayout motherChampionReportsLayout;
+
     protected ConstraintLayout condomDistributionReports;
-    protected ConstraintLayout agyweports;
+
+    protected ConstraintLayout agywReports;
+
+    protected ConstraintLayout iccmReports;
+
+    protected ConstraintLayout sbcReports;
 
     @Override
     protected void onCreation() {
@@ -46,10 +52,28 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         cbhsReportsLayout = findViewById(R.id.cbhs_summary);
         motherChampionReportsLayout = findViewById(R.id.mother_champion_reports);
         condomDistributionReports = findViewById(R.id.cdp_reports);
-        agyweports = findViewById(R.id.agyw_reports);
+        agywReports = findViewById(R.id.agyw_reports);
+        iccmReports = findViewById(R.id.iccm_reports);
+        sbcReports = findViewById(R.id.sbc_reports);
+
+        if (ChwApplication.getApplicationFlavor().hasHIV()) {
+            cbhsReportsLayout.setVisibility(View.VISIBLE);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasPmtct()) {
+            motherChampionReportsLayout.setVisibility(View.VISIBLE);
+        }
 
         if (ChwApplication.getApplicationFlavor().hasAGYW()) {
-            agyweports.setVisibility(View.VISIBLE);
+            agywReports.setVisibility(View.VISIBLE);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasICCM()) {
+            iccmReports.setVisibility(View.VISIBLE);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasSbc()) {
+            sbcReports.setVisibility(View.VISIBLE);
         }
 
         if (ChwApplication.getApplicationFlavor().hasCdp()) {
@@ -58,7 +82,9 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         motherChampionReportsLayout.setOnClickListener(this);
         condomDistributionReports.setOnClickListener(this);
         cbhsReportsLayout.setOnClickListener(this);
-        agyweports.setOnClickListener(this);
+        agywReports.setOnClickListener(this);
+        iccmReports.setOnClickListener(this);
+        sbcReports.setOnClickListener(this);
     }
 
     public void setUpToolbar() {
@@ -77,9 +103,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         toolBarTextView.setText(R.string.reports_title);
         toolBarTextView.setOnClickListener(v -> finish());
         appBarLayout = findViewById(org.smartregister.chw.core.R.id.app_bar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            appBarLayout.setOutlineProvider(null);
-        }
+        appBarLayout.setOutlineProvider(null);
     }
 
 
@@ -105,6 +129,14 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         }
         if (id == R.id.agyw_reports) {
             Intent intent = new Intent(this, AGYWReportsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.iccm_reports) {
+            Intent intent = new Intent(this, IccmReportsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.sbc_reports) {
+            Intent intent = new Intent(this, SbcReportsActivity.class);
             startActivity(intent);
         }
     }

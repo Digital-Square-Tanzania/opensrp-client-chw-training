@@ -2,9 +2,17 @@ package org.smartregister.chw.fragment;
 
 import static com.vijay.jsonwizard.utils.FormUtils.fields;
 import static com.vijay.jsonwizard.utils.FormUtils.getFieldJSONObject;
+import static org.smartregister.util.JsonFormUtils.ENTITY_ID;
+import static org.smartregister.util.JsonFormUtils.STEP1;
+import static org.smartregister.util.JsonFormUtils.VALUE;
+import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
 
 import android.database.Cursor;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 import com.vijay.jsonwizard.utils.FormUtils;
 
@@ -15,12 +23,13 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.adapter.SbccRegisterAdapter;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
-import org.smartregister.chw.dao.ChwSbccDao;
-import org.smartregister.chw.model.SbccRegisterFragmentModel;
+import org.smartregister.chw.dao.MotherChampionSbccDao;
+import org.smartregister.chw.model.MotherChampionSbccRegisterFragmentModel;
 import org.smartregister.chw.model.SbccSessionModel;
 import org.smartregister.chw.pmtct.fragment.BasePmtctRegisterFragment;
-import org.smartregister.chw.presenter.SbccRegisterFragmentPresenter;
+import org.smartregister.chw.presenter.MotherChampionSbccRegisterFragmentPresenter;
 import org.smartregister.chw.provider.SbccRegisterProvider;
+import org.smartregister.chw.util.Constants;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.family.util.JsonFormUtils;
@@ -31,24 +40,16 @@ import org.smartregister.view.customcontrols.CustomFontTextView;
 import java.util.List;
 import java.util.Set;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import timber.log.Timber;
 
-import static org.smartregister.util.JsonFormUtils.ENTITY_ID;
-import static org.smartregister.util.JsonFormUtils.STEP1;
-import static org.smartregister.util.JsonFormUtils.VALUE;
-import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
-
-public class SbccRegisterFragment extends BasePmtctRegisterFragment {
+public class MotherChampionSbccRegisterFragment extends BasePmtctRegisterFragment {
 
     private android.view.View view;
 
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
         SbccRegisterProvider sbccRegisterProvider = new SbccRegisterProvider(getActivity(), paginationViewHandler, registerActionHandler, visibleColumns);
-        List<SbccSessionModel> sbccSessionModels = ChwSbccDao.getSbccSessions();
+        List<SbccSessionModel> sbccSessionModels = MotherChampionSbccDao.getSbccSessions();
         clientAdapter = new RecyclerViewPaginatedAdapter(null, sbccRegisterProvider, null);
         clientAdapter.setTotalcount(0);
         clientAdapter.setCurrentlimit(20);
@@ -117,7 +118,7 @@ public class SbccRegisterFragment extends BasePmtctRegisterFragment {
         } catch (NullPointerException e) {
             Timber.e(e);
         }
-        presenter = new SbccRegisterFragmentPresenter(this, new SbccRegisterFragmentModel(), viewConfigurationIdentifier);
+        presenter = new MotherChampionSbccRegisterFragmentPresenter(this, new MotherChampionSbccRegisterFragmentModel(), viewConfigurationIdentifier);
     }
 
     @Override
@@ -191,7 +192,7 @@ public class SbccRegisterFragment extends BasePmtctRegisterFragment {
             syncButton.setOnClickListener(view -> {
                 JSONObject form;
                 try {
-                    form = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireActivity(), org.smartregister.chw.util.Constants.JsonForm.getMotherChampionSbccForm());
+                    form = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireActivity(), Constants.JsonForm.getMotherChampionSbccForm());
                     if (form != null) {
                         String randomId = generateRandomUUIDString();
                         form.put(ENTITY_ID, randomId);

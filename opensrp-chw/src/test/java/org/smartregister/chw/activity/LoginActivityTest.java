@@ -86,7 +86,7 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
             e.printStackTrace();
         }
 
-        assertActivityStarted(getActivity(), new FamilyRegisterActivity());
+        assertActivityStarted(getActivity(), new AllClientsRegisterActivity());
     }
 
     private void assertActivityStarted(Activity currActivity, Activity nextActivity) {
@@ -105,7 +105,7 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
             e.printStackTrace();
         }
 
-        assertActivityStarted(getActivity(), new FamilyRegisterActivity());
+        assertActivityStarted(getActivity(), new AllClientsRegisterActivity());
     }
 
     @Test

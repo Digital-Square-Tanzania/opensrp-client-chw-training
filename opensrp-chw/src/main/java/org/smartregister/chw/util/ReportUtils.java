@@ -2,12 +2,16 @@ package org.smartregister.chw.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import androidx.annotation.RequiresApi;
+import androidx.webkit.WebViewAssetLoader;
+
+import androidx.webkit.WebViewAssetLoader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -15,7 +19,11 @@ import org.smartregister.chw.domain.agyw_reports.AGYWReportObject;
 import org.smartregister.chw.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.domain.cdp_reports.CdpIssuingReportObject;
 import org.smartregister.chw.domain.cdp_reports.CdpReceivingReportObject;
+import org.smartregister.chw.domain.iccm_reports.IccmClientsReportObject;
+import org.smartregister.chw.domain.iccm_reports.IccmDispensingSummaryReportObject;
+import org.smartregister.chw.domain.iccm_reports.MalariaTestReportObject;
 import org.smartregister.chw.domain.mother_champion_report.MotherChampionReportObject;
+import org.smartregister.chw.domain.sbc_reports.SbcReportObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,8 +31,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import androidx.annotation.RequiresApi;
-import androidx.webkit.WebViewAssetLoader;
 import timber.log.Timber;
 
 public class ReportUtils {
@@ -86,7 +92,6 @@ public class ReportUtils {
         ReportUtils.reportPeriod = reportPeriod;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void printTheWebPage(WebView webView, Context context) {
 
         // Creating  PrintManager instance
@@ -95,8 +100,7 @@ public class ReportUtils {
 
         // Create a print job with name and adapter instance
         assert printManager != null;
-        printManager.print(getPrintJobName(), printAdapter,
-                new PrintAttributes.Builder().build());
+        printManager.print(getPrintJobName(), printAdapter, new PrintAttributes.Builder().build());
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -104,15 +108,13 @@ public class ReportUtils {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
-                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context))
-                .build();
+        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context)).build();
         mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader));
         mWebView.addJavascriptInterface(new ChwWebAppInterface(context, reportType), "Android");
 
-        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
+        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
-        }else {
+        } else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
         }
 
@@ -180,4 +182,50 @@ public class ReportUtils {
             return report;
         }
     }
+
+    public static class ICCMReports {
+        public static String computeClientsReports(Date startDate) {
+            IccmClientsReportObject iccmClientsReportObject = new IccmClientsReportObject(startDate);
+            try {
+                return iccmClientsReportObject.getIndicatorDataAsGson(iccmClientsReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+
+        public static String computeDispensingSummaryReports(Date startDate) {
+            IccmDispensingSummaryReportObject iccmDispensingSummaryReportObject = new IccmDispensingSummaryReportObject(startDate);
+            try {
+                return iccmDispensingSummaryReportObject.getIndicatorDataAsGson(iccmDispensingSummaryReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+
+        public static String computeMalariaTestsReports(Date startDate) {
+            MalariaTestReportObject malariaTestReportObject = new MalariaTestReportObject(startDate);
+            try {
+                return malariaTestReportObject.getIndicatorDataAsGson(malariaTestReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
+
+    public static class SbcReports {
+        public static String computeClientsReports(Date startDate) {
+            SbcReportObject sbcReportObject = new SbcReportObject(startDate);
+            try {
+                return sbcReportObject.getIndicatorDataAsGson(sbcReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
 }

@@ -4,8 +4,8 @@ import org.smartregister.chw.pmtct.contract.PmtctRegisterFragmentContract;
 import org.smartregister.chw.pmtct.presenter.BasePmtctRegisterFragmentPresenter;
 import org.smartregister.chw.util.Constants;
 
-public class SbccRegisterFragmentPresenter extends BasePmtctRegisterFragmentPresenter {
-    public SbccRegisterFragmentPresenter(PmtctRegisterFragmentContract.View view, PmtctRegisterFragmentContract.Model model, String viewConfigurationIdentifier) {
+public class MotherChampionSbccRegisterFragmentPresenter extends BasePmtctRegisterFragmentPresenter {
+    public MotherChampionSbccRegisterFragmentPresenter(PmtctRegisterFragmentContract.View view, PmtctRegisterFragmentContract.Model model, String viewConfigurationIdentifier) {
         super(view, model, viewConfigurationIdentifier);
     }
 
@@ -14,8 +14,4 @@ public class SbccRegisterFragmentPresenter extends BasePmtctRegisterFragmentPres
         return Constants.TableName.SBCC;
     }
 
-    @Override
-    public String getMainCondition() {
-        return Constants.TableName.SBCC + "." + "is_closed is 0";
-    }
 }

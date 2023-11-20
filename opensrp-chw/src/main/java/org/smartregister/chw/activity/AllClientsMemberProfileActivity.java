@@ -4,7 +4,12 @@ import static org.smartregister.chw.util.Utils.getClientGender;
 import static org.smartregister.chw.util.Utils.updateAgeAndGender;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.vijay.jsonwizard.utils.FormUtils;
 
@@ -22,12 +27,13 @@ import org.smartregister.chw.core.fragment.FamilyCallDialogFragment;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.custom_view.FamilyMemberFloatingMenu;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
-import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.fragment.FamilyOtherMemberProfileFragment;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.dao.KvpDao;
+import org.smartregister.chw.malaria.dao.IccmDao;
 import org.smartregister.chw.presenter.AllClientsMemberPresenter;
 import org.smartregister.chw.presenter.FamilyOtherMemberActivityPresenter;
+import org.smartregister.chw.sbc.dao.SbcDao;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -37,10 +43,7 @@ import org.smartregister.family.model.BaseFamilyOtherMemberProfileActivityModel;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.view.contract.BaseProfileContract;
 
-import androidx.viewpager.widget.ViewPager;
 import timber.log.Timber;
-
-import static org.smartregister.chw.util.Utils.updateAgeAndGender;
 
 public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfileActivity {
 
@@ -54,17 +57,24 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
 
         String gender = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
         menu.findItem(R.id.action_location_info).setVisible(true);
-        menu.findItem(R.id.action_cbhs_registration).setVisible(true);
+        if (ChwApplication.getApplicationFlavor().hasHIV()) {
+            menu.findItem(R.id.action_cbhs_registration).setVisible(true);
+        }
         menu.findItem(R.id.action_tb_registration).setVisible(false);
-        menu.findItem(R.id.action_fp_initiation).setVisible(false);
 
-        if (flavor.hasANC() && !presenter().isWomanAlreadyRegisteredOnAnc(commonPersonObject) && flavor.isOfReproductiveAge(commonPersonObject, "Female") && gender.equalsIgnoreCase("Female")) {
+        if (ChwApplication.getApplicationFlavor().hasFamilyPlanning() && flavor.isOfReproductiveAge(commonPersonObject, gender)) {
+            flavor.updateFpMenuItems(baseEntityId, menu);
+        } else {
+            menu.findItem(R.id.action_fp_initiation).setVisible(false);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasANC() && !presenter().isWomanAlreadyRegisteredOnAnc(commonPersonObject) && flavor.isOfReproductiveAge(commonPersonObject, "Female") && gender.equalsIgnoreCase("Female")) {
             flavor.updateFpMenuItems(baseEntityId, menu);
             menu.findItem(R.id.action_anc_registration).setVisible(true);
         } else {
             menu.findItem(R.id.action_anc_registration).setVisible(false);
         }
-        if (flavor.hasANC() && flavor.isOfReproductiveAge(commonPersonObject, "Female") && gender.equalsIgnoreCase("Female")) {
+        if (ChwApplication.getApplicationFlavor().hasANC() && flavor.isOfReproductiveAge(commonPersonObject, "Female") && gender.equalsIgnoreCase("Female")) {
             flavor.updateFpMenuItems(baseEntityId, menu);
             menu.findItem(R.id.action_pregnancy_out_come).setVisible(true);
         } else {
@@ -89,10 +99,20 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             }
         }
 
-        if(ChwApplication.getApplicationFlavor().hasKvp()){
+        if (ChwApplication.getApplicationFlavor().hasKvp()) {
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_kvp_prep_registration).setVisible(!KvpDao.isRegisteredForKvpPrEP(baseEntityId) && age >= 15);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasICCM() && !IccmDao.isRegisteredForIccm(baseEntityId)) {
+            menu.findItem(R.id.action_iccm_registration).setVisible(true);
+        }
+
+        if (ChwApplication.getApplicationFlavor().hasSbc()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 10);
         }
         return true;
     }
@@ -102,6 +122,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     public FamilyOtherMemberActivityPresenter presenter() {
         return (FamilyOtherMemberActivityPresenter) presenter;
     }
+
 
     @Override
     protected void startAncRegister() {
@@ -118,6 +139,16 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     @Override
     protected void startMalariaRegister() {
         MalariaRegisterActivity.startMalariaRegistrationActivity(AllClientsMemberProfileActivity.this, baseEntityId, familyBaseEntityId);
+    }
+
+    @Override
+    protected void startVmmcRegister() {
+        //implement
+    }
+
+    @Override
+    protected void startIntegratedCommunityCaseManagementEnrollment() {
+        IccmRegisterActivity.startIccmRegistrationActivity(AllClientsMemberProfileActivity.this, baseEntityId, familyBaseEntityId);
     }
 
     @Override
@@ -157,18 +188,12 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         String dob = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
         String gender = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
 
-        FpRegisterActivity.startFpRegistrationActivity(this, baseEntityId, dob, CoreConstants.JSON_FORM.getFpRegistrationForm(gender),
-                FamilyPlanningConstants.ActivityPayload.REGISTRATION_PAYLOAD_TYPE);
+        FpRegisterActivity.startFpRegistrationActivity(this, baseEntityId, CoreConstants.JSON_FORM.getFpRegistrationForm(gender));
     }
 
-
     @Override
-    protected void startFpChangeMethod() {
-        String dob = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
-        String gender = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
-
-        FpRegisterActivity.startFpRegistrationActivity(this, baseEntityId, dob, CoreConstants.JSON_FORM.getFpChangeMethodForm(gender),
-                FamilyPlanningConstants.ActivityPayload.CHANGE_METHOD_PAYLOAD_TYPE);
+    protected void startFpEcpScreening() {
+        //NOT Required in CHW
     }
 
     @Override
@@ -182,6 +207,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
         int age = Utils.getAgeFromDate(dob);
         AgywRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId, age);
+    }
+
+    @Override
+    protected void startSbcRegistration() {
+        SbcRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId);
     }
 
     @Override
@@ -317,5 +347,19 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     @Override
     public CoreAllClientsMemberContract.Presenter getAllClientsMemberPresenter() {
         return allClientsMemberPresenter;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        delayInvalidateOptionsMenu();
+    }
+
+    private void delayInvalidateOptionsMenu() {
+        try {
+            new Handler(Looper.getMainLooper()).postDelayed(this::invalidateOptionsMenu, 2000);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
     }
 }

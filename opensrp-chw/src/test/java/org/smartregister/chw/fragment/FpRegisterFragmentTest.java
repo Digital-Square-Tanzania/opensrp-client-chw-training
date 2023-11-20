@@ -147,7 +147,7 @@ public class FpRegisterFragmentTest extends BaseUnitTest {
     @Test
     public void testOpenProfile() {
         when(fpRegisterFragment.getActivity()).thenReturn(activity);
-        fpRegisterFragment.openProfile(commonPersonObjectClient);
+        fpRegisterFragment.openProfile(commonPersonObjectClient.getCaseId());
     }
 
     @After
