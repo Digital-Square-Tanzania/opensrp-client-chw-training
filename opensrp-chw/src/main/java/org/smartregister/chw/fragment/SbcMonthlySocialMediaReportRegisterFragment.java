@@ -115,7 +115,6 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
         this.view = view;
 
         emptyViewLayout = view.findViewById(org.smartregister.hivst.R.id.empty_view_ll);
-//        emptyViewLayout.setVisibility(GONE);
         toolbar = view.findViewById(org.smartregister.R.id.register_toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         toolbar.setContentInsetsRelative(0, 0);
@@ -136,25 +135,25 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
         }
 
         android.view.View searchBarLayout = view.findViewById(org.smartregister.chw.core.R.id.search_bar_layout);
-        searchBarLayout.setVisibility(android.view.View.GONE);
+        searchBarLayout.setVisibility(GONE);
 
         android.view.View topLeftLayout = view.findViewById(org.smartregister.chw.core.R.id.top_left_layout);
-        topLeftLayout.setVisibility(android.view.View.GONE);
+        topLeftLayout.setVisibility(GONE);
 
         android.view.View topRightLayout = view.findViewById(org.smartregister.chw.core.R.id.top_right_layout);
         topRightLayout.setVisibility(android.view.View.VISIBLE);
 
         android.view.View sortFilterBarLayout = view.findViewById(org.smartregister.chw.core.R.id.register_sort_filter_bar_layout);
-        sortFilterBarLayout.setVisibility(android.view.View.GONE);
+        sortFilterBarLayout.setVisibility(GONE);
 
         android.view.View filterSortLayout = view.findViewById(org.smartregister.chw.core.R.id.filter_sort_layout);
-        filterSortLayout.setVisibility(android.view.View.GONE);
+        filterSortLayout.setVisibility(GONE);
 
         android.view.View dueOnlyLayout = view.findViewById(org.smartregister.chw.core.R.id.due_only_layout);
-        dueOnlyLayout.setVisibility(android.view.View.GONE);
+        dueOnlyLayout.setVisibility(GONE);
         dueOnlyLayout.setOnClickListener(registerActionHandler);
         if (getSearchView() != null) {
-            getSearchView().setVisibility(android.view.View.GONE);
+            getSearchView().setVisibility(GONE);
         }
     }
 
@@ -233,7 +232,7 @@ public class SbcMonthlySocialMediaReportRegisterFragment extends BaseSbcRegister
     @Override
     protected void refreshSyncProgressSpinner() {
         if (syncProgressBar != null) {
-            syncProgressBar.setVisibility(android.view.View.GONE);
+            syncProgressBar.setVisibility(GONE);
         }
         if (syncButton != null) {
             syncButton.setVisibility(android.view.View.VISIBLE);

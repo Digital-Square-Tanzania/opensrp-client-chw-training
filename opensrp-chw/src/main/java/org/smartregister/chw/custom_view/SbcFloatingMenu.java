@@ -92,7 +92,7 @@ public class SbcFloatingMenu extends BaseSbcFloatingMenu {
 
         if (isFabMenuOpen) {
             activityMain.setBackgroundResource(R.color.transparent);
-
+            fab.startAnimation(rotateBack);
             fab.setImageResource(R.drawable.ic_edit_white);
 
             callLayout.startAnimation(fabClose);
