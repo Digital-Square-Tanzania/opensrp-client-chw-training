@@ -54,13 +54,13 @@
   },
   "steps": [
     {
-      "title": "HIV Testing Services Referral Form",
+      "title": "Fomu ya rufaa kwa ajili ya huduma ya tohara kwa wanaume",
       "fields": [
         {
           "name": "problem",
           "type": "multi_choice_checkbox",
           "properties": {
-            "text": "Reasons for Referral"
+            "text": "Sababu ya rufaa"
           },
           "meta_data": {
             "openmrs_entity_parent": "",
@@ -69,15 +69,21 @@
           },
           "options": [
             {
-              "name": "confirmation_self_test",
-              "text": "Self Test Confirmation",
+              "name": "vmmc",
+              "text": "Tohara kwa wanaume",
               "meta_data": {
                 "openmrs_entity": "",
-                "openmrs_entity_id": "confirmation_self_test",
+                "openmrs_entity_id": "high_risk_client",
                 "openmrs_entity_parent": ""
-              },
-              "properties": {
-                "checked": true
+              }
+            },
+            {
+              "name": "other_reasons",
+              "text": "Sababu nyingine",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "other_reasons",
+                "openmrs_entity_parent": ""
               }
             }
           ],
@@ -90,6 +96,21 @@
           ]
         },
         {
+          "name": "problem_other",
+          "type": "text_input_edit_text",
+          "properties": {
+            "hint": "Sababu nyingine",
+            "type": "name"
+          },
+          "meta_data": {
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "163182AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          "required_status": "true:Chagua Sababu nyingine",
+          "subjects": "problem:map"
+        },
+        {
           "name": "chw_referral_hf",
           "type": "spinner",
           "meta_data": {
@@ -98,17 +119,17 @@
             "openmrs_entity_parent": ""
           },
           "properties": {
-            "text": "Choose referral facility",
-            "searchable": "Choose referral facility"
+            "text": "Chagua kituo cha rufaa",
+            "searchable": "Chagua kituo cha rufaa"
           },
           "options": [],
-          "required_status": "yes:Please specify referral facility"
+          "required_status": "yes:Chagua kituo cha rufaa"
         },
         {
           "name": "referral_appointment_date",
           "type": "datetime_picker",
           "properties": {
-            "hint": "Please select the appointment date",
+            "hint": "Tafadhali chagua tarehe ya miadi",
             "type": "date_picker",
             "display_format": "dd/MM/yyyy",
             "min_date": "today"
@@ -118,7 +139,7 @@
             "openmrs_entity_id": "referral_appointment_date",
             "openmrs_entity_parent": ""
           },
-          "required_status": "true:Please specify the appointment date"
+          "required_status": "true:Tafadhali chagua tarehe ya miadi"
         }
       ]
     }

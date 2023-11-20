@@ -54,7 +54,7 @@
   },
   "steps": [
     {
-      "title": "HIV Testing Services Referral Form",
+      "title": "Vmmc Services Referral Form",
       "fields": [
         {
           "name": "problem",
@@ -69,15 +69,21 @@
           },
           "options": [
             {
-              "name": "confirmation_self_test",
-              "text": "Self Test Confirmation",
+              "name": "vmmc",
+              "text": "Voluntary Medical Male Circumcision",
               "meta_data": {
                 "openmrs_entity": "",
-                "openmrs_entity_id": "confirmation_self_test",
+                "openmrs_entity_id": "high_risk_client",
                 "openmrs_entity_parent": ""
-              },
-              "properties": {
-                "checked": true
+              }
+            },
+            {
+              "name": "other_reasons",
+              "text": "Other Reasons",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "other_reasons",
+                "openmrs_entity_parent": ""
               }
             }
           ],
@@ -88,6 +94,21 @@
             "referral_type",
             "referral_status"
           ]
+        },
+        {
+          "name": "problem_other",
+          "type": "text_input_edit_text",
+          "properties": {
+            "hint": "Other Reasons",
+            "type": "name"
+          },
+          "meta_data": {
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "163182AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          "required_status": "true:Please specify other symptoms",
+          "subjects": "problem:map"
         },
         {
           "name": "chw_referral_hf",

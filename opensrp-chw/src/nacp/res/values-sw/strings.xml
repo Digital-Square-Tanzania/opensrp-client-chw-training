@@ -9,6 +9,7 @@
     <string name="tb_referral">Kliniki ya TB</string>
     <string name="pmtct_referral">Kliniki ya PMTCT</string>
     <string name="gbv_referral">Huduma ya kuzuia ukatili wa kijinsia (dawati la jinsia)</string>
+    <string name="vmmc_referral">Huduma ya tohara kwa wanaume</string>
     <string name="child_gbv_referral">Huduma ya kuzuia ukatili wa kijinsia (dawati la jinsia)</string>
     <string name="created">Imeumbwa: %s</string>
     <string name="menu_hiv">HUWANYU (CBHS)</string>
@@ -162,6 +163,9 @@
     <string name="register">Sajili</string>
     <string name="all_male_clients">Wateja Wote wa Kiume</string>
 
+    <string name="pnc_hv_location">Eneo la tembeleo</string>
+    <string name="pnc_hv_location_captured">Eneo la tembeleo limeshachukuliwa</string>
+
     <string name="pnc_yes">Ndio</string>
     <string name="pnc_no">Hapana</string>
     <string name="pnc_good">Nzuri</string>
@@ -171,6 +175,10 @@
     <string name="pnc_normal">Kawaida</string>
     <string name="pnc_moderate">Wastani</string>
     <string name="pnc_severe">Mbaya</string>
+    <string name="pnc_hygiene_safety_counselling_title">Usafi wa mazingira</string>
+
+    <string name="pnc_newborn_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi ({0})</string>
+    <string name="baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
 
     <string name="visits_history_profile_title">Historia ya Matembeleo</string>
     <string name="view_visits_history">Angalia Historia ya Matembeleo</string>
@@ -591,6 +599,8 @@
     <string name="sbc_print_materials">Machapisho</string>
     <string name="sbc_other_hiv_interventions">Afua nyinginezo za VVU</string>
     <string name="sbc_income_generating_activity">Elimu ya uwezeshaji kiuchumi</string>
+    <string name="child_problem_solving">Kutatua Changamoto</string>
+    <string name="child_problem_solving_task">Changamtoto kwenye kucheza na kuwasiliana </string>
 
     <!--    ICCM Visit History-->
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>
