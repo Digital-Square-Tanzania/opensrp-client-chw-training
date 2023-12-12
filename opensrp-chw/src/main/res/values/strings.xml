@@ -480,4 +480,13 @@
 
     <string name="iccm_referral">iCCM Referral</string>
     <string name="kvp_discordant_couples">Discordant Couples</string>
+
+    <string name="palm_pallor_green">Green</string>
+    <string name="palm_pallor_yellow">Yellow</string>
+    <string name="palm_pallor_red">Red</string>
+
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+    <string name="malnutrition_screening">Malnutrition/Anemia screening</string>
+    <string name="map_cue">Landmark/Description of house location</string>
+    <string name="street_name">Street / Hamlet Name</string>
 </resources>

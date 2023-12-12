@@ -611,4 +611,13 @@
     <string name="iccm_malaria">Malaria</string>
     <string name="iccm_pneumonia">Nimonia</string>
     <string name="iccm_diarrhea">Kuharisha</string>
+
+    <string name="palm_pallor_green">Kijani</string>
+    <string name="palm_pallor_yellow">Njano</string>
+    <string name="palm_pallor_red">Nyekundu</string>
+
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+    <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu</string>
+    <string name="map_cue">Alama ya eneo la makazi</string>
+    <string name="street_name">Jina la mtaa au Kitongoji</string>
 </resources>
