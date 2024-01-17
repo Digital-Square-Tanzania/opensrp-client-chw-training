@@ -87,18 +87,6 @@
         "toaster_type": "info"
       },
       {
-        "key": "topic_21_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "topic_21_bango_kitita",
-        "type": "label",
-        "text": "Tafadhali fungua mada ya 21 kwenye Bango Kititia ili kuelezea hii shughuli",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
-      },
-      {
         "key": "spacer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -116,18 +104,6 @@
         "toaster_type": "info"
       },
       {
-        "key": "topic_5_7_9_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "topic_5_7_9_bango_kitita",
-        "type": "label",
-        "text": "Tafadhali fungua ukurasa namba 5, 7 na 9 kwenye Kizazi Kijacho Bango Kititia ili kuelezea shughuli hizo",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
-      },
-      {
         "key": "spacer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -143,18 +119,6 @@
         "type": "toaster_notes",
         "text": "Taarifa kwa MJA: Katika kila tembeleo soma \"Hivi hapa vitu muhimu vya kufanya kumsaidia mtoto kuhisi anapendwa, yupo salama na mwenye furaha.\"",
         "toaster_type": "info"
-      },
-      {
-        "key": "topic_11_13_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "topic_11_13_bango_kitita",
-        "type": "label",
-        "text": "Tafadhali fungua ukurasa namba 11 na 13 kwenye Kizazi Kijacho Bango Kitita na elezea kama hii ndo mara ya kwanza shughuli hii imetambulishwa kwa mlezi",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
       }
     ]
   }
