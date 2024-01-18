@@ -1,0 +1,188 @@
+{
+  "count": "1",
+  "encounter_type": "Caregiver Responsiveness",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Muitikio wa mlezi kwa ishara na sauti za mtoto",
+    "fields": [
+      {
+        "key": "caregiver_interacts_with_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregiver_interacts_with_child",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Taarifa kwa MJA: Wakati wa tembeleo ni vipi mama/mlezi aliweza kuingiliana na kujibu mienendo, shughuli na milio ya mtoto?",
+        "label_info_text": "Taarifa kwa MJA: Wakati wa tembeleo ni vipi mama/mlezi aliweza kuingiliana na kujibu mienendo, shughuli na milio ya mtoto?",
+        "values": [
+          "Anamfuata mtoto na kujaribu kuigiza sauti anazotoa na kuongea na mtoto",
+          "Hafanyi vitendo mtoto anavyofanya, au anajaribu kumuongoza mtoto vitendo vya kufanya na hawasiliani na mtoto"
+        ],
+        "keys": [
+          "responds_to_child",
+          "not_responsive_to_child"
+        ],
+        "openmrs_choice_ids": {
+          "responds_to_child": "",
+          "not_responsive_to_child": ""
+        }
+      },
+      {
+        "key": "caregiver_interaction_praise",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Taarifa kwa MJA: MPONGEZE mama/mlezi.",
+        "text_color": "#2D2E2D",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_interaction_advise",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "MSHAURI: Muombe mama/mlezi kuiga mienendo ya mtoto na kufata vile mtoto anavyotaka.",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_comfort_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregiver_comfort_child",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Je umemuona mama/mlezi akiwa anamfariji mtoto?",
+        "label_info_text": "Je umemuona mama/mlezi akiwa anamfariji mtoto?",
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "Yes",
+          "No": "No"
+        }
+      },
+      {
+        "key": "caregiver_response_cue",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregiver_response_cue",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Taarifa kwa MJA: Sema, \"Je mama/mlezi alijibu vipi ishara za mtoto?\"",
+        "label_info_text": "Taarifa kwa MJA: Sema, \"Je mama/mlezi alijibu vipi ishara za mtoto?\"",
+        "values": [
+          "Anamtazama mtoto machoni na anajaribu kuongea naye kwa utaratibu na kumbembeleza na kumbeba mwilini kwa ukaribu",
+          "Hawezi kumbembeleza mtoto na mtoto hatafuti faraja kwa mlezi"
+        ],
+        "keys": [
+          "respond_to_child_cues",
+          "not_respond_to_child_cues"
+        ],
+        "openmrs_choice_ids": {
+          "respond_to_child_cues": "",
+          "not_respond_to_child_cues": ""
+        }
+      },
+      {
+        "key": "is_not_comforting",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Taarifa kwa MJA: Sema, \"Ni muhimu kuitikia ishara na sauti za mtoto. Hii itamsaidia  mtoto katika ukuaji wake kiakili, kihisia, kisakolojia na kumfanya awe mwenye furaha, na kuboresha mahusiano yenu.\\\n  \\n\\nTaarifa kwa MJA: Msaidie Mama kuigiza tena na kutumia njia mpya.\"",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "respond_to_child_cue_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "Taarifa kwa MJA: Sema, \"Umefanya vizuri sana kuitikia ishara na sauti za mtoto na kumuonesha upendo. Unajua sana jinsi ya kuitikia ishara na sauti za mtoto.\"",
+        "text_color": "#2D2E2D",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
