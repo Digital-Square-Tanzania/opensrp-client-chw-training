@@ -510,6 +510,7 @@
     <string name="child_safety">Usalama wa Mtoto</string>
     <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
     <string name="ccd_introduction_title">Malezi, Makuzi na Maendeleo ya mtoto (MMMM) ({0})</string>
+    <string name="ccd_caregiver_responsiveness"><b>MMMM</b>: Muitikio wa mlezi kwa ishara na sauti za mtoto</string>
 
 
 </resources>
