@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ChildNewBornCareIntroductionActionHelper;
 import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHelper;
@@ -129,6 +130,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateCCDIntroduction(baby);
             evaluateDevelopmentScreening(baby);
             evaluatePlayAssessmentCounseling(baby);
+            evaluateCCDChildDiscipline(baby);
         }
     }
 
@@ -1133,5 +1135,21 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     .build();
             actionList.put(title, action);
         }
+    }
+
+    // TODO: 18/01/2024 Chidl Discipline Module Need Scheduling 
+    private void evaluateCCDChildDiscipline(Person baby) throws Exception {
+//        String visitID = pncVisitAlertRule().getVisitID();
+//        if(visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21 - 27") || visitID.equalsIgnoreCase("35 - 41")){
+            BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"))
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withBaseEntityID(baby.getBaseEntityID())
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                    .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
+                    .withHelper(new CCDChildDisciplineActionHelper(context,null))
+                    .build();
+            actionList.put(MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"), action);
+//        }
     }
 }

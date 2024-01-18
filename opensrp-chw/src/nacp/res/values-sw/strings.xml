@@ -510,6 +510,8 @@
     <string name="child_safety">Usalama wa Mtoto</string>
     <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
     <string name="ccd_introduction_title">Malezi, Makuzi na Maendeleo ya mtoto (MMMM) ({0})</string>
+    <string name="ccd_child_discipline_title">Ushauri juu ya namna ya kujenga nidhamu kwa mtoto (MMMM) ({0})</string>
+    <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
 
 
 </resources>

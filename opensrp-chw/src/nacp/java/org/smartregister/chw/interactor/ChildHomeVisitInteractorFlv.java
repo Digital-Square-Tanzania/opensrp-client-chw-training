@@ -11,6 +11,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
@@ -53,6 +54,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
+            evaluateCCDChildDiscipline(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -508,5 +510,41 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(new ChildDevelopmentScreeningActionHelper(null,serviceWrapper))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
+    }
+
+    // TODO: 18/01/2024 Chidl Discipline Module Need Scheduling
+    private void evaluateCCDChildDiscipline(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD child discipline");
+//        if (serviceWrapper == null) return;
+
+//        Alert alert = serviceWrapper.getAlert();
+//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+//        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        String title = context.getString(R.string.ccd_child_discipline_title);
+        title = title.replace("({0})", "");
+
+        // alert if overdue after 14 days
+//        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+//        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context, null);
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+//                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+//                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(ccdChildDisciplineAction)
+                .build();
+
+        actionList.put(title, ccd_child_discipline_action);
+
     }
 }
