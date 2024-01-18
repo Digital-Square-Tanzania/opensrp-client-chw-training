@@ -6,11 +6,13 @@ import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.ChildCommunicationAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
@@ -26,8 +28,10 @@ import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
+import org.smartregister.util.DateUtil;
 
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +57,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
+            evaluateCCDCommunicationAssessment(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -479,6 +484,26 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(title, childSafetyAction);
     }
+
+    private void evaluateCCDCommunicationAssessment(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
+//        if (serviceWrapper == null) return;
+
+//        Alert alert = serviceWrapper.getAlert();
+//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.Events.COMMUNICATION_ASSESSMENT_COUNSELLING);
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""))
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
+                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob)))
+                .build();
+        actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""), action);
+    }
+
     private void evaluateCCDIntroduction() throws Exception {
         String title = context.getString(R.string.ccd_introduction_title);
         title = title.replace("({0})", "");
@@ -508,5 +533,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(new ChildDevelopmentScreeningActionHelper(null,serviceWrapper))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
+    }
+
+    protected int getChildAgeInMonth(Date dob) {
+        String childAge = DateUtil.getDuration(new DateTime(dob));
+        int childAgeInMonth = -1;
+        if (childAge.contains("m")) {
+            String childMonth = childAge.substring(0, childAge.indexOf("m"));
+            childAgeInMonth =  Integer.parseInt(childMonth);
+        }
+        return childAgeInMonth;
     }
 }
