@@ -72,6 +72,12 @@ public class ChildCommunicationAssessmentCounselingActionHelper extends HomeVisi
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        if(communicatesWithChild.equalsIgnoreCase("no") || communicatesWithChildObservation.contains("chk_force_smile")){
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        }else if((communicatesWithChild.equalsIgnoreCase("yes") && communicatesWithChildObservation.contains("chk_sounds_and_gestures")) || (communicatesWithChild.equalsIgnoreCase("yes") && communicatesWithChildObservation.contains("chk_looks_into_eyes"))){
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }else{
+            return BaseAncHomeVisitAction.Status.PENDING;
+        }
     }
 }
