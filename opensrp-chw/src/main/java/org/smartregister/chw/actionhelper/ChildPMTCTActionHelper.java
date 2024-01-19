@@ -7,10 +7,10 @@ import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
 
 public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
-    String hiv_test;
-    String disclose_status;
-    String taking_art;
-    String hiv_status;
+    String hiv_test = "";
+    String disclose_status = "";
+    String taking_art = "";
+    String hiv_status = "";
 
     @Override
     public String evaluateSubTitle() {
