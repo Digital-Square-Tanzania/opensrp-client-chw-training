@@ -15,6 +15,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.ChildCommunicationAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ChildPMTCTActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
@@ -57,6 +58,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
+            evaluateChildPMTCT();
             evaluateCCDCommunicationAssessment();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -529,6 +531,20 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }
 
+    private void evaluateChildPMTCT() throws Exception {
+
+        String title = context.getString(R.string.child_home_visit_pmtct);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvPmtct())
+                .withHelper(new ChildPMTCTActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(title, childPmtctAction);
+    }
     protected int getChildAgeInMonth(Date dob) {
         String childAge = DateUtil.getDuration(new DateTime(dob));
         int childAgeInMonth = -1;

@@ -510,7 +510,7 @@
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>
     <string name="child_safety">Usalama wa Mtoto</string>
     <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
-    <string name="ccd_introduction_title">Malezi, Makuzi na Maendeleo ya mtoto (MMMM) ({0})</string>
+    <string name="child_home_visit_pmtct">Kuzuia maambukizi ya Virusi vya Ukimwi kutoka kwa mama kwenda kwa mtoto</string>
 
 
 </resources>
