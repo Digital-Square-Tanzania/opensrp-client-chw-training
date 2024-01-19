@@ -57,7 +57,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
-            evaluateCCDCommunicationAssessment(serviceWrapperMap);
+            evaluateCCDCommunicationAssessment();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -485,13 +485,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, childSafetyAction);
     }
 
-    private void evaluateCCDCommunicationAssessment(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
-//        if (serviceWrapper == null) return;
-
-//        Alert alert = serviceWrapper.getAlert();
-//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
-
+    private void evaluateCCDCommunicationAssessment() throws Exception {
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.COMMUNICATION_ASSESSMENT_COUNSELLING);
 
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""))
