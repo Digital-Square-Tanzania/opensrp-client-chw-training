@@ -190,11 +190,11 @@
 
     <string name="pnc_newborn_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi ({0})</string>
     <string name="baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
-    <string name="pnc_child_play_assessment_counselling">Tathmini maendeleo ya michezo na kufanya majadiliano {0}</string>
+    <string name="pnc_child_play_assessment_counselling"><b>MMMAM</b> maendeleo ya michezo na kufanya majadiliano {0}</string>
     <string name="bango_kitita_one_page">Ukurasa wa %s</string>
     <string name="bango_kitita_two_pages">Ukurasa wa %s na Ukurasa wa %s</string>
     <string name="bango_kitita_message">Tafadhali rejea kurasa zifuatazo za Bango Kitita kueleza michezo kulingana na umri wa mtoto</string>
-    <string name="pnc_child_development_screening_assessment">Tathmini ya maendeleo ya mtoto {0}</string>
+    <string name="pnc_child_development_screening_assessment"><b>MMMAM: </b>Tathmini ya maendeleo ya mtoto {0}</string>
     <string name="pnc_child_communication_assessment"> Tathmini maendeleo ya mawasiliano na kufanya majadiliano {0}</string>
 
     <string name="visits_history_profile_title">Historia ya Matembeleo</string>
@@ -503,16 +503,16 @@
 
     <string name="last_appointment_date">Tarehe ya mwisho ya Miadi</string>
 
-    <string name="child_problem_solving">Kutatua Changamoto</string>
+    <string name="child_problem_solving"><b>MMMAM:</b> Changamoto</string>
     <string name="child_problem_solving_task">Changamtoto kwenye kucheza na kuwasiliana </string>
 
     <!--    ICCM Visit History-->
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>
     <string name="child_safety">Usalama wa Mtoto</string>
     <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
-    <string name="ccd_introduction_title">Malezi, Makuzi na Maendeleo ya mtoto (MMMM) ({0})</string>
-    <string name="ccd_caregiver_responsiveness"><b>MMMM</b>: Muitikio wa mlezi kwa ishara na sauti za mtoto</string>
-    <string name="ccd_child_discipline_title">Ushauri juu ya namna ya kujenga nidhamu kwa mtoto (MMMM) ({0})</string>
+    <string name="ccd_introduction_title"><b>MMMAM: </b>Malezi, Makuzi na Maendeleo ya mtoto ({0})</string>
+    <string name="ccd_caregiver_responsiveness"><b>MMMAM: </b>: Muitikio wa mlezi kwa ishara na sauti za mtoto</string>
+    <string name="ccd_child_discipline_title"><b>MMMAM: </b>Ushauri juu ya namna ya kujenga nidhamu kwa mtoto ({0})</string>
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
     <string name="child_home_visit_pmtct">Kuzuia maambukizi ya Virusi vya Ukimwi kutoka kwa mama kwenda kwa mtoto</string>
 
