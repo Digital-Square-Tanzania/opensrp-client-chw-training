@@ -93,7 +93,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "Hitilafu! Jawabu linahitajika"
+          "err": "Tafadhali chagua chaguo moja"
         }
       },
       {
@@ -130,21 +130,21 @@
           },
           {
             "key": "chk_sounds_and_gestures",
-            "text": "Responds to child’s sounds and gestures to get child to smile",
+            "text": "naigiza sauti na vitendo vya mtoto ili kupata tabasamu la mtoto",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_sounds_and_gestures"
           },
           {
             "key": "chk_force_smile",
-            "text": "Tries to force the smile/ does not talk/does nothing to make the child smile",
+            "text": "Anajaribu kulazimisha tabasamu au haongei/hafanyi chochote kufanya mtoto atabasamu",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_force_smile"
           },
           {
             "key": "chk_child_asleep",
-            "text": "Child asleep",
+            "text": "Mtoto amelala",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_child_asleep"
@@ -152,7 +152,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Hitilafu! Jawabu linahitajika"
+          "err": "Tafadhali chagua angalau moja"
         }
       },
       {
@@ -249,7 +249,9 @@
         "text": "Taarifa kwa MJA: Sema, \"Wasiliana na mtoto wako wakati wote unapokuwa naye! Mahusiano yenu ya kila siku yanaweza kuwa na mchango mkubwa kwa mtoto kujifunza sauti mpya, maneno na lugha kwa ujumla\".\nTaarifa za MJA: Bofya kitufe cha taarifa (kitufe chenye alama ya mshangao) ili kuona hatua unayohitaji kufuata ili kuelezea shughuli kwa mama/baba au mlezi.",
         "text_color": "#2D2E2D",
         "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "label_info_title": "Maelekezo kwa MJA",
+        "label_info_text": "-Muonyeshe mama/mlezi picha na ueleze shughuli (moja baada ya nyingine).\n- Acha mama/mlezi ajaribu shughuli.\n- Angalia mwingiliano na umsaidie mama/mlezi na mtoto kuwa na mwingiliano wenye mafanikio wa pande mbili. Mlezi LAZIMA azingatie, asikilize, na ajibu dalili za mtoto.\n- Iwapo mtoto hawezi kufanya shughuli, chagua kutoka katika kundi la umri mdogo au pendekeza njia za kurahisisha mchezo. Ikiwa mtoto yuko katika kiwango cha mwisho cha umri na anaweza kwa urahisi, pendekeza njia za kufanya shughuli ngumu zaidi au uchague shughuli kutoka kwa safu inayofuata ya wazee.\n- Mhimize mama/mlezi kuendelea kujihusisha na shughuli za kucheza katika utaratibu wao wa kila siku."
       },
       {
         "key": "spacer",
