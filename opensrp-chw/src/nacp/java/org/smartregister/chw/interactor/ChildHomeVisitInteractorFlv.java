@@ -378,11 +378,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluatePlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
-        if (serviceWrapper == null) return;
-
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.PLAY_ASSESSMENT_COUNSELLING);
 
@@ -391,7 +386,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
-                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper))
+                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""), action);
     }
@@ -516,11 +511,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateDevelopmentScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
-        if (serviceWrapper == null) return;
+//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
+//        if (serviceWrapper == null) return;
 
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+//        Alert alert = serviceWrapper.getAlert();
+//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.DEVELOPMENT_SCREENING_AND_ASSESSMENT);
 
@@ -529,7 +524,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
-                .withHelper(new ChildDevelopmentScreeningActionHelper(null,serviceWrapper))
+                .withHelper(new ChildDevelopmentScreeningActionHelper(null,null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }
