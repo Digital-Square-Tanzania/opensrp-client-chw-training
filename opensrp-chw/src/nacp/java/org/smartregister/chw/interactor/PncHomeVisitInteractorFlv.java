@@ -101,7 +101,6 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateDangerSignsMother();
             for (Person baby : children) {
                 evaluateDangerSignsBaby(baby);
-                evaluateCCDCommunicationAssessment(baby);
             }
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -133,7 +132,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateCCDIntroduction(baby);
             evaluateDevelopmentScreening(baby);
             evaluatePlayAssessmentCounseling(baby);
-//            evaluateCCDCommunicationAssessment(baby);
+            evaluateCCDCommunicationAssessment(baby);
         }
     }
 
