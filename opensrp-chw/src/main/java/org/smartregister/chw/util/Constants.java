@@ -105,6 +105,7 @@ public class Constants extends CoreConstants {
         private static final String ICCM_PNEUMONIA = "iccm_pneumonia";
         private static final String ICCM_DIARRHEA = "iccm_diarrhea";
         private static final String CHILD_HV_MALNUTRITION_SCREENING = "child_hv_malnutrition_screening";
+        private static final String CHILD_HV_COMMUNICATION_ASSESSMENT_COUNSELLING = "child_hv_communication_assessment";
 
         public static final String SKIN_TO_SKIN = "child_skin_to_skin";
         public static final String CHILD_HV_COMP_FEEDING = "child_complementary_feeding";
@@ -198,8 +199,13 @@ public class Constants extends CoreConstants {
             return CHILD_HV_COMP_FEEDING;
         }
 
+<<<<<<< HEAD
         public static String getChildHvPmtct() {
             return CHILD_HV_PMTCT;
+=======
+        public static String getChildHvCommunicationAssessmentCounselling() {
+            return CHILD_HV_COMMUNICATION_ASSESSMENT_COUNSELLING;
+>>>>>>> ecd-main-impl
         }
     }
 
@@ -217,6 +223,7 @@ public class Constants extends CoreConstants {
         public static final String KVP_PREP_FOLLOWUP_VISIT = "Kvp PrEP Follow-up Visit";
         public static final String PLAY_ASSESSMENT_COUNSELLING= "Play Assessment and Counselling";
         public static final String DEVELOPMENT_SCREENING_AND_ASSESSMENT = "Development Screening and Assessment";
+        public static final String COMMUNICATION_ASSESSMENT_COUNSELLING= "Communication Assessment and Counselling";
     }
 
     public static final class ActionList {
