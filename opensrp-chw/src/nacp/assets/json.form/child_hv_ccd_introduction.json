@@ -87,18 +87,6 @@
         "toaster_type": "info"
       },
       {
-        "key": "topic_21_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "topic_21_bango_kitita",
-        "type": "label",
-        "text": "Please refer to Topic 21 in Bango Kitita to explain the activity.",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
-      },
-      {
         "key": "spacer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -116,18 +104,6 @@
         "toaster_type": "info"
       },
       {
-        "key": "topic_5_7_9_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "topic_5_7_9_bango_kitita",
-        "type": "label",
-        "text": "Please refer to Page 5, Page 7 and Page 9 in Kizazi Kijacho Bango Kitita to explain the activities.",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
-      },
-      {
         "key": "spacer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -143,18 +119,6 @@
         "type": "toaster_notes",
         "text": "CHW information: READ IN EVERY VISIT: Say \"Here are some important things you can do to help the child to feel loved, safe, and happy.\"",
         "toaster_type": "info"
-      },
-      {
-        "key": "topic_11_13_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "topic_11_13_bango_kitita",
-        "type": "label",
-        "text": "Please refer to Page 11 and Page 13 in Kizazi Kijacho Bango Kitita to explain IF this is the first time the activity is introduced to the PC or to reinforce the activities.",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
       }
     ]
   }
