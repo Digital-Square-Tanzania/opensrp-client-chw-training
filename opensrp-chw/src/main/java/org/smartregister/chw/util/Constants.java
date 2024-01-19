@@ -199,13 +199,11 @@ public class Constants extends CoreConstants {
             return CHILD_HV_COMP_FEEDING;
         }
 
-<<<<<<< HEAD
         public static String getChildHvPmtct() {
             return CHILD_HV_PMTCT;
-=======
+        }
         public static String getChildHvCommunicationAssessmentCounselling() {
             return CHILD_HV_COMMUNICATION_ASSESSMENT_COUNSELLING;
->>>>>>> ecd-main-impl
         }
     }
 
