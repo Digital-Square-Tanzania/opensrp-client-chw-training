@@ -553,5 +553,6 @@
     <string name="child_safety">Child Safety</string>
     <string name="ccd_introduction_subtitle">Child behaviour and development</string>
     <string name="ccd_introduction_title">Care for child development (CCD): Introduction ({0})</string>
+    <string name="child_home_visit_pmtct">Prevention of Mother to Child transmission of HIV (PMTCT)</string>
 
 </resources>

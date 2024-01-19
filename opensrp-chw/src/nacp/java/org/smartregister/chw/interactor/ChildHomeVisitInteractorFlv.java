@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ChildPMTCTActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
@@ -53,6 +54,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
+            evaluateChildPMTCT();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -508,5 +510,20 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(new ChildDevelopmentScreeningActionHelper(null,serviceWrapper))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
+    }
+
+    private void evaluateChildPMTCT() throws Exception {
+
+        String title  = context.getString(R.string.child_home_visit_pmtct);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvPmtct())
+                .withHelper(new ChildPMTCTActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(title, childPmtctAction);
     }
 }
