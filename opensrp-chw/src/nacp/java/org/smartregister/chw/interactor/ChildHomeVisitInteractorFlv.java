@@ -11,11 +11,8 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-<<<<<<< HEAD
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
-=======
 import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
->>>>>>> ccd-child-discipline
 import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
@@ -58,11 +55,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
-<<<<<<< HEAD
             evaluateCareGiverResponsiveness(serviceWrapperMap);
-=======
             evaluateCCDChildDiscipline(serviceWrapperMap);
->>>>>>> ccd-child-discipline
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
