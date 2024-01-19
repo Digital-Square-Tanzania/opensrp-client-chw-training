@@ -11,25 +11,28 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
-import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
+import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
+import org.smartregister.chw.actionhelper.ChildCommunicationAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
-import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
-import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
-import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
+import org.smartregister.chw.actionhelper.ChildPMTCTActionHelper;
 import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHelper;
+import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
+import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.core.domain.Person;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
+import org.smartregister.util.DateUtil;
 
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +60,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCompFeeding(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
+            evaluateChildPMTCT();
+            evaluateCCDCommunicationAssessment();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -483,6 +488,20 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(title, childSafetyAction);
     }
+
+    private void evaluateCCDCommunicationAssessment() throws Exception {
+        Map<String, List<VisitDetail>> details = getDetails(Constants.Events.COMMUNICATION_ASSESSMENT_COUNSELLING);
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""))
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
+                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob)))
+                .build();
+        actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""), action);
+    }
+
     private void evaluateCCDIntroduction() throws Exception {
         String title = context.getString(R.string.ccd_introduction_title);
         title = title.replace("({0})", "");
@@ -495,6 +514,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(title, action);
     }
+
     private void evaluateDevelopmentScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
         if (serviceWrapper == null) return;
@@ -548,5 +568,29 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, ccd_child_discipline_action);
+    }
+
+    private void evaluateChildPMTCT() throws Exception {
+        String title = context.getString(R.string.child_home_visit_pmtct);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvPmtct())
+                .withHelper(new ChildPMTCTActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(title, childPmtctAction);
+    }
+
+    protected int getChildAgeInMonth(Date dob) {
+        String childAge = DateUtil.getDuration(new DateTime(dob));
+        int childAgeInMonth = -1;
+        if (childAge.contains("m")) {
+            String childMonth = childAge.substring(0, childAge.indexOf("m"));
+            childAgeInMonth =  Integer.parseInt(childMonth);
+        }
+        return childAgeInMonth;
     }
 }
