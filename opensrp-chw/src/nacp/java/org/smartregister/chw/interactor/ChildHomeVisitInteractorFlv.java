@@ -11,7 +11,11 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+<<<<<<< HEAD
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
+=======
+import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
+>>>>>>> ccd-child-discipline
 import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
@@ -54,7 +58,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
+<<<<<<< HEAD
             evaluateCareGiverResponsiveness(serviceWrapperMap);
+=======
+            evaluateCCDChildDiscipline(serviceWrapperMap);
+>>>>>>> ccd-child-discipline
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -514,31 +522,37 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     protected void evaluateCareGiverResponsiveness(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
 
-//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Caregiver Responsiveness");
-//        if (serviceWrapper == null) return;
-
-//        Alert alert = serviceWrapper.getAlert();
-//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
-
-//        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
-//        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
-
         CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(null);
 
         String title = context.getString(R.string.ccd_caregiver_responsiveness);
 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(actionHelper)
-//                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withDetails(details)
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-//                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withFormName(Constants.JsonForm.getChildHvCcdCareGiverResponsiveness())
                 .build();
-
         actionList.put(title, action);
+    }
+
+    private void evaluateCCDChildDiscipline(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        String title = context.getString(R.string.ccd_child_discipline_title);
+        title = title.replace("({0})", "");
+        CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context, null);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdChildDisciplineAction)
+                .build();
+
+        actionList.put(title, ccd_child_discipline_action);
     }
 }
