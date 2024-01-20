@@ -170,7 +170,14 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "toaster_type": "info",
-        "text": "Tafadhali rejea ukurasa wa KUJUA MAENDELEO YA AWALI YA MTOTO katika Bango Kitita ya Malezi."
+        "text": "Tafadhali rejea ukurasa wa KUJUA MAENDELEO YA AWALI YA MTOTO katika Bango Kitita ya Malezi.",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_development_screening_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }

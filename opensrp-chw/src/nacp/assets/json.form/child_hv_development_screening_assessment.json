@@ -110,13 +110,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_development_screening_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -160,14 +153,7 @@
         "text": "CHW information: Say, \"I would show you now the Developmental Milestones which are age-specific tasks or skills that most children can do at certain ages. Remember that if baby is a little ahead or a little behind at a certain age - this is normal. Every infant is different. Check in with your pediatrician about questions or concerns you have\". ",
         "text_color": "#2D2E2D",
         "label_text_style": "italic",
-        "has_bg": true,
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_development_screening_relevance.yml"
-            }
-          }
-        }
+        "has_bg": true
       },
       {
         "key": "spacer",

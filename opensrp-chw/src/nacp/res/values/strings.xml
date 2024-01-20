@@ -191,11 +191,12 @@
 
     <string name="pnc_newborn_care_introduction">Essential New Born Care: Introduction ({0})</string>
     <string name="baby_premature">Baby premature/underweight</string>
-    <string name="pnc_child_play_assessment_counselling">Play Assessment and Counselling {0}</string>
+    <string name="pnc_child_play_assessment_counselling">CCD: Play Assessment and Counselling {0}</string>
     <string name="bango_kitita_one_page">Page %s</string>
     <string name="bango_kitita_two_pages">Page %s and Page %s</string>
     <string name="bango_kitita_message">Please refer to the following pages in Bango Kitita to explain the activities depending on the child\'s age</string>
-    <string name="pnc_child_development_screening_assessment">Child development screening assessment {0}</string>
+    <string name="pnc_child_development_screening_assessment">CCD: Child development screening assessment {0}</string>
+    <string name="pnc_child_communication_assessment">CCD: Communication Assessment and Counselling {0}</string>
   
     <!---KVP/PrEP Strings -->
     <string name="kvp_prep_visit_type">Visit Type</string>
@@ -548,13 +549,14 @@
 
     <string name="last_appointment_date">Last Appointment date</string>
 
-    <string name="child_problem_solving">Problem Solving</string>
+    <string name="child_problem_solving">CCD: Problem Solving</string>
     <string name="child_problem_solving_task">Playing and Communicating challenge</string>
     <string name="child_safety">Child Safety</string>
     <string name="ccd_introduction_subtitle">Child behaviour and development</string>
-    <string name="ccd_introduction_title">Care for child development (CCD): Introduction ({0})</string>
+    <string name="ccd_introduction_title">CCD: Introduction ({0})</string>
+    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
     <string name="ccd_child_discipline_title">CCD: Child Discipline Assessment and Counselling ({0})</string>
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
-
+    <string name="child_home_visit_pmtct">Prevention of Mother to Child transmission of HIV (PMTCT)</string>
 
 </resources>
