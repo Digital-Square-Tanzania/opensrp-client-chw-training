@@ -6,25 +6,25 @@ import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
+import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ChildCommunicationAssessmentCounselingActionHelper;
-import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
-import org.smartregister.chw.actionhelper.ChildPMTCTActionHelper;
-import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
-import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
-import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ChildHVChildSafetyActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
+import org.smartregister.chw.actionhelper.ChildPMTCTActionHelper;
 import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHelper;
+import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
+import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.core.domain.Person;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
@@ -52,14 +52,16 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateNutritionStatus();
             evaluateObsAndIllness();
             evaluateMalnutritionScreening(serviceWrapperMap);
-            evaluateProblemSolving();
             evaluateChildSafety(serviceWrapperMap);
-            evaluateCCDIntroduction();
-            evaluatePlayAssessmentCounseling(serviceWrapperMap);
-            evaluateDevelopmentScreening(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
             evaluateChildPMTCT();
+            evaluateCCDIntroduction();
+            evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateCCDCommunicationAssessment();
+            evaluateCareGiverResponsiveness(serviceWrapperMap);
+            evaluateCCDChildDiscipline(serviceWrapperMap);
+            evaluateProblemSolving();
+            evaluateDevelopmentScreening(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -376,11 +378,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluatePlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
-        if (serviceWrapper == null) return;
-
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.PLAY_ASSESSMENT_COUNSELLING);
 
@@ -389,7 +386,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
-                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper))
+                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""), action);
     }
@@ -512,12 +509,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(title, action);
     }
-    private void evaluateDevelopmentScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
-        if (serviceWrapper == null) return;
 
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+    private void evaluateDevelopmentScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
+//        if (serviceWrapper == null) return;
+
+//        Alert alert = serviceWrapper.getAlert();
+//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.DEVELOPMENT_SCREENING_AND_ASSESSMENT);
 
@@ -526,13 +524,48 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
-                .withHelper(new ChildDevelopmentScreeningActionHelper(null,serviceWrapper))
+                .withHelper(new ChildDevelopmentScreeningActionHelper(null,null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }
 
-    private void evaluateChildPMTCT() throws Exception {
+    protected void evaluateCareGiverResponsiveness(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
 
+        CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(null);
+
+        String title = context.getString(R.string.ccd_caregiver_responsiveness);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(Constants.JsonForm.getChildHvCcdCareGiverResponsiveness())
+                .build();
+        actionList.put(title, action);
+    }
+
+    private void evaluateCCDChildDiscipline(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        String title = context.getString(R.string.ccd_child_discipline_title);
+        title = title.replace("({0})", "");
+        CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context, null);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdChildDisciplineAction)
+                .build();
+
+        actionList.put(title, ccd_child_discipline_action);
+    }
+
+    private void evaluateChildPMTCT() throws Exception {
         String title = context.getString(R.string.child_home_visit_pmtct);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
@@ -545,6 +578,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(title, childPmtctAction);
     }
+
     protected int getChildAgeInMonth(Date dob) {
         String childAge = DateUtil.getDuration(new DateTime(dob));
         int childAgeInMonth = -1;

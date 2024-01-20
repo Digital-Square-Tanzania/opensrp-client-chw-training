@@ -115,6 +115,10 @@ public class Constants extends CoreConstants {
         private static final String CHILD_HV_CCD_INTRODUCTION = "child_hv_ccd_introduction";
         private static final String CHILD_HV_PMTCT = "child_hv_pmtct";
 
+        private static final String CHILD_HV_CCD_CARE_GIVER_RESPONSIVENESS = "child_hv_caregiver_responsiveness";
+
+        private static final String CHILD_HV_CCD_CHILD_DISCIPLINE = "child_hv_ccd_child_discipline";
+
         public static String getCbhsRegistrationForm() {
             return CBHS_REGISTRATION_FORM;
         }
@@ -199,9 +203,18 @@ public class Constants extends CoreConstants {
             return CHILD_HV_COMP_FEEDING;
         }
 
+        public static String getChildHvCcdCareGiverResponsiveness() {
+            return CHILD_HV_CCD_CARE_GIVER_RESPONSIVENESS;
+        }
+
+        public static String getChildHvCcdChildDiscipline() {
+            return CHILD_HV_CCD_CHILD_DISCIPLINE;
+        }
+
         public static String getChildHvPmtct() {
             return CHILD_HV_PMTCT;
         }
+
         public static String getChildHvCommunicationAssessmentCounselling() {
             return CHILD_HV_COMMUNICATION_ASSESSMENT_COUNSELLING;
         }
