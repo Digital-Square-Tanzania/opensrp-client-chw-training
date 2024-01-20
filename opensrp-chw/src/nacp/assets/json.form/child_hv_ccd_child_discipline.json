@@ -256,7 +256,7 @@
         "openmrs_entity_id": "household_enviro_harsh_counselling",
         "type": "toaster_notes",
         "toaster_type": "warning",
-        "text": "CHW information: Say, \"Children take their cues from parents. Try to control your own stress and anger:\\n\\n\\\n  Keep children out of the argument.\\n\\",
+        "text": "CHW information: Say, \"Children take their cues from parents. Try to control your own stress and anger: Keep children out of the argument\".",
         "text_color": "#000000"
       }
 
