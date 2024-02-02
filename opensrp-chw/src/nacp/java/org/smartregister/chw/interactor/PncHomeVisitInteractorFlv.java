@@ -125,6 +125,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         for (Person baby : children) {
 //                evaluateDangerSignsBaby(baby);
             evaluateNewBornCareIntroduction(baby);
+            evaluateCordCare(baby);
             evaluateImmunization(baby);
             evaluateExclusiveBreastFeeding(baby);
             evaluateNutritionStatusBaby(baby);
@@ -864,6 +865,21 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 otherActionTitles.add(MessageFormat.format(context.getString(R.string.pnc_immunization_at_birth), baby.getFullName()));
 
             }
+        }
+    }
+
+    private void evaluateCordCare(Person baby) throws Exception {
+        String visitID = pncVisitAlertRule().getVisitID();
+
+        if (visitID.equalsIgnoreCase("1") || visitID.equalsIgnoreCase("3") || visitID.equalsIgnoreCase("8")){
+            BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()))
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withBaseEntityID(baby.getBaseEntityID())
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                    .withFormName(Constants.JsonForm.getChildHvCordCare())
+                    .build();
+            actionList.put(MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()), action);
         }
     }
 

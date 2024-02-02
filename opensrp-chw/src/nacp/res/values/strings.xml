@@ -197,7 +197,8 @@
     <string name="bango_kitita_message">Please refer to the following pages in Bango Kitita to explain the activities depending on the child\'s age</string>
     <string name="pnc_child_development_screening_assessment">CCD: Child development screening assessment {0}</string>
     <string name="pnc_child_communication_assessment">CCD: Communication Assessment and Counselling {0}</string>
-  
+    <string name="pnc_cord_care">Essential Newborn Care: Cord Care ({0})</string>
+
     <!---KVP/PrEP Strings -->
     <string name="kvp_prep_visit_type">Visit Type</string>
     <string name="kvp_prep_sbcc_services">SBCC Services</string>
