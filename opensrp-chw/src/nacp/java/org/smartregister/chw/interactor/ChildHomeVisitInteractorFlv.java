@@ -59,7 +59,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluatePlayAssessmentCounseling();
             evaluateCCDCommunicationAssessment();
             evaluateCareGiverResponsiveness();
-            evaluateCCDChildDiscipline(serviceWrapperMap);
+            evaluateCCDChildDiscipline();
             evaluateProblemSolving();
             evaluateDevelopmentScreening();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -542,7 +542,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, action);
     }
 
-    private void evaluateCCDChildDiscipline(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+    private void evaluateCCDChildDiscipline() throws Exception {
         String title = context.getString(R.string.ccd_child_discipline_title);
         title = title.replace("({0})", "");
         CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context);
