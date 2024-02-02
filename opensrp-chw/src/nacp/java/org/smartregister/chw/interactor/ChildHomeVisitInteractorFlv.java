@@ -56,12 +56,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCompFeeding(serviceWrapperMap);
             evaluateChildPMTCT();
             evaluateCCDIntroduction();
-            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluatePlayAssessmentCounseling();
             evaluateCCDCommunicationAssessment();
-            evaluateCareGiverResponsiveness(serviceWrapperMap);
+            evaluateCareGiverResponsiveness();
             evaluateCCDChildDiscipline(serviceWrapperMap);
             evaluateProblemSolving();
-            evaluateDevelopmentScreening(serviceWrapperMap);
+            evaluateDevelopmentScreening();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -377,7 +377,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.child_problem_solving), action);
     }
 
-    private void evaluatePlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+    private void evaluatePlayAssessmentCounseling() throws Exception {
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.PLAY_ASSESSMENT_COUNSELLING);
 
@@ -510,12 +510,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, action);
     }
 
-    private void evaluateDevelopmentScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-//        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Development Screening and Assessment");
-//        if (serviceWrapper == null) return;
-
-//        Alert alert = serviceWrapper.getAlert();
-//        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+    private void evaluateDevelopmentScreening() throws Exception {
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.DEVELOPMENT_SCREENING_AND_ASSESSMENT);
 
@@ -529,7 +524,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }
 
-    protected void evaluateCareGiverResponsiveness(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
+    protected void evaluateCareGiverResponsiveness() throws BaseAncHomeVisitAction.ValidationException {
 
         CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(null);
 
