@@ -18,21 +18,16 @@ import timber.log.Timber;
 public class CCDChildDisciplineActionHelper extends HomeVisitActionHelper {
 
     private Context context;
-    private Alert alert;
     private String correctingChild = "";
     private String correctingChildKeySelected = "";
-    private String jsonPayload;
-    String tempCalue = "";
 
-    public CCDChildDisciplineActionHelper(Context context, Alert alert){
-        this.alert = alert;
+    public CCDChildDisciplineActionHelper(Context context){
         this.context = context;
     }
 
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
         this.context = context;
-        this.jsonPayload = jsonString;
     }
 
     @Override
