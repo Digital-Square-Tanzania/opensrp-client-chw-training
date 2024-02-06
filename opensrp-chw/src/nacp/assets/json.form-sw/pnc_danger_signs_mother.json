@@ -151,6 +151,48 @@
             "openmrs_entity_id": "chk_urination"
           },
           {
+            "key": "chk_genitalia_pain",
+            "text": "Maumivu makali sehemu za siri",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_genitalia_pain"
+          },
+          {
+            "key": "chk_pallor",
+            "text": "Kupauka (angalia viganja na mdomo wa mama)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_pallor"
+          },
+          {
+            "key": "chk_breast",
+            "text": "Kuvimba kwa matiti na chuchu zilizo chanika",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_breast"
+          },
+          {
+            "key": "chk_dizziness",
+            "text": "Kizunguzungu",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_dizziness"
+          },
+          {
+            "key": "chk_exhaustion",
+            "text": "Uchovu",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_exhaustion"
+          },
+          {
+            "key": "chk_foot_muscles_pain",
+            "text": "Maumivu makali ya miguu",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_foot_muscles_pain"
+          },
+          {
+            "key": "chk_oedema",
+            "text": "Kuvimba uso, mikono au mwili mzima",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_oedema"
+          },
+          {
             "key": "chk_none",
             "text": "Hakuna",
             "openmrs_entity": "concept",
