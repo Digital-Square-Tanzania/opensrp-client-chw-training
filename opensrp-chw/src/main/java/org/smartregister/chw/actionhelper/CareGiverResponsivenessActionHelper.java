@@ -12,6 +12,7 @@ import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
+import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.util.List;
 import java.util.Map;
@@ -23,10 +24,14 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
     private String caregiver_comfort_child;
     private String caregiver_response_cue;
     private Alert alert;
+    private ServiceWrapper serviceWrapper;
 
-    public CareGiverResponsivenessActionHelper(Alert alert) {
+    public CareGiverResponsivenessActionHelper(Alert alert, ServiceWrapper serviceWrapper) {
         this.alert = alert;
+        this.serviceWrapper = serviceWrapper;
     }
+
+    public CareGiverResponsivenessActionHelper() {}
 
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {

@@ -8,6 +8,7 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +30,14 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
     String jsonString = "";
 
     ServiceWrapper serviceWrapper;
+    Alert alert;
 
-    public MalnutritionScreeningActionHelper(ServiceWrapper serviceWrapper){
+    public MalnutritionScreeningActionHelper(Alert alert, ServiceWrapper serviceWrapper){
         this.serviceWrapper = serviceWrapper;
+        this.alert = alert;
     }
+
+    public MalnutritionScreeningActionHelper(){}
 
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {

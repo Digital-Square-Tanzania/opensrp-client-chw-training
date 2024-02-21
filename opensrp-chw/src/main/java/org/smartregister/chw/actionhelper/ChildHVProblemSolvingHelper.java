@@ -7,6 +7,8 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
+import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
 
@@ -14,7 +16,15 @@ import timber.log.Timber;
 
 public class ChildHVProblemSolvingHelper extends HomeVisitActionHelper {
     private String child_playing_challenge;
+    Alert alert;
+    ServiceWrapper serviceWrapper;
 
+    public ChildHVProblemSolvingHelper() {}
+
+    public ChildHVProblemSolvingHelper(Alert alert, ServiceWrapper serviceWrapper) {
+        this.alert = alert;
+        this.serviceWrapper = serviceWrapper;
+    }
     @Override
     public void onPayloadReceived(String s) {
         try {

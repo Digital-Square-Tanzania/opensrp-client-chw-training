@@ -11,6 +11,8 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
+import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,15 @@ public class ChildCommunicationAssessmentCounselingActionHelper extends HomeVisi
     private String communicatesWithChild = "";
 
     private String communicatesWithChildObservation = "";
+
+    private Alert alert;
+    private ServiceWrapper serviceWrapper;
+
+    public ChildCommunicationAssessmentCounselingActionHelper(int ageInMonth, Alert alert, ServiceWrapper serviceWrapper) {
+        this.ageInMonth = ageInMonth;
+        this.serviceWrapper = serviceWrapper;
+        this.alert = alert;
+    }
 
     public ChildCommunicationAssessmentCounselingActionHelper(int ageInMonth) {
         this.ageInMonth = ageInMonth;

@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
+import org.smartregister.immunization.domain.ServiceWrapper;
 
 public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
     String hiv_test = "";
@@ -12,10 +14,21 @@ public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
     String taking_art = "";
     String hiv_status = "";
 
+    Alert alert;
+    ServiceWrapper serviceWrapper;
+
     @Override
     public String evaluateSubTitle() {
         return null;
     }
+
+    public ChildPMTCTActionHelper() {}
+
+    public ChildPMTCTActionHelper(Alert alert, ServiceWrapper serviceWrapper) {
+        this.alert = alert;
+        this.serviceWrapper = serviceWrapper;
+    }
+
 
     @Override
     public void onPayloadReceived(String jsonPayload) {

@@ -10,6 +10,7 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.util.HashMap;
@@ -25,17 +26,24 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
 
     private final ServiceWrapper serviceWrapper;
 
+    private Alert alert;
+
     private String jsonString;
 
     private final Map<String, Boolean> visitNumberMap = new HashMap<>();
 
     private String child_development_issues;
 
+    public ChildDevelopmentScreeningActionHelper(String visitId, ServiceWrapper serviceWrapper, Alert alert) {
+        this.visitId = visitId;
+        this.serviceWrapper = serviceWrapper;
+        this.alert = alert;
+    }
+
     public ChildDevelopmentScreeningActionHelper(String visitId, ServiceWrapper serviceWrapper) {
         this.visitId = visitId;
         this.serviceWrapper = serviceWrapper;
     }
-
     @Override
     public void onPayloadReceived(String jsonPayload) {
         try {

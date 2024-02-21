@@ -11,6 +11,7 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
@@ -35,10 +36,13 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     private String spend_time_with;
 
-    public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
+    Alert alert;
+
+    public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper, Alert alert) {
         this.context = context;
         this.visitId = visitId;
         this.serviceWrapper = serviceWrapper;
+        this.alert = alert;
     }
 
     @Override
