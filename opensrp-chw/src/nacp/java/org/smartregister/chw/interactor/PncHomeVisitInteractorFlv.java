@@ -1123,7 +1123,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
-                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, visitID, null, null))
+                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, visitID, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "(" + baby.getFullName() + ")"), action);
     }

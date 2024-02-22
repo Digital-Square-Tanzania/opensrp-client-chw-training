@@ -16,15 +16,7 @@ import timber.log.Timber;
 
 public class ChildHVProblemSolvingHelper extends HomeVisitActionHelper {
     private String child_playing_challenge;
-    Alert alert;
-    ServiceWrapper serviceWrapper;
-
     public ChildHVProblemSolvingHelper() {}
-
-    public ChildHVProblemSolvingHelper(Alert alert, ServiceWrapper serviceWrapper) {
-        this.alert = alert;
-        this.serviceWrapper = serviceWrapper;
-    }
     @Override
     public void onPayloadReceived(String s) {
         try {

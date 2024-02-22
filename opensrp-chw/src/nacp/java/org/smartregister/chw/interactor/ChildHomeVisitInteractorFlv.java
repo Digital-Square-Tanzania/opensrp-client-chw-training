@@ -316,7 +316,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
-        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(context, serviceWrapper, alert);
+        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper();
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
@@ -349,7 +349,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper(alert, serviceWrapper);
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         String title = context.getString(R.string.malnutrition_screening);
@@ -381,7 +381,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(Constants.JsonForm.getChildHvProblemSolvingForm())
-                .withHelper(new ChildHVProblemSolvingHelper(alert, serviceWrapper))
+                .withHelper(new ChildHVProblemSolvingHelper())
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
@@ -407,7 +407,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper, alert))
+                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper))
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
@@ -490,7 +490,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        ChildHVChildSafetyActionHelper childHVChildSafetyActionHelper = new ChildHVChildSafetyActionHelper(serviceWrapper, alert);
+        ChildHVChildSafetyActionHelper childHVChildSafetyActionHelper = new ChildHVChildSafetyActionHelper();
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         String title = context.getString(R.string.child_safety);
@@ -525,7 +525,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob), alert, serviceWrapper))
+                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob)))
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
@@ -549,7 +549,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildDevelopmentScreeningActionHelper(null, serviceWrapper, alert))
+                .withHelper(new ChildDevelopmentScreeningActionHelper(null, serviceWrapper))
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
@@ -567,7 +567,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(alert, serviceWrapper);
+        CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(alert);
 
         String title = context.getString(R.string.ccd_caregiver_responsiveness);
 
@@ -595,7 +595,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         String title = context.getString(R.string.ccd_child_discipline_title);
         title = title.replace("({0})", "");
-        CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context, alert, serviceWrapper);
+        CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
@@ -628,7 +628,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Constants.JsonForm.getChildHvPmtct())
-                .withHelper(new ChildPMTCTActionHelper(alert, serviceWrapper))
+                .withHelper(new ChildPMTCTActionHelper())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
@@ -648,7 +648,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        ChildHVSkinToSkinActionHelper actionHelper = new ChildHVSkinToSkinActionHelper(context, alert);
+        ChildHVSkinToSkinActionHelper actionHelper = new ChildHVSkinToSkinActionHelper();
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin))
                 .withOptional(false)
                 .withDetails(details)

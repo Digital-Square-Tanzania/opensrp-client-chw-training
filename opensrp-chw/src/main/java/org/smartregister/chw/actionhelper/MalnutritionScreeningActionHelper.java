@@ -29,14 +29,6 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     String jsonString = "";
 
-    ServiceWrapper serviceWrapper;
-    Alert alert;
-
-    public MalnutritionScreeningActionHelper(Alert alert, ServiceWrapper serviceWrapper){
-        this.serviceWrapper = serviceWrapper;
-        this.alert = alert;
-    }
-
     public MalnutritionScreeningActionHelper(){}
 
     @Override

@@ -31,12 +31,6 @@ public class ChildCommunicationAssessmentCounselingActionHelper extends HomeVisi
     private Alert alert;
     private ServiceWrapper serviceWrapper;
 
-    public ChildCommunicationAssessmentCounselingActionHelper(int ageInMonth, Alert alert, ServiceWrapper serviceWrapper) {
-        this.ageInMonth = ageInMonth;
-        this.serviceWrapper = serviceWrapper;
-        this.alert = alert;
-    }
-
     public ChildCommunicationAssessmentCounselingActionHelper(int ageInMonth) {
         this.ageInMonth = ageInMonth;
     }

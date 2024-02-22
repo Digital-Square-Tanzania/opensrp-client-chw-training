@@ -22,17 +22,8 @@ public class CCDChildDisciplineActionHelper extends HomeVisitActionHelper {
     private String correctingChild = "";
     private String correctingChildKeySelected = "";
 
-    private Alert alert;
-    private ServiceWrapper serviceWrapper;
-
     public CCDChildDisciplineActionHelper(Context context){
         this.context = context;
-    }
-
-    public CCDChildDisciplineActionHelper(Context context, Alert alert, ServiceWrapper serviceWrapper){
-        this.context = context;
-        this.serviceWrapper = serviceWrapper;
-        this.alert = alert;
     }
 
     @Override

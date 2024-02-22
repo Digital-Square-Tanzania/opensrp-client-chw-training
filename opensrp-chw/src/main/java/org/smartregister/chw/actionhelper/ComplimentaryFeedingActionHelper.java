@@ -13,11 +13,6 @@ public class ComplimentaryFeedingActionHelper extends HomeVisitActionHelper {
     ServiceWrapper serviceWrapper;
 
     public ComplimentaryFeedingActionHelper(){}
-    public ComplimentaryFeedingActionHelper(Context context, ServiceWrapper serviceWrapper, Alert alert){
-        this.context = context;
-        this.serviceWrapper = serviceWrapper;
-        this.alert = alert;
-    }
 
     @Override
     public void onPayloadReceived(String jsonPayload) {

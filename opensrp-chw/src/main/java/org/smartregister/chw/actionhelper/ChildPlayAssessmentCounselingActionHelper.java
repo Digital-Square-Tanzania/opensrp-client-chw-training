@@ -36,13 +36,10 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     private String spend_time_with;
 
-    Alert alert;
-
-    public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper, Alert alert) {
+    public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
         this.context = context;
         this.visitId = visitId;
         this.serviceWrapper = serviceWrapper;
-        this.alert = alert;
     }
 
     @Override

@@ -13,21 +13,12 @@ public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
     String disclose_status = "";
     String taking_art = "";
     String hiv_status = "";
-
-    Alert alert;
-    ServiceWrapper serviceWrapper;
-
     @Override
     public String evaluateSubTitle() {
         return null;
     }
 
     public ChildPMTCTActionHelper() {}
-
-    public ChildPMTCTActionHelper(Alert alert, ServiceWrapper serviceWrapper) {
-        this.alert = alert;
-        this.serviceWrapper = serviceWrapper;
-    }
 
 
     @Override

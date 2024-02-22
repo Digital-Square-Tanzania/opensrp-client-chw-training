@@ -13,16 +13,8 @@ import timber.log.Timber;
 
 public class ChildHVSkinToSkinActionHelper  extends HomeVisitActionHelper {
     private String skin_to_skin;
-    private Context context;
 
-    private final Alert alert;
-
-    public ChildHVSkinToSkinActionHelper(Context context, Alert alert){
-        this.context = context;
-        this.alert = alert;
-    }
-
-    public void ChildHVSkinToSkinActionHelper(){}
+    public ChildHVSkinToSkinActionHelper(){}
 
     @Override
     public void onPayloadReceived(String jsonString) {

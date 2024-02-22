@@ -24,11 +24,9 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
     private String caregiver_comfort_child;
     private String caregiver_response_cue;
     private Alert alert;
-    private ServiceWrapper serviceWrapper;
 
-    public CareGiverResponsivenessActionHelper(Alert alert, ServiceWrapper serviceWrapper) {
+    public CareGiverResponsivenessActionHelper(Alert alert) {
         this.alert = alert;
-        this.serviceWrapper = serviceWrapper;
     }
 
     public CareGiverResponsivenessActionHelper() {}
