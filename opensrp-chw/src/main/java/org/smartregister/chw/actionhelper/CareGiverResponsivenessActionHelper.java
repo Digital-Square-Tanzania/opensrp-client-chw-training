@@ -12,7 +12,6 @@ import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
-import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.util.List;
 import java.util.Map;

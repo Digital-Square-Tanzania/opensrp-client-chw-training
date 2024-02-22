@@ -8,8 +8,6 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
-import org.smartregister.domain.Alert;
-import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
 import java.util.List;
