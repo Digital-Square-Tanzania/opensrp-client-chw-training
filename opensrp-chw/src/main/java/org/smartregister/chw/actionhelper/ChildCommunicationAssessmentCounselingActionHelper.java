@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;

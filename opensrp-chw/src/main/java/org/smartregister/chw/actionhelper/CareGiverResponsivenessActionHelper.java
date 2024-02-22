@@ -28,6 +28,8 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
         this.alert = alert;
     }
 
+    public CareGiverResponsivenessActionHelper() {}
+
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
         super.onJsonFormLoaded(jsonString, context, details);

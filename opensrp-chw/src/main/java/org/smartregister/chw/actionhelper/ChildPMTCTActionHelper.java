@@ -11,11 +11,13 @@ public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
     String disclose_status = "";
     String taking_art = "";
     String hiv_status = "";
-
     @Override
     public String evaluateSubTitle() {
         return null;
     }
+
+    public ChildPMTCTActionHelper() {}
+
 
     @Override
     public void onPayloadReceived(String jsonPayload) {

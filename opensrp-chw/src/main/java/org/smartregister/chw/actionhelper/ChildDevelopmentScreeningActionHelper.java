@@ -22,13 +22,9 @@ import timber.log.Timber;
 
 public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper {
     private final String visitId;
-
     private final ServiceWrapper serviceWrapper;
-
     private String jsonString;
-
     private final Map<String, Boolean> visitNumberMap = new HashMap<>();
-
     private String child_development_issues;
 
     public ChildDevelopmentScreeningActionHelper(String visitId, ServiceWrapper serviceWrapper) {
