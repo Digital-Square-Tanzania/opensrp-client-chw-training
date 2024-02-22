@@ -145,6 +145,48 @@
             "openmrs_entity_id": "chk_lethargy"
           },
           {
+            "key": "chk_hypothermia",
+            "text": "Mwili kuwa wabaridi au joto kuliko kawaida",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_hypothermia"
+          },
+          {
+            "key": "chk_sensory_stimulus",
+            "text": "Kutocheza au kuonyesha kuhisi pale anapoguswa au kuongeleshwa",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_sensory_stimulus"
+          },
+          {
+            "key": "chk_chest_drawing",
+            "text": "Kubonyea kwa kifua",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_chest_drawing"
+          },
+          {
+            "key": "chk_cyanosis",
+            "text": "Midomo yenye rangi ya bluu",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_cyanosis"
+          },
+          {
+            "key": "chk_pass_urine_stool",
+            "text": "Kutokukojoa au kutoa choo kwa zaidi ya siku moja",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_pass_urine_stool"
+          },
+          {
+            "key": "chk_bulging_anterior_fontanel",
+            "text": "kuvimba utosi",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_bulging_anterior_fontanel"
+          },
+          {
+            "key": "chk_excessive_vomiting",
+            "text": "Kutapika sana",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_excessive_vomiting"
+          },
+          {
             "key": "chk_none",
             "text": "Hakuna",
             "openmrs_entity": "concept",

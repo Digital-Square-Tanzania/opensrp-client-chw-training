@@ -166,6 +166,7 @@ public class Constants extends CoreConstants {
       
         public static String getChildHvDevelopmentScreeningAssessment() {
             return CHILD_HV_DEVELOPMENT_SCREENING_ASSESSMENT;
+        }
 
         public static String getChildHvCordCare() {
             return CHILD_HV_CORD_CARE;
