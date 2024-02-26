@@ -57,8 +57,6 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-//        String CAREGIVER_INTERACTING_WITH_CHILD = "Moves toward and with child, and talks to or makes sounds with child, responds to child";
-//        String CAREGIVER_RESPONDS_TO_CUES = "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely";
         if (StringUtils.isBlank(caregiver_comfort_child) || StringUtils.isBlank(caregiver_interacts_with_child) || StringUtils.isBlank(caregiver_response_cue)) {
             return BaseAncHomeVisitAction.Status.PENDING;
         } else if (caregiver_interacts_with_child.equalsIgnoreCase("responds_to_child") &&
