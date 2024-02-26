@@ -89,6 +89,28 @@
         "label_text_style": "italic",
         "has_bg": true,
         "bg_color": "#f595df"
+      },
+      {
+        "key": "comp_feed_counselling_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Was the mother counselled on complimentary feeding?",
+        "label_info_text": "Was the mother counselled on complimentary feeding?",
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "This value is required"
+        }
       }
     ]
   }
