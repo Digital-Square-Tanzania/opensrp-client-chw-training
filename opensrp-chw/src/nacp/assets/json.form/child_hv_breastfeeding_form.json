@@ -115,7 +115,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Advice the mother on the importance of breastfeeding the child (Refer to Bango Kitita, Breast feeding module)",
+        "text": "Advice the mother on the importance of breastfeeding the child (Refer to Bango Kitita 16, Breast feeding module)",
         "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
