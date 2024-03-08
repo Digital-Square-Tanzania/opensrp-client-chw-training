@@ -2,7 +2,7 @@
 name: step1_caregiver_interaction_praise
 description: caregiver_interaction_praise toaster message
 priority: 1
-condition: "step1_caregiver_interacts_with_child.contains('responds_to_child')"
+condition: "step1_caregiver_interacts_with_child.contains('respond_to_child_cues_by_looking_into_child_eyes') || step1_caregiver_interacts_with_child.contains('respond_to_child_cues_by_responding_child_action')"
 actions:
   - "isRelevant = true"
 ---
@@ -23,6 +23,6 @@ actions:
 name: step1_respond_to_child_cue_note
 description: respond_to_child_cue_note toaster message
 priority: 1
-condition: "step1_caregiver_response_cue == 'respond_to_child_cues'"
+condition: "step1_caregiver_response_cue == 'respond_to_child_cues_by_looking_into_child_eyes' || step1_caregiver_response_cue == 'respond_to_child_cues_by_responding_child_action'"
 actions:
   - "isRelevant = true"
