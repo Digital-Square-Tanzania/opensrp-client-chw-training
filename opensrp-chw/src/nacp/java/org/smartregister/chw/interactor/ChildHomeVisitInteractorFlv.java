@@ -59,13 +59,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateChildSafety(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
             evaluateChildPMTCT(serviceWrapperMap);
-            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluateSkinToSkin(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap);
+            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluateProblemSolving(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
-            evaluateProblemSolving(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
-            evaluateSkinToSkin(serviceWrapperMap);
+
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
