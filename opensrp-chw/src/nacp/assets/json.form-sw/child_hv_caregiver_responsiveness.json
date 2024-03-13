@@ -138,15 +138,21 @@
         "label_info_text": "Taarifa kwa MJA: Sema, \"Je mama/mlezi alijibu vipi ishara za mtoto?\"",
         "values": [
           "Anamtazama mtoto machoni na anajaribu kuongea naye kwa utaratibu na kumbembeleza na kumbeba mwilini kwa ukaribu",
-          "Hawezi kumbembeleza mtoto na mtoto hatafuti faraja kwa mlezi"
+          "Anajibu ishara za mtoto kwa mfano  mtoto kuvuta kanga kuashiria kucheza",
+          "Hawezi kumbembeleza mtoto na mtoto hatafuti faraja kwa mlezi",
+          "Mtoto amelala"
         ],
         "keys": [
-          "respond_to_child_cues",
-          "not_respond_to_child_cues"
+          "respond_to_child_cues_by_looking_into_child_eyes",
+          "respond_to_child_cues_by_responding_child_action",
+          "not_respond_to_child_cues",
+          "child_sleep"
         ],
         "openmrs_choice_ids": {
-          "respond_to_child_cues": "",
-          "not_respond_to_child_cues": ""
+          "respond_to_child_cues_by_looking_into_child_eyes": "",
+          "respond_to_child_cues_by_responding_child_action": "",
+          "not_respond_to_child_cues": "",
+          "child_sleep": ""
         }
       },
       {
@@ -155,7 +161,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Taarifa kwa MJA: Sema, \"Ni muhimu kuitikia ishara na sauti za mtoto. Hii itamsaidia  mtoto katika ukuaji wake kiakili, kihisia, kisakolojia na kumfanya awe mwenye furaha, na kuboresha mahusiano yenu.\\\n  \\n\\nTaarifa kwa MJA: Msaidie Mama kuigiza tena na kutumia njia mpya.\"",
+        "text": "Taarifa kwa MJA: Sema, \"Ni muhimu kuitikia ishara na sauti za mtoto. Hii itamsaidia  mtoto katika ukuaji wake kiakili, kihisia, kisakolojia na kumfanya awe mwenye furaha, na kuboresha mahusiano yenu.  \n\nTaarifa kwa MJA: Msaidie Mama kuigiza tena na kutumia njia mpya.\"",
         "text_color": "#2D2E2D",
         "toaster_type": "problem",
         "relevance": {
