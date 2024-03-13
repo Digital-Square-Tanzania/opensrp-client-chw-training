@@ -59,13 +59,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateChildSafety(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
             evaluateChildPMTCT(serviceWrapperMap);
-            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluateSkinToSkin(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap);
+            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluateProblemSolving(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
-            evaluateProblemSolving(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
-            evaluateSkinToSkin(serviceWrapperMap);
+
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -316,7 +317,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
-        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper();
+        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(serviceWrapper);
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
