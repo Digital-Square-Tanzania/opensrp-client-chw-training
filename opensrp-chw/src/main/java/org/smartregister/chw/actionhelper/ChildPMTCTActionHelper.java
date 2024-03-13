@@ -16,9 +16,6 @@ public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
         return null;
     }
 
-    public ChildPMTCTActionHelper() {}
-
-
     @Override
     public void onPayloadReceived(String jsonPayload) {
         try {

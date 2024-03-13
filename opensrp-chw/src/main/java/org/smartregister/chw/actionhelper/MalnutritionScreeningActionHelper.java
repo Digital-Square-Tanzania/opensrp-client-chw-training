@@ -30,8 +30,6 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     String jsonString = "";
 
-    public MalnutritionScreeningActionHelper(){}
-
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
         this.jsonString = jsonString;
