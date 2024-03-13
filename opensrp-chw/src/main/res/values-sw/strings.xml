@@ -598,6 +598,8 @@
     <string name="sti_referral">Magonjwa ya ngono</string>
     <string name="view_visit_history">Angalia Tembeleo Lililopita</string>
 
+    <string name="kvp_discordant_couples">Mwenza mwenye majibu kinzani</string>
+
 
     <string name="menu_iccm">iCCM</string>
     <string name="visit_in_progress">Hudhurio la %s linaendelea</string>

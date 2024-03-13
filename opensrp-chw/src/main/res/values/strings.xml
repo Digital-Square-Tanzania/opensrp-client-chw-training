@@ -479,4 +479,5 @@
     <string name="visit_in_progress">%s visit still in progress</string>
 
     <string name="iccm_referral">iCCM Referral</string>
+    <string name="kvp_discordant_couples">Discordant Couples</string>
 </resources>
