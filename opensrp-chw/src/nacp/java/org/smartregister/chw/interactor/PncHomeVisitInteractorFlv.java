@@ -144,7 +144,6 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluatePlayAssessmentCounseling(baby);
             evaluateProblemSolving(baby);
             evaluateCareGiverResponsiveness(baby);
-            evaluateCCDChildDiscipline(baby);
             evaluateDevelopmentScreening(baby);
         }
     }
