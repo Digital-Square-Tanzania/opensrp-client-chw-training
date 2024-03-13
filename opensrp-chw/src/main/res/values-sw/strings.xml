@@ -613,6 +613,20 @@
     <string name="iccm_pneumonia">Nimonia</string>
     <string name="iccm_diarrhea">Kuharisha</string>
 
+    <string name="kvp_discordant_couples">Mwenza mwenye majibu kinzani</string>
+
+
+    <string name="menu_iccm">iCCM</string>
+    <string name="visit_in_progress">Hudhurio la %s linaendelea</string>
+    <string name="iccm_referral">Rufaa ya huduma za iCCM</string>
+
+
+    <string name="iccm_medical_history">Historia ya Ugonjwa</string>
+    <string name="iccm_physical_examination">Uchunguzi wa mwili</string>
+    <string name="iccm_malaria">Malaria</string>
+    <string name="iccm_pneumonia">Nimonia</string>
+    <string name="iccm_diarrhea">Kuharisha</string>
+
     <string name="palm_pallor_green">Kijani</string>
     <string name="palm_pallor_yellow">Njano</string>
     <string name="palm_pallor_red">Nyekundu</string>

@@ -150,7 +150,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startVmmcRegister() {
-        //implement
+        // Not required
     }
 
     @Override
