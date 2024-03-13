@@ -102,23 +102,6 @@
         "type": "toaster_notes",
         "text": "CHW information: READ TO PC IF AND ONLY IF THIS IS YOUR FIRST VISIT WITH THIS FAMILY: Say \"Here are some important activities you can do to help the child to develop her/his skills.\"",
         "toaster_type": "info"
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "spacer",
-        "type": "spacer",
-        "spacer_height": "15dp"
-      },
-      {
-        "key": "child_development_intro_note6",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "child_development_intro_note6",
-        "type": "toaster_notes",
-        "text": "CHW information: READ IN EVERY VISIT: Say \"Here are some important things you can do to help the child to feel loved, safe, and happy.\"",
-        "toaster_type": "info"
       }
     ]
   }
