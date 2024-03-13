@@ -15,8 +15,6 @@ import timber.log.Timber;
 public class ChildHVChildSafetyActionHelper extends HomeVisitActionHelper {
     private String child_safety_counselled;
 
-    public ChildHVChildSafetyActionHelper(){}
-
     @Override
     public void onPayloadReceived(String s) {
         try {

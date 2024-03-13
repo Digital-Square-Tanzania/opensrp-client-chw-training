@@ -14,7 +14,6 @@ import timber.log.Timber;
 
 public class ChildHVProblemSolvingHelper extends HomeVisitActionHelper {
     private String child_playing_challenge;
-    public ChildHVProblemSolvingHelper() {}
     @Override
     public void onPayloadReceived(String s) {
         try {
