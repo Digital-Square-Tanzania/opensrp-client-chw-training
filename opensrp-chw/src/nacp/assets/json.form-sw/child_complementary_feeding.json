@@ -103,6 +103,28 @@
         "label_text_style": "italic",
         "has_bg": true,
         "bg_color": "#f595df"
+      },
+      {
+        "key": "comp_feed_counselling_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Je mama ameshauriwa kuhusu vyakula vya nyongeza?",
+        "label_info_text": "Je mama ameshauriwa kuhusu vyakula vya nyongeza?",
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Jibu linahitajika"
+        }
       }
     ]
   }

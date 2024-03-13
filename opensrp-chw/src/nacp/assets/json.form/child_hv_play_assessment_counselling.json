@@ -152,6 +152,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -227,6 +234,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select one option"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -251,6 +265,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select one option"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -393,6 +414,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select one option"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -476,7 +504,14 @@
         "text": "CHW information: Say, \"Playing is important to support healthy development. A child who has no opportunities to play, and practice new skills will not develop healthily. We need to ensure our children have lots of opportunities to play, practice new skills, see new things and copy what others do. For example, when they shake a rattle they learn what sound it makes, they learn to move the rattle\".",
         "text_color": "#2D2E2D",
         "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "spacer",
@@ -495,7 +530,14 @@
         "text": "CHW information: You have reached a stage where you will coach the parents/caregivers on specific age appropriate play activities. These activities usually needs direct interaction between you and the parents/caregiver. Direct the mother/father or caregiver to do the  play or communication activity while you observe.\nRemember you are not supposed to directly partake in these play or communication activities",
         "text_color": "#2D2E2D",
         "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "spacer",
@@ -515,7 +557,14 @@
         "text_color": "#2D2E2D",
         "label_info_text": "• If the child is unable to do the activity, chose one that is from a lower age range or suggest a way to do the activity in a simpler way. \n• If the child is much more advanced developmental wise, then suggest a way to make the activity more advanced or chose an activity from an older age group \n• Remind the mother/caregiver to continue engaging with the activities on a daily basis ",
         "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "bango_kitita_reference_skip_logic",

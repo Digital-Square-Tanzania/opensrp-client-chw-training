@@ -559,5 +559,6 @@
     <string name="ccd_child_discipline_title">CCD: Child Discipline Assessment and Counselling ({0})</string>
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
     <string name="child_home_visit_pmtct">Prevention of Mother to Child transmission of HIV (PMTCT)</string>
+    <string name="counselled_mother_for_comp_feeding">" Counselled mother for complementary feeding "</string>
 
 </resources>
