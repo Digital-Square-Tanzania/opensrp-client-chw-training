@@ -2,7 +2,7 @@
 name: step1_caregiver_interaction_praise
 description: caregiver_interaction_praise toaster message
 priority: 1
-condition: "step1_caregiver_interacts_with_child.contains('respond_to_child_cues_by_looking_into_child_eyes') || step1_caregiver_interacts_with_child.contains('respond_to_child_cues_by_responding_child_action')"
+condition: "step1_caregiver_interacts_with_child.contains('responds_to_child')"
 actions:
   - "isRelevant = true"
 ---
