@@ -1237,18 +1237,6 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
     }
 
-    private void evaluateCCDChildDiscipline(Person baby) throws Exception {
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"))
-                .withOptional(false)
-                .withDetails(details)
-                .withBaseEntityID(baby.getBaseEntityID())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
-                .withHelper(new CCDChildDisciplineActionHelper(context))
-                .build();
-        actionList.put(MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"), action);
-    }
-
     private void evaluateChildPMTCT(Person baby) throws Exception {
         if (getAgeInDays(baby.getDob()) <= DURATION_OF_CHILD_IN_PNC) {
             String visitID = pncVisitAlertRule().getVisitID();
