@@ -221,9 +221,17 @@
                   "chk_convulsions",
                   "chk_skin_rashes",
                   "chk_pale",
+                  "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
-                  "chk_urination"
+                  "chk_urination",
+                  "chk_hypothermia",
+                  "chk_sensory_stimulus",
+                  "chk_chest_drawing",
+                  "chk_cyanosis",
+                  "chk_pass_urine_stool",
+                  "chk_bulging_anterior_fontanel",
+                  "chk_excessive_vomiting"
                 ]
               }
             ]
@@ -267,9 +275,17 @@
                   "chk_convulsions",
                   "chk_skin_rashes",
                   "chk_pale",
+                  "chk_eye_discharge",
                   "chk_severe_abdominal_pain",
                   "chk_lethargy",
-                  "chk_urination"
+                  "chk_urination",
+                  "chk_hypothermia",
+                  "chk_sensory_stimulus",
+                  "chk_chest_drawing",
+                  "chk_cyanosis",
+                  "chk_pass_urine_stool",
+                  "chk_bulging_anterior_fontanel",
+                  "chk_excessive_vomiting"
                 ]
               }
             ]
