@@ -102,23 +102,6 @@
         "type": "toaster_notes",
         "text": "Taarifa za MJA: SOMA KWA MZAZI/MLEZI IKIWA HII NI ZIARA YAKO YA KWANZA KWENYE FAMILIA HII: Sema \"Hizi ni baadhi ya shughuli muhimu unazoweza kufanya ili kumsaidia mtoto kuongeza ujuzi wake.\"",
         "toaster_type": "info"
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "spacer",
-        "type": "spacer",
-        "spacer_height": "15dp"
-      },
-      {
-        "key": "child_development_intro_note6",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "child_development_intro_note6",
-        "type": "toaster_notes",
-        "text": "Taarifa kwa MJA: Katika kila tembeleo soma \"Hivi hapa vitu muhimu vya kufanya kumsaidia mtoto kuhisi anapendwa, yupo salama na mwenye furaha.\"",
-        "toaster_type": "info"
       }
     ]
   }
