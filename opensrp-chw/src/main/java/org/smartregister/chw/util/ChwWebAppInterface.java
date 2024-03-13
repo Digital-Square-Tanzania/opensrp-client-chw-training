@@ -22,7 +22,7 @@ public class ChwWebAppInterface {
             ReportUtils.setPrintJobName("cbhs_monthly_summary-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.CBHSReport.computeReport(ReportUtils.getReportDate(), mContext);
         }
-        if(reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.MOTHER_CHAMPION_REPORT)){
+        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.MOTHER_CHAMPION_REPORT)) {
             ReportUtils.setPrintJobName("mother_champion_report-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.MotherChampionReport.computeReport(ReportUtils.getReportDate());
         }
@@ -33,11 +33,11 @@ public class ChwWebAppInterface {
 
     @JavascriptInterface
     public String getData(String key) {
-        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.AGYW_REPORT)){
+        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.AGYW_REPORT)) {
             ReportUtils.setPrintJobName("AGYW_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.AGYWReport.computeReport(ReportUtils.getReportDate());
         }
-        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
+        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)) {
             switch (key) {
                 case Constants.ReportConstants.CDPReportKeys.ISSUING_REPORTS:
                     ReportUtils.setPrintJobName("CDP_issuing_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
@@ -64,6 +64,12 @@ public class ChwWebAppInterface {
                     return "";
             }
         }
+
+        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.SBC_REPORT)) {
+            ReportUtils.setPrintJobName("SBC_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+            return ReportUtils.SbcReports.computeClientsReports(ReportUtils.getReportDate());
+        }
+
         return "";
     }
 

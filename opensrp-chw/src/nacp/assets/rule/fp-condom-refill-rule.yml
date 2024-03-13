@@ -1,6 +1,55 @@
+---
 name: one
 description: condom refill - after each month
 priority: 1
 condition: "fpAlertRule.isCondomValid(1,8)"
 actions:
   - "fpAlertRule.setVisitID('1')"
+
+---
+name: step1_number_male_condoms_refilled
+description: number_male_condoms_refilled relevance
+priority: 1
+condition: "step1_condom_refilled.contains('male')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_number_female_condoms_refilled
+description: number_female_condoms_refilled relevance
+priority: 1
+condition: "step1_condom_refilled.contains('female')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_pop
+description: Check if the client selected pop method relevance
+priority: 1
+condition: "global_fp_method_selected.equalsIgnoreCase('pop')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_coc
+description: Check if the client selected coc method relevance
+priority: 1
+condition: "global_fp_method_selected.equalsIgnoreCase('coc')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_ecp
+description: Check if the client selected ecp method relevance
+priority: 1
+condition: "global_fp_method_selected.equalsIgnoreCase('ecp')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_condom_refilled
+description: Check if the client wants to be provided with condom relevance
+priority: 1
+condition: "step1_client_provided_condom.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"

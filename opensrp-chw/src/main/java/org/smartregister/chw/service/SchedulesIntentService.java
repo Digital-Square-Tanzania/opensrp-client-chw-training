@@ -148,7 +148,7 @@ public class SchedulesIntentService extends IntentService {
 
         for (String baseID : baseEntityIDs) {
             Timber.v("  Computing Fp schedules for %s", baseID);
-            ChwScheduleTaskExecutor.getInstance().execute(baseID, FamilyPlanningConstants.EventType.FAMILY_PLANNING_REGISTRATION, new Date());
+            ChwScheduleTaskExecutor.getInstance().execute(baseID, FamilyPlanningConstants.EVENT_TYPE.FP_REGISTRATION, new Date());
         }
     }
     private void executeHivVisitSchedules() {

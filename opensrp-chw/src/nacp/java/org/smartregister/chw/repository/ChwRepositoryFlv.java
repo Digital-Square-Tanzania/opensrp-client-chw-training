@@ -112,6 +112,9 @@ public class ChwRepositoryFlv {
                 case 26:
                     upgradeToVersion26(db);
                     break;
+                case 27:
+                    upgradeToVersion27(db);
+                    break;
                 default:
                     break;
             }
@@ -433,6 +436,30 @@ public class ChwRepositoryFlv {
             DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_iccm_enrollment", "ec_iccm_service", "ec_cdp_outlet_stock_count")), ChwApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion26");
+        }
+    }
+
+    private static void upgradeToVersion27(SQLiteDatabase db) {
+        try {
+
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_sbc_register", "ec_sbc_visit", "ec_sbc_monthly_social_media_report")),
+                    ChwApplication.createCommonFtsObject());
+
+            ReportingLibrary reportingLibrary = ReportingLibrary.getInstance();
+            String indicatorDataInitialisedPref = "INDICATOR_DATA_INITIALISED";
+
+            String sbcIndicatorsConfigFile = "config/sbc-monthly-report.yml";
+            for (String configFile : Collections.singletonList(sbcIndicatorsConfigFile)) {
+                reportingLibrary.readConfigFile(configFile, db);
+            }
+
+            reportingLibrary.initIndicatorData(sbcIndicatorsConfigFile, db); // This will persist the data in the DB
+            reportingLibrary.getContext().allSharedPreferences().savePreference(indicatorDataInitialisedPref, "true");
+            reportingLibrary.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(BuildConfig.VERSION_CODE));
+
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion27");
         }
     }
 }
