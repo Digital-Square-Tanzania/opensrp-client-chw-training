@@ -136,16 +136,16 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateNutritionStatusBaby(baby);
             evaluateObsIllnessBaby(baby);
             evaluateSkinToSkin(baby);
-            evaluateCCDIntroduction(baby);
-            evaluateDevelopmentScreening(baby);
-            evaluatePlayAssessmentCounseling(baby);
-            evaluateCCDChildDiscipline(baby);
-            evaluateCCDCommunicationAssessment(baby);
-            evaluateCareGiverResponsiveness(baby);
-            evaluateProblemSolving(baby);
             evaluateChildSafety(baby);
             evaluateChildPMTCT(baby);
             evaluateMalnutritionScreening(baby);
+            evaluateCCDIntroduction(baby);
+            evaluateCCDCommunicationAssessment(baby);
+            evaluatePlayAssessmentCounseling(baby);
+            evaluateProblemSolving(baby);
+            evaluateCareGiverResponsiveness(baby);
+            evaluateCCDChildDiscipline(baby);
+            evaluateDevelopmentScreening(baby);
         }
     }
 
@@ -1231,18 +1231,6 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 actionList.put(title, action);
             }
         }
-    }
-
-    private void evaluateCCDChildDiscipline(Person baby) throws Exception {
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"))
-                .withOptional(false)
-                .withDetails(details)
-                .withBaseEntityID(baby.getBaseEntityID())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
-                .withHelper(new CCDChildDisciplineActionHelper(context))
-                .build();
-        actionList.put(MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"), action);
     }
 
     private void evaluateChildPMTCT(Person baby) throws Exception {

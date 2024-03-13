@@ -138,15 +138,21 @@
         "label_info_text": "CHW information: Say, \"How did the mother/caregiver respond to the child's cues?\"",
         "values": [
           "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely",
-          "Is not able to comfort child, and child does not look to caregiver for comfort"
+          "Responds to the child's cues for example tugging on mothers clothing to show that they want to play",
+          "Is not able to comfort child, and child does not look to caregiver for comfort",
+          "Child is asleep"
         ],
         "keys": [
-          "respond_to_child_cues",
-          "not_respond_to_child_cues"
+          "respond_to_child_cues_by_looking_into_child_eyes",
+          "respond_to_child_cues_by_responding_child_action",
+          "not_respond_to_child_cues",
+          "child_sleep"
         ],
         "openmrs_choice_ids": {
-          "respond_to_child_cues": "",
-          "not_respond_to_child_cues": ""
+          "respond_to_child_cues_by_looking_into_child_eyes": "",
+          "respond_to_child_cues_by_responding_child_action": "",
+          "not_respond_to_child_cues": "",
+          "child_sleep": ""
         }
       },
       {
@@ -155,7 +161,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "CHW information: Say, \"You should always respond to your childs cues. In addition, I want to add that it is very important to \\\n  look into the child’s eyes, hold them gently, and speak to them all the time.\" \\n\\n CHW information: Help the mother/caregiver to demonstrate again using the new techniques.",
+        "text": "CHW information: Say, \"You should always respond to your child's cues. In addition, I want to add that it is very important to \n\n  look into the child’s eyes, hold them gently, and speak to them all the time.\" \n\n CHW information: Help the mother/caregiver to demonstrate again using the new techniques.",
         "text_color": "#2D2E2D",
         "toaster_type": "problem",
         "relevance": {
@@ -172,7 +178,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "CHW information: Say, \"I can see that you do a very good job responding to your child\\'s cues. You are very good at responding to your child\\'s cues.\"",
+        "text": "CHW information: Say, \"I can see that you do a very good job responding to your child's cues. You are very good at responding to your child's cues.\"",
         "text_color": "#2D2E2D",
         "toaster_type": "positive",
         "relevance": {
