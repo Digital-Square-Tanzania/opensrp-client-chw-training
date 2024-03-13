@@ -115,7 +115,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Mshauri mama kuhusu umuhimu wa unyonyeshaji kwake na mtoto (Tafadhali fungua kitendea kazi cha Bango Kitita kwenye mada ya Unyonyeshaji)",
+        "text": "Mshauri mama kuhusu umuhimu wa unyonyeshaji kwake na mtoto (Tafadhali fungua kitendea kazi namba 16 cha Bango Kitita kwenye mada ya Unyonyeshaji)",
         "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
@@ -454,22 +454,6 @@
         }
       },
       {
-        "key": "child_suckling_demo_two",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "Msaidie mama kujua Zaidi kumuweka vizuri mtoto kwa ajili ya kumnyonyesha.  Muongozo wa kumuweka mtoto vizuri wakati wa kunyonya:\n\nKama mtoto analala sana na anakosa kunyonya, muamshe kwa kupapasa mwili wake, miguu au mikono.\n\n\nAsubiri hadi mdomo wa mtoto umefunguka sana.\n\nAmuweke mtoto haraka kwenye maziwa akitega mdomo wa chini wa mtoto vizuri chini ya kinyonyeo.\n\nKama maziwa yamevimba, pakaza kiwango kidogo cha maziwa kabla ya kuanza kumnyonyesha mtoto ili kulainisha kinyonyeo na iwe rahisi kwa mtoto kunyonya",
-        "toaster_type": "info",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_breastfeeding_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "exclusive_breast_feeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -479,8 +463,8 @@
         "image": "ic_form_bf",
         "hint": "Je, mtoto amenyonyeshwa maziwa ya mama pekee?",
         "values": [
-          "Yes",
-          "No"
+          "Ndio",
+          "Hapana"
         ],
         "keys": [
           "Yes",

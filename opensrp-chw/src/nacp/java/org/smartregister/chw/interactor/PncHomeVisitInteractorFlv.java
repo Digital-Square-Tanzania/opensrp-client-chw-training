@@ -136,15 +136,16 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateNutritionStatusBaby(baby);
             evaluateObsIllnessBaby(baby);
             evaluateSkinToSkin(baby);
-            evaluateCCDIntroduction(baby);
-            evaluateDevelopmentScreening(baby);
-            evaluatePlayAssessmentCounseling(baby);
-            evaluateCCDCommunicationAssessment(baby);
-            evaluateCareGiverResponsiveness(baby);
-            evaluateProblemSolving(baby);
             evaluateChildSafety(baby);
             evaluateChildPMTCT(baby);
             evaluateMalnutritionScreening(baby);
+            evaluateCCDIntroduction(baby);
+            evaluateCCDCommunicationAssessment(baby);
+            evaluatePlayAssessmentCounseling(baby);
+            evaluateProblemSolving(baby);
+            evaluateCareGiverResponsiveness(baby);
+            evaluateCCDChildDiscipline(baby);
+            evaluateDevelopmentScreening(baby);
         }
     }
 
