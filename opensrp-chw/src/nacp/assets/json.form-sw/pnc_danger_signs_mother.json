@@ -230,7 +230,14 @@
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
-                  "chk_urination"
+                  "chk_urination",
+                  "chk_genitalia_pain",
+                  "chk_pallor",
+                  "chk_breast",
+                  "chk_dizziness",
+                  "chk_exhaustion",
+                  "chk_foot_muscles_pain",
+                  "chk_oedema"
                 ]
               }
             ]
@@ -277,7 +284,14 @@
                   "chk_vaginal_discharge",
                   "chk_blurred_vision",
                   "chk_loss_conscioueness",
-                  "chk_urination"
+                  "chk_urination",
+                  "chk_genitalia_pain",
+                  "chk_pallor",
+                  "chk_breast",
+                  "chk_dizziness",
+                  "chk_exhaustion",
+                  "chk_foot_muscles_pain",
+                  "chk_oedema"
                 ]
               }
             ]

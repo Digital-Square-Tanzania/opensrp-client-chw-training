@@ -136,16 +136,16 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateNutritionStatusBaby(baby);
             evaluateObsIllnessBaby(baby);
             evaluateSkinToSkin(baby);
-            evaluateCCDIntroduction(baby);
-            evaluateDevelopmentScreening(baby);
-            evaluatePlayAssessmentCounseling(baby);
-            evaluateCCDChildDiscipline(baby);
-            evaluateCCDCommunicationAssessment(baby);
-            evaluateCareGiverResponsiveness(baby);
-            evaluateProblemSolving(baby);
             evaluateChildSafety(baby);
             evaluateChildPMTCT(baby);
             evaluateMalnutritionScreening(baby);
+            evaluateCCDIntroduction(baby);
+            evaluateCCDCommunicationAssessment(baby);
+            evaluatePlayAssessmentCounseling(baby);
+            evaluateProblemSolving(baby);
+            evaluateCareGiverResponsiveness(baby);
+            evaluateCCDChildDiscipline(baby);
+            evaluateDevelopmentScreening(baby);
         }
     }
 
@@ -1084,20 +1084,18 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private void evaluateNewBornCareIntroduction(Person baby) throws Exception {
         String visitID = pncVisitAlertRule().getVisitID();
 
-        if (!visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3") ||
-                !visitID.equalsIgnoreCase("8") || !visitID.equalsIgnoreCase("21 - 27")|| !visitID.equalsIgnoreCase("35 - 41")) {
-            return;
+        if (visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3") ||
+                visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21 - 27") || visitID.equalsIgnoreCase("35 - 41")) {
+            BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()))
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withBaseEntityID(baby.getBaseEntityID())
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                    .withFormName(Constants.JsonForm.getChildHvNewBornCareIntroForm())
+                    .withHelper(new ChildNewBornCareIntroductionActionHelper(context, visitID))
+                    .build();
+            actionList.put(MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()), action);
         }
-
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()))
-                .withOptional(false)
-                .withDetails(details)
-                .withBaseEntityID(baby.getBaseEntityID())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                .withFormName(Constants.JsonForm.getChildHvNewBornCareIntroForm())
-                .withHelper(new ChildNewBornCareIntroductionActionHelper(context, visitID))
-                .build();
-        actionList.put(MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()), action);
     }
 
     private void evaluateDevelopmentScreening(Person baby) throws Exception {
@@ -1220,33 +1218,19 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private void evaluateCCDIntroduction(Person baby) throws Exception {
         if (getAgeInDays(baby.getDob()) <= DURATION_OF_CHILD_IN_PNC) {
             String visitID = pncVisitAlertRule().getVisitID();
-            if (!visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3") ||
-                    !visitID.equalsIgnoreCase("8") || !visitID.equalsIgnoreCase("21 - 27")) {
-                return;
+            if (visitID.equalsIgnoreCase("1") || visitID.equalsIgnoreCase("3") ||
+                    visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21 - 27")) {
+                String title = MessageFormat.format(context.getString(R.string.ccd_introduction_title), baby.getFullName());
+
+                BaseAncHomeVisitAction action = getBuilder(title)
+                        .withOptional(false)
+                        .withDetails(details)
+                        .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                        .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
+                        .build();
+                actionList.put(title, action);
             }
-
-            String title = MessageFormat.format(context.getString(R.string.ccd_introduction_title), baby.getFullName());
-
-            BaseAncHomeVisitAction action = getBuilder(title)
-                    .withOptional(false)
-                    .withDetails(details)
-                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                    .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
-                    .build();
-            actionList.put(title, action);
         }
-    }
-
-    private void evaluateCCDChildDiscipline(Person baby) throws Exception {
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"))
-                .withOptional(false)
-                .withDetails(details)
-                .withBaseEntityID(baby.getBaseEntityID())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
-                .withHelper(new CCDChildDisciplineActionHelper(context))
-                .build();
-        actionList.put(MessageFormat.format(context.getString(R.string.ccd_child_discipline_title), "(" + baby.getFullName() + ")"), action);
     }
 
     private void evaluateChildPMTCT(Person baby) throws Exception {
