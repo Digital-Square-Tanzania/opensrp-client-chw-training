@@ -1083,8 +1083,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private void evaluateNewBornCareIntroduction(Person baby) throws Exception {
         String visitID = pncVisitAlertRule().getVisitID();
 
-        if (visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3") ||
-                visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21 - 27") || visitID.equalsIgnoreCase("35 - 41")) {
+        if (visitID.equals("1") || visitID.equals("3") || visitID.equals("8") || visitID.equals("21 - 27") || visitID.equals("35 - 41")) {
             BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()))
                     .withOptional(false)
                     .withDetails(details)
