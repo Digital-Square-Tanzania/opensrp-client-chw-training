@@ -11,6 +11,15 @@
       },
       {
         "type": "Deworming"
+      },
+      {
+        "type": "Malnutrition Screening"
+      },
+      {
+        "type": "Child Safety"
+      },
+      {
+        "type": "Complimentary feeding"
       }
     ]
   }

@@ -154,6 +154,18 @@
     <string name="penta_2">Penta 2</string>
     <string name="penta_3">Penta 3</string>
 
+    <!--    Reasons why not vaccinated-->
+    <string name="why_no_vaccine">Kwa nini mtoto hajapatiwa chanjo?</string>
+    <string name="congratulate_vaccine_uptodate">Mpongeze mama na mkumbushe kuhusu tarehe ya chanjo nyingine kama kadi inavyoonesha. Mkumbushe kuwa kuna umuhimu  mkubwa ikiwa mtoto wake atapatiwa chanjo zote kwa muda uliopangiwa</string>
+    <string-array name="reason_no_vaccine">
+        <item>not_available: Chanjo ilikuwa hamna</item>
+        <item>family_refused: Familia imekataa</item>
+        <item>clinic_closed: Kliniki ilikuwa imefungwa</item>
+        <item>return_another_day: Ameambiwa arudi siku nyingine</item>
+        <item>did_not_know: Sikuweza kumpeleka mtoto kupata chanjo</item>
+        <item>could_not_take_child: Sikujua kuhusu chanjo hio</item>
+    </string-array>
+
     <string name="vit_a_received_label">Alipokea Vitamin A</string>
     <string name="ifa_received_label">Alipokea vidonge vya IFA</string>
 
@@ -161,6 +173,9 @@
     <string name="pnc_visit_day_overdue">Siku %s tembeleo limepitiliza</string>
     <string name="register">Sajili</string>
     <string name="all_male_clients">Wateja Wote wa Kiume</string>
+
+    <string name="pnc_hv_location">Eneo la tembeleo</string>
+    <string name="pnc_hv_location_captured">Eneo la tembeleo limeshachukuliwa</string>
 
     <string name="pnc_yes">Ndio</string>
     <string name="pnc_no">Hapana</string>
@@ -171,6 +186,16 @@
     <string name="pnc_normal">Kawaida</string>
     <string name="pnc_moderate">Wastani</string>
     <string name="pnc_severe">Mbaya</string>
+    <string name="pnc_hygiene_safety_counselling_title">Usafi wa mazingira</string>
+
+    <string name="pnc_newborn_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi ({0})</string>
+    <string name="baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
+    <string name="pnc_child_play_assessment_counselling"><b>MMMAM</b> Tathmini maendeleo ya Michezo {0}</string>
+    <string name="bango_kitita_one_page">Ukurasa wa %s</string>
+    <string name="bango_kitita_two_pages">Ukurasa wa %s na Ukurasa wa %s</string>
+    <string name="bango_kitita_message">Tafadhali rejea kurasa zifuatazo za Bango Kitita kueleza michezo kulingana na umri wa mtoto</string>
+    <string name="pnc_child_development_screening_assessment"><b>MMMAM: </b>Tathmini ya maendeleo ya Ukuaji wa Mtoto {0}</string>
+    <string name="pnc_child_communication_assessment"> <b>MMMAM: </b>Tathmini maendeleo ya Mawasiliano {0}</string>
 
     <string name="pnc_cord_care">Huduma muhimu kwa watoto wachanga: Jinsi ya kutunza kitovu ({0})</string>
 
@@ -480,9 +505,19 @@
 
     <string name="last_appointment_date">Tarehe ya mwisho ya Miadi</string>
 
+    <string name="child_problem_solving"><b>MMMAM:</b> Kutatua Changamoto</string>
+    <string name="child_problem_solving_task">Changamtoto kwenye kucheza na kuwasiliana </string>
 
     <!--    ICCM Visit History-->
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>
+    <string name="child_safety">Usalama wa Mtoto</string>
+    <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
+    <string name="ccd_introduction_title"><b>MMMAM: </b>Mwanzo ({0})</string>
+    <string name="ccd_caregiver_responsiveness"><b>MMMAM: </b> Muitikio wa mlezi kwa ishara na sauti za Mtoto</string>
+    <string name="ccd_child_discipline_title"><b>MMMAM: </b>Ushauri juu ya namna ya kujenga nidhamu kwa Mtoto ({0})</string>
+    <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
+    <string name="child_home_visit_pmtct">Kuzuia maambukizi ya Virusi vya Ukimwi kutoka kwa mama kwenda kwa mtoto</string>
+    <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
 
 </resources>
