@@ -4034,7 +4034,7 @@ indicators:
   
   - key: "kvp-6-<10-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       INNER JOIN ec_kvp_prep_register ekr ON efm.base_entity_id = ekr.id
@@ -4051,7 +4051,7 @@ indicators:
     
   - key: "kvp-6-10-14-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4070,7 +4070,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       INNER JOIN ec_kvp_prep_register ekr ON efm.base_entity_id = ekr.id
@@ -4088,7 +4088,7 @@ indicators:
                         date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       INNER JOIN ec_kvp_prep_register ekr ON efm.base_entity_id = ekr.id
@@ -4106,7 +4106,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4125,7 +4125,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4144,7 +4144,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4163,7 +4163,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4182,7 +4182,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4201,7 +4201,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-pwid-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4219,7 +4219,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-<10-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4237,7 +4237,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4256,7 +4256,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4275,7 +4275,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4294,7 +4294,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4313,7 +4313,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4332,7 +4332,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4351,7 +4351,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4370,7 +4370,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4389,7 +4389,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-pwid-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4407,7 +4407,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-<10-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4425,7 +4425,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4444,7 +4444,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4463,7 +4463,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4482,7 +4482,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4501,7 +4501,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4520,7 +4520,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4539,7 +4539,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4558,7 +4558,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4577,7 +4577,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-pwud-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4595,7 +4595,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-<10-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4613,7 +4613,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4632,7 +4632,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4651,7 +4651,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4670,7 +4670,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4689,7 +4689,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4708,7 +4708,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4727,7 +4727,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4746,7 +4746,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4765,7 +4765,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-pwud-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4783,7 +4783,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-<10-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4801,7 +4801,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4820,7 +4820,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4839,7 +4839,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4858,7 +4858,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4877,7 +4877,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4896,7 +4896,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4915,7 +4915,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4934,7 +4934,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4953,7 +4953,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-fsw-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4971,7 +4971,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-<10-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -4989,7 +4989,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5008,7 +5008,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5027,7 +5027,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5046,7 +5046,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5065,7 +5065,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5084,7 +5084,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5103,7 +5103,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5122,7 +5122,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5141,7 +5141,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-msm-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5160,7 +5160,7 @@ indicators:
     
   - key: "kvp-6-<10-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5178,7 +5178,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5197,7 +5197,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       INNER JOIN ec_kvp_prep_register ekr ON efm.base_entity_id = ekr.id
@@ -5215,7 +5215,7 @@ indicators:
                         date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5234,7 +5234,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5253,7 +5253,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5272,7 +5272,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5291,7 +5291,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5310,7 +5310,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5329,7 +5329,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-other_vulnerable_population-ME"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5347,7 +5347,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-<10-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri <10"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5365,7 +5365,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-10-14-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 10-14"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5384,7 +5384,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-15-19-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 15-19"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5403,7 +5403,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-20-24-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5422,7 +5422,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-25-29-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 25-29"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5441,7 +5441,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-30-34-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 30-34"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5460,7 +5460,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-35-39-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 35-39"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5479,7 +5479,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-40-44-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 40-44"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5498,7 +5498,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6-45-49-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri 45-49"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
@@ -5517,7 +5517,7 @@ indicators:
                       date(substr(ekpf.kvp_visit_date, 7, 4) || '-' || substr(ekpf.kvp_visit_date, 4, 2) || '-' || '01')"
   - key: "kvp-6->50-other_vulnerable_population-KE"
     grouping: "KVP"
-    description: "Idadi ya kondomu zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
+    description: "Idadi ya vitepe zilizogawiwa kwa makundi maalum  katika kipindi cha ripoti Umri >50"
     indicatorQuery: " SELECT count(DISTINCT ehr.base_entity_id) as count FROM ec_kvp_prep_followup ekpf
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ekpf.entity_id
                       
