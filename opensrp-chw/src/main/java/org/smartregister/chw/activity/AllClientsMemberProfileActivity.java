@@ -30,7 +30,6 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.custom_view.FamilyMemberFloatingMenu;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.fragment.FamilyOtherMemberProfileFragment;
-import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.malaria.dao.IccmDao;
@@ -39,7 +38,6 @@ import org.smartregister.chw.presenter.FamilyOtherMemberActivityPresenter;
 import org.smartregister.chw.sbc.dao.SbcDao;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
-import org.smartregister.chw.util.UtilsFlv;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.family.adapter.ViewPagerAdapter;
 import org.smartregister.family.fragment.BaseFamilyOtherMemberProfileFragment;
@@ -47,8 +45,6 @@ import org.smartregister.family.model.BaseFamilyOtherMemberProfileActivityModel;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.view.contract.BaseProfileContract;
-
-import java.util.Arrays;
 
 import timber.log.Timber;
 
@@ -136,7 +132,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
                     }
                     break;
             }
-        }else{
+        } else {
             if (!ChwApplication.getApplicationFlavor().hasHIV()) {
                 menu.findItem(R.id.action_cbhs_registration).setVisible(false);
             } else {
