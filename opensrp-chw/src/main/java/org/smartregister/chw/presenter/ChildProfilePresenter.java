@@ -51,6 +51,7 @@ import timber.log.Timber;
 public class ChildProfilePresenter extends CoreChildProfilePresenter {
 
     private List<ReferralTypeModel> referralTypeModels;
+    private List<ReferralTypeModel> referralAddoTypeModels;
 
     public ChildProfilePresenter(CoreChildProfileContract.View childView, CoreChildProfileContract.Model model, String childBaseEntityId) {
         super(childView, model, childBaseEntityId);
@@ -244,6 +245,16 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
             }
         }
 
+    }
+
+    public void referToAddo() {
+        referralAddoTypeModels = ((ChildProfileActivity) getView()).getReferralAddoTypeModels();
+        if (referralAddoTypeModels.size() == 1) {
+            startSickChildReferralForm();
+        } else {
+//             not sure about below code
+//            Utils.launchClientReferralActivity((Activity) getView(), referralATypeModels, childBaseEntityId);
+        }
     }
 
 }

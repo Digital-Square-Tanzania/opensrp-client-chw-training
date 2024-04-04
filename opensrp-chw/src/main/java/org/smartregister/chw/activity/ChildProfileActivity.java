@@ -50,6 +50,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
     public FamilyMemberFloatingMenu familyFloatingMenu;
     private Flavor flavor = new ChildProfileActivityFlv();
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
+    private List<ReferralTypeModel> referralAddoTypeModels = new ArrayList<>();
     private NotificationListAdapter notificationListAdapter = new NotificationListAdapter();
 
     public List<ReferralTypeModel> getReferralTypeModels() {
@@ -66,6 +67,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
         registerReceiver(mDateTimeChangedReceiver, sIntentFilter);
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addChildReferralTypes();
+            addChildAddoReferralTypes();
         }
         notificationAndReferralRecyclerView.setAdapter(notificationListAdapter);
         notificationListAdapter.setOnClickListener(this);
@@ -191,7 +193,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
             UtilsFlv.updateMalariaMenuItems(memberObject.getBaseEntityId(), menu);
 
         if (ChwApplication.getApplicationFlavor().hasICCM() && !IccmDao.isRegisteredForIccm(memberObject.getBaseEntityId())) {
-            menu.findItem(R.id.action_iccm_registration).setVisible(true);
+//            menu.findItem(R.id.action_iccm_registration).setVisible(true);
         }
         return true;
     }
@@ -310,5 +312,15 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
         void setVaccineHistoryView(String days, RelativeLayout layoutVaccineHistoryRow, View viewVaccineHistoryRow, Context context);
 
         String getToolbarTitleName(MemberObject memberObject);
+    }
+
+    private void addChildAddoReferralTypes() {
+        referralAddoTypeModels.add(new ReferralTypeModel(getString(R.string.sick_child),
+                BuildConfig.USE_UNIFIED_REFERRAL_APPROACH ? JSON_FORM.getChildUnifiedReferralForm()
+                        : JSON_FORM.getChildReferralForm(), CoreConstants.TASKS_FOCUS.SICK_CHILD));
+    }
+
+    public List<ReferralTypeModel> getReferralAddoTypeModels() {
+        return referralAddoTypeModels;
     }
 }
