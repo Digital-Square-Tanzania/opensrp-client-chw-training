@@ -1881,8 +1881,8 @@
     },
     "services": [
       {
-        "id": "500",
-        "name": "PMTCT8",
+        "id": "50098",
+        "name": "Child PMTCT8",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1895,8 +1895,8 @@
         }
       },
       {
-        "id": "501",
-        "name": "PMTCT16",
+        "id": "50198",
+        "name": "Child PMTCT16",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1904,13 +1904,13 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+10m"
+            "offset": "+16m"
           }
         }
       },
       {
-        "id": "502",
-        "name": "PMTCT17",
+        "id": "50298",
+        "name": "Child PMTCT17",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1918,7 +1918,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+11m"
+            "offset": "+17m"
           }
         }
       }
