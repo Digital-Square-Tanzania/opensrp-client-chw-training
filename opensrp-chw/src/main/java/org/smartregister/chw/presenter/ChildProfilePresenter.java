@@ -53,6 +53,8 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
     private List<ReferralTypeModel> referralTypeModels;
     private List<ReferralTypeModel> referralAddoTypeModels;
 
+    private boolean isAddoLinkage = false;
+
     public ChildProfilePresenter(CoreChildProfileContract.View childView, CoreChildProfileContract.Model model, String childBaseEntityId) {
         super(childView, model, childBaseEntityId);
         setView(new WeakReference<>(childView));
@@ -89,9 +91,14 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
         if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH) {
             try {
                 JSONObject formJson = (new FormUtils()).getFormJsonFromRepositoryOrAssets(getView().getContext(), Constants.JSON_FORM.getChildUnifiedReferralForm());
-                formJson.put(Constants.REFERRAL_TASK_FOCUS, referralTypeModels.get(0).getReferralType());
+                assert formJson != null;
+                if (isAddoLinkage) {
+                    formJson.put(Constants.REFERRAL_TASK_FOCUS, referralAddoTypeModels.get(0).getReferralType());
+                } else {
+                    formJson.put(Constants.REFERRAL_TASK_FOCUS, referralTypeModels.get(0).getReferralType());
+                }
                 ReferralRegistrationActivity.startGeneralReferralFormActivityForResults((Activity) getView().getContext(),
-                        getChildBaseEntityId(), formJson, false);
+                        getChildBaseEntityId(), formJson, false, isAddoLinkage);
             } catch (Exception e) {
                 Timber.e(e);
             }
@@ -149,6 +156,7 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
     }
 
     public void referToFacility() {
+        isAddoLinkage = false;
         referralTypeModels = ((ChildProfileActivity) getView()).getReferralTypeModels();
         if (referralTypeModels.size() == 1) {
             startSickChildReferralForm();
@@ -200,7 +208,7 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
             super.updateFamilyMemberServiceDue(serviceDueStatus);
         } else {
             if (getView() != null) {
-                 if (serviceDueStatus.equalsIgnoreCase(CoreConstants.FamilyServiceType.DUE.name())) {
+                if (serviceDueStatus.equalsIgnoreCase(CoreConstants.FamilyServiceType.DUE.name())) {
                     getView().setFamilyHasServiceDue();
                 } else if (serviceDueStatus.equalsIgnoreCase(CoreConstants.FamilyServiceType.OVERDUE.name())) {
                     getView().setFamilyHasServiceOverdue();
@@ -250,10 +258,8 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
     public void referToAddo() {
         referralAddoTypeModels = ((ChildProfileActivity) getView()).getReferralAddoTypeModels();
         if (referralAddoTypeModels.size() == 1) {
+            isAddoLinkage = true;
             startSickChildReferralForm();
-        } else {
-//             not sure about below code
-//            Utils.launchClientReferralActivity((Activity) getView(), referralATypeModels, childBaseEntityId);
         }
     }
 
