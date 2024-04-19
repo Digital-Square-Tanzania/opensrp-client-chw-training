@@ -663,14 +663,31 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.pnc_skin_to_skin), action);
     }
 
-    protected int getChildAgeInMonth(Date dob) {
+    public static int getChildAgeInMonth(Date dob) {
         String childAge = DateUtil.getDuration(new DateTime(dob));
-        int childAgeInMonth = -1;
-        if (childAge.contains("m")) {
-            String childMonth = childAge.substring(0, childAge.indexOf("m"));
-            childAgeInMonth = Integer.parseInt(childMonth);
+        int childAgeInMonths = 0;
+
+        if (!childAge.contains("y")) {
+            // The child is less than one year
+            if (childAge.contains("m")) {
+                childAgeInMonths = Integer.parseInt(childAge.substring(0, childAge.indexOf("m")));
+            }
+        } else {
+            String[] ageParts = childAge.split("y");
+
+            // Handle the case where there might be extra spaces
+            int years = Integer.parseInt(ageParts[0].trim());
+
+            if (ageParts.length > 1) {
+                // Extract months part and remove "m"
+                int months = Integer.parseInt(ageParts[1].replace("m", "").trim());
+                childAgeInMonths = (years * 12) + months;
+            } else {
+                // Only years are provided
+                childAgeInMonths = years * 12;
+            }
         }
-        return childAgeInMonth;
+        return childAgeInMonths;
     }
 
     private int getChildHomeVisitMonth(ServiceWrapper serviceWrapper) {
