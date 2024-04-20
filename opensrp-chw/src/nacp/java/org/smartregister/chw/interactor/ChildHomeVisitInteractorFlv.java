@@ -453,7 +453,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
 
-        String title = context.getString(R.string.exclusive_breastfeeding_months, serviceIteration);
+        String title = "";
+        if (Integer.parseInt(serviceIteration) > 6) {
+            title = context.getString(R.string.child_hv_breastfeeding);
+        } else {
+            title = context.getString(R.string.exclusive_breastfeeding_months);
+        }
+
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
