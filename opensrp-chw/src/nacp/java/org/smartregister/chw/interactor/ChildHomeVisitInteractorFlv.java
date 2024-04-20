@@ -59,7 +59,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateChildSafety(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
             evaluateChildPMTCT(serviceWrapperMap);
-            evaluateSkinToSkin(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap);
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
@@ -635,32 +634,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();
         actionList.put(title, childPmtctAction);
-    }
-
-    private void evaluateSkinToSkin(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Skin to Skin Counselling");
-        if (serviceWrapper == null) return;
-
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
-        // alert if overdue after 14 days
-        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
-        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
-        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
-
-        ChildHVSkinToSkinActionHelper actionHelper = new ChildHVSkinToSkinActionHelper();
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin))
-                .withOptional(false)
-                .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                .withFormName(Constants.JsonForm.getSkinToSkin())
-                .withHelper(actionHelper)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
-
-        actionList.put(context.getString(R.string.pnc_skin_to_skin), action);
     }
 
     protected int getChildAgeInMonth(Date dob) {
