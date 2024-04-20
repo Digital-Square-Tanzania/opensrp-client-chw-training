@@ -47,11 +47,7 @@ public class ChildHVProblemSolvingHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(child_playing_challenge)) {
-            return BaseAncHomeVisitAction.Status.PENDING;
-        }
-
-        if (StringUtils.isNotBlank(child_playing_challenge)) {
+        if (child_playing_challenge.equalsIgnoreCase("Hapana") || child_playing_challenge.equalsIgnoreCase("No")) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;

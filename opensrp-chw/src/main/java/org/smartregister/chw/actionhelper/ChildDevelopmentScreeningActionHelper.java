@@ -72,10 +72,10 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(child_development_issues)) {
-            return BaseAncHomeVisitAction.Status.PENDING;
-        } else {
+        if ((child_development_issues.equalsIgnoreCase("None") || child_development_issues.equalsIgnoreCase("Hamna"))) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
     }
 
