@@ -104,7 +104,7 @@
           },
           {
             "key": "chk_severe_leg_pain",
-            "text": "Maumivu makali ya mguu",
+            "text": "Maumivu makali ya miguu",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_severe_leg_pain"
           },
@@ -116,7 +116,7 @@
           },
           {
             "key": "chk_swelling of breast",
-            "text": "Kuvimba kwa titi na chuchu",
+            "text": "Kuvimba kwa matiti na chuchu zilizo chanika",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_swelling of breast"
           },
@@ -163,12 +163,6 @@
             "openmrs_entity_id": "chk_pallor"
           },
           {
-            "key": "chk_breast",
-            "text": "Kuvimba kwa matiti na chuchu zilizo chanika",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_breast"
-          },
-          {
             "key": "chk_dizziness",
             "text": "Kizunguzungu",
             "openmrs_entity": "concept",
@@ -179,12 +173,6 @@
             "text": "Uchovu",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_exhaustion"
-          },
-          {
-            "key": "chk_foot_muscles_pain",
-            "text": "Maumivu makali ya miguu",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_foot_muscles_pain"
           },
           {
             "key": "chk_oedema",
@@ -233,10 +221,8 @@
                   "chk_urination",
                   "chk_genitalia_pain",
                   "chk_pallor",
-                  "chk_breast",
                   "chk_dizziness",
                   "chk_exhaustion",
-                  "chk_foot_muscles_pain",
                   "chk_oedema"
                 ]
               }
@@ -287,10 +273,8 @@
                   "chk_urination",
                   "chk_genitalia_pain",
                   "chk_pallor",
-                  "chk_breast",
                   "chk_dizziness",
                   "chk_exhaustion",
-                  "chk_foot_muscles_pain",
                   "chk_oedema"
                 ]
               }
