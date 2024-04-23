@@ -424,6 +424,10 @@ public class ChwApplication extends CoreChwApplication {
         return flavor.hasTB();
     }
 
+    public boolean hasADDO(){
+        return flavor.hasADDO();
+    }
+
 
     public boolean hasPmtct() {
         return flavor.hasPmtct();
@@ -573,6 +577,8 @@ public class ChwApplication extends CoreChwApplication {
         boolean hasAGYW();
 
         boolean hasSbc();
+
+        boolean hasADDO();
 
         String[] getFTSTables();
 
