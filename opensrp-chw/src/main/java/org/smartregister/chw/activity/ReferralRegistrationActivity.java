@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.presenter.IssueReferralActivityPresenter;
 import org.smartregister.chw.referral.activity.BaseIssueReferralActivity;
+import org.smartregister.chw.referral.contract.BaseIssueReferralContract;
 import org.smartregister.chw.referral.interactor.BaseIssueReferralInteractor;
 import org.smartregister.chw.referral.model.BaseIssueReferralModel;
 import org.smartregister.chw.referral.presenter.BaseIssueReferralPresenter;
@@ -40,7 +41,7 @@ public class ReferralRegistrationActivity extends BaseIssueReferralActivity {
     @NotNull
     @Override
     public BaseIssueReferralPresenter presenter() {
-        return new IssueReferralActivityPresenter(BASE_ENTITY_ID, this,
-                BaseIssueReferralModel.class, new BaseIssueReferralInteractor());
+        return new IssueReferralActivityPresenter(BASE_ENTITY_ID, (BaseIssueReferralContract.View)this,
+                BaseIssueReferralModel.class, (BaseIssueReferralContract.Interactor) new BaseIssueReferralInteractor());
     }
 }
