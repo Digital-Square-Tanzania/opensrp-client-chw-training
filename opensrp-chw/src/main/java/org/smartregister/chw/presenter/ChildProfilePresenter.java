@@ -51,7 +51,7 @@ import timber.log.Timber;
 public class ChildProfilePresenter extends CoreChildProfilePresenter {
 
     private List<ReferralTypeModel> referralTypeModels;
-    private List<ReferralTypeModel> referralAddoTypeModels;
+    private List<ReferralTypeModel> addoReferralTypeModels;
 
     private boolean isAddoLinkage = false;
 
@@ -92,11 +92,7 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
             try {
                 JSONObject formJson = (new FormUtils()).getFormJsonFromRepositoryOrAssets(getView().getContext(), Constants.JSON_FORM.getChildUnifiedReferralForm());
                 assert formJson != null;
-                if (isAddoLinkage) {
-                    formJson.put(Constants.REFERRAL_TASK_FOCUS, referralAddoTypeModels.get(0).getReferralType());
-                } else {
-                    formJson.put(Constants.REFERRAL_TASK_FOCUS, referralTypeModels.get(0).getReferralType());
-                }
+                formJson.put(Constants.REFERRAL_TASK_FOCUS, referralTypeModels.get(0).getReferralType());
                 ReferralRegistrationActivity.startGeneralReferralFormActivityForResults((Activity) getView().getContext(),
                         getChildBaseEntityId(), formJson, false, isAddoLinkage);
             } catch (Exception e) {
@@ -104,6 +100,22 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
             }
         } else {
             super.startSickChildReferralForm();
+        }
+    }
+
+    public void startAddoLinkageForm(){
+        if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH){
+            try {
+                JSONObject formJson = (new FormUtils()).getFormJsonFromRepositoryOrAssets(getView().getContext(), Constants.JSON_FORM.getChildUnifiedLinkageForm());
+                assert formJson != null;
+                formJson.put(Constants.REFERRAL_TASK_FOCUS, addoReferralTypeModels.get(0).getFocus());
+                ReferralRegistrationActivity.startGeneralReferralFormActivityForResults((Activity) getView().getContext(),
+                        getChildBaseEntityId(), formJson, false, isAddoLinkage);
+            }catch (Exception e){
+                Timber.e(e);
+            }
+        }else{
+            //Implement linking using native form
         }
     }
 
@@ -256,10 +268,10 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
     }
 
     public void referToAddo() {
-        referralAddoTypeModels = ((ChildProfileActivity) getView()).getReferralAddoTypeModels();
-        if (referralAddoTypeModels.size() == 1) {
+        addoReferralTypeModels = ((ChildProfileActivity) getView()).getLinkageTypeModels();
+        if (addoReferralTypeModels.size() == 1) {
             isAddoLinkage = true;
-            startSickChildReferralForm();
+            startAddoLinkageForm();
         }
     }
 
