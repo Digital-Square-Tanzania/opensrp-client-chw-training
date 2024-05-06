@@ -222,7 +222,7 @@ android {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.5.40.0-MOH-SNAPSHOT-LOCAL-IM-A@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.5.40.0-MOH-SNAPSHOT-IM-H@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
