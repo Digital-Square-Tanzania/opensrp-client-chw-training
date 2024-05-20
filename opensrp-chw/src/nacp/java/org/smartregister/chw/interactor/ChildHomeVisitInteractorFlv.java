@@ -451,10 +451,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final int serviceIteration = getChildHomeVisitMonth(serviceWrapper);
 
         String title = "";
-        if (Integer.parseInt(serviceIteration) > 6) {
+        if (serviceIteration > 6) {
             title = context.getString(R.string.child_hv_breastfeeding);
         } else {
             title = context.getString(R.string.exclusive_breastfeeding_months);
@@ -465,7 +465,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        ExclusiveBreastFeedingAction helper = new ExclusiveBreastFeedingAction(context, alert, serviceIteration);
+        ExclusiveBreastFeedingAction helper = new ExclusiveBreastFeedingAction(context, alert, String.valueOf(serviceIteration));
         JSONObject jsonObject = getFormJson(org.smartregister.chw.util.Constants.JsonForm.getChildHvBreastfeedingForm(), memberObject.getBaseEntityId());
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
