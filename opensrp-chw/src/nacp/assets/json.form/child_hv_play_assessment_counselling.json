@@ -182,37 +182,6 @@
         }
       },
       {
-        "key": "child_attend_creche",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "child_attend_creche",
-        "type": "spinner",
-        "hint": "CHW information: Say \"Does your child attend creche?\"",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "Yes",
-          "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "child_attend_daycare",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -244,43 +213,21 @@
         }
       },
       {
+        "key": "prepare_play_materials_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "CHW Information: Ask the following question only if this is the second visit or more."
+      },
+      {
         "key": "prepare_play_materials",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prepare_play_materials",
         "type": "spinner",
         "hint": "Did you prepare the play materials that we had agreed on from the previous visit? Can you show me how you play with your child?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "Yes",
-          "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prepare_picture_book",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prepare_picture_book",
-        "type": "spinner",
-        "hint": "Did you prepare the picture book or buy a book so as to read with your child as we had agreed on from the previous visit? Can you show me how you used the book with your child?",
         "values": [
           "Yes",
           "No"
@@ -555,7 +502,7 @@
         "type": "label",
         "text": "CHW information: Say, \"Now let’s practice some new play activities. These activities will help your child learn through seeing, hearing, touching, moving, thinking or feeling\". \nCHW information: Click the information button (button with exclamation mark) to see the instructions you need to follow to explain the activities to the mother/caregiver.",
         "text_color": "#2D2E2D",
-        "label_info_text": "• If the child is unable to do the activity, chose one that is from a lower age range or suggest a way to do the activity in a simpler way. \n• If the child is much more advanced developmental wise, then suggest a way to make the activity more advanced or chose an activity from an older age group \n• Remind the mother/caregiver to continue engaging with the activities on a daily basis ",
+        "label_info_text": "• If the child is unable to do the activity, chose one that is from a lower age range or suggest a way to do the activity in a simpler way. \n• If the child can do the activities of his/her age easily, then suggest a way to make the activity more advanced or chose an activity from an older age group \n• Remind the mother/caregiver to continue engaging with the activities on a daily basis ",
         "label_text_style": "italic",
         "has_bg": true,
         "relevance": {

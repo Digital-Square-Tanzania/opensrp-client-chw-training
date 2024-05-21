@@ -34,13 +34,6 @@ condition: "step1_visit_2_visit_25 == 'true'"
 actions:
   - "isRelevant = true"
 ---
-name: step1_child_attend_creche
-description: child attend creche
-priority: 1
-condition: "step1_visit_3_visit_17 == 'true'"
-actions:
-  - "isRelevant = true"
----
 name: step1_child_attend_daycare
 description: Child attend daycare
 priority: 1
@@ -50,13 +43,6 @@ actions:
 ---
 name: step1_prepare_play_materials
 description: Prepare play materials
-priority: 1
-condition: "step1_visit_2_visit_25 == 'true'"
-actions:
-  - "isRelevant = true"
----
-name: step1_prepare_picture_book
-description: Prepare picture book
 priority: 1
 condition: "step1_visit_2_visit_25 == 'true'"
 actions:
