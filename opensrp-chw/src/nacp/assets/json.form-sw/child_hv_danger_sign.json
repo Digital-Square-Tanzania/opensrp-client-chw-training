@@ -150,9 +150,9 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "toddler_danger_signs_present_toaster",
         "type": "toaster_notes",
-        "text": "Tumetambua kuwa mtoto ana dalili za hatari. Usijali, kwa sababu masharti haya yatadhibitiwa ukifika kwenye kituo cha afya?",
-        "toaster_info_text": "Tumetambua kuwa mtoto ana dalili za hatari. Usijali, kwa sababu masharti haya yatadhibitiwa ukifika kwenye kituo cha afya?",
-        "toaster_type": "warning",
+        "text": "Tumegundua kuwa una dalili hatarishi, usipate wasiwasi, kwa sababu hali hii itapatiwa ufumbuzi pindi tu ukienda kituo cha afya.",
+        "toaster_info_text": "Tumegundua kuwa una dalili hatarishi, usipate wasiwasi, kwa sababu hali hii itapatiwa ufumbuzi pindi tu ukienda kituo cha afya.",
+        "toaster_type": "problem",
         "relevance": {
           "step1:toddler_danger_signs_present": {
             "ex-checkbox": [
