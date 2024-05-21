@@ -213,6 +213,47 @@
         }
       },
       {
+        "key": "practice_play_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "CHW Information: Ask the following question only if this is the second visit or more."
+      },
+      {
+        "key": "practice_play",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "practice_play",
+        "type": "spinner",
+        "hint": "Did you practice the activities we discussed on the previous visit?",
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "Yes",
+          "No": "No"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
         "key": "prepare_play_materials_toaster",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
