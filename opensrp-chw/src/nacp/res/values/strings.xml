@@ -194,6 +194,7 @@
     <string name="pnc_child_play_assessment_counselling">CCD: Play Assessment and Counselling {0}</string>
     <string name="bango_kitita_one_page">Page %s</string>
     <string name="bango_kitita_two_pages">Page %s and Page %s</string>
+    <string name="bango_kitita_three_pages">Page %s, Page %s and Page %s</string>
     <string name="bango_kitita_message">Please refer to the following pages in Bango Kitita to explain the activities depending on the child\'s age</string>
     <string name="pnc_child_development_screening_assessment">CCD: Child development screening assessment {0}</string>
     <string name="pnc_child_communication_assessment">CCD: Communication Assessment and Counselling {0}</string>

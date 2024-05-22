@@ -75,7 +75,7 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
                 }
                 JSONObject bango_kitita_reference = JsonFormUtils.getFieldJSONObject(fields, "bango_kitita_reference");
                 if (bango_kitita_reference != null) {
-                    bango_kitita_reference.put("text", MessageFormat.format("{0}: {1}", context.getString(R.string.bango_kitita_message), pages));
+                    bango_kitita_reference.put("text", MessageFormat.format("{0}: <b>{1}</b>", context.getString(R.string.bango_kitita_message), pages));
                 }
             }
             return jsonObject.toString();
@@ -160,19 +160,32 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
     private String bangoKitataPages() {
         int visitNumber = visitNumber();
         Map<Integer, String> bangoKititaPages = new HashMap<>();
-        bangoKititaPages.put(3, String.format(context.getString(R.string.bango_kitita_two_pages), "17", "19"));
-        bangoKititaPages.put(4, String.format(context.getString(R.string.bango_kitita_one_page), "21"));
-        bangoKititaPages.put(5, String.format(context.getString(R.string.bango_kitita_one_page), "27"));
-        bangoKititaPages.put(6, String.format(context.getString(R.string.bango_kitita_two_pages), "33", "37"));
-        bangoKititaPages.put(7, String.format(context.getString(R.string.bango_kitita_two_pages), "39", "43"));
-        bangoKititaPages.put(8, String.format(context.getString(R.string.bango_kitita_two_pages), "45", "49"));
-        bangoKititaPages.put(9, String.format(context.getString(R.string.bango_kitita_two_pages), "51", "57"));
-        bangoKititaPages.put(10, String.format(context.getString(R.string.bango_kitita_two_pages), "59", "61"));
-        bangoKititaPages.put(11, String.format(context.getString(R.string.bango_kitita_two_pages), "65", "67"));
-        bangoKititaPages.put(12, String.format(context.getString(R.string.bango_kitita_one_page), "75"));
-        bangoKititaPages.put(13, String.format(context.getString(R.string.bango_kitita_one_page), "79"));
-        bangoKititaPages.put(14, String.format(context.getString(R.string.bango_kitita_one_page), "85"));
-        bangoKititaPages.put(15, String.format(context.getString(R.string.bango_kitita_one_page), "93"));
+        bangoKititaPages.put(1, String.format(context.getString(R.string.bango_kitita_three_pages), "2", "3", "4"));
+        bangoKititaPages.put(2, String.format(context.getString(R.string.bango_kitita_two_pages), "5", "6"));
+        bangoKititaPages.put(3, String.format(context.getString(R.string.bango_kitita_three_pages), "7", "8", "9"));
+        bangoKititaPages.put(4, String.format(context.getString(R.string.bango_kitita_one_page), "10"));
+        bangoKititaPages.put(5, String.format(context.getString(R.string.bango_kitita_two_pages), "11", "13"));
+        bangoKititaPages.put(6, String.format(context.getString(R.string.bango_kitita_one_page), "14"));
+        bangoKititaPages.put(7, String.format(context.getString(R.string.bango_kitita_two_pages), "16", "18"));
+        bangoKititaPages.put(8, String.format(context.getString(R.string.bango_kitita_one_page), "20"));
+        bangoKititaPages.put(9, String.format(context.getString(R.string.bango_kitita_two_pages), "21", "22"));
+        bangoKititaPages.put(10, String.format(context.getString(R.string.bango_kitita_two_pages), "24", "25"));
+        bangoKititaPages.put(11, String.format(context.getString(R.string.bango_kitita_one_page), "28"));
+        bangoKititaPages.put(12, String.format(context.getString(R.string.bango_kitita_two_pages), "30", "32"));
+        bangoKititaPages.put(13, String.format(context.getString(R.string.bango_kitita_two_pages), "34", "35"));
+        bangoKititaPages.put(14, String.format(context.getString(R.string.bango_kitita_two_pages), "37", "38"));
+        bangoKititaPages.put(15, String.format(context.getString(R.string.bango_kitita_two_pages), "40", "41"));
+
+        String page42 = String.format(context.getString(R.string.bango_kitita_one_page), "42");
+        for (int i = 16; i <= 19; i++) {
+            bangoKititaPages.put(i, page42);
+        }
+
+        String page43 = String.format(context.getString(R.string.bango_kitita_one_page), "43");
+        for (int i = 20; i <= 25; i++) {
+            bangoKititaPages.put(i, page43);
+        }
+
         String pages = bangoKititaPages.get(visitNumber);
         return (pages != null) ? pages : "";
     }

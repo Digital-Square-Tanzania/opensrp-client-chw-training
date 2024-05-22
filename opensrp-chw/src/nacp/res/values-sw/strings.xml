@@ -193,6 +193,7 @@
     <string name="pnc_child_play_assessment_counselling"><b>MMMAM</b> Tathmini maendeleo ya Michezo {0}</string>
     <string name="bango_kitita_one_page">Ukurasa wa %s</string>
     <string name="bango_kitita_two_pages">Ukurasa wa %s na Ukurasa wa %s</string>
+    <string name="bango_kitita_three_pages">Ukurasa wa %s, Ukurasa wa %s na Ukurasa wa %s</string>
     <string name="bango_kitita_message">Tafadhali rejea kurasa zifuatazo za Bango Kitita kueleza michezo kulingana na umri wa mtoto</string>
     <string name="pnc_child_development_screening_assessment"><b>MMMAM: </b>Tathmini ya maendeleo ya Ukuaji wa Mtoto {0}</string>
     <string name="pnc_child_communication_assessment"> <b>MMMAM: </b>Tathmini maendeleo ya Mawasiliano {0}</string>
