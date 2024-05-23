@@ -86,7 +86,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Taarifa kwa MJA: Mshauri mama kwenda kupima VVU haraka iwezekanavyo katika kituo cha kutolea huduma za afya kilichopo karibu na yeye.",
+        "text": "Taarifa kwa MJA: Mshauri mama kwenda kupima VVU mapema katika kituo cha kutolea huduma za afya kilichopo karibu na yeye.",
         "text_color": "#2D2E2D",
         "toaster_type": "info",
         "relevance": {
@@ -179,7 +179,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Taarifa kwa MJA: Mshauri mama kwenda kufanya vipimo tena mtoto akifiksha umri wa miezi 18.",
+        "text": "Taarifa kwa MJA: Mshauri mama kwenda kufanya vipimo tena:\nmiezi 3 baada ya kujifungua,\nmiezi 6 baada ya kujifungua na, \nmiezi 18 baada ya kujifungua",
         "text_color": "#2D2E2D",
         "toaster_type": "info"
       },
@@ -311,6 +311,13 @@
         "v_required": {
           "value": "true",
           "err": "Jibu linahitajika"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -357,7 +364,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "Taarifa ya MJA kwa mama: Mkumbushe mama kuhakikisha anaenda kituo cha CTC na kuhakikisha mtoto anaendelea kutumia dawa za ARV.",
+        "text": "Taarifa ya MJA kwa mama: Mkumbushe mama kuhakikisha anaenda kituo cha CTC na kuhakikisha mtoto anaendelea kutumia dawa za ARV. \nTaarifa kwa MJA: Sema, Mama Kumbuka kurejea kitabu cha Afya ya mtoto (kadi ya kliniki) ukurasa namba 27 kwa ajili ya maswala ya lishe na ukurasa wa 29 kwa taarifa zaidi",
         "text_color": "#2D2E2D",
         "toaster_type": "info",
         "relevance": {
