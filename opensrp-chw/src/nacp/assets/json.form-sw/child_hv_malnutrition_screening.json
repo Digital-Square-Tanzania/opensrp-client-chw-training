@@ -205,7 +205,8 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "Kama Mtoto yupo sawa, Mpongeze mlezi.",
-        "toaster_type": "info",
+        "toaster_type": "positive",
+        "text_color": "#000000",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
