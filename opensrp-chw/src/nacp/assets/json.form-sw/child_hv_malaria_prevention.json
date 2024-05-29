@@ -160,7 +160,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "toaster_type": "info",
+        "toaster_type": "warning",
         "text": "Mshauri mama/baba au mlezi kuishona sehemu ambazo zimechanika",
         "text_color": "#000000",
         "relevance": {
@@ -176,7 +176,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "toaster_type": "info",
+        "toaster_type": "problem",
         "text": "Mshauri mama/baba au mlezi kununua chandarua nyingine",
         "text_color": "#000000",
         "relevance": {
