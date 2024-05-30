@@ -59,6 +59,7 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
         Form form = new Form();
         form.setActionBarBackground(R.color.family_actionbar);
         form.setWizard(false);
+        form.setHideSaveLabel(true);
 
         Intent intent = new Intent(this, Utils.metadata().familyMemberFormActivity);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
+import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -18,11 +19,16 @@ import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.core.utils.FormUtils;
+import org.smartregister.chw.referral.util.LocationUtils;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.JsonFormUtilsFlv;
+import org.smartregister.family.util.Utils;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -98,6 +104,31 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new DangerSignsAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
+    }
+
+    private void evaluateFacilityReferral(String referralPayload,Map<String, List<VisitDetail>> details,
+                                          final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        String formName="referral_facility_selection";
+        JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
+        Map<String,String> facilityOptions= LocationUtils.INSTANCE.getFacilitiesKeyAndName();
+        JsonFormUtilsFlv.overwriteQuestionOptions("chw_referral_hf",facilityOptions, jsonForm);
+
+        if (details != null) {
+            ChwAncJsonFormUtils.populateForm(jsonForm, details);
+        }
+        FacilitySelectionActionHelper helper=new FacilitySelectionActionHelper(
+                referralPayload,
+                details,
+                CoreConstants.TABLE_NAME.ANC_REFERRAL,memberObject);
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context,context.getString(R.string.anc_home_visit_facility_referral) )
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(formName)
+                .withJsonPayload(jsonForm.toString())
+                .withHelper(helper)
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_facility_referral), action);
     }
 
     private void evaluateHealthFacilityVisit(Map<String, List<VisitDetail>> details,
@@ -256,6 +287,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                     evaluateRemarks(details, context);
                 } else {
                     Timber.d(actionList.toString());
+                    evaluateFacilityReferral(s,details,context);
                     actionList.remove(context.getString(R.string.anc_home_visit_family_planning));
                     actionList.remove(context.getString(R.string.anc_home_visit_nutrition_status));
                     actionList.remove(context.getString(R.string.anc_home_visit_counselling_task));

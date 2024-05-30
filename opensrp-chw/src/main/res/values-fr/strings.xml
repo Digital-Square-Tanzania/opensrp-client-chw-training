@@ -144,6 +144,7 @@
 
     <!-- home visit strings-->
     <string name="anc_home_visit_danger_signs">Signes de danger</string>
+    <string name="anc_home_visit_facility_referral">Orientation vers un établissement de santé</string>
     <string name="anc_home_visit_facility_visit">Visite CPN {0} à la structure sanitaire</string>
     <string name="anc_home_visit_family_planning">Planification familiale</string>
     <string name="anc_home_visit_nutrition_status">État nutritionnel</string>
