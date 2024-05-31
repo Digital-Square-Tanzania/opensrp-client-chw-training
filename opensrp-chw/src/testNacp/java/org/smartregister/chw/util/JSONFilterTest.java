@@ -12,18 +12,9 @@ public class JSONFilterTest {
     public void testJSONFilter() {
         try {
             String filename = "";
-            File file = new File("/home/n2/.projects/ucs/opensrp-client-chw/opensrp-chw/src/testNacp/java/org/smartregister/chw/util/" + filename);
-            String[] paths = {
-                    "store...price",
-                    "store.book",
-                    "store.book.1.price",
-                    "store.book[*].range[*].pages",
-                    "store..range[(@.color==red)].pages",
-                    "store.book[(@.price != null )&(@.category!=fiction)]",
-            };
-
+            File file = new File("/home/n2/.projects/ucs/opensrp-client-chw/opensrp-chw/src/main/assets/ec_client_fields.json");
             JsonQ jFilter = new JsonQ(file);
-            Object a = jFilter.get("store.book");
+            Object a = jFilter.get("bindFields[@.name=ec_referral");
             System.out.println(a);
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,14 +25,5 @@ public class JSONFilterTest {
         int a= 2 + 4;
         int b= 4 - 2;
         assertEquals(a,b);
-    }
-}
-
-class Range{
-    String pages;
-    String color;
-    Range(JSONObject obj){
-        pages=obj.optString("pages","");
-        color=obj.optString("color","");
     }
 }

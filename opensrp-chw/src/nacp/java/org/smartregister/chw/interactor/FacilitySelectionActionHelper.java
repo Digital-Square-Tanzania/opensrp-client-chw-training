@@ -42,10 +42,6 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
     @Override
     public void onPayloadReceived(String jsonPayload) {
       //implement
-    }
-
-    @Override
-    public String postProcess(String jsonPayload) {
         try {
             payload = new JSONObject(jsonPayload);
             JSONObject referralProblem=copyReferralProblem(referralPayload);
@@ -53,7 +49,7 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
             createReferralTask();
         }
         catch (JSONException e) {Timber.e(e);}
-        return super.postProcess(payload.toString());
+//        return super.postProcess(payload.toString());
     }
 
     @Override
