@@ -26,8 +26,9 @@ public class ComplimentaryFeedingActionHelper extends HomeVisitActionHelper {
     private String complementaryFeedingCounselling = "";
 
 
-    public ComplimentaryFeedingActionHelper(ServiceWrapper serviceWrapper) {
+    public ComplimentaryFeedingActionHelper(ServiceWrapper serviceWrapper, Context context) {
         this.serviceWrapper = serviceWrapper;
+        this.context = context;
     }
 
     @Override
