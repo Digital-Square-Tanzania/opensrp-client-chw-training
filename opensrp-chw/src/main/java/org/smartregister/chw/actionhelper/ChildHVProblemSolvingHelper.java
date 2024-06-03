@@ -14,6 +14,7 @@ import timber.log.Timber;
 
 public class ChildHVProblemSolvingHelper extends HomeVisitActionHelper {
     private String child_playing_challenge;
+
     @Override
     public void onPayloadReceived(String s) {
         try {
@@ -49,10 +50,10 @@ public class ChildHVProblemSolvingHelper extends HomeVisitActionHelper {
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         if (StringUtils.isBlank(child_playing_challenge)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        } else if (child_playing_challenge.equalsIgnoreCase("Hapana") || child_playing_challenge.equalsIgnoreCase("No")) {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
-        } else {
+        } else if (child_playing_challenge.equalsIgnoreCase("Yes") || child_playing_challenge.equalsIgnoreCase("Ndiyo")) {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        } else {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
         }
     }
 }
