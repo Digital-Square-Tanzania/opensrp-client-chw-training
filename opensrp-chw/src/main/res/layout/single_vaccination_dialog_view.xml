@@ -120,15 +120,6 @@
                 android:layout_marginBottom="@dimen/vaccination_name_layout_bottom_margin"
                 android:gravity="center_horizontal"
                 android:orientation="vertical" />
-            <LinearLayout
-                android:id="@+id/vaccination_name_layoutx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/vaccination_name_layout_top_margin"
-                android:layout_marginBottom="@dimen/vaccination_name_layout_bottom_margin"
-                android:gravity="center_horizontal"
-                android:orientation="vertical" />
 
             <Button
                 android:id="@+id/vaccinate_earlier"
