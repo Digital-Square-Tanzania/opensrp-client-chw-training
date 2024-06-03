@@ -329,7 +329,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
                 .Builder(context, title)
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withFormName(Constants.JsonForm.getChildHvCompFeeding())
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
@@ -376,7 +376,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_problem_solving))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
@@ -402,7 +402,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.PLAY_ASSESSMENT_COUNSELLING);
 
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
@@ -496,7 +496,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String title = context.getString(R.string.child_safety);
 
         BaseAncHomeVisitAction childSafetyAction = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withFormName(Constants.JsonForm.getChildSafetyForm())
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
@@ -520,7 +520,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.COMMUNICATION_ASSESSMENT_COUNSELLING);
 
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
@@ -544,7 +544,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, List<VisitDetail>> details = getDetails(Constants.Events.DEVELOPMENT_SCREENING_AND_ASSESSMENT);
 
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
@@ -574,7 +574,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(actionHelper)
                 .withDetails(details)
-                .withOptional(false)
+                .withOptional(true)
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
@@ -599,7 +599,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
@@ -625,7 +625,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String title = context.getString(R.string.child_home_visit_pmtct);
 
         BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withFormName(Constants.JsonForm.getChildHvPmtct())
                 .withHelper(new ChildPMTCTActionHelper())
