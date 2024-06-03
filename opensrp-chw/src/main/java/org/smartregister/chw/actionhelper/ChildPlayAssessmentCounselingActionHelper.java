@@ -101,7 +101,7 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     private void populateVisitNumber() {
         int visitNumber = visitNumber();
-        if (visitNumber == 2) {
+        if (visitNumber == 2 || visitNumber == 1) {
             visitNumberMap.put("visit_2_visit_25", true);
         } else if (visitNumber >= 3 && visitNumber <= 16) {
             visitNumberMap.put("visit_3_visit_16", true);
