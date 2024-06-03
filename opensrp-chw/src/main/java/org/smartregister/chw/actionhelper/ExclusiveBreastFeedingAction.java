@@ -97,9 +97,9 @@ public class ExclusiveBreastFeedingAction extends HomeVisitActionHelper {
             return BaseAncHomeVisitAction.Status.PENDING;
 
         if (exclusive_breast_feeding.equalsIgnoreCase("Yes")) {
-            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        } else if (exclusive_breast_feeding.equalsIgnoreCase("No")) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else if (exclusive_breast_feeding.equalsIgnoreCase("No")) {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.PENDING;
         }
