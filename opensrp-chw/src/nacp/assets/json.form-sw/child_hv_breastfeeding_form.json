@@ -215,7 +215,7 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "Mpongeze mama/baba au mlezi kwa kuhakikisha mtoto ananyonya maziwa ya mama pekee",
-        "toaster_type": "info",
+        "toaster_type": "positive",
         "relevance": {
           "step1:other_food_child_feeds": {
             "ex-checkbox": [
@@ -377,7 +377,7 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "Mpongeze mama kwa kumuweka vizuri mtoto wake wakati wa kumnyonyesha.",
-        "toaster_type": "info",
+        "toaster_type": "positive",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
