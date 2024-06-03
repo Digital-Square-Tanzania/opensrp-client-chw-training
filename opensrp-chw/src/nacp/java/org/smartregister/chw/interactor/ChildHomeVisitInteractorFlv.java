@@ -59,7 +59,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateChildSafety(serviceWrapperMap);
             evaluateCompFeeding(serviceWrapperMap);
             evaluateChildPMTCT(serviceWrapperMap);
-            evaluateSkinToSkin(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap);
             evaluatePlayAssessmentCounseling(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
