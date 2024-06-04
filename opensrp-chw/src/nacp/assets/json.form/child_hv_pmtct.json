@@ -179,7 +179,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "CHW Information: Advice the mother to go for the next checkup when the child is 18 months",
+        "text": "CHW Information: Advice the mother to go for the next HIV testing: <br> 3 months after giving birth, <br> 6 months after giving birth and, ,br> 18 months after giving birth",
         "text_color": "#2D2E2D",
         "toaster_type": "info"
       },
@@ -271,7 +271,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "CHW to remind HIV Positive mother: Remember to stop breastfeeding when your child turns one year old.\\\n  Take your child for confirmatory tests when the child is 18 months old",
+        "text": "CHW to remind HIV Positive mother: Remember to stop breastfeeding when your child turns one year old.<br> Take your child for additional confirmatory tests when the child is 15 months and the final one when the child 18 months old",
         "text_color": "#2D2E2D",
         "toaster_type": "info",
         "relevance": {
@@ -311,7 +311,14 @@
         "v_required": {
           "value": "true",
           "err": "This value is required"
+        },
+        "relevance": {
+        "rules-engine": {
+          "ex-rules": {
+            "rules-file": "child_hv_pmtct_relevance.yml"
+          }
         }
+      }
       },
       {
         "key": "childs_hiv_status",
@@ -357,7 +364,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "CHW Reminder to mother: To ensure that she visits the PMTCT clinic and that the child remains on ART",
+        "text": "CHW Reminder to mother: To ensure that she visits the PMTCT clinic and that the child remains on ART <br> CHW: Say, Mother remember to go through your child's growth monitoring booklet (ANC clinic  card) on page number 27and 29 so as to continue learning on Nutrition and other important information",
         "text_color": "#2D2E2D",
         "toaster_type": "info",
         "relevance": {

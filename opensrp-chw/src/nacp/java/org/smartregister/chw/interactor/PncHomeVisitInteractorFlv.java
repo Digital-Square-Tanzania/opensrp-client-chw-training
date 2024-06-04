@@ -15,7 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ChildCommunicationAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ChildDevelopmentScreeningActionHelper;
@@ -35,7 +34,6 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.VaccineDisplay;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.domain.VisitDetail;
-import org.smartregister.chw.anc.fragment.BaseHomeVisitImmunizationFragment;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.anc.util.VisitUtils;
@@ -52,6 +50,7 @@ import org.smartregister.chw.dao.ChwPNCDao;
 import org.smartregister.chw.dao.ChwPNCDaoFlv;
 import org.smartregister.chw.dao.PersonDao;
 import org.smartregister.chw.domain.PNCHealthFacilityVisitSummary;
+import org.smartregister.chw.fragment.BaseHomeVisitImmunizationFragmentFlv;
 import org.smartregister.chw.pnc.PncLibrary;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
@@ -59,7 +58,6 @@ import org.smartregister.chw.util.PNCVisitUtil;
 import org.smartregister.immunization.domain.VaccineWrapper;
 import org.smartregister.util.DateUtil;
 import org.smartregister.util.JsonFormUtils;
-
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -711,7 +709,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 }
             }
             BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin))
-                    .withOptional(false)
+                    .withOptional(true)
                     .withDetails(details)
                     .withBaseEntityID(baby.getBaseEntityID())
                     .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -910,7 +908,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                         .withDetails(details)
                         .withBaseEntityID(baby.getBaseEntityID())
                         .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                        .withDestinationFragment(BaseHomeVisitImmunizationFragment.getInstance(view, baby.getBaseEntityID(), details, displays))
+                        .withDestinationFragment(BaseHomeVisitImmunizationFragmentFlv.getInstance(view, baby.getBaseEntityID(),details, displays,false))
                         .withHelper(new ImmunizationActionHelper(context, wrappers))
                         .build();
                 actionList.put(MessageFormat.format(context.getString(R.string.pnc_immunization_at_birth), baby.getFullName()), action);
@@ -925,7 +923,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         if (visitID.equalsIgnoreCase("1") || visitID.equalsIgnoreCase("3") || visitID.equalsIgnoreCase("8")) {
             BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()))
-                    .withOptional(false)
+                    .withOptional(true)
                     .withDetails(details)
                     .withBaseEntityID(baby.getBaseEntityID())
                     .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -1118,10 +1116,9 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private void evaluateNewBornCareIntroduction(Person baby) throws Exception {
         String visitID = pncVisitAlertRule().getVisitID();
 
-        if (visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3") ||
-                visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21 - 27") || visitID.equalsIgnoreCase("35 - 41")) {
+        if (visitID.equals("1") || visitID.equals("3") || visitID.equals("8") || visitID.equals("21 - 27") || visitID.equals("35 - 41")) {
             BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()))
-                    .withOptional(false)
+                    .withOptional(true)
                     .withDetails(details)
                     .withBaseEntityID(baby.getBaseEntityID())
                     .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -1135,7 +1132,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private void evaluateDevelopmentScreening(Person baby) throws Exception {
         String visitID = pncVisitAlertRule().getVisitID();
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), "(" + baby.getFullName() + ")"))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -1148,7 +1145,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private void evaluatePlayAssessmentCounseling(Person baby) throws Exception {
         String visitID = pncVisitAlertRule().getVisitID();
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "(" + baby.getFullName() + ")"))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -1160,7 +1157,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
     private void evaluateCCDCommunicationAssessment(Person baby) throws Exception {
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), "(" + baby.getFullName() + ")"))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -1184,8 +1181,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(actionHelper)
                 .withDetails(details)
-                .withOptional(false)
                 .withJsonPayload(careGiverResponsivenessForm.toString())
+                .withOptional(true)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvCcdCareGiverResponsiveness())
@@ -1195,7 +1192,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
     private void evaluateProblemSolving(Person baby) throws Exception {
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_problem_solving))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
@@ -1210,7 +1207,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         String title = context.getString(R.string.child_safety);
 
         BaseAncHomeVisitAction childSafetyAction = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withFormName(Constants.JsonForm.getChildSafetyForm())
@@ -1263,7 +1260,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 String title = MessageFormat.format(context.getString(R.string.ccd_introduction_title), baby.getFullName());
 
                 BaseAncHomeVisitAction action = getBuilder(title)
-                        .withOptional(false)
+                        .withOptional(true)
                         .withDetails(details)
                         .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                         .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
@@ -1279,7 +1276,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             if (visitID.equalsIgnoreCase("35 - 41")) {
                 String title = context.getString(R.string.child_home_visit_pmtct);
                 BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
-                        .withOptional(false)
+                        .withOptional(true)
                         .withDetails(details)
                         .withFormName(Constants.JsonForm.getChildHvPmtct())
                         .withHelper(new ChildPMTCTActionHelper())
@@ -1299,7 +1296,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 String title = context.getString(R.string.malnutrition_screening);
 
                 BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
-                        .withOptional(false)
+                        .withOptional(true)
                         .withDetails(details)
                         .withFormName(Constants.JsonForm.getChildHvMalnutritionScreening())
                         .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)

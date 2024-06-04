@@ -33,7 +33,9 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     private String jsonString;
 
-    private String spend_time_with;
+    private String demonstrate_play_child;
+
+    private String play_with_child;
 
     public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
         this.context = context;
@@ -45,7 +47,8 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            spend_time_with = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "spend_time_with");
+            demonstrate_play_child = JsonFormUtils.getValue(jsonObject, "demonstrate_play_child");
+            play_with_child = JsonFormUtils.getValue(jsonObject, "play_with_child");
         } catch (JSONException e) {
             Timber.e(e);
         }
@@ -92,16 +95,28 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(spend_time_with)) {
-            return BaseAncHomeVisitAction.Status.PENDING;
+        if (!StringUtils.isBlank(play_with_child) || !StringUtils.isBlank(demonstrate_play_child)) {
+            if (visitNumber() <= 5) {
+                if (demonstrate_play_child.contains("chk_move_baby_arms_legs") || demonstrate_play_child.contains("chk_baby_attention_shaker_toy")) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+                }
+            } else {
+                if (play_with_child.equalsIgnoreCase("Yes")) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+                }
+            }
         } else {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+            return BaseAncHomeVisitAction.Status.PENDING;
         }
     }
 
     private void populateVisitNumber() {
         int visitNumber = visitNumber();
-        if (visitNumber == 2) {
+        if (visitNumber == 2 || visitNumber == 1) {
             visitNumberMap.put("visit_2_visit_25", true);
         } else if (visitNumber >= 3 && visitNumber <= 16) {
             visitNumberMap.put("visit_3_visit_16", true);
