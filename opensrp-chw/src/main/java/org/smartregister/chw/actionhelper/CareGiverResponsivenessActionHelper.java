@@ -59,8 +59,7 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         if (StringUtils.isBlank(caregiver_comfort_child) || StringUtils.isBlank(caregiver_interacts_with_child) || StringUtils.isBlank(caregiver_response_cue)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        } else if (caregiver_interacts_with_child.equalsIgnoreCase("responds_to_child") &&
-                "Yes".equalsIgnoreCase(caregiver_comfort_child) && (caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues_by_looking_into_child_eyes") || caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues_by_responding_child_action"))) {
+        } else if (caregiver_interacts_with_child.equalsIgnoreCase("responds_to_child") && "Yes".equalsIgnoreCase(caregiver_comfort_child) && (caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues_by_looking_into_child_eyes") || caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues_by_responding_child_action"))) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
@@ -69,7 +68,11 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
-        return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;
+        if (alert != null) {
+            return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;
+        } else {
+            return null;
+        }
     }
 
     private boolean isOverDue() {
