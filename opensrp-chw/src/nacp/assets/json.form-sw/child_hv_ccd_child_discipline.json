@@ -53,7 +53,7 @@
         "key": "caregiver_child_correction_observe",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "caregiver_child_correction_observe",
         "type": "label",
         "text": "Taarifa kwa MJA: Sema: \"Naomba kujadiliana na wewe njia mzuri ya kuwarekebisha watoto wakiwa wamefanya makosa, kwa mfano jaalia mtoto anataka kuchukua kikombe cha chai moto, hili ni kosa, kwasababu huenda chai ikamwagikia akaungua. Unaeza kuniambia jinsi utakavyomrekebisha mtoto kwenye hii hali?\"",
         "text_color": "#000000",
@@ -64,7 +64,7 @@
         "key": "caregiver_child_correction",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "caregiver_child_correction",
         "type": "check_box",
         "label": "Taarifa kwa MJA: Mama/mlezi alielezea vipi jinsi anavyomrekebisha mtoto akikosea?",
         "label_text_style": "normal",
@@ -78,21 +78,21 @@
             "text": "Anamkataza na kumueleza madhara, na kumpa shughuli au kifaa mbadala cha kuchezea",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_distracts_child"
           },
           {
             "key": "chk_scolds_child",
             "text": "Anamgombeza/kumpiga",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_scolds_child"
           },
           {
             "key": "chk_no_respond_child",
             "text": "Anamuacha bila kufanya chochote",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_no_respond_child"
           }
         ],
         "v_required": {
@@ -162,7 +162,7 @@
         "key": "child_treated_harshly",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "child_treated_harshly",
         "type": "check_box",
         "label": "Taarifa za CHW: Wakati wa ziara, ulikuwa na wasiwasi wowote kwamba mtoto anatendewa ukali?",
         "label_text_style": "normal",
@@ -176,14 +176,14 @@
             "text": "Ndio",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_yes"
           },
           {
             "key": "chk_no",
             "text": "Hapana",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_no"
           }
         ],
         "v_required": {

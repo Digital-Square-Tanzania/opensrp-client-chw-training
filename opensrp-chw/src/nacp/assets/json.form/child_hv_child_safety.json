@@ -64,7 +64,7 @@
         "key": "child_safety_counselled",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "child_safety_counselled",
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "Did you conduct counselling on child safety?",
