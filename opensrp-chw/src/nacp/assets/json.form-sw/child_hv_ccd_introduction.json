@@ -55,7 +55,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "child_development_intro_note1",
         "type": "toaster_notes",
-        "text": "Taarifa za MJA: SOMA KWA MAMA/BABA AU MLEZI IKIWA HILI NDIO TEMBELEO LAKO LA KWANZA LA MTOTO KWENYE HII KAYA\nSema: \"Kuanzia wiki hii na kuendelea tutaanza kujadili  shughuli za wewe kuhusiana na kufanya uchangamshi kwa mtoto wako\nTutafanya hivi kwa sababu:\n •Miaka 3 ya mwanzo ya  Ukuaji wa watoto ni muhimu sana, huathiri jinsi mtoto anavyofanya vizuri shuleni, ubora wa tabia ya mtoto na mafanikio yake ya baadae\n• Ubongo unakua haraka sana kwa wakati huu na kile kinachotokea kwa mtoto kama vile upendo, kucheza, matunzo, lishe na afya huathiri jinsi ubongo unavyokua.\n• Watu wazima wanahusika na malezi ya mtoto wanaweza kubadilisha maendeleo ya mtoto. Wanaweza kuathiri jinsi mtoto atakavyokuwa na akili, tabia ya mtoto, jinsi anavyohusiana na wengine na furaha yake.\nKwa hiyo katika wiki na miezi ijayo, tutaendelea kufanya kile tutakachofanya leo: kuzungumzia juu ya tabia na maendeleo ya mtoto wako na kufanya shughuli zinazolingana na umri wa mtoto wako. Lengo ni kwamba uendelee kumchangamsha mtoto wako na shughuli ambazo tunafanya pamoja yatakusaidia itakupa mifano ya jinsi ya kumchangamsha mtoto! Kumbuka: Huu ni wakati muhimu katika maisha yao kwa sababu jinsi watakavyokua na kujifunza inategemea sana tabia ambazo wewe (na watu wengine wazima) huonyesha kwa mtoto wako.",
+        "text": "<b>Taarifa za MJA:</> SOMA KWA MZAZI/MLEZI IKIWA HILI NDIO TEMBELEO LAKO LA KWANZA LA MTOTO KWENYE HII KAYA<br><br><b>Sema:</b><br>\u2022 Miaka 3 ya mwanzo ya  Ukuaji wa watoto ni muhimu sana, huathiri jinsi mtoto anavyofanya vizuri shuleni, ubora wa tabia ya mtoto na mafanikio yake ya baadae. Huu ni wakati muhimu katika maisha yao kwa sababu jinsi watakavyokua na kujifunza inategemea sana tabia ambazo wewe (na watu wengine wazima) huonyesha kwa mtoto wako.<br>\u2022 Ubongo unakua kwa haraka sana kwa wakati huu na kile kinachotokea kwa mtoto kama vile upendo, kucheza, matunzo, lishe na afya huathiri jinsi ubongo unavyokua.<br><br><i>Kwa hiyo katika wiki na miezi ijayo, tutaendelea kufanya kile tutakachofanya leo: kuzungumzia juu ya tabia na maendeleo ya mtoto wako na kufanya shughuli zinazolingana na umri wa mtoto wako. Lengo ni  wewe uendelee kufanya shughuli hizi na mtoto.</i>",
         "toaster_type": "info"
       },
       {
@@ -64,7 +64,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "child_development_intro_note2",
         "type": "toaster_notes",
-        "text": "Taarifa za MJA: SOMA KWA MZAZI/MLEZI  IKIWA TU HII NDIYO TEMBELEO LAKO LA KWANZA  KWA MTOTO KWENYE HII KAYA: Sema \"Katika wiki zijazo utapata yafuatayo:\n\n· Uelewa zaidi juu ya maswala ya Malezi, Makuzi, na Maendeleo ya Awali ya Mtoto\nna mahitaji ya watoto wadogo katika miaka ya Awali\n\n· Uelewa zaidi wa jinsi unavyoweza kusaidia katika Malezi, Makuzi na Maendeleo ya Awali ya Mtoto kupitia uchangamshi\n· Mbinu mbalimbali za kuhusiana na kumchangamsha mtoto wako, kwa njia ambazo zitamsaida kukua na kuwa na afya bora",
+        "text": "<b>Taarifa za MJA:</b> SOMA KATIKA KILA  TEMBELEO<br><br><b>Sema: </b> <i>\"Wewe na mwenza wako/mume au wanafamilia mna mchango mkubwa katika ukuaji wa ubongo na maendeleo ya mtoto. Mtoto anapenda kuona sura za mama na baba yake (au walezi wengine muhimu), hivyo ni vyema kutazamana na mtoto wakati wote.<br><br>Mtoto mchanga anaweza kuona vitu, kuhisi , na kuitikia sauti na milio anayosikia. Mtoto anaweza kutuambia ana furaha, njaa au ana huzuni kupitia sauti anazotoa.<br><br>Kadiri tunavyowapa watoto wetu fursa za kuchunguza mazingira (kwa kucheza,kujifunza mambo mapya, kuona vitu vipya na kuiga kile ambacho wengine hufanya), ndivyo maarifa zaidi yanavyoongezeka katika ubongo wa mtoto!\"",
         "toaster_type": "info",
         "text_color": "#000000"
       },
@@ -75,33 +75,6 @@
         "openmrs_entity_id": "spacer",
         "type": "spacer",
         "spacer_height": "10dp"
-      },
-      {
-        "key": "child_development_intro_note3",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "child_development_intro_note3",
-        "type": "toaster_notes",
-        "text_color": "#000000",
-        "text": "Taarifa za MJA: SOMA KATIKA KILA  TEMBELEO\nSema: \"Wewe na mwenza wako/mume au wanafamilia mna mchango mkubwa katika ukuaji wa ubongo na maendeleo ya akili ya mtoto. Miezi na miaka hii ya awali inapaswa kutumika katika ukuaji wake.\n\nMtoto mchanga anaweza kuona vitu, kuhisi , na kuitikia sauti na milio anayosikia. Mtoto anaweza kutuambia ana njaa au hana furaha kupitia sauti anazotoa. Mtoto anapenda kuona sura za mama na baba yake (au walezi wengine muhimu).\n\nKadiri tunavyowapa watoto wetu fursa za kuchunguza mazingira (kwa kucheza,kujifunza mambo mapya, kuona vitu vipya na kuiga kile ambacho wengine hufanya), ndivyo maarifa zaidi yanavyoongezeka katika ubongo wa mtoto!\"",
-        "toaster_type": "info"
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "spacer",
-        "type": "spacer",
-        "spacer_height": "15dp"
-      },
-      {
-        "key": "child_development_intro_note5",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "child_development_intro_note5",
-        "type": "toaster_notes",
-        "text": "Taarifa za MJA: SOMA KWA MZAZI/MLEZI IKIWA HII NI ZIARA YAKO YA KWANZA KWENYE FAMILIA HII: Sema \"Hizi ni baadhi ya shughuli muhimu unazoweza kufanya ili kumsaidia mtoto kuongeza ujuzi wake.\"",
-        "toaster_type": "info"
       }
     ]
   }

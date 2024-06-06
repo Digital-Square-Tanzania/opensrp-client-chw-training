@@ -53,7 +53,7 @@
         "key": "caregiver_child_correction_observe",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "caregiver_child_correction_observe",
         "type": "label",
         "text": "Taarifa kwa MJA: Sema: \"Naomba kujadiliana na wewe njia mzuri ya kuwarekebisha watoto wakiwa wamefanya makosa, kwa mfano jaalia mtoto anataka kuchukua kikombe cha chai moto, hili ni kosa, kwasababu huenda chai ikamwagikia akaungua. Unaeza kuniambia jinsi utakavyomrekebisha mtoto kwenye hii hali?\"",
         "text_color": "#000000",
@@ -64,7 +64,7 @@
         "key": "caregiver_child_correction",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "caregiver_child_correction",
         "type": "check_box",
         "label": "Taarifa kwa MJA: Mama/mlezi alielezea vipi jinsi anavyomrekebisha mtoto akikosea?",
         "label_text_style": "normal",
@@ -78,21 +78,21 @@
             "text": "Anamkataza na kumueleza madhara, na kumpa shughuli au kifaa mbadala cha kuchezea",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_distracts_child"
           },
           {
             "key": "chk_scolds_child",
             "text": "Anamgombeza/kumpiga",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_scolds_child"
           },
           {
             "key": "chk_no_respond_child",
             "text": "Anamuacha bila kufanya chochote",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_no_respond_child"
           }
         ],
         "v_required": {
@@ -162,9 +162,9 @@
         "key": "child_treated_harshly",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "child_treated_harshly",
         "type": "check_box",
-        "label": "Taarifa za CHW: Wakati wa ziara, ulikuwa na wasiwasi wowote kwamba mtoto anatendewa ukali?",
+        "label": "Taarifa za CHW: Wakati wa ziara, ulikuwa na wasiwasi wowote kwamba mtoto anatendewa ukatili?",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -176,19 +176,69 @@
             "text": "Ndio",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_yes"
           },
           {
             "key": "chk_no",
             "text": "Hapana",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "chk_no"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Hitilafu! Jawabu linahitajika"
+        }
+      },
+      {
+        "key": "abuse_child_experienced",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "abuse_child_experienced",
+        "type": "check_box",
+        "label": "TAARIFA KWA MJA (USIMSOMEE MLEZI!)\nChagua aina ya ukatili anaofanyiwa mtoto",
+        "label_text_style": "normal",
+        "options": [
+          {
+            "key": "chk_baby_sex_violence",
+            "text": "Ukatili wa Kingono",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_sex_violence"
+          },
+          {
+            "key": "chk_baby_physical_violence",
+            "text": "Ukatili wa kimwili (mfano kupigwa)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_baby_physical_violence"
+          },
+          {
+            "key": "chk_baby_negligence",
+            "text": "Kutelekezwa",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_play_with_baby"
+          },
+          {
+            "key": "chk_physiological_violence",
+            "text": "Ukatili wa kisaikolojia",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_physiological_violence"
+          }
+        ],
+        "relevance": {
+          "step1:child_treated_harshly": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_yes"
+                ]
+              }
+            ]
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua angalau moja"
         }
       },
       {

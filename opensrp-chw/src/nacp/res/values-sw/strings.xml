@@ -518,6 +518,8 @@
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
     <string name="child_home_visit_pmtct">Kuzuia maambukizi ya Virusi vya Ukimwi kutoka kwa mama kwenda kwa mtoto</string>
     <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
+    <string name="bango_kitita_three_pages">Ukurasa wa %s%s%s na %s</string>
+    <string name="malezi_bango_kitita_message">Tafadhali rejelea kurasa zifuatazo za Bango Kitita la  Malezi III kueleza shughuli kulingana na umri wa mtoto:</string>
 
 
 </resources>

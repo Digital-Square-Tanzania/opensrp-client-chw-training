@@ -50,35 +50,7 @@
     "title": "Play Assessment and Counselling",
     "fields": [
       {
-        "key": "visit_3_visit_16",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
-        "key": "visit_3_visit_17",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
         "key": "visit_17_visit_25",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
-        "key": "visit_2_visit_25",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
-        "key": "visit_3_visit_25",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
@@ -152,13 +124,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -172,37 +137,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the other person"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "child_attend_creche",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "child_attend_creche",
-        "type": "spinner",
-        "hint": "CHW information: Say \"Does your child attend creche?\"",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "Yes",
-          "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
         },
         "relevance": {
           "rules-engine": {
@@ -234,13 +168,26 @@
         "v_required": {
           "value": "true",
           "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
+        }
+      },
+      {
+        "key": "practice_play",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "practice_play",
+        "type": "spinner",
+        "hint": "CHW information: Ask this question only if this is the second visit or moreAsk this question only if this is the second visit or more \n Did you practice the activities we discussed on the previous visit?",
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "Yes",
+          "No": "No"
         }
       },
       {
@@ -249,7 +196,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prepare_play_materials",
         "type": "spinner",
-        "hint": "Did you prepare the play materials that we had agreed on from the previous visit? Can you show me how you play with your child?",
+        "hint": "CHW information: Ask this question only if this is the second visit or moreAsk this question only if this is the second visit or more \n Did you prepare the play materials that we had agreed on from the previous visit? Can you show me how you play with your child?",
         "values": [
           "Yes",
           "No"
@@ -261,79 +208,6 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prepare_picture_book",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prepare_picture_book",
-        "type": "spinner",
-        "hint": "Did you prepare the picture book or buy a book so as to read with your child as we had agreed on from the previous visit? Can you show me how you used the book with your child?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "Yes",
-          "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "challenges_child_communication",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "challenges_child_communication",
-        "type": "spinner",
-        "hint": "Are there any challenges you face while playing or communicating with your child?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "Yes",
-          "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -342,7 +216,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "lesson_learned_previously",
         "type": "spinner",
-        "hint": "Did you share the feedback of what we learned in the previous visit to other households?",
+        "hint": "CHW information: Ask this question only if this is the second visit or moreAsk this question only if this is the second visit or more \nDid you share the feedback of what we learned in the previous visit to other households?",
         "values": [
           "Yes",
           "No"
@@ -354,17 +228,6 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -374,14 +237,7 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "toaster_type": "warning",
-        "text": "CHW Information: Follow up to know if there was any issues regarding the safety and security of the child and if what was agreed upon was followed up with. If not, help to resolve issues or report to the right institution.",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
+        "text": "CHW Information: Follow up to know if there was any issues regarding the safety and security of the child and if what was agreed upon was followed up with. If not, help to resolve issues or report to the right institution."
       },
       {
         "key": "spacer",
@@ -414,13 +270,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select one option"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -432,6 +281,9 @@
         "label": "CHW information: Observe the way the mother/father or caregiver plays with the child and then select all what happened:",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_play_with_baby", ["chk_child_sleep"]
+        ],
         "options": [
           {
             "key": "chk_move_baby_arms_legs",
@@ -446,6 +298,12 @@
             "openmrs_entity_id": "chk_baby_attention_shaker_toy"
           },
           {
+            "key": "chk_play_with_baby",
+            "text": "Does not play with child",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_play_with_baby"
+          },
+          {
             "key": "chk_child_sleep",
             "text": "Child is asleep",
             "openmrs_entity": "concept",
@@ -455,6 +313,30 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        }
+      },
+      {
+        "key": "challenges_child_communication",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "challenges_child_communication",
+        "type": "spinner",
+        "hint": "Are there any challenges you face while playing or communicating with your child?",
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "Yes",
+          "No": "No"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
         },
         "relevance": {
           "rules-engine": {
@@ -500,11 +382,9 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "label",
-        "text": "CHW information: Say, \"Playing is important to support healthy development. A child who has no opportunities to play, and practice new skills will not develop healthily. We need to ensure our children have lots of opportunities to play, practice new skills, see new things and copy what others do. For example, when they shake a rattle they learn what sound it makes, they learn to move the rattle\".",
-        "text_color": "#2D2E2D",
-        "label_text_style": "italic",
-        "has_bg": true,
+        "type": "toaster_notes",
+        "toaster_type": "warning",
+        "text": "<i><b>CHW information: Say,</b> </i>\"Playing is important to support healthy development. A child who has no opportunities to play, and practice new skills will not develop healthily. We need to ensure our children have lots of opportunities to play, practice new skills, see new things and copy what others do.\".",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -526,18 +406,9 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "label",
-        "text": "CHW information: You have reached a stage where you will coach the parents/caregivers on specific age appropriate play activities. These activities usually needs direct interaction between you and the parents/caregiver. Direct the mother/father or caregiver to do the  play or communication activity while you observe.\nRemember you are not supposed to directly partake in these play or communication activities",
-        "text_color": "#2D2E2D",
-        "label_text_style": "italic",
-        "has_bg": true,
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
+        "type": "toaster_notes",
+        "text": "<i><b>CHW information:</b> </i>You have reached a stage where you will coach the parents/caregivers on specific age appropriate play activities. These activities usually needs direct interaction between you and the parents/caregiver. Direct the mother/father or caregiver to do the  play or communication activity while you observe.\nRemember you are not supposed to directly partake in these play or communication activities",
+        "toaster_type": "info"
       },
       {
         "key": "spacer",
@@ -555,16 +426,9 @@
         "type": "label",
         "text": "CHW information: Say, \"Now let’s practice some new play activities. These activities will help your child learn through seeing, hearing, touching, moving, thinking or feeling\". \nCHW information: Click the information button (button with exclamation mark) to see the instructions you need to follow to explain the activities to the mother/caregiver.",
         "text_color": "#2D2E2D",
-        "label_info_text": "• If the child is unable to do the activity, chose one that is from a lower age range or suggest a way to do the activity in a simpler way. \n• If the child is much more advanced developmental wise, then suggest a way to make the activity more advanced or chose an activity from an older age group \n• Remind the mother/caregiver to continue engaging with the activities on a daily basis ",
+        "label_info_text": "• If the child is unable to do the activity, chose one that is from a lower age range or suggest a way to do the activity in a simpler way. \n• If the child can do the activities of his/her age easily, then suggest a way to make the activity more advanced or chose an activity from an older age group \n• Remind the mother/caregiver to continue engaging with the activities on a daily basis ",
         "label_text_style": "italic",
-        "has_bg": true,
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
+        "has_bg": true
       },
       {
         "key": "bango_kitita_reference_skip_logic",
