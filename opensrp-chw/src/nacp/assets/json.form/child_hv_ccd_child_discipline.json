@@ -192,6 +192,56 @@
         }
       },
       {
+        "key": "abuse_child_experienced",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "abuse_child_experienced",
+        "type": "check_box",
+        "label": "Select the type of abuse that the child experienced",
+        "label_text_style": "normal",
+        "options": [
+          {
+            "key": "chk_baby_sex_violence",
+            "text": "Sexual violence",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_sex_violence"
+          },
+          {
+            "key": "chk_baby_physical_violence",
+            "text": "Physical violence",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_baby_physical_violence"
+          },
+          {
+            "key": "chk_baby_negligence",
+            "text": "Negligence",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_play_with_baby"
+          },
+          {
+            "key": "chk_physiological_violence",
+            "text": "Physiological violence",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_physiological_violence"
+          }
+        ],
+        "relevance": {
+          "step1:child_treated_harshly": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_yes"
+                ]
+              }
+            ]
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        }
+      },
+      {
         "key": "child_treated_harshly_counselling_note",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
