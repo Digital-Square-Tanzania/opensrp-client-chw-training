@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Home Visit - Danger signs",
+  "encounter_type": "Referral Registration",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -47,8 +47,52 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Danger signs",
+    "title": "General referral form",
     "fields": [
+      {
+        "key": "service_before_referral",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "service_before_referral",
+        "type": "check_box",
+        "label": "Pre-referral management given.",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "combine_checkbox_option_values": "true",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "ORS",
+            "text": "ORS",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "ORS",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "Panadol",
+            "text": "Panadol",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "Panadol",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "Other_treatment",
+            "text": "Other treatment",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "Other_treatment",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "None",
+            "text": "None",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "None",
+            "openmrs_entity_parent": ""
+          }
+        ]
+      },
       {
         "key": "chw_referral_hf",
         "type": "spinner",
