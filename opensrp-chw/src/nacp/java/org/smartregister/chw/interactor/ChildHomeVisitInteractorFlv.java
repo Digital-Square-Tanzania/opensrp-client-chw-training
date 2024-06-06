@@ -545,7 +545,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob)))
+                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob), context, null, serviceWrapper))
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .build();

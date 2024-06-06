@@ -1150,13 +1150,14 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     }
 
     private void evaluateCCDCommunicationAssessment(Person baby) throws Exception {
+        String visitID = pncVisitAlertRule().getVisitID();
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), "(" + baby.getFullName() + ")"))
                 .withOptional(true)
                 .withDetails(details)
                 .withBaseEntityID(baby.getBaseEntityID())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
-                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(baby.getDob())))
+                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(baby.getDob()), context, visitID, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), "(" + baby.getFullName() + ")"), action);
     }
