@@ -1659,7 +1659,7 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+9m"
+            "offset": "+10m"
           },
           "expiry": {
             "reference": "dob",
@@ -1673,11 +1673,11 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+1m"
+            "offset": "+3m"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+17m"
+            "offset": "+19m"
           }
         }
       }
