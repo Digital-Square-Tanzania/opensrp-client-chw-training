@@ -248,7 +248,7 @@
         "openmrs_entity_id": "child_treated_harshly_counselling_note",
         "type": "toaster_notes",
         "toaster_type": "warning",
-        "text": "Taarifa za MJA: Sema, \"Nidhamu kali ya mtoto haiwezi kusaidia ukuaji wa afya. Kurekebisha na kumfundisha mtoto kwa njia nzuri kuna ufanisi zaidi. Mama/baba au mlezi ampongeze mtoto kwa tabia nzuri. \nMama/baba au mlezi ampe mtoto chaguo kuhusu nini cha kufanya, badala ya kusema \"usifanye\" .",
+        "text": "Taarifa kwa MJA: Sema, \"Nidhamu kali ya mtoto haiwezi kusaidia ukuaji wa afya. Kurekebisha na kumfundisha mtoto kwa njia nzuri kuna ufanisi zaidi. Mama/baba au mlezi ampongeze mtoto kwa tabia nzuri. \nMama/baba au mlezi ampe mtoto chaguo kuhusu nini cha kufanya, badala ya kusema \"usifanye\" .",
         "text_color": "#000000",
         "relevance": {
           "step1:child_treated_harshly": {
@@ -306,7 +306,7 @@
         "openmrs_entity_id": "household_enviro_harsh_counselling",
         "type": "toaster_notes",
         "toaster_type": "warning",
-        "text": "Taarifa za MJA: Sema, \"Mtoto huiga tabia kutoka kwa wazazi na watu wanaomzunguka. Ni muhimu kwa mzazi na wengine wanaomzunguka mtoto kudhibiti msongo wa mawazo na hasira zao wenyewe.\nWeka watoto nje ya mabishano.\nWahakikishie watoto wako kwamba kubishana si kosa lao na kwamba unawapenda.”",
+        "text": "Taarifa kwa MJA: Sema, \"Mtoto huiga tabia kutoka kwa wazazi na watu wanaomzunguka. Ni muhimu kwa mzazi na wengine wanaomzunguka mtoto kudhibiti msongo wa mawazo na hasira zao wenyewe.\nWeka watoto nje ya mabishano.\nWahakikishie watoto wako kwamba kubishana si kosa lao na kwamba unawapenda.”",
         "text_color": "#000000"
       }
 
