@@ -38,6 +38,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     private LinearLayout vaccinesContainer;
     private List<CheckBox> vaccineCheckboxes;
     private CustomFontTextView congratulationsView;
+    private LinearLayout reasonsContainer;
     public static BaseHomeVisitImmunizationFragmentFlv getInstance(final BaseAncHomeVisitContract.VisitView view, String baseEntityID, Map<String, List<VisitDetail>> details, List<VaccineDisplay> vaccineDisplays) {
         return getInstance(view, baseEntityID, details, vaccineDisplays, true);
     }
@@ -71,9 +72,23 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         root=view;
         datesContainer = root.getRootView().findViewById(R.id.single_vaccine_add_layout);
         vaccinesContainer = root.findViewById(R.id.vaccination_name_layout);
+        congratulationsView = root.findViewById(R.id.congratulate_has_all_vaccine);
+        reasonsContainer = root.findViewById(R.id.reasons_no_vaccines);
         vaccineCheckboxes = getAllVaccineCheckboxes().list();
-        createUIForReasonsNoVaccines(view);
-        addCongratulationsMessages(view);
+
+
+        CheckBox noVaccine=root.findViewById(R.id.checkbox_no_vaccination).findViewById(R.id.select);
+        noVaccine.setOnClickListener(v->System.out.println("ignore"));
+        noVaccine.setOnCheckedChangeListener((checkbox, b) -> onSelectingNoVaccination(b));
+
+
+        new FnList<>(root.getResources().getStringArray(R.array.reason_no_vaccine))
+                .map(KeyValue::create)
+                .map(reason->createViewOptionForNoVaccines(reason,reasonsContainer))
+                .forEachItem(reasonsContainer::addView);
+
+//        createUIForReasonsNoVaccines(view);
+//        addCongratulationsMessages(view);
         view.findViewById(R.id.save_btn).setOnClickListener(this::save);
     }
 
@@ -113,7 +128,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
         params = (RelativeLayout.LayoutParams)root.findViewById(R.id.scroll_layout).getLayoutParams();
         params.addRule(RelativeLayout.BELOW, congratulationsView.getId());
-        parent.addView(congratulationsView);
+//        parent.addView(congratulationsView);
     }
 
 
@@ -151,24 +166,28 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
 
     protected void onSelectingNoVaccination(boolean showReasons){
-        new Handler().postDelayed(() ->{
+//        new Handler().postDelayed(() ->{
+            uncheckReasonCheckbox();
             onSomeVaccineNotSelected(showReasons);
             root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
-            root.findViewById(R.id.single_vaccine_add_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
+
             root.findViewById(R.id.vaccination_name_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
             if(showReasons){
                 new FnList<>(vaccineCheckboxes).forEachItem(ch-> ch.setChecked(false));
+                // check if it multiple dates is shown just clear the whole and show the single date view
+                root.findViewById(R.id.single_vaccine_add_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
+                getSelectedReasonsNoVaccines();
                 congratulationsView.setVisibility(View.GONE);
             }
 
 
-        }, 600);
+//        }, 600);
     }
     private void onSomeVaccineNotSelected(boolean showReasons){
-        new Handler().postDelayed(() ->{
-            root.getRootView().findViewById(R.id.reasons_no_vaccines).setVisibility(showReasons?View.VISIBLE:View.GONE);
-            root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        }, 600);
+//        new Handler().postDelayed(() ->{
+            reasonsContainer.setVisibility(showReasons?View.VISIBLE:View.GONE);
+//            root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
+//        }, 600);
     }
 
     private FnList<CheckBox> getAllVaccineCheckboxes(){
@@ -210,16 +229,16 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     }
 
     protected void uncheckReasonCheckbox() {
-        LinearLayout layout = root.getRootView().findViewById(R.id.reasons_no_vaccines);
-        FnList.generate(layout::getChildAt)
+//        LinearLayout layout = root.getRootView().findViewById(R.id.reasons_no_vaccines);
+        FnList.generate(reasonsContainer::getChildAt)
                 .forEachItem(v->{
                     CheckBox ch=v.findViewById(R.id.select);
                     ch.setChecked(false);
                 });
     }
     protected FnList<String> getSelectedReasonsNoVaccines() {
-        LinearLayout layout = root.getRootView().findViewById(R.id.reasons_no_vaccines);
-        return FnList.generate(layout::getChildAt)
+//        LinearLayout layout = root.getRootView().findViewById(R.id.reasons_no_vaccines);
+        return FnList.generate(reasonsContainer::getChildAt)
                 .map(v->{
                     CheckBox ch=v.findViewById(R.id.select);
                     return ch == null || !ch.isChecked() ? "" : ch.getTag().toString();
