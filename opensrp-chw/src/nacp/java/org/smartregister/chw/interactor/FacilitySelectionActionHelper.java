@@ -8,14 +8,18 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
-import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.domain.Person;
 import org.smartregister.chw.core.utils.CoreConstants;
-import org.smartregister.chw.referral.util.Constants;
+import org.smartregister.chw.core.utils.FormUtils;
+import org.smartregister.chw.referral.util.LocationUtils;
+import org.smartregister.chw.util.ChwAncJsonFormUtils;
+import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtilsFlv;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
@@ -25,29 +29,32 @@ import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
 import timber.log.Timber;
 
 public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
-    private Context context;
-    private String baseEntityId;
-    private final String  referralTable;
     private JSONObject  payload;
-    private String referralPayload;
+    private final List<ReferralHelperInfo> referralsInfo=new ArrayList<>();
 
-    private String referralProblems;
-    private Map<String, List<VisitDetail>> details;
-    FacilitySelectionActionHelper(String referralForm, Map<String, List<VisitDetail>> details, String referralTableName, MemberObject memberObject){
-        referralTable=referralTableName;
-        this.referralPayload=referralForm;
-        this.baseEntityId=memberObject.getBaseEntityId();
-        this.details=details;
+    FacilitySelectionActionHelper(JSONObject referralProblem, String referralType, String baseEntityId){
+        ReferralHelperInfo info=new ReferralHelperInfo(referralType,baseEntityId,referralProblem);
+        referralsInfo.add(info);
+    }
+
+    void addInfo( ReferralHelperInfo info){
+        referralsInfo.add(info);
+    }
+    FacilitySelectionActionHelper(List<ReferralHelperInfo> info){
+        referralsInfo.addAll(info);
     }
 
     @Override
@@ -57,75 +64,96 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
     }
 
     @Override
-    public void onPayloadReceived(String jsonPayload) {
-      //implement
-        try {
-            payload = new JSONObject(jsonPayload);
-            JSONObject referralProblem=copyReferralProblem(referralPayload);
+    public String getPreProcessed() {
+        try{
+            Map<String,String> facilityOptions = LocationUtils.INSTANCE.getFacilitiesKeyAndName();
+            String formName="referral_facility_selection";
+            JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
+            jsonForm.put("count",referralsInfo.size());
+            String step1=jsonForm.getJSONObject("step1").toString();
 
-            // Implement a logic to check if the process has been completed
-            // If it has been completed, create a referral task
-            // Maybe we can put this to the save module?
-            payload.getJSONObject("step1").getJSONArray("fields").put(referralProblem);
-            createReferralEvent(
-                    Utils.getAllSharedPreferences(),
-                    payload.toString(),
-                    CoreConstants.TABLE_NAME.REFERRAL, baseEntityId
-            );
-        }
-        catch (JSONException e) {Timber.e(e);} catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-//        return super.postProcess(payload.toString());
-    }
+            for(int i=0,len=referralsInfo.size();i<len;i++){
+                ReferralHelperInfo info=referralsInfo.get(i);
+                JSONObject step=new JSONObject(step1);
+                JsonFormUtilsFlv.overwriteQuestionOptions("chw_referral_hf",facilityOptions, step);
 
-    @Override
-    public String evaluateSubTitle() {
+                step.put("title",info.stepName);
+                step.put("baseEntityId",info.baseEntityId);
+                jsonForm.put("step"+(i+1),step);
+
+                if(i+1<len){
+                    step.put("next","step"+(i+2));
+                }
+            }
+            return jsonForm.toString();
+        }
+        catch (JSONException e){Timber.e(e);}
         return "";
     }
 
+    @Override
+    public void onPayloadReceived(String jsonPayload) {
+      //implement
+        try {
+            String formName="referral_facility_selection";
+            JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
+
+            payload = new JSONObject(jsonPayload);
+            payload.put("count",referralsInfo.size());
+            int i=1;
+            for(ReferralHelperInfo info:referralsInfo){
+                JSONObject step=payload.getJSONObject("step"+(i++));
+                step.getJSONArray("fields").put(info.problem);
+                jsonForm.put("step1",step);
+                createReferralEvent(
+                        Utils.getAllSharedPreferences(),
+                        jsonForm.toString(),
+                        info);
+            }
+        }
+        catch (Exception e) {Timber.e(e);}
+    }
+    @Override
+    public String evaluateSubTitle() {return "";}
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 
-    private void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString, String referralTable, String entityId) throws Exception {
-        final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(jsonString, entityId), referralTable);
+    private void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString, ReferralHelperInfo info) throws Exception {
+        final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(jsonString, info.baseEntityId), CoreConstants.TABLE_NAME.REFERRAL);
 
         // Other obs needed for referral
-        addReferralDetails(baseEvent);
+        addReferralDetails(baseEvent,info.type);
 
         NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
-        createReferralTask(baseEvent.getBaseEntityId(), allSharedPreferences, referralProblems, baseEvent.getFormSubmissionId());
+        createReferralTask(baseEvent.getBaseEntityId(), baseEvent.getFormSubmissionId(),info);
     }
 
-    private void addReferralDetails(Event baseEvent) {
-        if (baseEvent != null) {
-            baseEvent.addObs(new Obs("concept", "text", "referral_status", "",
-                    Collections.singletonList("PENDING"), Collections.singletonList("PENDING"), "", "referral_status"));
-            baseEvent.addObs(new Obs("concept", "text", "chw_referral_service", "",
-                    Collections.singletonList(Constants.ReferralServiceType.ANC_DANGER_SIGNS),
-                    Collections.singletonList(Constants.ReferralServiceType.ANC_DANGER_SIGNS), "", "chw_referral_service"));
 
+    private void addReferralDetails(Event baseEvent,String referralType){
+        if(baseEvent==null) return;
 
-            baseEvent.addObs(new Obs("concept", "text", "referral_type", "",
-                    Collections.singletonList("community_to_facility_referral"),
-                    Collections.singletonList("community_to_facility_referral"), "", "referral_type"));
+        long referralDate = System.currentTimeMillis();
+        Map<String, Object> obsMap = new HashMap<>();
+        obsMap.put("referral_status", "PENDING");
+        obsMap.put("chw_referral_service", referralType);
+        obsMap.put("referral_type", "community_to_facility_referral");
+        obsMap.put("referral_date", referralDate);
+        obsMap.put("referral_time",new SimpleDateFormat("HH:mm:ss.SSS", Locale.ENGLISH).format(referralDate));
 
-            long referralDate = System.currentTimeMillis();
-            baseEvent.addObs(new Obs("concept", "text", "referral_date", "",
-                    Collections.singletonList(referralDate),
-                    Collections.singletonList(referralDate), "", "referral_date"));
-
-            String referralTime = new SimpleDateFormat("HH:mm:ss.SSS").format(referralDate);
-            baseEvent.addObs(new Obs("concept", "text", "referral_time", "",
-                    Collections.singletonList(referralTime),
-                    Collections.singletonList(referralTime), "", "referral_time"));
+        for (String key:obsMap.keySet()) {
+            List<Object> value = Collections.singletonList(obsMap.get(key));
+            baseEvent.addObs(new Obs("concept", "text",key, "", value, value, "",key));
         }
     }
 
-    private void createReferralTask(String baseEntityId, AllSharedPreferences allSharedPreferences, String referralProblems, String formSubmissionId) {
+    private void createReferralTask(String baseEntityId, String formSubmissionId,ReferralHelperInfo info) {
+        AllSharedPreferences allSharedPreferences= Utils.getAllSharedPreferences();
+
+        String referralProblems = String.join(", ",JsonFormUtilsFlv.column(info.problem.optJSONArray("option"),"text"));
+
         Task task = new Task();
         task.setIdentifier(UUID.randomUUID().toString());
         task.setPlanIdentifier(CoreConstants.REFERRAL_PLAN_ID);
@@ -150,24 +178,52 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
         CoreChwApplication.getInstance().getTaskRepository().addOrUpdate(task);
     }
 
-    private JSONObject copyReferralProblem(String referralPayload) throws JSONException {
-        JSONObject problem=JsonFormUtilsFlv.getQuestion("danger_signs_present",new JSONObject(referralPayload));
-        problem.put("key","problem");
-        problem.put("openmrs_entity_id", "problem");
-        JSONArray options=problem.getJSONArray("options");
-
-        List<String> value = JsonFormUtilsFlv.fromJsonArray(problem.getJSONArray("value"), Object::toString);
-        List<String> referralProblemsList = new ArrayList<>();
-        for(int i=0,len=options.length();i<len;i++) {
-            JSONObject option=options.getJSONObject(i);
-            if(value.contains(option.optString("key"))){
-                option.put("value",true);
-                referralProblemsList.add(option.optString("text"));
-            }
+    public static JSONObject copyReferralProblem(String referralForm,String dangerSignQnKey) {
+        try {return copyReferralProblem(new JSONObject(referralForm),dangerSignQnKey);}
+        catch (JSONException e) {
+            Timber.e(e);
+           return new JSONObject();
         }
-        if (!referralProblemsList.isEmpty())
-            referralProblems = String.join(", ", referralProblemsList);
-        return problem;
+    }
+    public static JSONObject copyReferralProblem(JSONObject referralForm,String dangerSignQnKey) {
+        try {
+            JSONObject problem = JsonFormUtilsFlv.getQuestion(dangerSignQnKey, referralForm,new JSONObject());
+            problem.put("key", "problem");
+            problem.put("openmrs_entity_id", "problem");
+            JSONArray options = problem.getJSONArray("options");
+
+            List<String> value = JsonFormUtilsFlv.fromJsonArray(problem.getJSONArray("value"), Object::toString);
+            for (int i = 0, len = options.length(); i < len; i++) {
+                JSONObject option = options.getJSONObject(i);
+                if (value.contains(option.optString("key"))) {
+                    option.put("value", true);
+                }
+            }
+            return problem;
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+        return new JSONObject();
     }
 
+    boolean noInfo() {
+        return referralsInfo.isEmpty();
+    }
+
+    static class ReferralHelperInfo{
+        ReferralHelperInfo(String type,String baseEntityId,JSONObject problem){
+            this.type=type;
+            this.baseEntityId=baseEntityId;
+            this.problem=problem;
+            this.stepName="";
+        }
+        ReferralHelperInfo(String type,String baseEntityId,JSONObject problem,String stepName){
+            this(type,baseEntityId,problem);
+            this.stepName=stepName;
+        }
+        String stepName;
+        String type;
+        String baseEntityId;
+        JSONObject problem;
+    }
 }

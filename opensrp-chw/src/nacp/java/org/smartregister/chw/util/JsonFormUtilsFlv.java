@@ -11,17 +11,14 @@ import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 
-import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Deque;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
+import javax.annotation.Nullable;
 
 import timber.log.Timber;
 
@@ -39,6 +36,11 @@ public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.F
     @Override
     public void processFieldsForMemberEdit(CommonPersonObjectClient client, JSONObject jsonObject, JSONArray jsonArray, String familyName, boolean isPrimaryCaregiver, Event ecEvent, Client ecClient) throws JSONException {
         super.processFieldsForMemberEdit(client, jsonObject, jsonArray, familyName, isPrimaryCaregiver, ecEvent, ecClient);
+    }
+
+    public static JSONObject getQuestion(String key, JSONObject jsonForm,JSONObject defaultValue) {
+        JSONObject obj=getQuestion(key,jsonForm);
+        return obj!=null?obj:defaultValue;
     }
     public static JSONObject getQuestion(String key, JSONObject jsonForm) {
         Deque<Object> stack = new ArrayDeque<>();
@@ -68,12 +70,20 @@ public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.F
         return null;
     }
 
-    public static <T> List<T> fromJsonArray(JSONArray array,Mapper<Object,T> mapper){
+    public static <T> List<T> fromJsonArray(@Nullable JSONArray array, Mapper<Object,T> mapper){
+        if(array==null)return new ArrayList<>();
         List<T> items=new ArrayList<>();
        for(int i=0,len=array.length();i<len;i++){
-         items.add(mapper.map(array.opt(i)));
+           Object obj=array.opt(i);
+           if(obj!=null) items.add(mapper.map(array.opt(i)));
        }
        return items;
+    }
+    public static <T> List<T> fromJsonObjectArray(@Nullable JSONArray array, Mapper<JSONObject,T> mapper){
+        return fromJsonArray(array,obj->mapper.map((JSONObject)obj));
+    }
+    public static  List<String> column(@Nullable JSONArray array, String columnName){
+        return fromJsonObjectArray(array,obj->obj.optString(columnName));
     }
 
     public static void overwriteQuestionOptions( String questionKey, Map<String,String> keyValueOptions,JSONObject form){

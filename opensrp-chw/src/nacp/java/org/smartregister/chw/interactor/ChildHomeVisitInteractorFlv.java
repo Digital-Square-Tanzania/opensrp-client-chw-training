@@ -1,5 +1,7 @@
 package org.smartregister.chw.interactor;
 
+import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.COMPLETED;
+import static org.smartregister.chw.core.utils.CoreConstants.TASKS_FOCUS.SICK_CHILD;
 import static org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue;
 
 import android.text.TextUtils;
@@ -16,10 +18,14 @@ import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
+import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.referral.util.LocationUtils;
+import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtilsFlv;
@@ -27,26 +33,20 @@ import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import timber.log.Timber;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
+
+    private  static final String NONE="(?i)hakuna|none";
+    private  static final String YES_OR_EMPTY="(?i)yes|ndio|ndiyo|";
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
             evaluateToddlerDanger(serviceWrapperMap);
-            evaluateImmunization();
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
-            evaluateVitaminA(serviceWrapperMap);
-            evaluateDeworming(serviceWrapperMap);
-            evaluateMalariaPrevention();
-            evaluateCounselling();
-            evaluateNutritionStatus();
-            evaluateObsAndIllness();
-            evaluateMalnutritionScreening(serviceWrapperMap);
-            evaluateProblemSolving();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -54,7 +54,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         }
     }
 
-    protected void evaluateImmunization() throws Exception {
+    private BaseAncHomeVisitContract.InteractorCallBack callBack;
+
+    @Override
+    public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
+       this.callBack=callBack;
+       return super.calculateActions(view,memberObject,callBack);
+    }
+    protected void evaluateImmunization () throws Exception {
         setVaccinesDefaultChecked(false);
         super.evaluateImmunization();
     }
@@ -122,7 +129,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 }
 
                 if (famllin1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llin2days1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llinCondition1m5yr.equalsIgnoreCase(context.getString(R.string.okay))) {
-                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                    return COMPLETED;
                 } else {
                     return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
                 }
@@ -160,7 +167,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             @Override
             public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
                 if (StringUtils.isNotBlank(couselling_child)) {
-                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                    return COMPLETED;
                 } else {
                     return BaseAncHomeVisitAction.Status.PENDING;
                 }
@@ -220,7 +227,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 if (StringUtils.isBlank(nutritionStatus))
                     return BaseAncHomeVisitAction.Status.PENDING;
 
-                return BaseAncHomeVisitAction.Status.COMPLETED;
+                return COMPLETED;
             }
         };
 
@@ -270,7 +277,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 if (StringUtils.isBlank(date_of_illness))
                     return BaseAncHomeVisitAction.Status.PENDING;
 
-                return BaseAncHomeVisitAction.Status.COMPLETED;
+                return COMPLETED;
             }
         }
 
@@ -282,7 +289,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_observations_n_illnes), observation);
     }
-  
+
     private void evaluateMalnutritionScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Malnutrition Screening");
         if (serviceWrapper == null) return;
@@ -311,13 +318,62 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateProblemSolving() throws Exception {
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_problem_solving))
-                    .withOptional(false)
-                    .withDetails(details)
-                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                    .withFormName(Constants.JsonForm.getChildHvProblemSolvingForm())
-                    .withHelper(new ChildHVProblemSolvingHelper())
-                    .build();
-            actionList.put(context.getString(R.string.child_problem_solving), action);
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withFormName(Constants.JsonForm.getChildHvProblemSolvingForm())
+                .withHelper(new ChildHVProblemSolvingHelper())
+                .build();
+        actionList.put(context.getString(R.string.child_problem_solving), action);
+    }
+
+    private class ToddlerDangerSign extends HomeVisitActionHelper{
+        Map<String,ServiceWrapper> wrapperMap;
+        ToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap){wrapperMap=serviceWrapperMap;}
+        private  void clearActions(){
+            for(String key:actionList.keySet()){
+                String dangerSign=context.getString(R.string.child_danger_signs_baby);
+                if(!key.equals(dangerSign)){
+                    actionList.remove(key);
+                }
+            }
+        }
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                clearActions();
+                JSONObject form=new JSONObject(jsonPayload);
+                String toddlerReferral = getCheckBoxValue(form,"toddler_referral_health_facility").toLowerCase();
+                boolean noDangerSigns = getCheckBoxValue(form,"toddler_danger_signs_present").matches(NONE);
+                boolean goFacility = !noDangerSigns && toddlerReferral.matches(YES_OR_EMPTY);
+
+                if(noDangerSigns) {
+                    evaluateImmunization();
+                    evaluateExclusiveBreastFeeding(wrapperMap);
+                    evaluateVitaminA(wrapperMap);
+                    evaluateDeworming(wrapperMap);
+                    evaluateMalariaPrevention();
+                    evaluateCounselling();
+                    evaluateNutritionStatus();
+                    evaluateObsAndIllness();
+                    evaluateMalnutritionScreening(wrapperMap);
+                    evaluateProblemSolving();
+                }
+                if(goFacility){
+                    evaluateFacilityReferral(form);
+                }
+
+                new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
+            } catch (Exception e) {Timber.e(e);}
+        }
+
+        @Override
+        public String evaluateSubTitle() {return "";}
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            return COMPLETED;
+        }
     }
 
     private void evaluateToddlerDanger(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
@@ -339,10 +395,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         JSONObject dangerSignsForm = FormUtils.getFormUtils().getFormJson(org.smartregister.chw.util.Constants.JsonForm.getChildHomeVisitDangerSignForm());
         JsonFormUtilsFlv.overwriteQuestionOptions("referral_facility", LocationUtils.INSTANCE.getFacilitiesKeyAndName(), dangerSignsForm);
 
-        BaseAncHomeVisitAction action = getBuilder(title)
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context,title)
                 .withHelper(helper)
                 .withDetails(details)
                 .withOptional(false)
+                .withHelper(new ToddlerDangerSign(serviceWrapperMap))
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withJsonPayload(dangerSignsForm.toString())
@@ -353,6 +410,27 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.child_danger_signs_baby), action);
     }
 
+
+    private void evaluateFacilityReferral(JSONObject referralPayload) throws BaseAncHomeVisitAction.ValidationException {
+        String formName="referral_facility_selection";
+        JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
+
+        if (details != null) ChwAncJsonFormUtils.populateForm(jsonForm, details);
+
+        FacilitySelectionActionHelper helper=new FacilitySelectionActionHelper(
+                FacilitySelectionActionHelper.copyReferralProblem(referralPayload,"toddler_danger_signs_present"),
+                SICK_CHILD,
+                memberObject.getBaseEntityId());
+
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context,context.getString(R.string.home_visit_facility_referral) )
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(formName)
+                .withJsonPayload(jsonForm.toString())
+                .withHelper(helper)
+                .build();
+        actionList.put(context.getString(R.string.home_visit_facility_referral), action);
+    }
     @Override
     protected void evaluateExclusiveBreastFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Exclusive breastfeeding");

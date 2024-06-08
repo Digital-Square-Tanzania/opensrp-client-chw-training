@@ -678,6 +678,8 @@
     <string name="fp_number_male_condoms_refilled">Specify quantity (Male):</string>
     <string name="fp_number_female_condoms_refilled">Specify quantity (Female):</string>
 
+    <string name="pnc_child_home_visit_facility_referral">Refer Child to facility</string>
+    <string name="pnc_mother_home_visit_facility_referral">Refer Mother to facility</string>
 
 
 
