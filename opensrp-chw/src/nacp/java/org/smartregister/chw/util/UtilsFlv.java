@@ -146,7 +146,7 @@ public class UtilsFlv {
         return ex(()->jsonGet(new JSONObject(json),path));
     }
 
-    public static KeyValue<String> getFieldKeyValuePair(JSONObject field){
+    public static KeyValue<String,String> getFieldKeyValuePair(JSONObject field){
         return new KeyValue<>(
                 field.optString(JsonFormConstants.KEY),
                 field.optString(JsonFormConstants.VALUE));
