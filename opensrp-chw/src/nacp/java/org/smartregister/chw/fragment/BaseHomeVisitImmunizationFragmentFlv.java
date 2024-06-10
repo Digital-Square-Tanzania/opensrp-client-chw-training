@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,7 +61,9 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     private  void init(View view){
         root=view;
         root.findViewById(R.id.save_btn).setOnClickListener(this::save);
-        root.findViewById(R.id.add_date_separately).setOnClickListener(datePickerHelper::toggleMultiMode);
+//        root.findViewById(R.id.add_date_separately).setOnClickListener(datePickerHelper::toggleMultiMode);
+        RadioGroup radioGroup=root.findViewById(R.id.select_date_mode);
+        radioGroup.setOnCheckedChangeListener(datePickerHelper::toggleMultiMode);
         listenForVaccineSelection();
         createViewOptionForNoVaccines();
 
@@ -129,7 +132,8 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         FnList.from(reasonsView)
                 .forEachItem(v-> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
         FnList.from(root,R.id.vaccination_name_layout)
-                .forEachItem(ch-> ((CheckBox)ch).setChecked(false));
+                .map(v->(CheckBox)v.findViewById(R.id.select))
+                .forEachItem(ch-> ch.setChecked(false));
     }
 
 
@@ -225,16 +229,20 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         private DatePickerHelper(BaseHomeVisitImmunizationFragmentFlv b){
             base=b;
         }
-        boolean isMultiMode=false;
         BaseHomeVisitImmunizationFragmentFlv base;
         private Date minimumDate=new Date();
         private  boolean relaxedDates=false;
-        private void toggleMultiMode(View ignore){
-           isMultiMode=!isMultiMode;
-           showDateForSelectedVaccines();
+        private void toggleMultiMode(RadioGroup group,int checkedId){
+            showDateForSelectedVaccines();
         }
         private void showDateForSelectedVaccines() {
-            if(!isMultiMode)return;
+            RadioGroup radioGroup=base.root.findViewById(R.id.select_date_mode);
+            boolean sharedMode=radioGroup.getCheckedRadioButtonId()==R.id.each_its_date;
+
+            base.root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(sharedMode?View.GONE:View.VISIBLE);
+            base.root.findViewById(R.id.single_vaccine_add_layout).setVisibility(sharedMode?View.VISIBLE:View.GONE);
+
+            if(!sharedMode)return;
             View root=base.root;
             ViewGroup parent=root.findViewById(R.id.single_vaccine_add_layout);
             parent.removeAllViews();
