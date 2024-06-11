@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import static org.smartregister.chw.R.id.*;
 
 import timber.log.Timber;
 
@@ -112,8 +113,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     private void createViewOptionForNoVaccines(){
         ViewGroup parent = root.findViewById(R.id.reasons_no_vaccines);
         Set<String> reasonsEdit=getPrevMissingReasonsForEdit();
-        parent.setVisibility(reasonsEdit.isEmpty()?View.GONE:View.VISIBLE);
-        root.findViewById(R.id.why_no_vaccine).setVisibility(View.VISIBLE);
+        hide(reasonsEdit.isEmpty(),reasons_no_vaccines,why_no_vaccine);
 
         FnList.from(root.getResources().getStringArray(R.array.reason_no_vaccine))
                 .map(KeyValue::create)
@@ -122,7 +122,6 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
                     CustomFontTextView label = view.findViewById(R.id.vaccine);
                     CheckBox checkBox = view.findViewById(R.id.select);
                     checkBox.setTag(reason.key);
-                    boolean x=reasonsEdit.contains(reason.key);
                     checkBox.setChecked(reasonsEdit.contains(reason.key));
                     label.setText(reason.value);
                     parent.addView(view);
@@ -146,34 +145,23 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         ViewGroup reasonsView = root.findViewById(R.id.reasons_no_vaccines);
         FnList.from(reasonsView)
                 .forEachItem(v-> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
-        reasonsView.setVisibility(View.GONE);
-        root.findViewById(R.id.why_no_vaccine).setVisibility(View.GONE);
-        root.findViewById(R.id.congratulate_has_all_vaccine).setVisibility(View.VISIBLE);
-        root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(View.VISIBLE);
-        root.findViewById(R.id.single_vaccine_add_layout).setVisibility(View.VISIBLE);
-        root.findViewById(R.id.vaccination_name_layout).setVisibility(View.VISIBLE);
+        hide(reasons_no_vaccines,why_no_vaccine);
+        show(congratulate_has_all_vaccine,select_date_mode,select_date_mode_label, multiple_vaccine_date_pickerview, single_vaccine_add_layout,vaccination_name_layout);
         datePickerHelper.showDateForSelectedVaccines();
     }
 
     private void onFewVaccineSelected(){
-        root.findViewById(R.id.reasons_no_vaccines).setVisibility(View.VISIBLE);
-        root.findViewById(R.id.why_no_vaccine).setVisibility(View.VISIBLE);
-        root.findViewById(R.id.congratulate_has_all_vaccine).setVisibility(View.GONE);
-        root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(View.VISIBLE);
-        root.findViewById(R.id.single_vaccine_add_layout).setVisibility(View.VISIBLE);
+        show( reasons_no_vaccines,vaccination_name_layout, why_no_vaccine,select_date_mode,select_date_mode_label, multiple_vaccine_date_pickerview, single_vaccine_add_layout);
+        hide(congratulate_has_all_vaccine);
         datePickerHelper.showDateForSelectedVaccines();
     }
 
     private void onNoVaccineSelected(boolean showReasons){
-        root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        root.findViewById(R.id.single_vaccine_add_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        root.findViewById(R.id.vaccination_name_layout).setVisibility(showReasons?View.GONE:View.VISIBLE);
-        root.findViewById(R.id.why_no_vaccine).setVisibility(showReasons?View.VISIBLE:View.GONE);
-        root.findViewById(R.id.congratulate_has_all_vaccine).setVisibility(View.GONE);
-        datePickerHelper.clearDates();
+        hide(showReasons,multiple_vaccine_date_pickerview,select_date_mode,select_date_mode_label, single_vaccine_add_layout, vaccination_name_layout, congratulate_has_all_vaccine);
+        show(showReasons,reasons_no_vaccines, why_no_vaccine);
 
+        datePickerHelper.clearDates();
         ViewGroup reasonsView = root.findViewById(R.id.reasons_no_vaccines);
-        reasonsView.setVisibility(showReasons?View.VISIBLE:View.GONE);
         FnList.from(reasonsView)
                 .forEachItem(v-> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
         FnList.from(root,R.id.vaccination_name_layout)
@@ -181,6 +169,12 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
                 .forEachItem(ch-> ch.setChecked(false));
     }
 
+    private void show(boolean show, Integer ...ids){
+        FnList.from(ids).forEachItem(id->root.findViewById(id).setVisibility(show?View.VISIBLE:View.GONE));
+    }
+    private void hide(boolean hide,Integer ...ids){ show(!hide,ids); }
+    private void show(Integer ...ids){ show(true,ids); }
+    private void hide(Integer ...ids){ show(false,ids); }
     private void listenForVaccineSelection(){
         FnList.from(root,R.id.vaccination_name_layout)
                 .map(v->(CheckBox)v.findViewById(R.id.select))
@@ -287,8 +281,8 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
             RadioGroup radioGroup=base.root.findViewById(R.id.select_date_mode);
             boolean sharedMode=radioGroup.getCheckedRadioButtonId()==R.id.each_its_date;
 
-            base.root.findViewById(R.id.multiple_vaccine_date_pickerview).setVisibility(sharedMode?View.GONE:View.VISIBLE);
-            base.root.findViewById(R.id.single_vaccine_add_layout).setVisibility(sharedMode?View.VISIBLE:View.GONE);
+            base.hide(sharedMode,multiple_vaccine_date_pickerview);
+            base.show(sharedMode,single_vaccine_add_layout);
 
             if(!sharedMode)return;
             View root=base.root;
