@@ -41,7 +41,7 @@ public class LazyIterator<T> implements Iterator<T> {
             nextItem=data;
             return true;
         }
-        catch (NoSuchElementException  e) { return false;}
+        catch (NoSuchElementException|IndexOutOfBoundsException  e) { return false;}
         catch (Exception e) { Timber.e(e); return false;}
     }
 

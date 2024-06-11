@@ -88,6 +88,10 @@ public class FnList<T> implements Iterable<T>{
         return FnList.from(ids).map(view::findViewById);
     }
 
+    @NonNull public static FnList<?> from(JSONArray jsonArray){
+      return (FnList<?>) range(0,jsonArray.length()).map(jsonArray::get);
+    }
+
     @NonNull public static FnList<View> from(View root,int viewGroupId){
         ViewGroup group=root.findViewById(viewGroupId);
         return from(group);
@@ -98,7 +102,11 @@ public class FnList<T> implements Iterable<T>{
         }
         return generate(((ViewGroup)view)::getChildAt);
     }
-    @NonNull public static <T>FnList<T> from(T[] array){
+//    @NonNull public static <T>FnList<T> from(T[] array){
+//        return from(Arrays.asList(array));
+//    }
+
+    @NonNull public static <T>FnList<T> from(T ... array){
         return from(Arrays.asList(array));
     }
 

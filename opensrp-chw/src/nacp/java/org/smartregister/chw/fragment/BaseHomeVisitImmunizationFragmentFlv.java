@@ -1,6 +1,8 @@
 package org.smartregister.chw.fragment;
 
 import static org.smartregister.chw.util.FnInterfaces.KeyValue;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -64,7 +66,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         fragment.visitView = view;
         fragment.baseEntityID = baseEntityID;
         fragment.details = details;
-        fragment.whenImmunizationGiven = whenImmunizationGiven;
+        fragment.whenImmunizationGiven = getWhenImmunizationGivenInEnglish(whenImmunizationGiven,view.getMyContext());
         fragment.vaccinesDefaultChecked = defaultChecked;
         for (VaccineDisplay vaccineDisplay : vaccineDisplays) {
             fragment.vaccineDisplays.put(vaccineDisplay.getVaccineWrapper().getName(), vaccineDisplay);
@@ -75,6 +77,13 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
             JsonFormUtils.populateForm(fragment.jsonObject, details);
         }
         return fragment;
+    }
+
+
+    public static String getWhenImmunizationGivenInEnglish(String name, Context context) {
+        return FnList.from(R.string.at_birth,R.string.date_weeks,R.string.date_months).reduce(name,(n,id)->
+           n.replace(context.getString(id),UtilsFlv.getEnglishString(context,id))
+        ).trim().replaceAll("\\W+","_");
     }
 
     @Override
@@ -96,7 +105,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         new Handler().postDelayed(() -> {
             listenForVaccineSelection();
             createViewOptionForNoVaccines();
-        }, 300);
+        }, 300); /*this delay is timed to wait for super to call its setCheckBoxState */
     }
 
     private Set<String> getPrevMissingReasonsForEdit(){
@@ -108,7 +117,7 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
                 .map(json->json.getJSONArray("reasons_for_missing"))
                .first(new JSONArray());
 
-        return FnList.generate(visitJSON::get).map(Object::toString).toSet();
+        return FnList.from(visitJSON).map(Object::toString).toSet();
     }
     private void createViewOptionForNoVaccines(){
         ViewGroup parent = root.findViewById(R.id.reasons_no_vaccines);
@@ -226,7 +235,6 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
             super.visitView.onDialogOptionUpdated(addField(field));
         }catch (JSONException e){Timber.e(e);}
     }
-
 
     private String addField(JSONObject value){
         JSONObject json=super.getJsonObject();

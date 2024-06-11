@@ -55,6 +55,7 @@ import org.smartregister.chw.pnc.PncLibrary;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.PNCVisitUtil;
+import org.smartregister.chw.util.UtilsFlv;
 import org.smartregister.immunization.domain.VaccineWrapper;
 import org.smartregister.util.DateUtil;
 import org.smartregister.util.JsonFormUtils;
@@ -897,12 +898,15 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     details = VisitUtils.getVisitGroups(getVisitDetailsRepository().getVisits(lastVisit.getVisitId()));
                 }
 
+                String key= UtilsFlv.getEnglishString(context,R.string.pnc_immunization_at_birth);
+                int start=key.indexOf("(");
+                key=key.substring(start+1,key.indexOf(")",start));
                 BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_immunization_at_birth), baby.getFullName()))
                         .withOptional(false)
                         .withDetails(details)
                         .withBaseEntityID(baby.getBaseEntityID())
                         .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                        .withDestinationFragment(BaseHomeVisitImmunizationFragmentFlv.getInstance(view, baby.getBaseEntityID(), details, displays, false))
+                        .withDestinationFragment(BaseHomeVisitImmunizationFragmentFlv.getInstance(view, baby.getBaseEntityID(), details, displays, false,key))
                         .withHelper(new ImmunizationActionHelper(context, wrappers))
                         .build();
                 actionList.put(MessageFormat.format(context.getString(R.string.pnc_immunization_at_birth), baby.getFullName()), action);
