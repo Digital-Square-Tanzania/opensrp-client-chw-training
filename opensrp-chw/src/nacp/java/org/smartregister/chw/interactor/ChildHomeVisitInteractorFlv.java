@@ -48,25 +48,25 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
-            evaluateToddlerDanger(serviceWrapperMap);
+//            evaluateToddlerDanger(serviceWrapperMap);
             evaluateImmunization();
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
-            evaluateVitaminA(serviceWrapperMap);
-            evaluateDeworming(serviceWrapperMap);
-            evaluateMalariaPrevention();
-            evaluateCounselling();
-            evaluateNutritionStatus();
-            evaluateObsAndIllness();
-            evaluateMalnutritionScreening(serviceWrapperMap);
-            evaluateChildSafety(serviceWrapperMap);
-            evaluateCompFeeding(serviceWrapperMap);
-            evaluateChildPMTCT(serviceWrapperMap);
-            evaluateCCDCommunicationAssessment(serviceWrapperMap);
-            evaluatePlayAssessmentCounseling(serviceWrapperMap);
-            evaluateProblemSolving(serviceWrapperMap);
-            evaluateCareGiverResponsiveness(serviceWrapperMap);
-            evaluateCCDChildDiscipline(serviceWrapperMap);
-            evaluateDevelopmentScreening(serviceWrapperMap);
+//            evaluateExclusiveBreastFeeding(serviceWrapperMap);
+//            evaluateVitaminA(serviceWrapperMap);
+//            evaluateDeworming(serviceWrapperMap);
+//            evaluateMalariaPrevention();
+//            evaluateCounselling();
+//            evaluateNutritionStatus();
+//            evaluateObsAndIllness();
+//            evaluateMalnutritionScreening(serviceWrapperMap);
+//            evaluateChildSafety(serviceWrapperMap);
+//            evaluateCompFeeding(serviceWrapperMap);
+//            evaluateChildPMTCT(serviceWrapperMap);
+//            evaluateCCDCommunicationAssessment(serviceWrapperMap);
+//            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+//            evaluateProblemSolving(serviceWrapperMap);
+//            evaluateCareGiverResponsiveness(serviceWrapperMap);
+//            evaluateCCDChildDiscipline(serviceWrapperMap);
+//            evaluateDevelopmentScreening(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);

@@ -81,10 +81,10 @@
                 android:id="@+id/add_date_separately"
                 android:layout_below="@id/vaccination_name_layout"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ignore"
-                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text=""
+                android:visibility="visible"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/px_16_to_sp" />
 
@@ -105,47 +105,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/select_date_mode_label"
-                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:paddingStart="24dp"
+                android:paddingStart="32dp"
                 android:paddingEnd="24dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center">
 
             <RadioButton
                 android:id="@+id/shared_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
                 android:padding="4dp"
                 android:checked="true"
                 android:text="@string/shared_date"
-                android:textAlignment="center"
                 android:textSize="@dimen/px_16_to_sp" />
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    />
-
             <RadioButton
+                android:layout_gravity="left"
                 android:id="@+id/each_its_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:checked="false"
                 android:padding="4dp"
                 android:value="2"
                 android:text="@string/each_vaccine_its_date"
-                android:textAlignment="center"
                 android:textSize="@dimen/px_16_to_sp" />
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="5"
-                    />
             </RadioGroup>
 
 
@@ -188,6 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/why_no_vaccine"
                 android:orientation="vertical"
+                android:padding="8dp"
                 tools:visibility="visible"
                 android:visibility="gone" />
 

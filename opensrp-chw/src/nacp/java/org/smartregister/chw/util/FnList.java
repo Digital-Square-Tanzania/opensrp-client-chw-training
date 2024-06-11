@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,6 +16,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import org.json.JSONArray;
 import org.smartregister.chw.util.FnInterfaces.BiConsumer;
 import org.smartregister.chw.util.FnInterfaces.BiFunction;
 import org.smartregister.chw.util.FnInterfaces.BiPredicate;
@@ -69,7 +71,8 @@ public class FnList<T> implements Iterable<T>{
         lazy = lazyIterator.copy();
     }
 
-    @NonNull public static <T>FnList<T> from(Collection<T> collection){
+    @NonNull public static <T>FnList<T> from(@Nullable Collection<T> collection){
+        if(collection==null){return FnList.from(new ArrayList<>());}
         Iterator<T> it=collection.iterator();
         return FnList.generate(()->{
             while(it.hasNext()){
@@ -172,6 +175,10 @@ public class FnList<T> implements Iterable<T>{
         return reduce(identity,(a,b,index)-> function.apply(a,b));
     }
 
+    @NonNull public <R> R reduceS(R identity, BiConsumer<R,T> consumer) {
+        return reduce(identity,(a,b,index)->{ consumer.take(a,b);return a;});
+    }
+
     @NonNull public FnList<T> unique(){ return unique(x->x); }
 
     @NonNull public <S> FnList<T> unique(Function<T, S> giveId){
@@ -206,8 +213,18 @@ public class FnList<T> implements Iterable<T>{
     }
 
     @NonNull public <S> Map<S,T> zip(S[] keys){return zip(Arrays.asList(keys));}
+    @NonNull public T first(T defaultValue){
+        for(T t:this){
+            return t;
+        }
+        return defaultValue;
+    }
     @NonNull public List<T> list(){
         return reduce(new ArrayList<>(),(a,b)->{a.add(b);return a;});
+    }
+
+    @NonNull public JSONArray toJsonArray(){
+        return reduce(new JSONArray(),(a,b)->{a.put(b);return a;});
     }
 
     @NonNull public Set<T> toSet(){
