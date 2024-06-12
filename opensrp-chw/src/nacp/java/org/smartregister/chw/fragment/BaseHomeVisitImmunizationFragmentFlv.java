@@ -12,9 +12,12 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.vijay.jsonwizard.customviews.CheckBox;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,11 +31,13 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.util.FnList;
 import org.smartregister.chw.util.UtilsFlv;
 import org.smartregister.view.customcontrols.CustomFontTextView;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import static org.smartregister.chw.R.id.*;
 
 import timber.log.Timber;
@@ -40,6 +45,7 @@ import timber.log.Timber;
 public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitImmunizationFragment {
     private View root;
     private String whenImmunizationGiven;
+
     public static BaseHomeVisitImmunizationFragmentFlv getInstance(final BaseAncHomeVisitContract.VisitView view, String baseEntityID, Map<String, List<VisitDetail>> details, List<VaccineDisplay> vaccineDisplays) {
         return getInstance(view, baseEntityID, details, vaccineDisplays, true);
     }
@@ -61,12 +67,12 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         return fragment;
     }
 
-    public static BaseHomeVisitImmunizationFragmentFlv getInstance(final BaseAncHomeVisitContract.VisitView view, String baseEntityID, Map<String, List<VisitDetail>> details, List<VaccineDisplay> vaccineDisplays, boolean defaultChecked,String whenImmunizationGiven) {
+    public static BaseHomeVisitImmunizationFragmentFlv getInstance(final BaseAncHomeVisitContract.VisitView view, String baseEntityID, Map<String, List<VisitDetail>> details, List<VaccineDisplay> vaccineDisplays, boolean defaultChecked, String whenImmunizationGiven) {
         BaseHomeVisitImmunizationFragmentFlv fragment = new BaseHomeVisitImmunizationFragmentFlv();
         fragment.visitView = view;
         fragment.baseEntityID = baseEntityID;
         fragment.details = details;
-        fragment.whenImmunizationGiven = getWhenImmunizationGivenInEnglish(whenImmunizationGiven,view.getMyContext());
+        fragment.whenImmunizationGiven = getWhenImmunizationGivenInEnglish(whenImmunizationGiven, view.getMyContext());
         fragment.vaccinesDefaultChecked = defaultChecked;
         for (VaccineDisplay vaccineDisplay : vaccineDisplays) {
             fragment.vaccineDisplays.put(vaccineDisplay.getVaccineWrapper().getName(), vaccineDisplay);
@@ -81,9 +87,9 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
 
     public static String getWhenImmunizationGivenInEnglish(String name, Context context) {
-        return FnList.from(R.string.at_birth,R.string.date_weeks,R.string.date_months).reduce(name,(n,id)->
-           n.replace(context.getString(id),UtilsFlv.getEnglishString(context,id))
-        ).trim().replaceAll("\\W+","_");
+        return FnList.from(R.string.at_birth, R.string.date_weeks, R.string.date_months).reduce(name, (n, id) ->
+                n.replace(context.getString(id), UtilsFlv.getEnglishString(context, id))
+        ).trim().replaceAll("\\W+", "_");
     }
 
     @Override
@@ -92,14 +98,15 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         init(view);
     }
 
-    private  void init(View view){
-        root=view;
+    private void init(View view) {
+        root = view;
         root.findViewById(R.id.save_btn).setOnClickListener(this::save);
-        RadioGroup radioGroup=root.findViewById(R.id.select_date_mode);
+        RadioGroup radioGroup = root.findViewById(R.id.select_date_mode);
         radioGroup.setOnCheckedChangeListener(datePickerHelper::toggleMultiMode);
 
-        CheckBox noVaccine=root.findViewById(R.id.checkbox_no_vaccination).findViewById(R.id.select);
-        noVaccine.setOnClickListener(ignore->{});
+        CheckBox noVaccine = root.findViewById(R.id.checkbox_no_vaccination).findViewById(R.id.select);
+        noVaccine.setOnClickListener(ignore -> {
+        });
         noVaccine.setOnCheckedChangeListener((checkbox, b) -> onNoVaccineSelected(b));
 
         new Handler().postDelayed(() -> {
@@ -108,26 +115,27 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         }, 300); /*this delay is timed to wait for super to call its setCheckBoxState */
     }
 
-    private Set<String> getPrevMissingReasonsForEdit(){
-        if(details==null) return new HashSet<>();
+    private Set<String> getPrevMissingReasonsForEdit() {
+        if (details == null) return new HashSet<>();
 
-        JSONArray visitJSON=FnList.from(details.get("reasons_no_vaccination"))
-                .map(vd-> new JSONObject(vd.getDetails()))
-                .filter(json->whenImmunizationGiven.equals(json.optString("when_immunization_given")))
-                .map(json->json.getJSONArray("reasons_for_missing"))
-               .first(new JSONArray());
+        JSONArray visitJSON = FnList.from(details.get("reasons_no_vaccination"))
+                .map(vd -> new JSONObject(vd.getDetails()))
+                .filter(json -> whenImmunizationGiven.equals(json.optString("when_immunization_given")))
+                .map(json -> json.getJSONArray("reasons_for_missing"))
+                .first(new JSONArray());
 
         return FnList.from(visitJSON).map(Object::toString).toSet();
     }
-    private void createViewOptionForNoVaccines(){
+
+    private void createViewOptionForNoVaccines() {
         ViewGroup parent = root.findViewById(R.id.reasons_no_vaccines);
-        Set<String> reasonsEdit=getPrevMissingReasonsForEdit();
-        hide(reasonsEdit.isEmpty(),reasons_no_vaccines,why_no_vaccine);
+        Set<String> reasonsEdit = getPrevMissingReasonsForEdit();
+        hide(reasonsEdit.isEmpty(), reasons_no_vaccines, why_no_vaccine);
 
         FnList.from(root.getResources().getStringArray(R.array.reason_no_vaccine))
                 .map(KeyValue::create)
-                .forEachItem(reason->{
-                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_vaccine_name_check,parent,false);
+                .forEachItem(reason -> {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_vaccine_name_check, parent, false);
                     CustomFontTextView label = view.findViewById(R.id.vaccine);
                     CheckBox checkBox = view.findViewById(R.id.select);
                     checkBox.setTag(reason.key);
@@ -137,64 +145,75 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
                 });
     }
 
-    private void onVaccineSelectStatusChange(View ignore){
-        int allVaccineCount =((ViewGroup)root.findViewById(R.id.vaccination_name_layout)).getChildCount();
-        int selectedVaccineCount = FnList.from(getVaccineValues()).filter(v->v.selected).list().size();
+    private void onVaccineSelectStatusChange(View ignore) {
+        int allVaccineCount = ((ViewGroup) root.findViewById(R.id.vaccination_name_layout)).getChildCount();
+        int selectedVaccineCount = FnList.from(getVaccineValues()).filter(v -> v.selected).list().size();
 
-        boolean allSelected = allVaccineCount == selectedVaccineCount && selectedVaccineCount>0;
-        boolean fewSelected = !allSelected && selectedVaccineCount>0;
-        boolean noneSelected = selectedVaccineCount==0;
+        boolean allSelected = allVaccineCount == selectedVaccineCount && selectedVaccineCount > 0;
+        boolean fewSelected = !allSelected && selectedVaccineCount > 0;
+        boolean noneSelected = selectedVaccineCount == 0;
 
-        if(allSelected) onAllVaccineSelected();
-        if(fewSelected) onFewVaccineSelected();
-        if(noneSelected) onNoVaccineSelected(false);
+        if (allSelected) onAllVaccineSelected();
+        if (fewSelected) onFewVaccineSelected();
+        if (noneSelected) onNoVaccineSelected(false);
     }
 
-    private void onAllVaccineSelected(){
+    private void onAllVaccineSelected() {
         ViewGroup reasonsView = root.findViewById(R.id.reasons_no_vaccines);
         FnList.from(reasonsView)
-                .forEachItem(v-> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
-        hide(reasons_no_vaccines,why_no_vaccine);
-        show(congratulate_has_all_vaccine,select_date_mode,select_date_mode_label, multiple_vaccine_date_pickerview, single_vaccine_add_layout,vaccination_name_layout);
+                .forEachItem(v -> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
+        hide(reasons_no_vaccines, why_no_vaccine);
+        show(congratulate_has_all_vaccine, select_date_mode, select_date_mode_label, multiple_vaccine_date_pickerview, single_vaccine_add_layout, vaccination_name_layout);
         datePickerHelper.showDateForSelectedVaccines();
     }
 
-    private void onFewVaccineSelected(){
-        show( reasons_no_vaccines,vaccination_name_layout, why_no_vaccine,select_date_mode,select_date_mode_label, multiple_vaccine_date_pickerview, single_vaccine_add_layout);
+    private void onFewVaccineSelected() {
+        show(reasons_no_vaccines, vaccination_name_layout, why_no_vaccine, select_date_mode, select_date_mode_label, multiple_vaccine_date_pickerview, single_vaccine_add_layout);
         hide(congratulate_has_all_vaccine);
         datePickerHelper.showDateForSelectedVaccines();
     }
 
-    private void onNoVaccineSelected(boolean showReasons){
-        hide(showReasons,multiple_vaccine_date_pickerview,select_date_mode,select_date_mode_label, single_vaccine_add_layout, vaccination_name_layout, congratulate_has_all_vaccine);
-        show(showReasons,reasons_no_vaccines, why_no_vaccine);
+    private void onNoVaccineSelected(boolean showReasons) {
+        hide(showReasons, multiple_vaccine_date_pickerview, select_date_mode, select_date_mode_label, single_vaccine_add_layout, vaccination_name_layout, congratulate_has_all_vaccine);
+        show(showReasons, reasons_no_vaccines, why_no_vaccine);
 
         datePickerHelper.clearDates();
         ViewGroup reasonsView = root.findViewById(R.id.reasons_no_vaccines);
         FnList.from(reasonsView)
-                .forEachItem(v-> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
-        FnList.from(root,R.id.vaccination_name_layout)
-                .map(v->(CheckBox)v.findViewById(R.id.select))
-                .forEachItem(ch-> ch.setChecked(false));
+                .forEachItem(v -> ((CheckBox) v.findViewById(R.id.select)).setChecked(false));
+        FnList.from(root, R.id.vaccination_name_layout)
+                .map(v -> (CheckBox) v.findViewById(R.id.select))
+                .forEachItem(ch -> ch.setChecked(false));
     }
 
-    private void show(boolean show, Integer ...ids){
-        FnList.from(ids).forEachItem(id->root.findViewById(id).setVisibility(show?View.VISIBLE:View.GONE));
+    private void show(boolean show, Integer... ids) {
+        FnList.from(ids).forEachItem(id -> root.findViewById(id).setVisibility(show ? View.VISIBLE : View.GONE));
     }
-    private void hide(boolean hide,Integer ...ids){ show(!hide,ids); }
-    private void show(Integer ...ids){ show(true,ids); }
-    private void hide(Integer ...ids){ show(false,ids); }
-    private void listenForVaccineSelection(){
-        FnList.from(root,R.id.vaccination_name_layout)
-                .map(v->(CheckBox)v.findViewById(R.id.select))
+
+    private void hide(boolean hide, Integer... ids) {
+        show(!hide, ids);
+    }
+
+    private void show(Integer... ids) {
+        show(true, ids);
+    }
+
+    private void hide(Integer... ids) {
+        show(false, ids);
+    }
+
+    private void listenForVaccineSelection() {
+        FnList.from(root, R.id.vaccination_name_layout)
+                .map(v -> (CheckBox) v.findViewById(R.id.select))
                 .forEachItem(this::onVaccineSelectStatusChange);
     }
-    private List<VaccineValue> getVaccineValues(){
+
+    private List<VaccineValue> getVaccineValues() {
         ViewGroup datesView = root.getRootView().findViewById(R.id.single_vaccine_add_layout);
         ViewGroup vaccineView = root.getRootView().findViewById(R.id.vaccination_name_layout);
-        List<VaccineValue> vaccineV = FnList.from(vaccineView).map(v->new VaccineValue(v,this)).list();
+        List<VaccineValue> vaccineV = FnList.from(vaccineView).map(v -> new VaccineValue(v, this)).list();
 
-        if(datesView.getVisibility() == View.VISIBLE) {
+        if (datesView.getVisibility() == View.VISIBLE) {
             FnList.from(datesView)
                     .forEachItem(view -> FnList.from(vaccineV).forEachItem(vc -> vc.setDateFromMultiMode(view)));
         }
@@ -202,10 +221,10 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     }
 
     protected FnList<String> getSelectedReasonsNoVaccines() {
-        return FnList.from(root,R.id.reasons_no_vaccines)
-                .map(v->(CheckBox)v.findViewById(R.id.select))
+        return FnList.from(root, R.id.reasons_no_vaccines)
+                .map(v -> (CheckBox) v.findViewById(R.id.select))
                 .filter(CompoundButton::isChecked)
-                .map(ch->ch.getTag().toString());
+                .map(ch -> ch.getTag().toString());
     }
 
     private void save(View view) {
@@ -216,29 +235,31 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
             JSONArray reasonsForMissing = new JSONArray();
             JSONObject value = new JSONObject();
             JSONObject field = new JSONObject()
-                    .put("key","reasons_no_vaccination")
-                    .put("openmrs_entity_parent","vaccine")
-                    .put("openmrs_entity","concept")
-                    .put("type","text")
-                    .put("openmrs_entity_id","reasons_no_vaccination");
+                    .put("key", "reasons_no_vaccination")
+                    .put("openmrs_entity_parent", "vaccine")
+                    .put("openmrs_entity", "concept")
+                    .put("type", "text")
+                    .put("openmrs_entity_id", "reasons_no_vaccination");
 
             FnList.from(getVaccineValues())
                     .filter(v -> !v.selected)
-                    .forEachItem(v->notSelectedVaccine.put(v.name));
+                    .forEachItem(v -> notSelectedVaccine.put(v.name));
 
             getSelectedReasonsNoVaccines().forEachItem(reasonsForMissing::put);
 
             value.put("reasons_for_missing", reasonsForMissing);
             value.put("missing_vaccines", notSelectedVaccine);
             value.put("when_immunization_given", whenImmunizationGiven);
-            field.put("value",value.toString());
+            field.put("value", value.toString());
             super.visitView.onDialogOptionUpdated(addField(field));
-        }catch (JSONException e){Timber.e(e);}
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
     }
 
-    private String addField(JSONObject value){
-        JSONObject json=super.getJsonObject();
-        JSONArray fields= UtilsFlv.coalesce(UtilsFlv.jsonGet(json,"step1.fields"),new JSONArray());
+    private String addField(JSONObject value) {
+        JSONObject json = super.getJsonObject();
+        JSONArray fields = UtilsFlv.coalesce(UtilsFlv.jsonGet(json, "step1.fields"), new JSONArray());
         fields.put(value);
         return json.toString();
     }
@@ -247,7 +268,8 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
         String name;
         Date date;
         boolean selected;
-        VaccineValue(View view,BaseHomeVisitImmunizationFragmentFlv fg){
+
+        VaccineValue(View view, BaseHomeVisitImmunizationFragmentFlv fg) {
             CustomFontTextView tv = view.findViewById(R.id.vaccine);
             DatePicker dp = view.getRootView().findViewById(R.id.earlier_date_picker);
             CheckBox cb = view.findViewById(R.id.select);
@@ -257,49 +279,56 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
             this.selected = cb.isChecked();
             this.date = dp == null ? new Date() : UtilsFlv.getDateFromDatePicker(dp);
         }
+
         void setDateFromMultiMode(View view) {
             DatePicker dt = view.findViewById(R.id.earlier_date_picker);
             CustomFontTextView tx = view.findViewById(R.id.vaccines_given_when_title_question);
-            if(tx.getText().toString().contains(name)){
+            if (tx.getText().toString().contains(name)) {
                 this.date = UtilsFlv.getDateFromDatePicker(dt);
             }
         }
     }
 
-    private final DatePickerHelper datePickerHelper=new DatePickerHelper(this);
+    private final DatePickerHelper datePickerHelper = new DatePickerHelper(this);
+
     @Override
     public void setRelaxedDates(boolean relaxedDates) {
-        datePickerHelper.relaxedDates = relaxedDates;}
+        datePickerHelper.relaxedDates = relaxedDates;
+    }
+
     @Override
     public void setMinimumDate(Date minimumDate) {
         datePickerHelper.minimumDate = minimumDate;
     }
 
-    private static class DatePickerHelper{
-        private DatePickerHelper(BaseHomeVisitImmunizationFragmentFlv b){
-            base=b;
+    private static class DatePickerHelper {
+        private DatePickerHelper(BaseHomeVisitImmunizationFragmentFlv b) {
+            base = b;
         }
+
         BaseHomeVisitImmunizationFragmentFlv base;
-        private Date minimumDate=new Date();
-        private  boolean relaxedDates=false;
-        private void toggleMultiMode(RadioGroup group,int checkedId){
+        private Date minimumDate = new Date();
+        private boolean relaxedDates = false;
+
+        private void toggleMultiMode(RadioGroup group, int checkedId) {
             showDateForSelectedVaccines();
         }
+
         private void showDateForSelectedVaccines() {
-            RadioGroup radioGroup=base.root.findViewById(R.id.select_date_mode);
-            boolean sharedMode=radioGroup.getCheckedRadioButtonId()==R.id.each_its_date;
+            RadioGroup radioGroup = base.root.findViewById(R.id.select_date_mode);
+            boolean sharedMode = radioGroup.getCheckedRadioButtonId() == R.id.each_its_date;
 
-            base.hide(sharedMode,multiple_vaccine_date_pickerview);
-            base.show(sharedMode,single_vaccine_add_layout);
+            base.hide(sharedMode, multiple_vaccine_date_pickerview);
+            base.show(sharedMode, single_vaccine_add_layout);
 
-            if(!sharedMode)return;
-            View root=base.root;
-            ViewGroup parent=root.findViewById(R.id.single_vaccine_add_layout);
+            if (!sharedMode) return;
+            View root = base.root;
+            ViewGroup parent = root.findViewById(R.id.single_vaccine_add_layout);
             parent.removeAllViews();
             FnList.from(base.getVaccineValues())
-                    .filter(v->v.selected)
-                    .forEachItem(vaccineView->{
-                        View layout = LayoutInflater.from(root.getContext()).inflate(R.layout.custom_single_vaccine_view, parent,false);
+                    .filter(v -> v.selected)
+                    .forEachItem(vaccineView -> {
+                        View layout = LayoutInflater.from(root.getContext()).inflate(R.layout.custom_single_vaccine_view, parent, false);
                         TextView question = layout.findViewById(R.id.vaccines_given_when_title_question);
                         DatePicker datePicker = layout.findViewById(R.id.earlier_date_picker);
                         String translatedVaccineName = NCUtils.getStringResourceByName(vaccineView.name.toLowerCase().replace(" ", "_"), root.getContext());
@@ -312,8 +341,8 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
                     });
         }
 
-        private void clearDates(){
-            ViewGroup parent=base.root.findViewById(R.id.single_vaccine_add_layout);
+        private void clearDates() {
+            ViewGroup parent = base.root.findViewById(R.id.single_vaccine_add_layout);
             parent.removeAllViews();
         }
 

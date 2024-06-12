@@ -48,25 +48,25 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
-//            evaluateToddlerDanger(serviceWrapperMap);
+            evaluateToddlerDanger(serviceWrapperMap);
             evaluateImmunization();
-//            evaluateExclusiveBreastFeeding(serviceWrapperMap);
-//            evaluateVitaminA(serviceWrapperMap);
-//            evaluateDeworming(serviceWrapperMap);
-//            evaluateMalariaPrevention();
-//            evaluateCounselling();
-//            evaluateNutritionStatus();
-//            evaluateObsAndIllness();
-//            evaluateMalnutritionScreening(serviceWrapperMap);
-//            evaluateChildSafety(serviceWrapperMap);
-//            evaluateCompFeeding(serviceWrapperMap);
-//            evaluateChildPMTCT(serviceWrapperMap);
-//            evaluateCCDCommunicationAssessment(serviceWrapperMap);
-//            evaluatePlayAssessmentCounseling(serviceWrapperMap);
-//            evaluateProblemSolving(serviceWrapperMap);
-//            evaluateCareGiverResponsiveness(serviceWrapperMap);
-//            evaluateCCDChildDiscipline(serviceWrapperMap);
-//            evaluateDevelopmentScreening(serviceWrapperMap);
+            evaluateExclusiveBreastFeeding(serviceWrapperMap);
+            evaluateVitaminA(serviceWrapperMap);
+            evaluateDeworming(serviceWrapperMap);
+            evaluateMalariaPrevention();
+            evaluateCounselling();
+            evaluateNutritionStatus();
+            evaluateObsAndIllness();
+            evaluateMalnutritionScreening(serviceWrapperMap);
+            evaluateChildSafety(serviceWrapperMap);
+            evaluateCompFeeding(serviceWrapperMap);
+            evaluateChildPMTCT(serviceWrapperMap);
+            evaluateCCDCommunicationAssessment(serviceWrapperMap);
+            evaluatePlayAssessmentCounseling(serviceWrapperMap);
+            evaluateProblemSolving(serviceWrapperMap);
+            evaluateCareGiverResponsiveness(serviceWrapperMap);
+            evaluateCCDChildDiscipline(serviceWrapperMap);
+            evaluateDevelopmentScreening(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -150,13 +150,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
-                .Builder(context, context.getString(R.string.pnc_malaria_prevention))
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getMalariaPrevention())
-                .withHelper(malariaPreventionHelper)
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_malaria_prevention)).withOptional(false).withDetails(details).withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getMalariaPrevention()).withHelper(malariaPreventionHelper).build();
         actionList.put(context.getString(R.string.pnc_malaria_prevention), action);
     }
 
@@ -195,14 +189,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             ChwAncJsonFormUtils.populateForm(jsonObject, details);
         }
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
-                .Builder(context, context.getString(R.string.pnc_counselling))
-                .withOptional(false)
-                .withDetails(details)
-                .withJsonPayload(jsonObject.toString())
-                .withFormName(Constants.JSON_FORM.PNC_HOME_VISIT.getCOUNSELLING())
-                .withHelper(counsellingHelper)
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_counselling)).withOptional(false).withDetails(details).withJsonPayload(jsonObject.toString()).withFormName(Constants.JSON_FORM.PNC_HOME_VISIT.getCOUNSELLING()).withHelper(counsellingHelper).build();
         actionList.put(context.getString(R.string.pnc_counselling), action);
     }
 
@@ -254,13 +241,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         };
 
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction
-                .Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getNutritionStatus())
-                .withHelper(nutritionStatusHelper)
-                .build();
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_nutrition_status)).withOptional(false).withDetails(details).withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getNutritionStatus()).withHelper(nutritionStatusHelper).build();
         actionList.put(context.getString(R.string.anc_home_visit_nutrition_status), observation);
     }
 
@@ -287,13 +268,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             @Override
             public String evaluateSubTitle() {
-                if (illnessDate == null)
-                    return "";
+                if (illnessDate == null) return "";
 
-                return MessageFormat.format("{0}: {1}\n {2}: {3}",
-                        DateTimeFormat.forPattern("dd MMM yyyy").print(illnessDate),
-                        illness_description, context.getString(R.string.action_taken), action_taken
-                );
+                return MessageFormat.format("{0}: {1}\n {2}: {3}", DateTimeFormat.forPattern("dd MMM yyyy").print(illnessDate), illness_description, context.getString(R.string.action_taken), action_taken);
             }
 
             @Override
@@ -305,13 +282,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         }
 
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction
-                .Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes))
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.getObsIllness())
-                .withHelper(new ObsIllnessBabyHelper())
-                .build();
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes)).withOptional(true).withDetails(details).withFormName(Constants.JSON_FORM.getObsIllness()).withHelper(new ObsIllnessBabyHelper()).build();
         actionList.put(context.getString(R.string.anc_home_visit_observations_n_illnes), observation);
     }
 
@@ -335,15 +306,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             title = context.getString(R.string.child_hv_complementary_feeding_after_24_month);
         }
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction
-                .Builder(context, title)
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JsonForm.getChildHvCompFeeding())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .withHelper(complimentaryFeedingActionHelper)
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, title).withOptional(true).withDetails(details).withFormName(Constants.JsonForm.getChildHvCompFeeding()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).withHelper(complimentaryFeedingActionHelper).build();
         actionList.put(title, action);
     }
 
@@ -362,15 +325,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         String title = context.getString(R.string.malnutrition_screening);
 
-        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JsonForm.getChildHvMalnutritionScreening())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .withHelper(malnutritionScreeningActionHelper)
-                .build();
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title).withOptional(false).withDetails(details).withFormName(Constants.JsonForm.getChildHvMalnutritionScreening()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).withHelper(malnutritionScreeningActionHelper).build();
         actionList.put(title, malnutritionScreeningAction);
     }
 
@@ -383,16 +338,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_problem_solving))
-                .withOptional(true)
-                .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(Constants.JsonForm.getChildHvProblemSolvingForm())
-                .withHelper(new ChildHVProblemSolvingHelper())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_problem_solving)).withOptional(true).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withFormName(Constants.JsonForm.getChildHvProblemSolvingForm()).withHelper(new ChildHVProblemSolvingHelper()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(context.getString(R.string.child_problem_solving), action);
     }
 
@@ -409,16 +355,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(CoreConstants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""))
-                .withOptional(true)
-                .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling())
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper))
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "")).withOptional(true).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withFormName(Constants.JsonForm.getChildHvPlayAssessmentCounselling()).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withHelper(new ChildPlayAssessmentCounselingActionHelper(context, null, serviceWrapper)).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), ""), action);
     }
 
@@ -443,17 +380,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             ChwAncJsonFormUtils.populateForm(jsonObject, details);
         }
 
-        BaseAncHomeVisitAction action = getBuilder(title)
-                .withHelper(helper)
-                .withDetails(details)
-                .withOptional(false)
-                .withJsonPayload(jsonObject.toString())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(org.smartregister.chw.util.Constants.JsonForm.getChildHomeVisitDangerSignForm())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = getBuilder(title).withHelper(helper).withDetails(details).withOptional(false).withJsonPayload(jsonObject.toString()).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withFormName(org.smartregister.chw.util.Constants.JsonForm.getChildHomeVisitDangerSignForm()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(context.getString(R.string.child_danger_signs_baby), action);
     }
 
@@ -488,16 +415,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             org.smartregister.chw.anc.util.JsonFormUtils.populateForm(jsonObject, details);
         }
 
-        BaseAncHomeVisitAction action = getBuilder(title)
-                .withHelper(helper)
-                .withDetails(details)
-                .withOptional(false)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(org.smartregister.chw.util.Constants.JsonForm.getChildHvBreastfeedingForm())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = getBuilder(title).withHelper(helper).withDetails(details).withOptional(false).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withFormName(org.smartregister.chw.util.Constants.JsonForm.getChildHvBreastfeedingForm()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(title, action);
     }
 
@@ -515,16 +433,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         String title = context.getString(R.string.child_safety);
 
-        BaseAncHomeVisitAction childSafetyAction = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JsonForm.getChildSafetyForm())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .withHelper(childHVChildSafetyActionHelper)
-                .build();
+        BaseAncHomeVisitAction childSafetyAction = new BaseAncHomeVisitAction.Builder(context, title).withOptional(true).withDetails(details).withFormName(Constants.JsonForm.getChildSafetyForm()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).withHelper(childHVChildSafetyActionHelper).build();
         actionList.put(title, childSafetyAction);
     }
 
@@ -539,16 +448,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""))
-                .withOptional(true)
-                .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling())
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob), context, null, serviceWrapper))
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), "")).withOptional(true).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withFormName(Constants.JsonForm.getChildHvCommunicationAssessmentCounselling()).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(this.dob), context, null, serviceWrapper)).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), ""), action);
     }
 
@@ -563,16 +463,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
         Map<String, List<VisitDetail>> details = getDetails(CoreConstants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""))
-                .withOptional(true)
-                .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment())
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withHelper(new ChildDevelopmentScreeningActionHelper(null, serviceWrapper))
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), "")).withOptional(true).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withFormName(Constants.JsonForm.getChildHvDevelopmentScreeningAssessment()).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withHelper(new ChildDevelopmentScreeningActionHelper(null, serviceWrapper)).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), ""), action);
     }
 
@@ -591,17 +482,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         String title = context.getString(R.string.ccd_caregiver_responsiveness);
 
-        BaseAncHomeVisitAction action = getBuilder(title)
-                .withHelper(actionHelper)
-                .withDetails(details)
-                .withOptional(true)
-                .withBaseEntityID(memberObject.getBaseEntityId())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(Constants.JsonForm.getChildHvCcdCareGiverResponsiveness())
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = getBuilder(title).withHelper(actionHelper).withDetails(details).withOptional(true).withBaseEntityID(memberObject.getBaseEntityId()).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withFormName(Constants.JsonForm.getChildHvCcdCareGiverResponsiveness()).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(title, action);
     }
 
@@ -618,16 +499,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline())
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withHelper(ccdChildDisciplineAction)
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title).withOptional(true).withDetails(details).withFormName(Constants.JsonForm.getChildHvCcdChildDiscipline()).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withHelper(ccdChildDisciplineAction).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
 
         actionList.put(title, ccd_child_discipline_action);
     }
@@ -644,16 +516,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
         String title = context.getString(R.string.child_home_visit_pmtct);
 
-        BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JsonForm.getChildHvPmtct())
-                .withHelper(new ChildPMTCTActionHelper())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title).withOptional(true).withDetails(details).withFormName(Constants.JsonForm.getChildHvPmtct()).withHelper(new ChildPMTCTActionHelper()).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
         actionList.put(title, childPmtctAction);
     }
 
@@ -669,16 +532,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         ChildHVSkinToSkinActionHelper actionHelper = new ChildHVSkinToSkinActionHelper();
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin))
-                .withOptional(false)
-                .withDetails(details)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withFormName(Constants.JsonForm.getSkinToSkin())
-                .withHelper(actionHelper)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
-                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .build();
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin)).withOptional(false).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withFormName(Constants.JsonForm.getSkinToSkin()).withHelper(actionHelper).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
 
         actionList.put(context.getString(R.string.pnc_skin_to_skin), action);
     }

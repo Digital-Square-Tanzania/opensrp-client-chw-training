@@ -39,8 +39,8 @@
         android:id="@+id/scroll_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/detail_toolbar"
         android:layout_above="@id/view_vt_container"
+        android:layout_below="@id/detail_toolbar"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -54,8 +54,8 @@
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="@dimen/btn_margin_left"
+                android:layout_marginTop="30dp"
                 android:text="@string/which_vaccines_given_text"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/px_16_to_sp" />
@@ -79,23 +79,23 @@
 
             <org.smartregister.view.customcontrols.CustomFontTextView
                 android:id="@+id/add_date_separately"
-                android:layout_below="@id/vaccination_name_layout"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_below="@id/vaccination_name_layout"
                 android:text=""
-                android:visibility="visible"
                 android:textColor="@color/text_black"
-                android:textSize="@dimen/px_16_to_sp" />
+                android:textSize="@dimen/px_16_to_sp"
+                android:visibility="visible" />
 
             <org.smartregister.view.customcontrols.CustomFontTextView
                 android:id="@+id/select_date_mode_label"
-                android:layout_below="@id/vaccination_name_layout"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_below="@id/vaccination_name_layout"
                 android:layout_marginHorizontal="@dimen/btn_margin_left"
+                android:layout_marginTop="16dp"
                 android:text="@string/choose_date_mode"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/px_16_to_sp" />
@@ -106,32 +106,33 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/select_date_mode_label"
                 android:layout_marginStart="10dp"
-                android:paddingStart="32dp"
-                android:paddingEnd="24dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="16dp"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:paddingStart="32dp"
+                android:paddingEnd="24dp">
 
-            <RadioButton
-                android:id="@+id/shared_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:padding="4dp"
-                android:checked="true"
-                android:text="@string/shared_date"
-                android:textSize="@dimen/px_16_to_sp" />
-            <RadioButton
-                android:layout_gravity="left"
-                android:id="@+id/each_its_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:padding="4dp"
-                android:value="2"
-                android:text="@string/each_vaccine_its_date"
-                android:textSize="@dimen/px_16_to_sp" />
+                <RadioButton
+                    android:id="@+id/shared_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="@string/shared_date"
+                    android:textSize="@dimen/px_16_to_sp" />
+
+                <RadioButton
+                    android:id="@+id/each_its_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:checked="false"
+                    android:padding="4dp"
+                    android:text="@string/each_vaccine_its_date"
+                    android:textSize="@dimen/px_16_to_sp"
+                    android:value="2" />
             </RadioGroup>
 
 
@@ -142,6 +143,7 @@
                 android:layout_below="@id/select_date_mode"
                 android:layout_marginHorizontal="@dimen/btn_margin_left"
                 android:orientation="vertical">
+
                 <include layout="@layout/custom_single_vaccine_view" />
             </LinearLayout>
 
@@ -157,16 +159,16 @@
             <org.smartregister.view.customcontrols.CustomFontTextView
                 android:id="@+id/why_no_vaccine"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
-                android:layout_below="@id/single_vaccine_add_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/single_vaccine_add_layout"
                 android:layout_marginTop="8dp"
                 android:maxLines="15"
                 android:padding="8dp"
                 android:singleLine="false"
                 android:text="@string/why_no_vaccine"
-                tools:visibility="visible"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:id="@+id/reasons_no_vaccines"
@@ -175,19 +177,19 @@
                 android:layout_below="@id/why_no_vaccine"
                 android:orientation="vertical"
                 android:padding="8dp"
-                tools:visibility="visible"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <org.smartregister.view.customcontrols.CustomFontTextView
                 android:id="@+id/congratulate_has_all_vaccine"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/reasons_no_vaccines"
                 android:layout_alignParentStart="true"
-                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginHorizontal="8dp"
                 android:background="@color/toaster_note_green"
                 android:maxLines="15"
                 android:padding="8dp"
