@@ -38,6 +38,7 @@ public class Constants extends CoreConstants {
         public static final String ANC_REFERRAL = "ANC Referral";
         public static final String PMTCT_COMMUNITY_FOLLOWUP_FEEDBACK = "PMTCT Community Followup Feedback";
         public static final String MOTHER_CHAMPION_FOLLOWUP = "Mother Champion Followup";
+        public static final String LINKAGE_FOLLOWUP = "Linkage Followup";
     }
 
     public static class ChildIllnessViewType {
