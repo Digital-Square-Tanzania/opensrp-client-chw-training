@@ -3,14 +3,14 @@ package org.smartregister.chw.fragment;
 import android.view.View;
 
 import org.smartregister.chw.R;
-import org.smartregister.chw.activity.ChwReferralDetailsViewActivity;
-import org.smartregister.chw.activity.MalariaFollowUpVisitActivity;
+import org.smartregister.chw.activity.ChwLinkageDetailsViewActivity;
+import org.smartregister.chw.activity.LinkageFollowUpActivity;
 import org.smartregister.chw.model.ReferralRegisterFragmentModel;
 import org.smartregister.chw.presenter.CompletedLinkageRegisterFragmentPresenter;
-import org.smartregister.chw.presenter.CompletedReferralRegisterFragmentPresenter;
 import org.smartregister.chw.referral.contract.BaseReferralRegisterFragmentContract;
 import org.smartregister.chw.referral.domain.MemberObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.Task;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.contract.BaseRegisterFragmentContract;
 import org.smartregister.view.customcontrols.CustomFontTextView;
@@ -44,15 +44,29 @@ public class CompletedLinkageRegisterFragment extends CompletedReferralRegisterF
 
 
     @Override
+    protected void onViewClicked(View view) {
+        if (view.getTag(R.id.VIEW_ID) == LINKAGE_FOLLOWUP){
+            //Linkage followup clicked
+            openLinkageFollowUpVisit(view);
+        }else {
+            super.onViewClicked(view);
+        }
+    }
+
+    @Override
     protected void openProfile(CommonPersonObjectClient client) {
-        //ChwReferralDetailsViewActivity.startChwReferralDetailsViewActivity(getActivity(), new MemberObject(client), client);
+        ChwLinkageDetailsViewActivity.startChwLinkageDetailsViewActivity(getActivity(), new MemberObject(client), client);
+    }
+
+    private void openLinkageFollowUpVisit(View view){
+        CommonPersonObjectClient client = (CommonPersonObjectClient) view.getTag();
+        Task task = (Task) view.getTag(R.id.FOLLOW_UP_TASK);
+        LinkageFollowUpActivity.startAddoLinkageRegisterActivity(getActivity(), client.getCaseId(), task.getIdentifier());
     }
 
     @Override
     protected void openFollowUpVisit(CommonPersonObjectClient client) {
-        //MalariaFollowUpVisitActivity.startMalariaFollowUpActivity(getActivity(), client.getCaseId());
+        //Stub
     }
-
-
 
 }
