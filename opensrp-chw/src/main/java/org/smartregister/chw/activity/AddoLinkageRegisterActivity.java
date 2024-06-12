@@ -1,5 +1,10 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getLinkageFollowUpForm;
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getMalariaConfirmation;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -49,6 +54,19 @@ public class AddoLinkageRegisterActivity extends ReferralRegisterActivity {
             bottomNavigationView.inflateMenu(R.menu.linkages_bottom_nav_menu);
             bottomNavigationView.setOnNavigationItemSelectedListener(this);
         }
+    }
+
+    @Override
+    protected void startRegisterActivity() {
+        Intent intent = new Intent(this, AddoLinkageRegisterActivity.class);
+        this.startActivity(intent);
+        this.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+        this.finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
