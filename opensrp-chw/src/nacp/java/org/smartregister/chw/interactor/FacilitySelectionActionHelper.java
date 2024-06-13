@@ -1,6 +1,10 @@
 package org.smartregister.chw.interactor;
 
+import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.COMPLETED;
+import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.PENDING;
 import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
+import static org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue;
+import static org.smartregister.chw.util.JsonFormUtilsFlv.getQuestion;
 
 import android.content.Context;
 
@@ -8,17 +12,14 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.application.CoreChwApplication;
-import org.smartregister.chw.core.domain.Person;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.referral.util.LocationUtils;
-import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtilsFlv;
 import org.smartregister.clientandeventmodel.Event;
@@ -29,7 +30,6 @@ import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
 
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,9 +91,16 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
         return "";
     }
 
+    private BaseAncHomeVisitAction.Status evaluateStatus(JSONObject form){
+        String facility=getQuestion("chw_referral_hf",form).optString("value");
+        String date=getQuestion("referral_appointment_date",form).optString("value");
+        boolean notFilled=facility.isEmpty()||date.isEmpty();
+       return notFilled||status==PENDING?PENDING:COMPLETED;
+    }
+
+    private BaseAncHomeVisitAction.Status status;
     @Override
     public void onPayloadReceived(String jsonPayload) {
-      //implement
         try {
             String formName="referral_facility_selection";
             JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
@@ -104,6 +111,7 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
             for(ReferralHelperInfo info:referralsInfo){
                 JSONObject step=payload.getJSONObject("step"+(i++));
                 step.getJSONArray("fields").put(info.problem);
+                status=evaluateStatus(step);
                 jsonForm.put("step1",step);
                 createReferralEvent(
                         Utils.getAllSharedPreferences(),
@@ -113,12 +121,13 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
         }
         catch (Exception e) {Timber.e(e);}
     }
+
     @Override
     public String evaluateSubTitle() {return "";}
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return BaseAncHomeVisitAction.Status.COMPLETED;
+        return status!=null?status:PENDING;
     }
 
     private void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString, ReferralHelperInfo info) throws Exception {

@@ -47,7 +47,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "General referral form",
+    "title": "Fomu ya rufaa kituo cha afya",
     "fields": [
       {
         "key": "service_before_referral",
@@ -55,7 +55,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "service_before_referral",
         "type": "check_box",
-        "label": "Pre-referral management given.",
+        "label": "Huduma aliyopewa kabla ya rufaa.",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "combine_checkbox_option_values": "true",
@@ -72,29 +72,29 @@
           },
           {
             "key": "Panadol",
-            "text": "Panadol",
+            "text": "Panado",
             "openmrs_entity": "",
             "openmrs_entity_id": "Panadol",
             "openmrs_entity_parent": ""
           },
           {
             "key": "Other_treatment",
-            "text": "Other treatment",
+            "text": "Matibabu mengine",
             "openmrs_entity": "",
             "openmrs_entity_id": "Other_treatment",
             "openmrs_entity_parent": ""
           },
           {
             "key": "None",
-            "text": "None",
+            "text": "Hakuna",
             "openmrs_entity": "",
-            "openmrs_entity_id": "None",
+            "openmrs_entity_id": "Hakuna",
             "openmrs_entity_parent": ""
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select one"
+          "err": "Jibu linatakiwa"
         }
       },
       {
@@ -105,7 +105,7 @@
         "openmrs_entity_id": "chw_referral_hf",
         "openmrs_data_type": "select one",
         "openmrs_entity_parent": "",
-        "hint": "Select which facility to send the referral to",
+        "hint": "Chagua Kituo cha Afya",
         "options": [],
         "v_required": {
           "value": "true",
@@ -118,7 +118,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "referral_appointment_date",
         "type": "date_picker",
-        "hint": "Please specify the appointment date",
+        "hint": "Tafadhali chagua tarehe ya kuhudhuria hospitali",
         "expanded": false,
         "min_date": "today",
         "v_required": {
@@ -129,3 +129,4 @@
     ]
   }
 }
+

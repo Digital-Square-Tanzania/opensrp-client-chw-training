@@ -40,7 +40,7 @@ public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.F
 
     public static JSONObject getQuestion(String key, JSONObject jsonForm,JSONObject defaultValue) {
         JSONObject obj=getQuestion(key,jsonForm);
-        return obj!=null?obj:defaultValue;
+        return obj!=NONE?obj:defaultValue;
     }
     public static JSONObject getQuestion(String key, JSONObject jsonForm) {
         Deque<Object> stack = new ArrayDeque<>();
@@ -67,9 +67,9 @@ public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.F
                 }
             }
         }
-        return null;
+        return NONE;
     }
-
+   public static final JSONObject NONE= new JSONObject();
     public static <T> List<T> fromJsonArray(@Nullable JSONArray array, Mapper<Object,T> mapper){
         if(array==null)return new ArrayList<>();
         List<T> items=new ArrayList<>();
