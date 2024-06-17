@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -103,6 +104,9 @@ public class ChildCommunicationAssessmentCounselingActionHelper extends HomeVisi
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+        if (StringUtils.isBlank(communicatesWithChild) || StringUtils.isBlank(communicatesWithChildObservation)) {
+            return BaseAncHomeVisitAction.Status.PENDING;
+        }
         if (communicatesWithChild.equalsIgnoreCase("no") || communicatesWithChildObservation.contains("chk_force_smile") || communicatesWithChildObservation.contains("chk_child_asleep")) {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         } else if ((communicatesWithChild.equalsIgnoreCase("yes") && communicatesWithChildObservation.contains("chk_sounds_and_gestures")) || (communicatesWithChild.equalsIgnoreCase("yes") && communicatesWithChildObservation.contains("chk_looks_into_eyes"))) {
