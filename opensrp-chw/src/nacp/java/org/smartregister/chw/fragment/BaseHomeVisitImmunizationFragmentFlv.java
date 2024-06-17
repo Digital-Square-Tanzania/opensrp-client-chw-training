@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.vijay.jsonwizard.customviews.CheckBox;
 
 import org.jetbrains.annotations.NotNull;
@@ -111,23 +113,39 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
 
         new Handler().postDelayed(() -> {
             listenForVaccineSelection();
-            createViewOptionForNoVaccines();
+            try {
+                createViewOptionForNoVaccines();
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
         }, 300); /*this delay is timed to wait for super to call its setCheckBoxState */
     }
 
-    private Set<String> getPrevMissingReasonsForEdit() {
-        if (details == null) return new HashSet<>();
-
-        JSONArray visitJSON = FnList.from(details.get("reasons_no_vaccination"))
-                .map(vd -> new JSONObject(vd.getDetails()))
-                .filter(json -> whenImmunizationGiven.equals(json.optString("when_immunization_given")))
-                .map(json -> json.getJSONArray("reasons_for_missing"))
-                .first(new JSONArray());
-
-        return FnList.from(visitJSON).map(Object::toString).toSet();
+    private Set<String> getPrevMissingReasonsForEdit() throws JSONException {
+        if (details != null) {
+            JSONArray visitJSON = FnList.from(details.get("reasons_no_vaccination"))
+                    .map(vd -> new JSONObject(vd.getDetails()))
+                    .filter(json -> whenImmunizationGiven.equals(json.optString("when_immunization_given")))
+                    .map(json -> json.getJSONArray("reasons_for_missing"))
+                    .first(new JSONArray());
+            return FnList.from(visitJSON).map(Object::toString).toSet();
+        } else if (this.jsonObject != null) {
+            JSONArray fields = this.jsonObject.getJSONObject("step1").getJSONArray("fields");
+            JSONObject outerJsonObject;
+            for (int index = 0; index < fields.length(); index++) {
+                JSONObject field = fields.getJSONObject(index);
+                if (field.getString("key").equals("reasons_no_vaccination")) {
+                    if (!field.getString("value").isEmpty()) {
+                        outerJsonObject = new JSONObject(field.getString("value"));
+                        return FnList.from(outerJsonObject.getJSONArray("reasons_for_missing")).map(Object::toString).toSet();
+                    }
+                }
+            }
+        }
+        return new HashSet<>();
     }
 
-    private void createViewOptionForNoVaccines() {
+    private void createViewOptionForNoVaccines() throws JSONException {
         ViewGroup parent = root.findViewById(R.id.reasons_no_vaccines);
         Set<String> reasonsEdit = getPrevMissingReasonsForEdit();
         hide(reasonsEdit.isEmpty(), reasons_no_vaccines, why_no_vaccine);
@@ -174,7 +192,8 @@ public class BaseHomeVisitImmunizationFragmentFlv extends DefaultBaseHomeVisitIm
     }
 
     private void onNoVaccineSelected(boolean showReasons) {
-        hide(showReasons, multiple_vaccine_date_pickerview, select_date_mode, select_date_mode_label, single_vaccine_add_layout, vaccination_name_layout, congratulate_has_all_vaccine);
+        hide(true, congratulate_has_all_vaccine);
+        hide(showReasons, multiple_vaccine_date_pickerview, select_date_mode, select_date_mode_label, single_vaccine_add_layout, vaccination_name_layout);
         show(showReasons, reasons_no_vaccines, why_no_vaccine);
 
         datePickerHelper.clearDates();
