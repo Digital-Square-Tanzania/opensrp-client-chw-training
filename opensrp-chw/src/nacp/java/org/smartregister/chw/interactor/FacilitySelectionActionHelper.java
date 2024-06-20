@@ -3,7 +3,6 @@ package org.smartregister.chw.interactor;
 import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.COMPLETED;
 import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.PENDING;
 import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
-import static org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue;
 import static org.smartregister.chw.util.JsonFormUtilsFlv.getQuestion;
 
 import android.content.Context;
@@ -20,8 +19,8 @@ import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.referral.util.LocationUtils;
-import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtilsFlv;
+import org.smartregister.chw.util.JsonQ;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.domain.Task;
@@ -31,9 +30,10 @@ import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -42,19 +42,20 @@ import java.util.UUID;
 import timber.log.Timber;
 
 public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
-    private JSONObject  payload;
-    private final List<ReferralHelperInfo> referralsInfo=new ArrayList<>();
+    private final Map<String,ReferralHelperInfo> referralsInfo=new LinkedHashMap<>();
 
     FacilitySelectionActionHelper(JSONObject referralProblem, String referralType, String baseEntityId){
         ReferralHelperInfo info=new ReferralHelperInfo(referralType,baseEntityId,referralProblem);
-        referralsInfo.add(info);
+        referralsInfo.put(info.stepName,info);
     }
 
     void addInfo( ReferralHelperInfo info){
-        referralsInfo.add(info);
+        referralsInfo.put(info.stepName,info);
     }
-    FacilitySelectionActionHelper(List<ReferralHelperInfo> info){
-        referralsInfo.addAll(info);
+    FacilitySelectionActionHelper(List<ReferralHelperInfo> infos){
+        for(ReferralHelperInfo info:infos){
+            referralsInfo.put(info.stepName,info);
+        }
     }
 
     @Override
@@ -72,17 +73,17 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
             jsonForm.put("count",referralsInfo.size());
             String step1=jsonForm.getJSONObject("step1").toString();
 
-            for(int i=0,len=referralsInfo.size();i<len;i++){
-                ReferralHelperInfo info=referralsInfo.get(i);
+            int i=1;
+            for(ReferralHelperInfo info:referralsInfo.values()){
                 JSONObject step=new JSONObject(step1);
                 JsonFormUtilsFlv.overwriteQuestionOptions("chw_referral_hf",facilityOptions, step);
 
                 step.put("title",info.stepName);
                 step.put("baseEntityId",info.baseEntityId);
-                jsonForm.put("step"+(i+1),step);
+                jsonForm.put("step"+(i++),step);
 
-                if(i+1<len){
-                    step.put("next","step"+(i+2));
+                if(i<=referralsInfo.size()){
+                    step.put("next","step"+(i));
                 }
             }
             return jsonForm.toString();
@@ -91,11 +92,19 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
         return "";
     }
 
-    private BaseAncHomeVisitAction.Status evaluateStatus(JSONObject form){
-        String facility=getQuestion("chw_referral_hf",form).optString("value");
-        String date=getQuestion("referral_appointment_date",form).optString("value");
-        boolean notFilled=facility.isEmpty()||date.isEmpty();
-       return notFilled||status==PENDING?PENDING:COMPLETED;
+
+    private BaseAncHomeVisitAction.Status evaluateStatus(String formPayload){
+        BaseAncHomeVisitAction.Status state=null;
+        JsonQ form=JsonQ.fromJson(formPayload);
+        List<String> facilities = form.getStrings("step*.fields[?(@.key=='chw_referral_hf')].value");
+        List<Date> dates = form.get("step*.fields[?(@.key=='referral_appointment_date')]").dateColumn("value");
+
+        for(String s:facilities){
+            state=s.isEmpty()||state==PENDING?PENDING:COMPLETED;
+        }
+        boolean noFacilities=state==null||state==PENDING;
+        return noFacilities||facilities.size()!=dates.size()?PENDING:COMPLETED;
+
     }
 
     private BaseAncHomeVisitAction.Status status;
@@ -105,19 +114,19 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
             String formName="referral_facility_selection";
             JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
 
-            payload = new JSONObject(jsonPayload);
+            JSONObject payload = new JSONObject(jsonPayload);
             payload.put("count",referralsInfo.size());
             int i=1;
-            for(ReferralHelperInfo info:referralsInfo){
-                JSONObject step=payload.getJSONObject("step"+(i++));
+            for(ReferralHelperInfo info:referralsInfo.values()){
+                JSONObject step= payload.getJSONObject("step"+(i++));
                 step.getJSONArray("fields").put(info.problem);
-                status=evaluateStatus(step);
                 jsonForm.put("step1",step);
                 createReferralEvent(
                         Utils.getAllSharedPreferences(),
                         jsonForm.toString(),
                         info);
             }
+            status=evaluateStatus(jsonPayload);
         }
         catch (Exception e) {Timber.e(e);}
     }
@@ -218,6 +227,8 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
     boolean noInfo() {
         return referralsInfo.isEmpty();
     }
+
+    public void remove(String referralStepName) {referralsInfo.remove(referralStepName);}
 
     static class ReferralHelperInfo{
         ReferralHelperInfo(String type,String baseEntityId,JSONObject problem){

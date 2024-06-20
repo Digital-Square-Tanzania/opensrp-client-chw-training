@@ -85,10 +85,10 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "None",
+            "key": "chk_none",
             "text": "None",
             "openmrs_entity": "",
-            "openmrs_entity_id": "None",
+            "openmrs_entity_id": "chk_none",
             "openmrs_entity_parent": ""
           }
         ],
