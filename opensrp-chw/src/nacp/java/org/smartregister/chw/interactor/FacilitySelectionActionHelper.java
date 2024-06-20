@@ -3,7 +3,6 @@ package org.smartregister.chw.interactor;
 import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.COMPLETED;
 import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.PENDING;
 import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
-import static org.smartregister.chw.util.JsonFormUtilsFlv.getQuestion;
 
 import android.content.Context;
 
@@ -96,14 +95,20 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
     private BaseAncHomeVisitAction.Status evaluateStatus(String formPayload){
         BaseAncHomeVisitAction.Status state=null;
         JsonQ form=JsonQ.fromJson(formPayload);
+        List<String> serviceBeforeReferral = form.getStrings("step*.fields[?(@.key=='service_before_referral')].value");
         List<String> facilities = form.getStrings("step*.fields[?(@.key=='chw_referral_hf')].value");
         List<Date> dates = form.get("step*.fields[?(@.key=='referral_appointment_date')]").dateColumn("value");
 
+        for(String s:serviceBeforeReferral){
+            state=s.isEmpty()||state==PENDING?PENDING:COMPLETED;
+        }
         for(String s:facilities){
             state=s.isEmpty()||state==PENDING?PENDING:COMPLETED;
         }
         boolean noFacilities=state==null||state==PENDING;
-        return noFacilities||facilities.size()!=dates.size()?PENDING:COMPLETED;
+        return noFacilities
+                || facilities.size()!=dates.size()
+                || facilities.size()!=serviceBeforeReferral.size()?PENDING:COMPLETED;
 
     }
 

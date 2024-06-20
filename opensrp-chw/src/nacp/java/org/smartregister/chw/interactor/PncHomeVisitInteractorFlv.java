@@ -76,7 +76,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private MemberObject memberObject;
 
     FacilitySelectionActionHelper referralHelper =new FacilitySelectionActionHelper(new ArrayList<>());
-    private  static final String NONE="(?i)hakuna|none";
+    private  static final String NONE="(?i)hakuna|none|chk_none";
     private  static final String YES_OR_EMPTY="(?i)yes|ndio|ndiyo|";
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {

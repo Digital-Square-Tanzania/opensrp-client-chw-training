@@ -13,10 +13,10 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
-import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
-import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
+import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
+import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -42,21 +42,26 @@ import timber.log.Timber;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
 
-    private  static final String NONE="(?i)hakuna|none";
+    private  static final String NONE="(?i)hakuna|none|chk_none";
     private  static final String YES_OR_EMPTY="(?i)yes|ndio|ndiyo|";
     private Map<String, ServiceWrapper> serviceWrapperMap;
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
-            this.serviceWrapperMap=serviceWrapperMap;
-            evaluateToddlerDanger();
-        } catch (BaseAncHomeVisitAction.ValidationException e) {
-            throw (e);
-        } catch (Exception e) {
-            Timber.e(e);
+            this.serviceWrapperMap = serviceWrapperMap;
+            //isToddler function needs needs to be confirmed
+            if( isToddler() )  evaluateToddlerDanger();
+            else evaluateActions();
         }
+        catch (BaseAncHomeVisitAction.ValidationException e) {throw (e);}
+        catch (Exception e) {Timber.e(e);}
     }
 
+     private boolean isToddler(){
+//         int ageMonth= Months.monthsBetween(new DateTime(memberObject.get).toLocalDate(), LocalDate.now()).getMonths();
+         int age=memberObject.getAge();
+         return age>=1 && age<=3;
+     }
     private BaseAncHomeVisitContract.InteractorCallBack callBack;
 
     @Override
@@ -342,26 +347,30 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
         }
     }
-    private void evaluateActions(JSONObject dangerSignForm, String dangerSigns,boolean goFacility){
+
+    private void evaluateActions() throws Exception{
+        evaluateImmunization();
+        evaluateExclusiveBreastFeeding(serviceWrapperMap);
+        evaluateVitaminA(serviceWrapperMap);
+        evaluateDeworming(serviceWrapperMap);
+        evaluateMalariaPrevention();
+        evaluateCounselling();
+        evaluateNutritionStatus();
+        evaluateObsAndIllness();
+        evaluateMalnutritionScreening(serviceWrapperMap);
+        evaluateProblemSolving();
+    }
+
+    private void evaluateActionForToddlers(JSONObject dangerSignForm, String dangerSigns, boolean goFacility){
         try{
             clearActions();
-            if(goFacility) evaluateFacilityReferral(dangerSignForm);
-            else if(dangerSigns.matches(NONE)){
-                evaluateImmunization();
-                evaluateExclusiveBreastFeeding(serviceWrapperMap);
-                evaluateVitaminA(serviceWrapperMap);
-                evaluateDeworming(serviceWrapperMap);
-                evaluateMalariaPrevention();
-                evaluateCounselling();
-                evaluateNutritionStatus();
-                evaluateObsAndIllness();
-                evaluateMalnutritionScreening(serviceWrapperMap);
-                evaluateProblemSolving();
-            }
+            if( goFacility ) evaluateFacilityReferral(dangerSignForm);
+            else if(dangerSigns.matches(NONE)) evaluateActions();
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
         }
         catch (Exception e){Timber.e(e);}
     }
+
     private void evaluateToddlerDanger() throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
         if (serviceWrapper == null) return;
@@ -376,7 +385,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
         ToddlerDangerSignsBabyHelper helper = new ToddlerDangerSignsBabyHelper(context, alert);
-        helper.setDangerSignsListener(this::evaluateActions);
+        helper.setDangerSignsListener(this::evaluateActionForToddlers);
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
