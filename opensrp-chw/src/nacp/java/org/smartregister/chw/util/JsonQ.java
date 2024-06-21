@@ -9,6 +9,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.reflect.TypeToken;
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -148,26 +151,35 @@ public class JsonQ {
         return fromResults(results);
     }
     public List<Integer> intColumn(String columnName) {
-        String path= String.format("[(@.%s~'\\d{4}-\\d{2}-\\d{2}')]",columnName);
+        String path= String.format("[(@.%s~'\\d+')]",columnName);
         return fromResults(getListImpl(path, a -> a instanceof Integer ? a : null)).val();
     }
-
-    public List<String> stringColumn(String columnName) {
-        return getListImpl("[*]."+columnName, a -> (a instanceof String) ? (String) a : gson.toJson(a));
-    }
-
     public List<Date> dateColumn(String columnName) {
-        String path= String.format("[(@.%s~'\\d{4}-\\d{2}-\\d{2}')]",columnName);
-        List<Date> dates=new ArrayList<>();
-        List<String> data= getListImpl(path, a -> (a instanceof String) ? (String) a : gson.toJson(a));
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        for(String d:stringColumn(columnName)){
-            try {dates.add(sdf.parse(d));}
-            catch (ParseException e) {Timber.e(e);}
+        String path= String.format("[(@.%s~'\\d{2,4}-\\d{2}-\\d{2,4}')].%s",columnName,columnName);
+        return getDates(path);
+    }
+    public List<Date> getDates(String path) {
+        List<Date> dates = new ArrayList<>();
+        for(String d:getStrings(path)){
+            Date date=getDate(d);
+            if(date!=null)dates.add(date);
         }
         return dates;
     }
 
+    private Date getDate(String date){
+        try {
+            if(date.matches("\\d{4}-\\d{2}-\\d{2}"))
+                return DATE_FORMATS.get(0).parse(date);
+            else if (date.matches("\\d{2}-\\d{2}-\\d{4}"))
+                return DATE_FORMATS.get(1).parse(date);
+        }
+        catch (ParseException e) {Timber.e(e);}
+        return null;
+    }
+    public List<String> stringColumn(String columnName) {
+        return getStrings("[*]."+columnName);
+    }
     public List<String> getStrings() {return getStrings("[*]");}
     public List<String> getStrings(String jsonPath) {
         return getListImpl(jsonPath, a -> (a instanceof String) ? (String) a : gson.toJson(a));
@@ -232,9 +244,7 @@ public class JsonQ {
     /**
      * @noinspection unchecked
      */
-    public <T> T val() {
-        return (T) root;
-    }
+    public <T> T val() {return (T) root;}
 
     public boolean isEmpty() {
         return root == null || (root instanceof Map && ((Map<?, ?>) root).isEmpty()) ||
@@ -242,9 +252,8 @@ public class JsonQ {
                 (root instanceof String && ((String) root).isEmpty());
     }
 
-    public boolean hasStuff(){
-        return !isEmpty();
-    }
+    public boolean hasStuff(){ return !isEmpty(); }
+    public boolean notEmpty(){ return !isEmpty(); }
 
     @NonNull
     @Override
@@ -359,11 +368,11 @@ public class JsonQ {
         if (!parts.find()) return;
         if (parts.group(3) != null) {
             collectionForEach(object, (k, v) -> results.add(v));
-        } else if (parts.group(2) != null) {
-            filter(parts.group(2), object, results);
         } else if (parts.group(1) != null) {
+            filter(parts.group(1), object, results);
+        } else if (parts.group(2) != null) {
             collectionForEach(object, (k, v) -> results.add(v));
-            sliceList(results, parts.group(1));
+            sliceList(results, parts.group(2));
         }
     }
 
@@ -453,8 +462,6 @@ public class JsonQ {
 
     private Object handleNormalPath(String path, Object object) {
         if (path == null || path.isEmpty()) return object;
-        String pathPattern = path.replace("*","\\w*");
-        path = path.equals(pathPattern)?path.replaceAll("^\\W+", ""):"";
         Object current = object;
         for (String p : path.split("\\."))
             current = valueAtKey(p, current);
@@ -519,17 +526,16 @@ public class JsonQ {
         } else if (input != null) consumer.take("", input);
     }
 
-    public interface Taker<T> {
-        void take(String key, T t);
-    }
+    public interface Taker<T> { void take(String key, T t);}
+    public interface JFunction<S, T> { T apply(S s);}
 
-    public interface JFunction<S, T> {
-        T apply(S s);
-    }
-
+    private static final List<SimpleDateFormat> DATE_FORMATS=Arrays. asList(
+            new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH ),
+            new SimpleDateFormat("dd-MM-yyyy" ,Locale.ENGLISH)
+    );
     private static final Pattern INTEGER = Pattern.compile("^\\d+$");
     private static final Pattern REGULAR_PATH = Pattern.compile("\\w+(?:\\.\\w+)*");
-    private static final Pattern ARRAY = Pattern.compile("\\[(?:(-?\\d+:?-?\\d*)|(\\??\\(.*?\\))|(\\*))]");
+    private static final Pattern ARRAY = Pattern.compile("\\[(?:(\\??\\(.+\\))|(-?\\d+:?-?\\d*)|(\\*))]");
     private static final Pattern GLOBED_PATH = Pattern.compile("(?=.*\\*)(?=.*\\w)[^.\\[\\]()?'\"]*");
     private static final Pattern WILDCARD = Pattern.compile("\\.{2,3}(?:" + REGULAR_PATH + ")?");
     private static final Pattern PATH_EXPRESSION = Pattern.compile(".*\\[?\\??\\(.*\\)");
@@ -537,5 +543,4 @@ public class JsonQ {
     private static final Pattern JSON_VARIABLE = Pattern.compile("@\\.(\\w+)");
     private static final Pattern VALUED_TRUE = Pattern.compile("(?i)yes|ndio|ndiyo|true");
     private static final Pattern VALUED_FALSE = Pattern.compile("(?i)hapana|no|false");
-
 }

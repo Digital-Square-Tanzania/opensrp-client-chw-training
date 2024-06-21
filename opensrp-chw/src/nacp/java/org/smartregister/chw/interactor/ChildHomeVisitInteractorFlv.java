@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.Months;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,9 +30,13 @@ import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtilsFlv;
+import org.smartregister.chw.util.JsonQ;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -57,10 +62,26 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         catch (Exception e) {Timber.e(e);}
     }
 
+    private int cleanInt(String input){
+        return Integer.parseInt(input.replaceAll("\\D+",""));
+    }
      private boolean isToddler(){
-//         int ageMonth= Months.monthsBetween(new DateTime(memberObject.get).toLocalDate(), LocalDate.now()).getMonths();
-         int age=memberObject.getAge();
-         return age>=1 && age<=3;
+         int ageInMonths=Months.monthsBetween(new DateTime(memberObject.getDob()), DateTime.now()).getMonths();
+
+         try( InputStream input=context.getAssets().open("recurring_service_types.json")){
+             JsonQ services = JsonQ.fromIO(input);
+             List<String> offsets = services.getStrings("[(@.type~'(?i).*toddler.*')].services[*].schedule.due.offset");
+             String lastExpiry = services.str("[(@.type~'(?i).*toddler.*')].services[-1].schedule.expiry.offset");
+
+             int start=cleanInt(offsets.get(0));
+             int end=cleanInt(lastExpiry);
+             for(String n:offsets)end+=cleanInt(n);
+
+             return start<=ageInMonths && ageInMonths <=end
+                     && ageInMonths < 5*12;
+         }
+         catch (IOException e){Timber.e(e);}
+         return false;
      }
     private BaseAncHomeVisitContract.InteractorCallBack callBack;
 

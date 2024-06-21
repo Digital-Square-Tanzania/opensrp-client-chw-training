@@ -3,9 +3,7 @@ package org.smartregister.chw.interactor;
 import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.COMPLETED;
 import static org.smartregister.chw.anc.model.BaseAncHomeVisitAction.Status.PENDING;
 import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
-
 import android.content.Context;
-
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +25,6 @@ import org.smartregister.family.util.Utils;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
-
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -37,7 +34,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
-
 import timber.log.Timber;
 
 public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
@@ -109,7 +105,6 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
         return noFacilities
                 || facilities.size()!=dates.size()
                 || facilities.size()!=serviceBeforeReferral.size()?PENDING:COMPLETED;
-
     }
 
     private BaseAncHomeVisitAction.Status status;
