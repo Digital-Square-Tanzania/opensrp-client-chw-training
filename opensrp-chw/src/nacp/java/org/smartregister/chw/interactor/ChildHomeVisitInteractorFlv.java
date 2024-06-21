@@ -66,19 +66,21 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         return Integer.parseInt(input.replaceAll("\\D+",""));
     }
      private boolean isToddler(){
+         int fiveYears=5*12;
          int ageInMonths=Months.monthsBetween(new DateTime(memberObject.getDob()), DateTime.now()).getMonths();
 
          try( InputStream input=context.getAssets().open("recurring_service_types.json")){
-             JsonQ services = JsonQ.fromIO(input);
-             List<String> offsets = services.getStrings("[(@.type~'(?i).*toddler.*')].services[*].schedule.due.offset");
-             String lastExpiry = services.str("[(@.type~'(?i).*toddler.*')].services[-1].schedule.expiry.offset");
+             JsonQ services = JsonQ.fromIO(input).get("[(@.type~'(?i).*toddler.*')].services[*]");
+
+             List<String> offsets = services.getStrings("[*].schedule.due.offset");
+             String lastExpiry = services.str("[-1].schedule.expiry.offset");
 
              int start=cleanInt(offsets.get(0));
              int end=cleanInt(lastExpiry);
              for(String n:offsets)end+=cleanInt(n);
 
              return start<=ageInMonths && ageInMonths <=end
-                     && ageInMonths < 5*12;
+                     && ageInMonths < fiveYears;
          }
          catch (IOException e){Timber.e(e);}
          return false;
