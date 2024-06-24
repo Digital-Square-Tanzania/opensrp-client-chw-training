@@ -11,11 +11,9 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.domain.Alert;
 
 import java.text.MessageFormat;
-import java.util.Iterator;
 
 import timber.log.Timber;
 
@@ -83,9 +81,9 @@ public class ToddlerDangerSignsBabyHelper extends HomeVisitActionHelper {
         }
     }
 
-    Consumer dangerSignConsumer;
-    public void setDangerSignsListener(Consumer c){
+    ToddlerDangerSignsConsumer dangerSignConsumer;
+    public void setDangerSignsResultsListener(ToddlerDangerSignsConsumer c){
         dangerSignConsumer=c;
     }
-    public interface Consumer{ void take(JSONObject dangerSignPayload,String dangerSigns,boolean goFacility);}
+    public interface ToddlerDangerSignsConsumer { void take(JSONObject dangerSignPayload, String dangerSigns, boolean goFacility);}
 }

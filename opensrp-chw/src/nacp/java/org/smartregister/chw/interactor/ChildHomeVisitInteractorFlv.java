@@ -34,7 +34,6 @@ import org.smartregister.chw.util.JsonQ;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
@@ -66,20 +65,19 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         return Integer.parseInt(input.replaceAll("\\D+",""));
     }
      private boolean isToddler(){
-         int fiveYears=5*12;
-         int ageInMonths=Months.monthsBetween(new DateTime(memberObject.getDob()), DateTime.now()).getMonths();
+         int fiveYears = 5 * 12;
+         int ageInMonths = Months.monthsBetween(new DateTime(memberObject.getDob()), DateTime.now()).getMonths();
 
-         try( InputStream input=context.getAssets().open("recurring_service_types.json")){
+         try( InputStream input = context.getAssets().open("recurring_service_types.json")){
              JsonQ services = JsonQ.fromIO(input).get("[(@.type~'(?i).*toddler.*')].services[*]");
 
-             List<String> offsets = services.getStrings("[*].schedule.due.offset");
+             String firstOffset = services.str("[0].schedule.due.offset");
              String lastExpiry = services.str("[-1].schedule.expiry.offset");
 
-             int start=cleanInt(offsets.get(0));
-             int end=cleanInt(lastExpiry);
-             for(String n:offsets)end+=cleanInt(n);
+             int start = cleanInt(firstOffset);
+             int end = cleanInt(lastExpiry);
 
-             return start<=ageInMonths && ageInMonths <=end
+             return start <= ageInMonths && ageInMonths <= end
                      && ageInMonths < fiveYears;
          }
          catch (IOException e){Timber.e(e);}
@@ -384,7 +382,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving();
     }
 
-    private void evaluateActionForToddlers(JSONObject dangerSignForm, String dangerSigns, boolean goFacility){
+    private void onDangerSignFormResults(JSONObject dangerSignForm, String dangerSigns, boolean goFacility){
         try{
             clearActions();
             if( goFacility ) evaluateFacilityReferral(dangerSignForm);
@@ -408,7 +406,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
         ToddlerDangerSignsBabyHelper helper = new ToddlerDangerSignsBabyHelper(context, alert);
-        helper.setDangerSignsListener(this::evaluateActionForToddlers);
+        helper.setDangerSignsResultsListener(this::onDangerSignFormResults);
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
