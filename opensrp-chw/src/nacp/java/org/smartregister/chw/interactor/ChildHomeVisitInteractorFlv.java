@@ -69,7 +69,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
          int ageInMonths = Months.monthsBetween(new DateTime(memberObject.getDob()), DateTime.now()).getMonths();
 
          try( InputStream input = context.getAssets().open("recurring_service_types.json")){
-             JsonQ services = JsonQ.fromIO(input).get("[(@.type~'(?i).*toddler.*danger.*sign.*')].services[*]");
+             JsonQ services = JsonQ.fromIO(input).get("[(@.type~'(?i).*toddler.*danger.*sign.*')].services[0,-1]");
 
              String firstOffset = services.str("[0].schedule.due.offset");
              String lastExpiry = services.str("[-1].schedule.expiry.offset");

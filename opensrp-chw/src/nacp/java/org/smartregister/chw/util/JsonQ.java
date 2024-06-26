@@ -377,7 +377,7 @@ public class JsonQ {
     }
 
     private static <T> void sliceList(List<T> list, @Nullable String sliceNotation) {
-        if (sliceNotation == null) return;
+        if (sliceNotation == null || list.isEmpty()) return;
 
         List<T> result = new ArrayList<>();
         String[] slices = sliceNotation.split(",");
@@ -484,7 +484,7 @@ public class JsonQ {
         path = path.replaceAll("^[^\\w*]+", "");
         while (!stack.isEmpty()) {
             Object current = stack.pop();
-            Object res = path.contains("*")
+            Object res = !path.contains("*")
                     ?handleNormalPath(path, current)
                     : globedPath(path.replace("*","\\w*"),current,results);
 
@@ -535,7 +535,7 @@ public class JsonQ {
     );
     private static final Pattern INTEGER = Pattern.compile("^\\d+$");
     private static final Pattern REGULAR_PATH = Pattern.compile("\\w+(?:\\.\\w+)*");
-    private static final Pattern ARRAY = Pattern.compile("\\[(?:(\\??\\(.+\\))|(-?\\d+:?-?\\d*)|(\\*))]");
+    private static final Pattern ARRAY = Pattern.compile("\\[(?:(\\??\\(.+\\))|(-?\\d+:?-?\\d*(?:,-?\\d+:?-?\\d*)*)|(\\*))]");
     private static final Pattern GLOBED_PATH = Pattern.compile("(?=.*\\*)(?=.*\\w)[^.\\[\\]()?'\"]*");
     private static final Pattern WILDCARD = Pattern.compile("\\.{2,3}(?:" + REGULAR_PATH + ")?");
     private static final Pattern PATH_EXPRESSION = Pattern.compile(".*\\[?\\??\\(.*\\)");
