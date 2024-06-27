@@ -276,6 +276,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         public String postProcess(String s) {
             try {
                 if (danger_signs_present.contains("None") || danger_signs_present.equals("Hakuna")) {
+                    actionList.remove(context.getString(R.string.home_visit_facility_referral));
                     evaluateHealthFacilityVisit(details, memberObject, dateMap, context);
                     evaluateFamilyPlanning(details, context);
                     // evaluateNutritionStatus(details, context);
@@ -283,6 +284,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                     evaluateMalaria(details, context);
                     evaluateObservation(details, context);
                     evaluateRemarks(details, context);
+
                 } else {
                     Timber.d(actionList.toString());
                     evaluateFacilityReferral(s,details,context);
