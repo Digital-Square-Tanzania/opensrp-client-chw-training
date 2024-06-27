@@ -42,7 +42,7 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseAncHomeVisitPresenter(memberObject, this, new AncHomeVisitInteractor());
+        presenter = new BaseAncHomeVisitPresenter(memberObject, this, new AncHomeVisitInteractor(this));
     }
 
     @Override
