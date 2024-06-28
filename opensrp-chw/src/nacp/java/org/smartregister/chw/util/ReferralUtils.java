@@ -2,6 +2,7 @@ package org.smartregister.chw.util;
 
 import org.joda.time.DateTime;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -22,13 +23,8 @@ import java.util.UUID;
 
 public class ReferralUtils extends CoreReferralUtils {
 
-    public static void processReferral(String facilitySelectionForm, String baseEntityId, String referralType, String dangerSignsForm) throws Exception {
+    public static void processReferral(String facilitySelectionForm, String baseEntityId, String referralType, String referralProblems) throws Exception {
 
-
-        assert dangerSignsForm != null;
-        JSONObject dangerSignsJsonObject = new JSONObject(dangerSignsForm);
-
-        String referralProblems = JsonFormUtils.getCheckBoxValue(dangerSignsJsonObject, "danger_signs_present");
         String selectedFacility = JsonQ.fromJson(facilitySelectionForm).get("step1.fields[?(@.key=='chw_referral_hf')].value").toString();
 
         AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
@@ -36,6 +32,8 @@ public class ReferralUtils extends CoreReferralUtils {
         final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(facilitySelectionForm, baseEntityId), CoreConstants.TABLE_NAME.REFERRAL);
 
         addReferralDetails(baseEvent, referralType, referralProblems);
+
+        JsonFormUtils.tagEvent(allSharedPreferences, baseEvent);
 
         NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
 
