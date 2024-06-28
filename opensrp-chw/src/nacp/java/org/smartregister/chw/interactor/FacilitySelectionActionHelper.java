@@ -121,10 +121,6 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
                 JSONObject step= payload.getJSONObject("step"+(i++));
                 step.getJSONArray("fields").put(info.problem);
                 jsonForm.put("step1",step);
-                createReferralEvent(
-                        Utils.getAllSharedPreferences(),
-                        jsonForm.toString(),
-                        info);
             }
             status=evaluateStatus(jsonPayload);
         }
