@@ -36,7 +36,7 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseAncHomeVisitPresenter(memberObject, this, new PncHomeVisitInteractor());
+        presenter = new BaseAncHomeVisitPresenter(memberObject, this, new PncHomeVisitInteractor(this));
     }
 
     @Override
