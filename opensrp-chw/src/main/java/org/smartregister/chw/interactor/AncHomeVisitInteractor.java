@@ -2,10 +2,12 @@ package org.smartregister.chw.interactor;
 
 import android.content.Context;
 
+import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.core.interactor.CoreAncHomeVisitInteractor;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.ReferralUtils;
 
 import java.util.Map;
@@ -30,8 +32,15 @@ public class AncHomeVisitInteractor extends CoreAncHomeVisitInteractor {
 
                     try {
 
+                        assert dangerSignsActions != null;
+                        String dangerSignsForm = dangerSignsActions.getJsonPayload();
+                        assert dangerSignsForm != null;
+                        JSONObject dangerSignsJsonObject = new JSONObject(dangerSignsForm);
+
+                        String referralProblems = JsonFormUtils.getCheckBoxValue(dangerSignsJsonObject, "danger_signs_present");
+
                         // Here pass the  dangerSignsSelectedObject to the processReferral method and then add the problems to the referralProblems
-                        ReferralUtils.processReferral(facilitySelectionForm, memberID, CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS, dangerSignsActions.getJsonPayload());
+                        ReferralUtils.processReferral(facilitySelectionForm, memberID, CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS, referralProblems);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
