@@ -681,6 +681,7 @@
     <string name="pnc_child_home_visit_facility_referral">Refer Child to facility</string>
     <string name="pnc_mother_home_visit_facility_referral">Refer Mother to facility</string>
 
+    <string name="nav_menu_linkage">Linkage</string>
 
 
 </resources>
