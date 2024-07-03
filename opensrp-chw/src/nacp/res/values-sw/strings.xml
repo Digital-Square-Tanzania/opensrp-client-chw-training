@@ -604,7 +604,9 @@
 
     <!--    ICCM Visit History-->
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>
-
+    <string name="pnc_child_home_visit_facility_referral">Rufaa ya mtoto kwenda Kituoni</string>
+    <string name="pnc_mother_home_visit_facility_referral">Rufaa ya mama kwenda kituoni</string>
+  
     <string name="nav_menu_linkage">Miunganisho</string>
 
 </resources>
