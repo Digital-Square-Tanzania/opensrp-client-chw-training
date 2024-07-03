@@ -47,8 +47,9 @@ import timber.log.Timber;
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
 
     private  static final String NONE="(?i)hakuna|none|chk_none";
-    private  static final String YES_OR_EMPTY="(?i)yes|ndio|ndiyo|";
     private Map<String, ServiceWrapper> serviceWrapperMap;
+    private BaseAncHomeVisitContract.InteractorCallBack callBack;
+
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
@@ -83,13 +84,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
          catch (IOException e){Timber.e(e);}
          return false;
      }
-    private BaseAncHomeVisitContract.InteractorCallBack callBack;
 
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
        this.callBack=callBack;
        return super.calculateActions(view,memberObject,callBack);
     }
+
     protected void evaluateImmunization () throws Exception {
         setVaccinesDefaultChecked(false);
         super.evaluateImmunization();

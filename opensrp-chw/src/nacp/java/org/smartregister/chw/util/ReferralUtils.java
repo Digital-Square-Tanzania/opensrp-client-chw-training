@@ -27,15 +27,15 @@ public class ReferralUtils extends CoreReferralUtils {
 
         String selectedFacility = JsonQ.fromJson(facilitySelectionForm).get("step1.fields[?(@.key=='chw_referral_hf')].value").toString();
 
-        AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+        AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
 
-        final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(facilitySelectionForm, baseEntityId), CoreConstants.TABLE_NAME.REFERRAL);
+        final Event baseEvent = JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(facilitySelectionForm, baseEntityId), CoreConstants.TABLE_NAME.REFERRAL);
 
         addReferralDetails(baseEvent, referralType, referralProblems);
 
         JsonFormUtils.tagEvent(allSharedPreferences, baseEvent);
 
-        NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
+        NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(JsonFormUtils.gson.toJson(baseEvent)));
 
         createReferralTask(allSharedPreferences, baseEntityId, baseEvent.getFormSubmissionId(), referralProblems, selectedFacility);
 

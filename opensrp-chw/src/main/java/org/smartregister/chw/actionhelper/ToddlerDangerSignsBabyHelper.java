@@ -26,6 +26,8 @@ public class ToddlerDangerSignsBabyHelper extends HomeVisitActionHelper {
 
     private final Alert alert;
 
+    private ToddlerDangerSignsConsumer dangerSignConsumer;
+
     public ToddlerDangerSignsBabyHelper(Context context, Alert alert){
         this.context = context;
         this.alert = alert;
@@ -81,7 +83,6 @@ public class ToddlerDangerSignsBabyHelper extends HomeVisitActionHelper {
         }
     }
 
-    ToddlerDangerSignsConsumer dangerSignConsumer;
     public void setDangerSignsResultsListener(ToddlerDangerSignsConsumer c){
         dangerSignConsumer=c;
     }

@@ -46,6 +46,22 @@ public class JsonQ {
 
     private final Object root;
 
+    private static final Pattern INTEGER = Pattern.compile("^\\d+$");
+    private static final Pattern REGULAR_PATH = Pattern.compile("\\w+(?:\\.\\w+)*");
+    private static final Pattern ARRAY = Pattern.compile("\\[(?:(\\??\\(.+\\))|(-?\\d+:?-?\\d*(?:,-?\\d+:?-?\\d*)*)|(\\*))]");
+    private static final Pattern GLOBED_PATH = Pattern.compile("(?=.*\\*)(?=.*\\w)[^.\\[\\]()?'\"]*");
+    private static final Pattern WILDCARD = Pattern.compile("\\.{2,3}(?:" + REGULAR_PATH + ")?");
+    private static final Pattern PATH_EXPRESSION = Pattern.compile(".*\\[?\\??\\(.*\\)");
+    private static final Pattern PATH_POSSIBILITIES = Pattern.compile("(" +GLOBED_PATH+")?(" + REGULAR_PATH + ")?("+ WILDCARD + ")?(\\[[^]]+])?");
+    private static final Pattern JSON_VARIABLE = Pattern.compile("@\\.(\\w+)");
+    private static final Pattern VALUED_TRUE = Pattern.compile("(?i)yes|ndio|ndiyo|true");
+    private static final Pattern VALUED_FALSE = Pattern.compile("(?i)hapana|no|false");
+
+    private static final List<SimpleDateFormat> DATE_FORMATS=Arrays. asList(
+            new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH ),
+            new SimpleDateFormat("dd-MM-yyyy" ,Locale.ENGLISH)
+    );
+
     private JsonQ(Object input) {
         root = input;
     }
@@ -204,8 +220,8 @@ public class JsonQ {
         return get(String.format(path, args));
     }
 
-    public JsonQ where(String condition,Object ... values){
-        condition=condition.replaceAll("\\band\\b","&&")
+    public JsonQ where(String nCondition,Object ... values){
+        String condition = nCondition.replaceAll("\\band\\b","&&")
                 .replaceAll("\\bor\\b","||")
                 .replaceAll("\\$?(\\w+)","@.$1")
                 .replaceAll("=+","==");
@@ -215,6 +231,7 @@ public class JsonQ {
             String value = v instanceof String? String.format("'%s'",v): String.valueOf(v);
             condition=condition.replaceFirst("\\?",escapeRGX(value));
         }
+
         condition=String.format("(%s)",condition);
         List<Object> results=filter(condition,root,new ArrayList<>());
         return fromResults(results);
@@ -280,7 +297,6 @@ public class JsonQ {
 
     public void put(String jsonPath, boolean override, Object... values) {
         int x = jsonPath.lastIndexOf(".");
-        String prop = jsonPath.substring(x < 0 ? 0 : x + 1);
         Object res = find(jsonPath.substring(0, Math.max(x, 0)));
         flatForEach(res, (k, v) -> put(override, v, values));
     }
@@ -289,30 +305,43 @@ public class JsonQ {
      * @noinspection unchecked
      */
     private void put(boolean override, Object container, Object... values) {
-        boolean isMap = container instanceof Map<?, ?>;
-        boolean isList = container instanceof List<?>;
+        if (container instanceof Map<?, ?>) {
+            putInMap(override, (Map<String, Object>) container, values);
+        } else if (container instanceof List<?>) {
+            putInList(override, (List<Object>) container, values);
+        }
+    }
 
+    private void putInMap(boolean override, Map<String, Object> map, Object... values) {
         for (int i = 0; i < values.length; i += 2) {
             Object key = values[i];
             Object val = values[i + 1];
             val = val instanceof JsonQ ? ((JsonQ) val).val() : val;
-            if (isMap && !(values[i] instanceof String)) {
-                throw new IllegalArgumentException("attempting to set values to a JSON object without a key");
+
+            if (!(key instanceof String)) {
+                throw new IllegalArgumentException("attempting to set values to aJSON object without a key");
             }
-            if (isList && !(values[i] instanceof Integer || values[i].toString().matches("\\$|"))) {
+
+            if (!map.containsKey((String) key) || override) {
+                map.put((String) key, val);
+            }
+        }
+    }
+
+    private void putInList(boolean override, List<Object> list, Object... values) {
+        for (int i = 0; i < values.length; i += 2) {
+            Object key = values[i];
+            Object val = values[i + 1];
+            val = val instanceof JsonQ ? ((JsonQ) val).val() : val;
+
+            if (!(key instanceof Integer || key.toString().matches("\\$|"))) {
                 throw new IllegalArgumentException("attempting to set values to a JSON array without a valid integer index");
             }
-            if (isMap) {
-                Map<String, Object> map = (Map<String, Object>) container;
-                if (!map.containsKey((String) key) || override)
-                    (map).put((String) key, val);
-            }
-            if (isList) {
-                List<Object> list = (List<Object>) container;
-                boolean isValidKey = key instanceof Integer && (int) key >= 0 && (int) key < list.size();
 
-                if (isValidKey && override) list.add((int) key, val);
-                else list.add(val);
+            if (key instanceof Integer && (int) key >= 0 && (int) key < list.size() && override) {
+                list.add((int) key, val);
+            } else {
+                list.add(val);
             }
         }
     }
@@ -380,24 +409,32 @@ public class JsonQ {
         if (sliceNotation == null || list.isEmpty()) return;
 
         List<T> result = new ArrayList<>();
-        String[] slices = sliceNotation.split(",");
-
-        for (String slice : slices) {
-            String[] parts = slice.split(":");
-            boolean singleIndex = parts.length == 1 && !parts[0].isEmpty();
-            int len= list.size();
-            int start = parts.length > 0 && !parts[0].isEmpty() ? Integer.parseInt(parts[0]) : 0;
-            int end = parts.length > 1 && !parts[1].isEmpty() ? Integer.parseInt(parts[1]) : list.size();
-            start = Math.max( start < 0 ? len + start : start , 0);
-            end = singleIndex ? start + 1 : Math.min( end < 0 ? len + end : end ,len);
-            for (int i = start; i < end; i++) {
-                result.add(list.get(i));
-            }
+        String[] slices = sliceNotation.split(",");for (String slice : slices) {
+            result.addAll(extractSlice(list, slice));
         }
+
         list.clear();
         list.addAll(result);
     }
 
+    private static <T> List<T> extractSlice(List<T> list, String sliceNotation) {
+        List<T> sliceResult = new ArrayList<>();
+        String[] parts = sliceNotation.split(":");
+        boolean singleIndex = parts.length == 1 && !parts[0].isEmpty();
+        int len = list.size();
+
+        int start = parts.length > 0&& !parts[0].isEmpty() ? Integer.parseInt(parts[0]) : 0;
+        int end = parts.length > 1 && !parts[1].isEmpty() ? Integer.parseInt(parts[1]) : list.size();
+
+        start = Math.max(start < 0 ? len + start : start, 0);
+        end = singleIndex ? start + 1 : Math.min(end < 0 ? len + end : end, len);
+
+        for (int i = start; i < end; i++) {
+            sliceResult.add(list.get(i));
+        }
+
+        return sliceResult;
+    }
 
     private List<String> evaluatePath(String jsonPath) {
         Matcher parts = PATH_POSSIBILITIES.matcher(jsonPath);
@@ -465,7 +502,7 @@ public class JsonQ {
         Object current = object;
         for (String p : path.split("\\."))
             current = valueAtKey(p, current);
-        return current == object ? null : current;
+        return current.equals(object) ? null : current;
     }
 
     private List<Object> globedPath(String path, Object jsonThing,List<Object> results){
@@ -477,17 +514,13 @@ public class JsonQ {
         return results;
     }
 
-    private void findMatchingPath(String path, Object root, List<Object> results) {
+    private void findMatchingPath(String nPath, Object root, List<Object> results) {
         Deque<Object> stack = new ArrayDeque<>();
         Set<Object> seen = new HashSet<>();
         stack.push(root);
-        path = path.replaceAll("^[^\\w*]+", "");
+        String path = nPath.replaceAll("^[^\\w*]+", "");
         while (!stack.isEmpty()) {
             Object current = stack.pop();
-            Object res = !path.contains("*")
-                    ?handleNormalPath(path, current)
-                    : globedPath(path.replace("*","\\w*"),current,results);
-
             flatForEach(current, (key, obj) -> {
                 if (obj == null || seen.contains(obj)) return;
                 stack.push(obj);
@@ -529,18 +562,4 @@ public class JsonQ {
     public interface Taker<T> { void take(String key, T t);}
     public interface JFunction<S, T> { T apply(S s);}
 
-    private static final List<SimpleDateFormat> DATE_FORMATS=Arrays. asList(
-            new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH ),
-            new SimpleDateFormat("dd-MM-yyyy" ,Locale.ENGLISH)
-    );
-    private static final Pattern INTEGER = Pattern.compile("^\\d+$");
-    private static final Pattern REGULAR_PATH = Pattern.compile("\\w+(?:\\.\\w+)*");
-    private static final Pattern ARRAY = Pattern.compile("\\[(?:(\\??\\(.+\\))|(-?\\d+:?-?\\d*(?:,-?\\d+:?-?\\d*)*)|(\\*))]");
-    private static final Pattern GLOBED_PATH = Pattern.compile("(?=.*\\*)(?=.*\\w)[^.\\[\\]()?'\"]*");
-    private static final Pattern WILDCARD = Pattern.compile("\\.{2,3}(?:" + REGULAR_PATH + ")?");
-    private static final Pattern PATH_EXPRESSION = Pattern.compile(".*\\[?\\??\\(.*\\)");
-    private static final Pattern PATH_POSSIBILITIES = Pattern.compile("(" +GLOBED_PATH+")?(" + REGULAR_PATH + ")?("+ WILDCARD + ")?(\\[[^]]+])?");
-    private static final Pattern JSON_VARIABLE = Pattern.compile("@\\.(\\w+)");
-    private static final Pattern VALUED_TRUE = Pattern.compile("(?i)yes|ndio|ndiyo|true");
-    private static final Pattern VALUED_FALSE = Pattern.compile("(?i)hapana|no|false");
 }

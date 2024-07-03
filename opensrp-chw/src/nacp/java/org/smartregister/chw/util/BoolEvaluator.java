@@ -95,7 +95,8 @@ class BoolEvaluator {
 
     private void operate(String token, Stack<Object> stack) {
         String error = "Unsupported operand type for operator: %s operand %s and %s";
-        Object a = null, b = stack.pop();
+        Object a = null;
+        Object b = stack.pop();
         double answer;
 
         if (token.equals("!") && (b instanceof Double))

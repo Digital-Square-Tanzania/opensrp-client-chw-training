@@ -135,63 +135,6 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
         return status!=null?status:PENDING;
     }
 
-    private void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString, ReferralHelperInfo info) throws Exception {
-        final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(jsonString, info.baseEntityId), CoreConstants.TABLE_NAME.REFERRAL);
-
-        // Other obs needed for referral
-        addReferralDetails(baseEvent,info.type);
-
-        NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
-        createReferralTask(baseEvent.getBaseEntityId(), baseEvent.getFormSubmissionId(),info);
-    }
-
-
-    private void addReferralDetails(Event baseEvent,String referralType){
-        if(baseEvent==null) return;
-
-        long referralDate = System.currentTimeMillis();
-        Map<String, Object> obsMap = new HashMap<>();
-        obsMap.put("referral_status", "PENDING");
-        obsMap.put("chw_referral_service", referralType);
-        obsMap.put("referral_type", "community_to_facility_referral");
-        obsMap.put("referral_date", referralDate);
-        obsMap.put("referral_time",new SimpleDateFormat("HH:mm:ss.SSS", Locale.ENGLISH).format(referralDate));
-
-        for (String key:obsMap.keySet()) {
-            List<Object> value = Collections.singletonList(obsMap.get(key));
-            baseEvent.addObs(new Obs("concept", "text",key, "", value, value, "",key));
-        }
-    }
-
-    private void createReferralTask(String baseEntityId, String formSubmissionId,ReferralHelperInfo info) {
-        AllSharedPreferences allSharedPreferences= Utils.getAllSharedPreferences();
-
-        String referralProblems = String.join(", ",JsonFormUtilsFlv.column(info.problem.optJSONArray("option"),"text"));
-
-        Task task = new Task();
-        task.setIdentifier(UUID.randomUUID().toString());
-        task.setPlanIdentifier(CoreConstants.REFERRAL_PLAN_ID);
-        LocationHelper locationHelper = LocationHelper.getInstance();
-        task.setGroupIdentifier(locationHelper.getOpenMrsLocationId(locationHelper.generateDefaultLocationHierarchy(CoreChwApplication.getInstance().getAllowedLocationLevels()).get(0)));
-        task.setStatus(Task.TaskStatus.READY);
-        task.setBusinessStatus(CoreConstants.BUSINESS_STATUS.REFERRED);
-        task.setPriority(3);
-        task.setCode(CoreConstants.JsonAssets.REFERRAL_CODE);
-        task.setDescription(referralProblems);
-        task.setFocus(CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS);
-        task.setForEntity(baseEntityId);
-        DateTime now = new DateTime();
-        task.setExecutionStartDate(now);
-        task.setAuthoredOn(now);
-        task.setLastModified(now);
-        task.setOwner(allSharedPreferences.fetchRegisteredANM());
-        task.setSyncStatus(BaseRepository.TYPE_Created);
-        task.setReasonReference(formSubmissionId);
-        task.setRequester(allSharedPreferences.getANMPreferredName(allSharedPreferences.fetchRegisteredANM()));
-        task.setLocation(allSharedPreferences.fetchUserLocalityId(allSharedPreferences.fetchRegisteredANM()));
-        CoreChwApplication.getInstance().getTaskRepository().addOrUpdate(task);
-    }
-
     public static JSONObject copyReferralProblem(String referralForm,String dangerSignQnKey) {
         try {return copyReferralProblem(new JSONObject(referralForm),dangerSignQnKey);}
         catch (JSONException e) {
@@ -227,6 +170,12 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
     public void remove(String referralStepName) {referralsInfo.remove(referralStepName);}
 
     static class ReferralHelperInfo{
+
+        private String stepName;
+        private final String type;
+        private final String baseEntityId;
+        private final JSONObject problem;
+
         ReferralHelperInfo(String type,String baseEntityId,JSONObject problem){
             this.type=type;
             this.baseEntityId=baseEntityId;
@@ -237,9 +186,5 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
             this(type,baseEntityId,problem);
             this.stepName=stepName;
         }
-        String stepName;
-        String type;
-        String baseEntityId;
-        JSONObject problem;
     }
 }
