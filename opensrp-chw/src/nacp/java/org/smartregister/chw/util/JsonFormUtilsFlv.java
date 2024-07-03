@@ -24,10 +24,11 @@ import timber.log.Timber;
 
 public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.Flavor {
 
+    public static final JSONObject NONE= new JSONObject();
+
     public JsonFormUtilsFlv() {
         super(ChwApplication.getInstance());
     }
-    public static final JSONObject NONE= new JSONObject();
 
     @Override
     public JSONObject getAutoJsonEditMemberFormString(String title, String formName, Context context, CommonPersonObjectClient client, String eventType, String familyName, boolean isPrimaryCaregiver) {
