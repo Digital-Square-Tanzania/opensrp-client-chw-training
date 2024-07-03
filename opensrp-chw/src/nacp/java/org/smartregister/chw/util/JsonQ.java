@@ -62,6 +62,8 @@ public class JsonQ {
             new SimpleDateFormat("dd-MM-yyyy" ,Locale.ENGLISH)
     );
 
+    private final BoolEvaluator BOOL = new BoolEvaluator();
+
     private JsonQ(Object input) {
         root = input;
     }
@@ -367,7 +369,7 @@ public class JsonQ {
             else if(PATH_EXPRESSION.matcher(path).matches())
                 taker = (key, obj) -> filter(path, obj,temp);
             else if(WILDCARD.matcher(path).matches())
-                taker = (key, obj) -> findMatchingPath(path, obj,temp);
+                taker = (key, obj) -> findMatchingPath(obj);
             else if(ARRAY.matcher(path).matches())
                 taker = (key, obj) -> handleArrayMatch(path, obj,temp);
             else {
@@ -453,8 +455,6 @@ public class JsonQ {
         return o instanceof Number || o instanceof String || o instanceof Boolean;
     }
 
-    private final BoolEvaluator BOOL = new BoolEvaluator();
-
     private List<Object> filter(String expression, Object object,List<Object> results) {
         collectionForEach(object, (key, obj) -> {
             obj = getObjectRoot(obj);
@@ -514,11 +514,10 @@ public class JsonQ {
         return results;
     }
 
-    private void findMatchingPath(String nPath, Object root, List<Object> results) {
+    private void findMatchingPath(Object root) {
         Deque<Object> stack = new ArrayDeque<>();
         Set<Object> seen = new HashSet<>();
         stack.push(root);
-        String path = nPath.replaceAll("^[^\\w*]+", "");
         while (!stack.isEmpty()) {
             Object current = stack.pop();
             flatForEach(current, (key, obj) -> {

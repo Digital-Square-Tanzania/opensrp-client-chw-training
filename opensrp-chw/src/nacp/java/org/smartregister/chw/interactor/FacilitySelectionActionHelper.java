@@ -37,7 +37,9 @@ import java.util.UUID;
 import timber.log.Timber;
 
 public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
+
     private final Map<String,ReferralHelperInfo> referralsInfo=new LinkedHashMap<>();
+    private BaseAncHomeVisitAction.Status status;
 
     FacilitySelectionActionHelper(JSONObject referralProblem, String referralType, String baseEntityId){
         ReferralHelperInfo info=new ReferralHelperInfo(referralType,baseEntityId,referralProblem);
@@ -107,7 +109,6 @@ public class FacilitySelectionActionHelper extends HomeVisitActionHelper {
                 || facilities.size()!=serviceBeforeReferral.size()?PENDING:COMPLETED;
     }
 
-    private BaseAncHomeVisitAction.Status status;
     @Override
     public void onPayloadReceived(String jsonPayload) {
         try {

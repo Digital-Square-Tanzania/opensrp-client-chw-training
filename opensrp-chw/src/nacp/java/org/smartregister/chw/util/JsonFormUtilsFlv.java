@@ -27,6 +27,7 @@ public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.F
     public JsonFormUtilsFlv() {
         super(ChwApplication.getInstance());
     }
+    public static final JSONObject NONE= new JSONObject();
 
     @Override
     public JSONObject getAutoJsonEditMemberFormString(String title, String formName, Context context, CommonPersonObjectClient client, String eventType, String familyName, boolean isPrimaryCaregiver) {
@@ -69,7 +70,7 @@ public class JsonFormUtilsFlv extends BAJsonFormUtils implements JsonFormUtils.F
         }
         return NONE;
     }
-   public static final JSONObject NONE= new JSONObject();
+
     public static <T> List<T> fromJsonArray(@Nullable JSONArray array, Mapper<Object,T> mapper){
         if(array==null)return new ArrayList<>();
         List<T> items=new ArrayList<>();
