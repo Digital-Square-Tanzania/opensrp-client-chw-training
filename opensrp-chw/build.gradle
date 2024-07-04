@@ -249,7 +249,7 @@ dependencies {
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
     }
 
-    implementation('org.smartregister:opensrp-client-chw-ld:1.0.32-NACP-SNAPSHOT-LOCAL-IM-A@aar') {
+    implementation('org.smartregister:opensrp-client-chw-ld:1.0.32-NACP-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
