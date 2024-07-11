@@ -20,7 +20,9 @@ import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.FormUtils;
+import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.referral.util.LocationUtils;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
@@ -127,6 +129,26 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(helper)
                 .build();
         actionList.put(context.getString(R.string.home_visit_facility_referral), action);
+    }
+
+    private void evaluateMinorAilment(Map<String, List<VisitDetail>> details,
+                                             final MemberObject memberObject,
+                                             Map<Integer, LocalDate> dateMap,
+                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_minor_ailment), memberObject.getConfirmedContacts() + 1);
+        JSONObject healthFacilityVisitForm = FormUtils.getFormUtils().getFormJson(Utils.getLocalForm("linkages/native/anc_linkage_form", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager));
+        if (details != null) {
+            ChwAncJsonFormUtils.populateForm(healthFacilityVisitForm, details);
+        }
+        BaseAncHomeVisitAction facility_visit = new BaseAncHomeVisitAction.Builder(context, visit_title)
+                .withOptional(false)
+                .withDetails(details)
+                .withHelper(new HealthFacilityAction(memberObject, dateMap))
+                .withJsonPayload(healthFacilityVisitForm.toString())
+                .withFormName(Constants.JSON_FORM.getAncUnifiedLinkageForm())
+                .build();
+
+        actionList.put(visit_title, facility_visit);
     }
 
     private void evaluateHealthFacilityVisit(Map<String, List<VisitDetail>> details,
@@ -277,6 +299,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             try {
                 if (danger_signs_present.contains("None") || danger_signs_present.equals("Hakuna")) {
                     actionList.remove(context.getString(R.string.home_visit_facility_referral));
+                    evaluateMinorAilment(details, memberObject, dateMap, context);
                     evaluateHealthFacilityVisit(details, memberObject, dateMap, context);
                     evaluateFamilyPlanning(details, context);
                     // evaluateNutritionStatus(details, context);
