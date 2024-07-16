@@ -60,7 +60,7 @@
           "name": "problem",
           "type": "multi_choice_checkbox",
           "properties": {
-            "text": "Reasons for Linkage"
+            "text": "Sababu ya kuunganishwa na Huduma za Duka la Dawa Muhimu"
           },
           "meta_data": {
             "openmrs_entity_parent": "",
@@ -70,7 +70,7 @@
           "options": [
             {
               "name": "mild_pain",
-              "text": "Mild pain",
+              "text": "Maumivu madogomadogo sehemu yoyote mwilini",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "mild_pain",
@@ -78,17 +78,8 @@
               }
             },
             {
-              "name": "mild_fever",
-              "text": "Mild fever",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "mild_fever",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
               "name": "cough",
-              "text": "Cough",
+              "text": "Kukohoa",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "cough",
@@ -97,7 +88,7 @@
             },
             {
               "name": "running_nose_cold",
-              "text": "Running nose/Cold",
+              "text": "Mafua",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "running_nose_cold",
@@ -106,7 +97,7 @@
             },
             {
               "name": "sore_throat",
-              "text": "Sore throat",
+              "text": "Mkwaruzo wa koo",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "sore_throat",
@@ -115,7 +106,7 @@
             },
             {
               "name": "refill_medicine",
-              "text": "Refill of medicines such as Ferrous Sulphate, folic acid, and SP for IPTp",
+              "text": "Nyongeza ya dawa kama madini ya chuma, folic, na SP kwa ajili ya malaria",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "refill_medicine",
@@ -124,7 +115,7 @@
             },
             {
               "name": "refill_commodities",
-              "text": "Refill of other commodities such as antiseptics/soaps, delivery kit",
+              "text": "Nyongeza ya vitu vingine kama antiseptics/sabuni, delivery kit",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "refill_commodities",
@@ -133,7 +124,7 @@
             },
             {
               "name": "other_reasons",
-              "text": "Other reasons",
+              "text": "Sababu nyingine",
               "meta_data": {
                 "openmrs_entity": "",
                 "openmrs_entity_id": "other_reasons",
@@ -141,7 +132,7 @@
               }
             }
           ],
-          "required_status": "yes:Please specify reasons for ANC linkage",
+          "required_status": "yes:Ainisha sababu ya kuunganishwa kwa Duka la Dawa Muhimu",
           "dependent_calculations": [
             "referral_date",
             "referral_time",
@@ -158,10 +149,10 @@
             "openmrs_entity_parent": "problem"
           },
           "properties": {
-            "hint": "Other reasons",
+            "hint": "Sababu nyingine",
             "type": "name"
           },
-          "required_status": "true:Please specify other reasons",
+          "required_status": "true:Tafadhali bainisha sababu nyingine",
           "subjects": "problem:map"
         }
       ]

@@ -60,7 +60,7 @@
           "name": "problem",
           "type": "multi_choice_checkbox",
           "properties": {
-            "text": "Reasons for Linkage"
+            "text": "Sababu ya kuunganishwa na Huduma za Duka la Dawa Muhimu"
           },
           "meta_data": {
             "openmrs_entity_parent": "",
@@ -70,7 +70,7 @@
           "options": [
             {
               "name": "cough",
-              "text": "Cough",
+              "text": "Kukohoa",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "cough",
@@ -79,7 +79,7 @@
             },
             {
               "name": "runny_nose",
-              "text": "Runny nose/Cold",
+              "text": "Mafua",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "runny_nose",
@@ -88,7 +88,7 @@
             },
             {
               "name": "Excessive_crying",
-              "text": "Excessive crying",
+              "text": "Mtoto kulia sana",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "Excessive_crying",
@@ -97,7 +97,7 @@
             },
             {
               "name": "sore_throat",
-              "text": "Sore throat",
+              "text": "Kukereketwa koo",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "sore_throat",
@@ -106,7 +106,7 @@
             },
             {
               "name": "sneezing",
-              "text": "Sneezing",
+              "text": "Kupiga chafya",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "sneezing",
@@ -115,7 +115,7 @@
             },
             {
               "name": "headache",
-              "text": "Headache",
+              "text": "kuumwa kichwa",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "headache",
@@ -123,17 +123,8 @@
               }
             },
             {
-              "name": "mild_fever",
-              "text": "Mild Fever",
-              "meta_data": {
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": "mild_fever",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
               "name": "weak",
-              "text": "Weak",
+              "text": "Kuishiwa nguvu",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "weak",
@@ -142,7 +133,7 @@
             },
             {
               "name": "body_chills_shivering",
-              "text": "Body chills/shivering",
+              "text": "Vipele mwilini/anatetemeka",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "body_chills_shivering",
@@ -151,7 +142,7 @@
             },
             {
               "name": "lack_of_appetite",
-              "text": "Lack of appetite",
+              "text": "Anakosa hamu ya kula",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "lack_of_appetite",
@@ -160,7 +151,7 @@
             },
             {
               "name": "feels_thirsty",
-              "text": "Feels thirsty",
+              "text": "Anasikia kiu",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "feels_thirsty",
@@ -169,7 +160,7 @@
             },
             {
               "name": "mild_diarrhea",
-              "text": "Mild diarrhea without blood (less than 3 times in 24 hrs)",
+              "text": "Kuhara bila damu (chini ya mara 3 katika ya masaa 24)",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "Severe_abdominal_pain",
@@ -178,7 +169,7 @@
             },
             {
               "name": "skin_infections",
-              "text": "Minor skin infections",
+              "text": "Maambikizi madogo ya ngozi",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "skin_infections",
@@ -187,7 +178,7 @@
             },
             {
               "name": "minor_wounds",
-              "text": "Minor wounds or cuts",
+              "text": "Kujiumiza kidogo",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "minor_wounds",
@@ -196,7 +187,7 @@
             },
             {
               "name": "other_reasons",
-              "text": "Other reasons",
+              "text": "Sababu nyingine",
               "meta_data": {
                 "openmrs_entity": "concept",
                 "openmrs_entity_id": "other_reasons",
@@ -204,7 +195,7 @@
               }
             }
           ],
-          "required_status": "yes:Please specify reasons for linking to ADDO ",
+          "required_status": "yes:Ainisha sababu ya kuunganishwa kwa Duka la Dawa Muhimu",
           "dependent_calculations": [
             "referral_date",
             "referral_time",
@@ -221,10 +212,10 @@
             "openmrs_entity_parent": "163182AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           "properties": {
-            "hint": "Other reasons",
+            "hint": "Sababu nyingine",
             "type": "name"
           },
-          "required_status": "true:Please specify other reasons",
+          "required_status": "true:Tafadhali bainisha sababu nyingine",
           "subjects": "problem:map"
         }
       ]
