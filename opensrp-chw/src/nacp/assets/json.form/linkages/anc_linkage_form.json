@@ -78,15 +78,6 @@
               }
             },
             {
-              "name": "mild_fever",
-              "text": "Mild fever",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "mild_fever",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
               "name": "cough",
               "text": "Cough",
               "meta_data": {
