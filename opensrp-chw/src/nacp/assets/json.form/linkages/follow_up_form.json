@@ -123,15 +123,6 @@
               }
             },
             {
-              "name": "mild_fever",
-              "text": "Mild Fever",
-              "meta_data": {
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": "mild_fever",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
               "name": "weak",
               "text": "Weak",
               "meta_data": {

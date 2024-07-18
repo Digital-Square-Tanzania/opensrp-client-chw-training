@@ -1,6 +1,6 @@
 {
-  "form": "ANC Linkage",
-  "encounter_type": "ANC Addo Linkage",
+  "form": "Sick Child Linkage",
+  "encounter_type": "Sick Child Addo Linkage",
   "entity_id": "",
   "relational_id": "",
   "rules_file": "rule/general_neat_linkage_form_rules.yml",
@@ -54,7 +54,7 @@
   },
   "steps": [
     {
-      "title": "ANC linkage form",
+      "title": "Ziara ya Kufuatilia",
       "fields": [
         {
           "name": "problem",
@@ -65,60 +65,123 @@
           "meta_data": {
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "problem"
+            "openmrs_entity_id": "163182AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           "options": [
-            {
-              "name": "mild_pain",
-              "text": "Maumivu madogomadogo sehemu yoyote mwilini",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "mild_pain",
-                "openmrs_entity_parent": ""
-              }
-            },
             {
               "name": "cough",
               "text": "Kukohoa",
               "meta_data": {
-                "openmrs_entity": "",
+                "openmrs_entity": "concept",
                 "openmrs_entity_id": "cough",
                 "openmrs_entity_parent": ""
               }
             },
             {
-              "name": "running_nose_cold",
+              "name": "runny_nose",
               "text": "Mafua",
               "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "running_nose_cold",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "runny_nose",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "Excessive_crying",
+              "text": "Mtoto kulia sana",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "Excessive_crying",
                 "openmrs_entity_parent": ""
               }
             },
             {
               "name": "sore_throat",
-              "text": "Mkwaruzo wa koo",
+              "text": "Kukereketwa koo",
               "meta_data": {
-                "openmrs_entity": "",
+                "openmrs_entity": "concept",
                 "openmrs_entity_id": "sore_throat",
                 "openmrs_entity_parent": ""
               }
             },
             {
-              "name": "refill_medicine",
-              "text": "Nyongeza ya dawa kama madini ya chuma, folic, na SP kwa ajili ya malaria",
+              "name": "sneezing",
+              "text": "Kupiga chafya",
               "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "refill_medicine",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "sneezing",
                 "openmrs_entity_parent": ""
               }
             },
             {
-              "name": "refill_commodities",
-              "text": "Nyongeza ya vitu vingine kama antiseptics/sabuni, delivery kit",
+              "name": "headache",
+              "text": "kuumwa kichwa",
               "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "refill_commodities",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "headache",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "weak",
+              "text": "Kuishiwa nguvu",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "weak",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "body_chills_shivering",
+              "text": "Vipele mwilini/anatetemeka",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "body_chills_shivering",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "lack_of_appetite",
+              "text": "Anakosa hamu ya kula",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "lack_of_appetite",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "feels_thirsty",
+              "text": "Anasikia kiu",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "feels_thirsty",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "mild_diarrhea",
+              "text": "Kuhara bila damu (chini ya mara 3 katika ya masaa 24)",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "Severe_abdominal_pain",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "skin_infections",
+              "text": "Maambikizi madogo ya ngozi",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "skin_infections",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "minor_wounds",
+              "text": "Kujiumiza kidogo",
+              "meta_data": {
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "minor_wounds",
                 "openmrs_entity_parent": ""
               }
             },
@@ -126,7 +189,7 @@
               "name": "other_reasons",
               "text": "Sababu nyingine",
               "meta_data": {
-                "openmrs_entity": "",
+                "openmrs_entity": "concept",
                 "openmrs_entity_id": "other_reasons",
                 "openmrs_entity_parent": ""
               }
@@ -146,7 +209,7 @@
           "meta_data": {
             "openmrs_entity": "concept",
             "openmrs_entity_id": "problem_other",
-            "openmrs_entity_parent": "problem"
+            "openmrs_entity_parent": "163182AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           "properties": {
             "hint": "Sababu nyingine",
