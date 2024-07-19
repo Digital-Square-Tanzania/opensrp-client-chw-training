@@ -24,7 +24,9 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.AppExecutors;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.FormUtils;
+import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.referral.util.LocationUtils;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
@@ -357,6 +359,44 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.child_problem_solving), action);
     }
 
+    private void evaluateMinorAilments() throws BaseAncHomeVisitAction.ValidationException{
+
+        HomeVisitActionHelper minorAilmentHelper = new HomeVisitActionHelper() {
+
+            private String minor_ailments;
+
+            @Override
+            public void onPayloadReceived(String jsonPayload) {
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonPayload);
+                    minor_ailments = JsonFormUtils.getCheckBoxValue(jsonObject, "child_minor_ailment").toLowerCase();
+                } catch (JSONException e) {
+                    Timber.e(e);
+                }
+            }
+
+            @Override
+            public String evaluateSubTitle() {
+                return "";
+            }
+
+            @Override
+            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+                if (StringUtils.isBlank(minor_ailments))
+                    return BaseAncHomeVisitAction.Status.PENDING;
+
+                return COMPLETED;
+            }
+        };
+
+        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_minor_ailments))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Utils.getLocalForm("linkages/native/child_linkage_form", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
+                .withHelper(minorAilmentHelper)
+                .build();
+        actionList.put(context.getString(R.string.child_minor_ailments), observation);
+    }
 
     private  synchronized  void clearActions(){
         //using iterator to avoid concurrent modification exception
@@ -371,6 +411,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateActions() throws Exception{
+        evaluateMinorAilments();
         evaluateImmunization();
         evaluateExclusiveBreastFeeding(serviceWrapperMap);
         evaluateVitaminA(serviceWrapperMap);
@@ -386,7 +427,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     private void onDangerSignFormResults(JSONObject dangerSignForm, String dangerSigns, boolean goFacility){
         try{
             clearActions();
-            if( goFacility ) evaluateFacilityReferral(dangerSignForm);
+            if( goFacility ) {
+                evaluateFacilityReferral(dangerSignForm);
+                evaluateMalariaPrevention();
+            }
             else if(dangerSigns.matches(NONE)) evaluateActions();
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
         }
@@ -427,7 +471,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.child_danger_signs_baby), action);
     }
 
-
     private void evaluateFacilityReferral(JSONObject referralPayload) throws BaseAncHomeVisitAction.ValidationException {
         String formName="referral_facility_selection";
         JSONObject jsonForm = FormUtils.getFormUtils().getFormJson(formName);
@@ -448,6 +491,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
         actionList.put(context.getString(R.string.home_visit_facility_referral), action);
     }
+
     @Override
     protected void evaluateExclusiveBreastFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Exclusive breastfeeding");
