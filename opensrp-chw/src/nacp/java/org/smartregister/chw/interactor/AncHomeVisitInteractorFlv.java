@@ -135,7 +135,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                              final MemberObject memberObject,
                                              Map<Integer, LocalDate> dateMap,
                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_minor_ailment), memberObject.getConfirmedContacts() + 1);
+        visit_title = context.getString(R.string.anc_home_visit_minor_ailment);
         JSONObject healthFacilityVisitForm = FormUtils.getFormUtils().getFormJson(Utils.getLocalForm("linkages/native/anc_linkage_form", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager));
         if (details != null) {
             ChwAncJsonFormUtils.populateForm(healthFacilityVisitForm, details);
@@ -311,6 +311,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 } else {
                     Timber.d(actionList.toString());
                     evaluateFacilityReferral(s,details,context);
+                    actionList.remove(context.getString(R.string.anc_home_visit_minor_ailment));
                     actionList.remove(context.getString(R.string.anc_home_visit_family_planning));
                     actionList.remove(context.getString(R.string.anc_home_visit_nutrition_status));
                     actionList.remove(context.getString(R.string.anc_home_visit_counselling_task));
