@@ -148,6 +148,9 @@
     <string name="anc_home_visit_facility_visit">Visite CPN {0} à la structure sanitaire</string>
     <string name="anc_home_visit_family_planning">Planification familiale</string>
     <string name="anc_home_visit_nutrition_status">État nutritionnel</string>
+    <string name="anc_home_visit_minor_ailment">Magonjwa madogo madogo</string>
+    <string name="child_home_visit_minor_ailment">Magonjwa madogo madogo</string>
+    <string name="pnc_home_visit_minor_ailment">Magonjwa madogo madogo</string>
     <string name="anc_home_visit_counselling_task">Consultation</string>
     <string name="anc_home_visit_malaria_prevention">Prévention du paludisme</string>
     <string name="anc_home_visit_observations_n_illnes">En Cas de maladie</string>

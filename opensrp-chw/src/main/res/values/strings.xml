@@ -160,7 +160,9 @@
     <string name="anc_home_visit_danger_signs">Danger signs</string>
     <string name="home_visit_facility_referral">Referral to facility</string>
     <string name="anc_home_visit_facility_visit">ANC health facility visit</string>
-    <string name="anc_home_visit_minor_ailment">Minor Ailment</string>
+    <string name="anc_home_visit_minor_ailment">ANC Minor Ailment</string>
+    <string name="child_home_visit_minor_ailment">Child Minor Ailment</string>
+    <string name="pnc_home_visit_minor_ailment">PNC Minor Ailment</string>
     <string name="anc_home_visit_family_planning">Family planning</string>
     <string name="anc_home_visit_nutrition_status">Nutrition status</string>
     <string name="anc_home_visit_counselling_task">Counselling</string>
