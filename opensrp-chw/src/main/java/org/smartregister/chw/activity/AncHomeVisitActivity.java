@@ -1,13 +1,17 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.widget.Toast;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.activity.BaseAncHomeVisitActivity;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
@@ -17,6 +21,7 @@ import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.AncHomeVisitInteractor;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.ReferralUtils;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
@@ -82,6 +87,31 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    @Override
+    public void submitVisit() {
+        super.submitVisit();
+
+        Map<String, BaseAncHomeVisitAction> actions = this.getAncHomeVisitActions();
+        if (actions != null){
+            BaseAncHomeVisitAction ancMinorAilmentAction = actions.get(this.getString(org.smartregister.chw.R.string.anc_home_visit_minor_ailment));
+            if (ancMinorAilmentAction != null) {
+                String minorAilmentForm = ancMinorAilmentAction.getJsonPayload();
+                if (minorAilmentForm != null) {
+                    try {
+                        JSONObject minorAilmentObject = new JSONObject(minorAilmentForm);
+                        String minorAilments = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(minorAilmentObject, "minor_ailment").toLowerCase();
+                        ReferralUtils.createLinkageTask(org.smartregister.Context.getInstance().allSharedPreferences(),
+                                memberObject.getBaseEntityId(), generateRandomUUIDString(), minorAilments, org.smartregister.chw.util.Constants.AddoLinkage.ANC_TASK_FOCUS);
+                        Toast.makeText(getContext(), getContext().getString(org.smartregister.chw.R.string.linked_to_addo_message), Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+
     }
 
     @Override

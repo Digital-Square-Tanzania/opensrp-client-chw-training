@@ -11,6 +11,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.AncMinorAilmentActionHelper;
 import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -135,20 +136,21 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                              final MemberObject memberObject,
                                              Map<Integer, LocalDate> dateMap,
                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        String formName = "linkages/native/anc_linkage_form";
         visit_title = context.getString(R.string.anc_home_visit_minor_ailment);
-        JSONObject healthFacilityVisitForm = FormUtils.getFormUtils().getFormJson(Utils.getLocalForm("linkages/native/anc_linkage_form", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager));
+        JSONObject healthFacilityVisitForm = FormUtils.getFormUtils().getFormJson(Utils.getLocalForm(formName, CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager));
         if (details != null) {
             ChwAncJsonFormUtils.populateForm(healthFacilityVisitForm, details);
         }
-        BaseAncHomeVisitAction facility_visit = new BaseAncHomeVisitAction.Builder(context, visit_title)
+        BaseAncHomeVisitAction minorAilmentAction = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
                 .withDetails(details)
-                .withHelper(new HealthFacilityAction(memberObject, dateMap))
+                .withHelper(new AncMinorAilmentActionHelper(context))
                 .withJsonPayload(healthFacilityVisitForm.toString())
-                .withFormName(Constants.JSON_FORM.getAncUnifiedLinkageForm())
+                .withFormName(formName)
                 .build();
 
-        actionList.put(visit_title, facility_visit);
+        actionList.put(visit_title, minorAilmentAction);
     }
 
     private void evaluateHealthFacilityVisit(Map<String, List<VisitDetail>> details,
