@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.ChildHVProblemSolvingHelper;
+import org.smartregister.chw.actionhelper.ChildMinorAilmentsActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
@@ -359,43 +360,17 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.child_problem_solving), action);
     }
 
-    private void evaluateMinorAilments() throws BaseAncHomeVisitAction.ValidationException{
-
-        HomeVisitActionHelper minorAilmentHelper = new HomeVisitActionHelper() {
-
-            private String minor_ailments;
-
-            @Override
-            public void onPayloadReceived(String jsonPayload) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonPayload);
-                    minor_ailments = JsonFormUtils.getCheckBoxValue(jsonObject, "child_minor_ailment").toLowerCase();
-                } catch (JSONException e) {
-                    Timber.e(e);
-                }
-            }
-
-            @Override
-            public String evaluateSubTitle() {
-                return "";
-            }
-
-            @Override
-            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-                if (StringUtils.isBlank(minor_ailments))
-                    return BaseAncHomeVisitAction.Status.PENDING;
-
-                return COMPLETED;
-            }
-        };
-
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.child_minor_ailments))
+    private void evaluateMinorAilments(MemberObject memberObject) throws BaseAncHomeVisitAction.ValidationException{
+        ChildMinorAilmentsActionHelper minorAilmentHelper = new ChildMinorAilmentsActionHelper(context, memberObject);
+        String title = MessageFormat.format(context.getString(R.string.child_minor_ailments), memberObject.getFullName());
+        BaseAncHomeVisitAction childMinorAilmentAction = new BaseAncHomeVisitAction.Builder(context, title)
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(Utils.getLocalForm("linkages/native/child_linkage_form", CoreConstants.JSON_FORM.locale, CoreConstants.JSON_FORM.assetManager))
                 .withHelper(minorAilmentHelper)
                 .build();
-        actionList.put(context.getString(R.string.child_minor_ailments), observation);
+
+        actionList.put(title, childMinorAilmentAction);
     }
 
     private  synchronized  void clearActions(){
@@ -411,7 +386,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateActions() throws Exception{
-        evaluateMinorAilments();
+        evaluateMinorAilments(memberObject);
         evaluateImmunization();
         evaluateExclusiveBreastFeeding(serviceWrapperMap);
         evaluateVitaminA(serviceWrapperMap);
