@@ -411,7 +411,8 @@ public class JsonQ {
         if (sliceNotation == null || list.isEmpty()) return;
 
         List<T> result = new ArrayList<>();
-        String[] slices = sliceNotation.split(",");for (String slice : slices) {
+        String[] slices = sliceNotation.split(",");
+        for (String slice : slices) {
             result.addAll(extractSlice(list, slice));
         }
 
