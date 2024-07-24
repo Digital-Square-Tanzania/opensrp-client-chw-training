@@ -299,6 +299,10 @@
     <string name="pnc_danger_signs_baby_task">Signes de danger - enfant</string>
     <string name="pnc_skin_to_skin">KMC skin-to-skin counselling</string>
 
+    <string name="pnc_minor_ailment_mama"> Minor Ailment - Mama </string>
+
+    <string name="child_minor_ailment"> Minor Ailment - Baby </string>
+
     <string name="pnc_health_facility_visit_within_fourty_eight_hours">Visit CPoN au centre de santé - dans les 48 heures</string>
     <string name="pnc_health_facility_visit_days_three_to_seven">Visit CPoN au centre de santé - jours 3-7</string>
     <string name="pnc_health_facility_visit_days_eight_to_twenty_eight">Visit CPoN au centre de santé - jours 8-28</string>
