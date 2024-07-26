@@ -61,15 +61,14 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
                 }
             }
 
-            String childMinorAilmentStringEn = "Child Minor Ailments";
-            String childMinorailmentStringSw = "Maradhi ya mtoto";
+            String childMinorAilmentString = this.getResources().getString(R.string.child_minor_ailments);
             BaseAncHomeVisitAction minorAilmentAction;
 
             //Check for Child Minor Ailment action
             for (Map.Entry<String, BaseAncHomeVisitAction> entry : actions.entrySet()){
                 String key = entry.getKey();
                 BaseAncHomeVisitAction value = entry.getValue();
-                if (key.contains(childMinorAilmentStringEn) || key.contains(childMinorailmentStringSw)){
+                if (key.contains(childMinorAilmentString)){
                     minorAilmentAction = value;
                     String childMinorAilmentForm = minorAilmentAction.getJsonPayload();
                     if (childMinorAilmentForm != null){
@@ -91,7 +90,6 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
 
     @Override
     public void initializeActions(LinkedHashMap<String, BaseAncHomeVisitAction> map) {
-//        super.initializeActions(map);
         actionList.clear();
         actionList.putAll(map);
 
