@@ -6,10 +6,10 @@ condition: "step1_test_hiv_past_three_months.contains('chk_hiv_test_no')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_comfortable_disclosing_hiv_status
-description: Show Question If Mother is willing to share his/her HIV status
+name: step1_test_hiv_past_three_months
+description: Ask Mother is she had tested for HIV for past three months
 priority: 1
-condition: "step1_test_hiv_past_three_months.contains('chk_hiv_test_yes')"
+condition: "step1_hiv_status.contains('chk_hiv_test_negative')"
 actions:
   - "isRelevant = true"
 ---
