@@ -23,6 +23,7 @@ import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHel
 import org.smartregister.chw.actionhelper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.PNCVisitLocationActionHelper;
 import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
@@ -48,6 +49,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
+            evaluateVisitLocation();
             evaluateToddlerDanger(serviceWrapperMap);
             evaluateImmunization();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
@@ -535,6 +537,17 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin)).withOptional(false).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withFormName(Constants.JsonForm.getSkinToSkin()).withHelper(actionHelper).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
 
         actionList.put(context.getString(R.string.pnc_skin_to_skin), action);
+    }
+
+    private void evaluateVisitLocation() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_hv_location))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getPncHvLocation())
+                .withHelper(new PNCVisitLocationActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.pnc_hv_location), action);
     }
 
     public static int getChildAgeInMonth(Date dob) {
