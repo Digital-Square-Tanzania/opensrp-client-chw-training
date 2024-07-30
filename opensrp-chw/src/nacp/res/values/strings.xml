@@ -565,5 +565,6 @@
     <string name="choose_date_mode">Choose Date mode</string>
     <string name="shared_date">Shared Date</string>
     <string name="each_vaccine_its_date">Each Vaccine its date</string>
+    <string name="no_mother_children">No Mother Children</string>
 
 </resources>
