@@ -160,7 +160,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "toaster_type": "info",
+        "toaster_type": "warning",
         "text": "Advice the mother/father or caregiver to stitch the holes on the LLIN",
         "text_color": "#000000",
         "relevance": {
@@ -176,7 +176,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "toaster_type": "info",
+        "toaster_type": "problem",
         "text": "Advice the mother/father or caregiver to purchase a new LLIN",
         "text_color": "#000000",
         "relevance": {

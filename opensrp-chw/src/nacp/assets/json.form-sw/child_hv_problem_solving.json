@@ -156,6 +156,15 @@
             }
           }
         }
+      },
+      {
+        "key": "bango_kitita_reference",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "<i><b>Taarifa kwa MJA:</b></i> Tafadhali fungua ukurasa wa 46 na 47 kwenye Malezi III Bango Kitita  ili kuendelea na mada ya kutatua changamoto"
       }
     ]
   }

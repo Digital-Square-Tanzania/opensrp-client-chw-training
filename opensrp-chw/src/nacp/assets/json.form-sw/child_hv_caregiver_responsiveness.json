@@ -56,8 +56,8 @@
         "openmrs_entity_id": "caregiver_interacts_with_child",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "Taarifa kwa MJA: Wakati wa tembeleo ni vipi mama/mlezi aliweza kuingiliana na kujibu mienendo, shughuli na milio ya mtoto?",
-        "label_info_text": "Taarifa kwa MJA: Wakati wa tembeleo ni vipi mama/mlezi aliweza kuingiliana na kujibu mienendo, shughuli na milio ya mtoto?",
+        "hint": "Taarifa kwa MJA: Wakati wa tembeleo, chunguza mama/baba au mlezi anavyohusiana na kuitikia sauti, ishara na mienendo ya mtoto",
+        "label_info_text": "Taarifa kwa MJA: Wakati wa tembeleo, chunguza mama/baba au mlezi anavyohusiana na kuitikia sauti, ishara na mienendo ya mtoto",
         "values": [
           "Anamfuata mtoto na kujaribu kuigiza sauti anazotoa na kuongea na mtoto",
           "Hafanyi vitendo mtoto anavyofanya, au anajaribu kumuongoza mtoto vitendo vya kufanya na hawasiliani na mtoto"

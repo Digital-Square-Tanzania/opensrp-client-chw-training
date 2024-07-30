@@ -156,6 +156,15 @@
             }
           }
         }
+      },
+      {
+        "key": "bango_kitita_reference",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "<i><b>CHW Information: </b></i>Refer to page 46 and 47 of the Malezi III Bango Kitita so as to continue with the topic of Problem solving "
       }
     ]
   }

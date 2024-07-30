@@ -52,7 +52,10 @@ public class ChildHVChildSafetyActionHelper extends HomeVisitActionHelper {
             return BaseAncHomeVisitAction.Status.PENDING;
         }
 
-        if (StringUtils.isNotBlank(child_safety_counselled)) {
+        if (StringUtils.isNotBlank(child_safety_counselled) &&
+                (child_safety_counselled.equalsIgnoreCase("Ndio") ||
+                        child_safety_counselled.equalsIgnoreCase("Yes") ||
+                        child_safety_counselled.equalsIgnoreCase("Ndiyo"))) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;

@@ -5,14 +5,18 @@ import android.content.Context;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.util.FnList;
 import org.smartregister.chw.util.UtilsFlv;
+import org.smartregister.client.utils.constants.JsonFormConstants;
 import org.smartregister.dao.AbstractDao;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
@@ -88,6 +92,7 @@ public class ImmunizationActionHelper implements BaseAncHomeVisitAction.AncHomeV
     }
 
     public void onPayloadReceived(String jsonPayload) {
+        /** todo nitusima to assit on this since he is the one who improved the function using lambda function
         notDoneVaccines.clear();
         completedVaccines.clear();
 
@@ -110,7 +115,43 @@ public class ImmunizationActionHelper implements BaseAncHomeVisitAction.AncHomeV
                         completedVaccines.put(field.value, vacs);
                     }
                     else {notDoneVaccines.add(field.key);}
-                });
+                });**/
+
+        try {
+            notDoneVaccines.clear();
+            completedVaccines.clear();
+
+            if(jsonPayload == null) return;
+
+            JSONObject jsonObject = new JSONObject(jsonPayload);
+
+            JSONArray jsonArray = jsonObject.getJSONObject("step1").getJSONArray("fields");
+            int totalVacs = jsonArray.length();
+            int x = 0;
+            while (x < totalVacs) {
+                JSONObject fieldObject = jsonArray.getJSONObject(x);
+                String key = fieldObject.has(JsonFormConstants.KEY) ? fieldObject.getString(JsonFormConstants.KEY) : "";
+                String val = fieldObject.has(JsonFormConstants.VALUE) ? fieldObject.getString(JsonFormConstants.VALUE) : "";
+
+                if (val.equalsIgnoreCase(Constants.HOME_VISIT.VACCINE_NOT_GIVEN)) {
+                    notDoneVaccines.add(key);
+                } else {
+                    List<String> vacs = completedVaccines.get(val);
+                    if (vacs == null) {
+                        vacs = new ArrayList<>();
+                    }
+
+                    vacs.add(key);
+
+                    completedVaccines.put(val, vacs);
+                }
+
+                x++;
+            }
+
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
     }
 
     @Override
