@@ -1,12 +1,16 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.util.JsonFormUtils.generateRandomUUIDString;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -17,13 +21,19 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.PncHomeVisitInteractor;
 import org.smartregister.chw.pnc.activity.BasePncHomeVisitActivity;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.ReferralUtils;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.util.LangUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Random;
+
+import timber.log.Timber;
 
 public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
 
@@ -66,6 +76,63 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
         // get language from prefs
         String lang = LangUtils.getLanguage(base.getApplicationContext());
         super.attachBaseContext(LangUtils.setAppLocale(base, lang));
+    }
+
+    @Override
+    public void submitVisit() {
+        super.submitVisit();
+
+        String minorAilmentBabyString = this.getString(R.string.child_minor_illness);
+        String minorAilmentMotherString = this.getString(R.string.pnc_minor_ailment_mama);
+
+        BaseAncHomeVisitAction motherMEAction;
+        BaseAncHomeVisitAction babyMEAction;
+
+        Map<String, BaseAncHomeVisitAction> actions = this.getAncHomeVisitActions();
+        if (actions != null){
+            for (Map.Entry<String, BaseAncHomeVisitAction> entry : actions.entrySet()){
+                String key = entry.getKey();
+                BaseAncHomeVisitAction value = entry.getValue();
+
+                if (key.contains(minorAilmentMotherString)){
+                    motherMEAction = value;
+                    if (motherMEAction != null){
+                        String meForm = motherMEAction.getJsonPayload();
+                        if (meForm != null){
+                            try {
+                                JSONObject minorAilmentObject = new JSONObject(meForm);
+                                String minorAilments = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(minorAilmentObject, "minor_ailment").toLowerCase();
+                                ReferralUtils.createLinkageTask(org.smartregister.Context.getInstance().allSharedPreferences(),
+                                        memberObject.getBaseEntityId(), generateRandomUUIDString(), minorAilments, org.smartregister.chw.util.Constants.AddoLinkage.PNC_TASK_FOCUS);
+                                Toast.makeText(getContext(), getContext().getString(org.smartregister.chw.R.string.linked_to_addo_message), Toast.LENGTH_LONG).show();
+                            }catch (Exception e){
+                                Timber.e(e);
+                            }
+                        }
+                    }
+                }
+
+                if (key.contains(minorAilmentBabyString)){
+                    babyMEAction = value;
+                    if (babyMEAction != null){
+                        String meForm = babyMEAction.getJsonPayload();
+                        if (meForm != null){
+                            try {
+                                JSONObject minorAilmentObject = new JSONObject(meForm);
+                                String minorAilments = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(minorAilmentObject, "child_minor_ailment").toLowerCase();
+                                ReferralUtils.createLinkageTask(org.smartregister.Context.getInstance().allSharedPreferences(),
+                                        memberObject.getBaseEntityId(), generateRandomUUIDString(), minorAilments, org.smartregister.chw.util.Constants.AddoLinkage.CHILD_TASK_FOCUS);
+                                Toast.makeText(getContext(), getContext().getString(org.smartregister.chw.R.string.linked_to_addo_message), Toast.LENGTH_LONG).show();
+                            }
+                            catch (Exception e){
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     @Override

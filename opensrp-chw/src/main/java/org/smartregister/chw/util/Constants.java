@@ -130,11 +130,11 @@ public class Constants extends CoreConstants {
         public static String getPncHvLocation() {
             return PNC_HV_LOCATION;
         }
-      
+
         public static String getChildHvBreastfeedingForm() {
             return CHILD_HV_BREASTFEEDING_FORM;
         }
-      
+
         public static String getChildHomeVisitDangerSignForm() {
             return CHILD_HOME_VISIT_DANGER_SIGN_FORM;
         }
@@ -248,4 +248,29 @@ public class Constants extends CoreConstants {
             String SBC_REPORT_PATH = "sbc-report";
         }
     }
+
+    public static final class HomeVisitActions {
+
+        public interface ChildHomeVisitActions {
+            String CHILD_MINOR_AILMENT = "child_minor_ailment";
+        }
+
+        public interface AncHomeVisitActions {
+
+        }
+
+        public interface PncHomeVisitActions {
+
+        }
+    }
+
+    public interface AddoLinkage {
+        String BUSINESS_STATUS = "Linked";
+        String CODE = "Linkage";
+
+        String CHILD_TASK_FOCUS = "Child Minor Ailments";
+        String ANC_TASK_FOCUS = "ANC Minor Ailments";
+        String PNC_TASK_FOCUS = "PNC Minor Ailments";
+    }
+
 }
