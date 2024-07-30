@@ -252,6 +252,7 @@ public class Constants extends CoreConstants {
         public static final String MOTHER_CHAMPION_FOLLOWUP = "ec_mother_champion_followup";
         public static final String SBCC = "ec_sbcc";
         public static final String CBHS_REGISTER = "ec_cbhs_register";
+        public static final String CHILD_NO_MOTHER = "ec_child_no_mother";
     }
 
     public static class DBConstants{

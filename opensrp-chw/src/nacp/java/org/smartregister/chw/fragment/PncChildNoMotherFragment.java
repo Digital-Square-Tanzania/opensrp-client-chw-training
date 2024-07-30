@@ -1,15 +1,14 @@
 package org.smartregister.chw.fragment;
 
-import org.smartregister.chw.core.fragment.CoreChildRegisterFragment;
-import org.smartregister.chw.model.ChildRegisterFragmentModel;
-import org.smartregister.chw.presenter.ChildRegisterFragmentPresenter;
+import org.smartregister.chw.model.PncChildNoMotherFragmentModel;
+import org.smartregister.chw.presenter.PncChildNoMotherFragmentPresenter;
 import org.smartregister.chw.provider.ChildRegisterProvider;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 
 import java.util.Set;
 
-public class PncChildNoMotherFragment extends CoreChildRegisterFragment {
+public class PncChildNoMotherFragment extends PncRegisterFragment {
 
 
     @Override
@@ -30,7 +29,7 @@ public class PncChildNoMotherFragment extends CoreChildRegisterFragment {
         if (getActivity() == null) {
             return;
         }
-        presenter = new ChildRegisterFragmentPresenter( this, new ChildRegisterFragmentModel(), null);
+        presenter = new PncChildNoMotherFragmentPresenter( this, new PncChildNoMotherFragmentModel(), null);
     }
 
 
