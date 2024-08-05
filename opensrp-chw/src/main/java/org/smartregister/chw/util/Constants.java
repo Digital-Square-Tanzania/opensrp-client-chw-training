@@ -18,6 +18,8 @@ public class Constants extends CoreConstants {
     public static String FAMILY_MEMBER_LOCATION_TABLE = "ec_family_member_location";
     public static String CHILD_OVER_5 = "child_over_5";
 
+    public static final String ADDO_LINKAGE_PLAN_ID = "6270285b-5a3b-4647-b772-c0b3c52e2b72";
+
     public enum FamilyRegisterOptionsUtil {Miscarriage, Other}
 
     public enum FamilyMemberType {ANC, PNC, Other}
