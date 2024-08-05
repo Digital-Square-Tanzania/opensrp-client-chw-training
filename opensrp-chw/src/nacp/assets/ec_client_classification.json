@@ -44,14 +44,7 @@
           },
           {
             "field": "eventType",
-            "field_value": "Family Planning Registration",
-            "creates_case": [
-              "ec_family_planning"
-            ]
-          },
-          {
-            "field": "eventType",
-            "field_value": "Family Planning Change Method",
+            "field_value": "FP CBD Registration",
             "creates_case": [
               "ec_family_planning"
             ]
@@ -729,6 +722,34 @@
             "field_value": "Kvp PrEP Follow-up Visit",
             "creates_case": [
               "ec_kvp_prep_followup"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "SBC Enrollment",
+            "creates_case": [
+              "ec_sbc_register"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "SBC Follow-up Visit",
+            "creates_case": [
+              "ec_sbc_visit"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "SBC Health Education Mobilization",
+            "creates_case": [
+              "ec_sbc_mobilization_session"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Monthly Social Media Report",
+            "creates_case": [
+              "ec_sbc_monthly_social_media_report"
             ]
           }
         ]

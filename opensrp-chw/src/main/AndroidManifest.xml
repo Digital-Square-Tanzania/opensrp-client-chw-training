@@ -8,7 +8,6 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/ChwTheme"
-        android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
             android:name=".activity.LoginActivity"
@@ -18,13 +17,13 @@
             android:roundIcon="@drawable/ic_launcher_round"
             android:screenOrientation="portrait"
             android:theme="@style/ChwTheme.Login"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".activity.RequestPhoneNumberCollectionPermission"
+            android:exported="true"
             android:icon="@drawable/ic_launcher"
             android:roundIcon="@drawable/ic_launcher_round"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,6 +47,9 @@
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.HivstResultViewActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HivstMobilizationSessionDetailsActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.AgywRegisterActivity"
@@ -101,6 +103,18 @@
             android:exported="false"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
+            android:name=".activity.MotherChampionSbcMobilizationSessionDetailsActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcReportsViewActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcReportsActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
             android:name=".activity.InAppReportsActivity"
             android:exported="false"
             android:theme="@style/ChwTheme.NoActionBar" />
@@ -113,7 +127,11 @@
             android:exported="false"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
-            android:name=".activity.FamilyPlanningMemberProfileActivity"
+            android:name=".activity.FPMemberProfileActivity"
+            android:label="@string/family_planning"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.FpCbdFollowupVisitProvisionOfServicesActivity"
             android:label="@string/family_planning"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
@@ -291,6 +309,9 @@
             android:name=".core.activity.CoreStockInventoryItemDetailsReportActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
+            android:name=".activity.FpMedicalHistoryActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
             android:name=".activity.ReportsActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
@@ -370,10 +391,31 @@
             android:name=".activity.MotherChampionRegisterActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
+            android:name=".activity.SbcRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
             android:name=".activity.PmtctFollowupDetailsActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.MotherChampionProfileActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcMemberProfileActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcVisitActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcMedicalHistoryActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcMobilizationSessionDetailsActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcMonthlySocialMediaReportRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SbcMonthlySocialMediaReportDetailsActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.MotherChampionMedicalHistoryActivity"
@@ -413,6 +455,7 @@
         <activity
             android:name=".activity.IccmMedicalHistoryActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />

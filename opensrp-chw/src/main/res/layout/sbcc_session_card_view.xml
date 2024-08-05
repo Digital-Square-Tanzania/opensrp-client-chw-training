@@ -28,7 +28,7 @@
             android:layout_toEndOf="@id/iv_sbcc_session">
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/sbcc_session_location"
+                android:id="@+id/sbcc_activity_provided"
                 style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -143,9 +143,8 @@ public class ChwScheduleTaskExecutor extends ScheduleTaskExecutor {
     private void initializeFPClassifier(Map<String, List<ScheduleService>> classifier) {
         List<ScheduleService> scheduleServices = new ArrayList<>();
         scheduleServices.add(new FpVisitScheduler());
-        addToClassifers(FamilyPlanningConstants.EventType.FP_FOLLOW_UP_VISIT, classifier, scheduleServices);
-        addToClassifers(FamilyPlanningConstants.EventType.FAMILY_PLANNING_REGISTRATION, classifier, scheduleServices);
-        addToClassifers(FamilyPlanningConstants.EventType.FAMILY_PLANNING_CHANGE_METHOD, classifier, scheduleServices);
+        addToClassifers(FamilyPlanningConstants.EVENT_TYPE.FP_FOLLOW_UP_VISIT, classifier, scheduleServices);
+        addToClassifers(FamilyPlanningConstants.EVENT_TYPE.FP_REGISTRATION, classifier, scheduleServices);
     }
 
     private void initializeHIVClassifier(Map<String, List<ScheduleService>> classifier) {

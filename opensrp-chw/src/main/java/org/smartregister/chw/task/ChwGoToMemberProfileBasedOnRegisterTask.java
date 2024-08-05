@@ -6,7 +6,7 @@ import android.os.Bundle;
 import org.smartregister.chw.activity.AboveFiveChildProfileActivity;
 import org.smartregister.chw.activity.AncMemberProfileActivity;
 import org.smartregister.chw.activity.ChildProfileActivity;
-import org.smartregister.chw.activity.FamilyPlanningMemberProfileActivity;
+import org.smartregister.chw.activity.FPMemberProfileActivity;
 import org.smartregister.chw.activity.HivIndexContactProfileActivity;
 import org.smartregister.chw.activity.HivProfileActivity;
 import org.smartregister.chw.activity.MalariaProfileActivity;
@@ -32,7 +32,7 @@ public class ChwGoToMemberProfileBasedOnRegisterTask extends CoreChwNotification
 
     @Override
     protected void goToFpProfile(String baseEntityId, Activity activity) {
-        FamilyPlanningMemberProfileActivity.startFpMemberProfileActivity(activity, FpDao.getMember(baseEntityId));
+        FPMemberProfileActivity.startFpMemberProfileActivity(activity, baseEntityId);
     }
 
     @Override

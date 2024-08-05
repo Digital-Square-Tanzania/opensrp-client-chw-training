@@ -131,6 +131,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         for (Person baby : children) {
 //                evaluateDangerSignsBaby(baby);
+            evaluateCordCare(baby);
             evaluateNewBornCareIntroduction(baby);
             evaluateCordCare(baby);
             evaluateImmunization(baby);

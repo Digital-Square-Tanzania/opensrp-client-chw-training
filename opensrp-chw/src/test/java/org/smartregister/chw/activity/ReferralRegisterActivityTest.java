@@ -30,7 +30,7 @@ public class ReferralRegisterActivityTest extends BaseUnitTest {
     @Test
     public void testGetOtherFragments() {
         Assert.assertNotNull(referralRegisterActivity.getOtherFragments());
-        Assert.assertEquals(0, referralRegisterActivity.getOtherFragments().length);
+        Assert.assertEquals(1, referralRegisterActivity.getOtherFragments().length);
     }
 
     @Test

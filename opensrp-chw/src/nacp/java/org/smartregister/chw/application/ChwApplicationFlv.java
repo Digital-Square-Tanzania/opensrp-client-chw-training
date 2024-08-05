@@ -124,7 +124,7 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
 
     @Override
     public boolean hasCdp() {
-        return true;
+        return false;
     }
 
     @Override
@@ -138,13 +138,18 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     }
 
     @Override
+    public boolean hasSbc() {
+        return false;
+    }
+
+    @Override
     public boolean hasKvp() {
         return true;
     }
 
     @Override
     public boolean hasICCM() {
-        return true;
+        return false;
     }
 
     @Override
