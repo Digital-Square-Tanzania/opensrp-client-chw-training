@@ -2,8 +2,6 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
-import com.vijay.jsonwizard.constants.JsonFormConstants;
-
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
@@ -16,6 +14,9 @@ import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
+import org.smartregister.chw.util.FnList;
+import org.smartregister.chw.util.UtilsFlv;
+import org.smartregister.client.utils.constants.JsonFormConstants;
 import org.smartregister.dao.AbstractDao;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
@@ -30,20 +31,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
 public class ImmunizationActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
     private Context context;
-    private List<VaccineWrapper> wrappers;
+    private final List<VaccineWrapper> wrappers;
     private LocalDate dueDate;
     private AlertStatus status;
 
     private List<String> keys = new ArrayList<>();
-    private Map<String, List<String>> completedVaccines = new HashMap<>();
-    private List<String> notDoneVaccines = new ArrayList<>();
-    private Map<String, VaccineRepo.Vaccine> vaccineMap = new HashMap<>();
+    private final Map<String, List<String>> completedVaccines = new HashMap<>();
+    private final List<String> notDoneVaccines = new ArrayList<>();
+    private final Map<String, VaccineRepo.Vaccine> vaccineMap = new HashMap<>();
 
     public ImmunizationActionHelper(Context context, List<VaccineWrapper> wrappers) {
         this.context = context;
@@ -89,8 +91,32 @@ public class ImmunizationActionHelper implements BaseAncHomeVisitAction.AncHomeV
         return null;
     }
 
-    @Override
     public void onPayloadReceived(String jsonPayload) {
+        /** todo nitusima to assit on this since he is the one who improved the function using lambda function
+        notDoneVaccines.clear();
+        completedVaccines.clear();
+
+        JSONArray jsonArray = UtilsFlv.jsonGet(jsonPayload,"step1.fields",new JSONArray());
+
+        Set<String> vaccinesKeys=new FnList<>(wrappers)
+                .map(VaccineWrapper::getName)
+                .map(NCUtils::removeSpaces)
+                .toSet();
+
+        //TODO make the check used in the filter method below more effective and intuitive to serve as a general check for if the field is vaccine or not
+        FnList.range( jsonArray.length() )
+                .map( jsonArray::getJSONObject )
+                .map( UtilsFlv::getFieldKeyValuePair )
+                .filter( field -> vaccinesKeys.contains(field.key))
+                .forEachItem( field -> {
+                    if( UtilsFlv.isValidDOBDateFormat( field.value )){
+                        List<String> vacs = UtilsFlv.coalesce(completedVaccines.get(field.value),new ArrayList<>());
+                        vacs.add(field.key);
+                        completedVaccines.put(field.value, vacs);
+                    }
+                    else {notDoneVaccines.add(field.key);}
+                });**/
+
         try {
             notDoneVaccines.clear();
             completedVaccines.clear();

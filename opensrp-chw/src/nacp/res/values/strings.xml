@@ -162,6 +162,18 @@
     <string name="penta_2">Penta 2</string>
     <string name="penta_3">Penta 3</string>
 
+    <string name="congratulate_vaccine_uptodate">Congratulate the mother and remind her of the next vaccination date according to the health card. Remind her how important it is that her child takes ALL the vaccines on time</string>
+    <!--    Reasons why not vaccinated-->
+    <string name="why_no_vaccine">Why did the child not receive the vaccine?</string>
+    <string-array name="reason_no_vaccine">
+        <item>not_available: Vaccine not available</item>
+        <item>family_refused: Family refused</item>
+        <item>clinic_closed: Clinic closed</item>
+        <item>return_another_day: Asked to return another day</item>
+        <item>did_not_know: I did not know about the vaccine</item>
+        <item>could_not_take_child: I could not take the child to receive the vaccine</item>
+    </string-array>
+
     <string name="vit_a_received_label">Vitamin A received</string>
     <string name="ifa_received_label">IFA tablets received</string>
 
@@ -180,6 +192,13 @@
 
     <string name="pnc_newborn_care_introduction">Essential New Born Care: Introduction ({0})</string>
     <string name="baby_premature">Baby premature/underweight</string>
+    <string name="pnc_child_play_assessment_counselling">CCD: Play Assessment and Counselling {0}</string>
+    <string name="bango_kitita_one_page">Page %s</string>
+    <string name="bango_kitita_two_pages">Page %s and Page %s</string>
+    <string name="bango_kitita_message">Please refer to the following pages in Bango Kitita to explain the activities depending on the child\'s age</string>
+    <string name="pnc_child_development_screening_assessment">CCD: Child development screening assessment {0}</string>
+    <string name="pnc_child_communication_assessment">CCD: Communication Assessment and Counselling {0}</string>
+    <string name="pnc_cord_care">Essential Newborn Care: Cord Care ({0})</string>
 
     <string name="pnc_cord_care">Essential Newborn Care: Cord Care ({0})</string>
 
@@ -534,8 +553,21 @@
 
     <string name="last_appointment_date">Last Appointment date</string>
 
-    <string name="child_problem_solving">Problem Solving</string>
+    <string name="child_problem_solving">CCD: Problem Solving</string>
     <string name="child_problem_solving_task">Playing and Communicating challenge</string>
+    <string name="child_safety">Child Safety</string>
+    <string name="ccd_introduction_subtitle">Child behaviour and development</string>
+    <string name="ccd_introduction_title">CCD: Introduction ({0})</string>
+    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
+    <string name="ccd_child_discipline_title">CCD: Child Discipline Assessment and Counselling ({0})</string>
+    <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
+    <string name="child_home_visit_pmtct">Prevention of Mother to Child transmission of HIV (PMTCT)</string>
+    <string name="counselled_mother_for_comp_feeding">" Counselled mother for complementary feeding "</string>
+    <string name="bango_kitita_three_pages">Page %s%s%s and %s</string>
+    <string name="malezi_bango_kitita_message">Please refer to the following pages in Bango Kitita Malezi III to explain the activities depending on the child age:</string>
+    <string name="choose_date_mode">Choose Date mode</string>
+    <string name="shared_date">Shared Date</string>
+    <string name="each_vaccine_its_date">Each Vaccine its date</string>
 
     <string name="hivst_mobilization_session">HIVST Mobilization Session</string>
     <string name="hivst_mobilization_session_details">HIVST Mobilization Session Details</string>
