@@ -239,7 +239,7 @@ dependencies {
 
     }
 
-    implementation('org.smartregister:opensrp-client-chw-referral:1.3.14-NACP-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-referral:1.3.14-NACP-SNAPSHOT-I@aar') {
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
