@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import org.json.JSONObject;
 import org.smartregister.chw.BuildConfig;
-import org.smartregister.chw.activity.FamilyPlanningMemberProfileActivity;
+import org.smartregister.chw.activity.FPMemberProfileActivity;
 import org.smartregister.chw.activity.ReferralRegistrationActivity;
 import org.smartregister.chw.contract.FamilyPlanningMemberProfileContract;
 import org.smartregister.chw.core.presenter.CoreFamilyPlanningProfilePresenter;
@@ -32,7 +32,7 @@ public class FamilyPlanningMemberProfilePresenter extends CoreFamilyPlanningProf
 
     @Override
     public void referToFacility() {
-        referralTypeModels = ((FamilyPlanningMemberProfileActivity) getView()).getReferralTypeModels();
+        referralTypeModels = ((FPMemberProfileActivity) getView()).getReferralTypeModels();
         if (referralTypeModels.size() == 1) {
             startFamilyPlanningReferral();
         } else {

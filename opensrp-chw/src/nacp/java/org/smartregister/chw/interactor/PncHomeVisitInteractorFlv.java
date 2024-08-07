@@ -142,6 +142,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 //                evaluateDangerSignsBaby(baby);
                 evaluateOtherActionForBaby(baby);
             }
+
         }
     }
 

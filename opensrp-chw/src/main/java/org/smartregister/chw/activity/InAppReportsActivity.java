@@ -32,6 +32,8 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
 
     protected ConstraintLayout iccmReports;
 
+    protected ConstraintLayout sbcReports;
+
     @Override
     protected void onCreation() {
         ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
@@ -52,6 +54,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         condomDistributionReports = findViewById(R.id.cdp_reports);
         agywReports = findViewById(R.id.agyw_reports);
         iccmReports = findViewById(R.id.iccm_reports);
+        sbcReports = findViewById(R.id.sbc_reports);
 
         if (ChwApplication.getApplicationFlavor().hasHIV()) {
             cbhsReportsLayout.setVisibility(View.VISIBLE);
@@ -69,6 +72,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
             iccmReports.setVisibility(View.VISIBLE);
         }
 
+        if (ChwApplication.getApplicationFlavor().hasSbc()) {
+            sbcReports.setVisibility(View.VISIBLE);
+        }
+
         if (ChwApplication.getApplicationFlavor().hasCdp()) {
             condomDistributionReports.setVisibility(View.VISIBLE);
         }
@@ -77,6 +84,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         cbhsReportsLayout.setOnClickListener(this);
         agywReports.setOnClickListener(this);
         iccmReports.setOnClickListener(this);
+        sbcReports.setOnClickListener(this);
     }
 
     public void setUpToolbar() {
@@ -125,6 +133,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         }
         if (id == R.id.iccm_reports) {
             Intent intent = new Intent(this, IccmReportsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.sbc_reports) {
+            Intent intent = new Intent(this, SbcReportsActivity.class);
             startActivity(intent);
         }
     }

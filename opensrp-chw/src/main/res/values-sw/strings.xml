@@ -598,14 +598,17 @@
     <string name="kvp_friendly_services">Huduma rafiki kwa makundi maalum</string>
     <string name="sti_referral">Magonjwa ya ngono</string>
     <string name="view_visit_history">Angalia Tembeleo Lililopita</string>
-    <string name="kvp_discordant_couples">Mwenza mwenye majibu kinzani</string>
 
     <string name="child_danger_signs_baby">Dalili za hatari</string>
     <string name="child_danger_signs_baby_task">Dalili za hatari </string>
 
+    <string name="kvp_discordant_couples">Mwenza mwenye majibu kinzani</string>
+
+
     <string name="menu_iccm">iCCM</string>
     <string name="visit_in_progress">Hudhurio la %s linaendelea</string>
     <string name="iccm_referral">Rufaa ya huduma za iCCM</string>
+
 
     <string name="iccm_medical_history">Historia ya Ugonjwa</string>
     <string name="iccm_physical_examination">Uchunguzi wa mwili</string>
@@ -624,4 +627,6 @@
     <string name="child_hv_complementary_feeding"> Ushauri kuhusu kumlisha mtoto vyakula vya nyongeza </string>
     <string name="child_hv_complementary_feeding_after_24_month">Lishe</string>
     <string name="child_hv_breastfeeding">Ananyonyeshwa maziwa ya mama</string>
+    <string name="map_cue">Alama ya eneo la makazi</string>
+    <string name="street_name">Jina la mtaa au Kitongoji</string>
 </resources>

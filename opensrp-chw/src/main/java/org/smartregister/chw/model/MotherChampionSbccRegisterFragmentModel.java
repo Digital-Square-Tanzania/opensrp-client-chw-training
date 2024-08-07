@@ -9,7 +9,7 @@ import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SbccRegisterFragmentModel extends BasePmtctRegisterFragmentModel {
+public class MotherChampionSbccRegisterFragmentModel extends BasePmtctRegisterFragmentModel {
 
     @NonNull
     @Override

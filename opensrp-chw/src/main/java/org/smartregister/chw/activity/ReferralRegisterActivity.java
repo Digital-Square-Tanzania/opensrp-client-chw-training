@@ -73,10 +73,12 @@ public class ReferralRegisterActivity extends BaseReferralRegisterActivity imple
     protected void registerBottomNavigation() {
         bottomNavigationHelper = new BottomNavigationHelper();
         bottomNavigationView = findViewById(org.smartregister.R.id.bottom_navigation);
-        bottomNavigationView.getMenu().clear();
 
-        bottomNavigationView.inflateMenu(R.menu.referrals_bottom_nav_menu);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        if (bottomNavigationView != null) {
+            bottomNavigationView.getMenu().clear();
+            bottomNavigationView.inflateMenu(R.menu.referrals_bottom_nav_menu);
+            bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        }
     }
 
     @Override
