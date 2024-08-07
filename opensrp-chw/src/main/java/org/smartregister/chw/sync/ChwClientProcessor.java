@@ -1,6 +1,8 @@
 package org.smartregister.chw.sync;
 
 
+import static org.smartregister.chw.hivst.util.Constants.EVENT_TYPE.HIVST_MOBILIZATION;
+
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +11,7 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.sync.CoreClientProcessor;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.chw.service.ChildAlertService;
 import org.smartregister.chw.util.Constants;
@@ -78,7 +81,13 @@ public class ChwClientProcessor extends CoreClientProcessor {
                 case Constants.Events.AGYW_BEHAVIORAL_SERVICES:
                 case Constants.Events.AGYW_BIO_MEDICAL_SERVICES:
                 case Constants.Events.KVP_PREP_FOLLOWUP_VISIT:
+                case Constants.Events.MOTHER_CHAMPION_SBCC_SESSIONS:
+                case HIVST_MOBILIZATION:
                 case org.smartregister.chw.malaria.util.Constants.EVENT_TYPE.ICCM_SERVICES_VISIT:
+                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
+                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_HEALTH_EDUCATION_MOBILIZATION:
+                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_MONTHLY_SOCIAL_MEDIA_REPORT:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_CBD_FOLLOW_UP_VISIT:
                     if (eventClient.getEvent() == null) {
                         return;
                     }

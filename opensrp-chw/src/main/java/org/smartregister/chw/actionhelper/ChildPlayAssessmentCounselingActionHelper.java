@@ -33,7 +33,9 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     private String jsonString;
 
-    private String spend_time_with;
+    private String demonstrate_play_child;
+
+    private String play_with_child;
 
     public ChildPlayAssessmentCounselingActionHelper(Context context, String visitId, ServiceWrapper serviceWrapper) {
         this.context = context;
@@ -45,7 +47,8 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            spend_time_with = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "spend_time_with");
+            demonstrate_play_child = JsonFormUtils.getValue(jsonObject, "demonstrate_play_child");
+            play_with_child = JsonFormUtils.getValue(jsonObject, "play_with_child");
         } catch (JSONException e) {
             Timber.e(e);
         }
@@ -61,7 +64,7 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray fields = JsonFormUtils.fields(jsonObject);
-            populateVisitNumber();
+//            populateVisitNumber();
             for (Map.Entry<String, Boolean> entry : visitNumberMap.entrySet()) {
                 if (entry.getValue()) {
                     JsonFormUtils.getFieldJSONObject(fields, entry.getKey()).put("value", "true");
@@ -92,30 +95,28 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(spend_time_with)) {
-            return BaseAncHomeVisitAction.Status.PENDING;
+        if (!StringUtils.isBlank(play_with_child) || !StringUtils.isBlank(demonstrate_play_child)) {
+            if (visitNumber() <= 5) {
+                if (demonstrate_play_child.contains("chk_move_baby_arms_legs") || demonstrate_play_child.contains("chk_baby_attention_shaker_toy")) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+                }
+            } else {
+                if (play_with_child.equalsIgnoreCase("Yes")) {
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                } else {
+                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+                }
+            }
         } else {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+            return BaseAncHomeVisitAction.Status.PENDING;
         }
     }
 
     private void populateVisitNumber() {
         int visitNumber = visitNumber();
-        if (visitNumber == 2 || visitNumber == 1) {
-            visitNumberMap.put("visit_2_visit_25", true);
-        } else if (visitNumber >= 3 && visitNumber <= 16) {
-            visitNumberMap.put("visit_3_visit_16", true);
-            visitNumberMap.put("visit_3_visit_17", true);
-            visitNumberMap.put("visit_2_visit_25", true);
-            visitNumberMap.put("visit_3_visit_25", true);
-        } else if (visitNumber == 17) {
-            visitNumberMap.put("visit_3_visit_17", true);
-            visitNumberMap.put("visit_2_visit_25", true);
-            visitNumberMap.put("visit_3_visit_25", true);
-            visitNumberMap.put("visit_17_visit_25", true);
-        } else if (visitNumber > 17 && visitNumber <= 25) {
-            visitNumberMap.put("visit_2_visit_25", true);
-            visitNumberMap.put("visit_3_visit_25", true);
+        if (visitNumber >= 17 && visitNumber <= 25) {
             visitNumberMap.put("visit_17_visit_25", true);
         }
     }
@@ -175,7 +176,6 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
         bangoKititaPages.put(13, String.format(context.getString(R.string.bango_kitita_two_pages), "34", "35"));
         bangoKititaPages.put(14, String.format(context.getString(R.string.bango_kitita_two_pages), "37", "38"));
         bangoKititaPages.put(15, String.format(context.getString(R.string.bango_kitita_two_pages), "40", "41"));
-
         String page42 = String.format(context.getString(R.string.bango_kitita_one_page), "42");
         for (int i = 16; i <= 19; i++) {
             bangoKititaPages.put(i, page42);
@@ -185,7 +185,6 @@ public class ChildPlayAssessmentCounselingActionHelper extends HomeVisitActionHe
         for (int i = 20; i <= 25; i++) {
             bangoKititaPages.put(i, page43);
         }
-
         String pages = bangoKititaPages.get(visitNumber);
         return (pages != null) ? pages : "";
     }

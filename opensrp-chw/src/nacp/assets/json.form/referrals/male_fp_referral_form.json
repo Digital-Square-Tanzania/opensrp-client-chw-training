@@ -3,7 +3,7 @@
   "encounter_type": "Family Planning Referral",
   "entity_id": "",
   "relational_id": "",
-  "rules_file": "rule/family_planning_referral_rules.yml",
+  "rules_file": "rule/sti_referral_form_rules.yml",
   "metadata": {
     "start": {
       "openmrs_entity_parent": "",
@@ -57,66 +57,55 @@
       "title": "Family Planning Referral",
       "fields": [
         {
-          "name": "fp_method_accepted_referral",
-          "type": "radio_group",
-          "meta_data": {
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": ""
-          },
+          "name": "problem",
+          "type": "multi_choice_checkbox",
           "properties": {
-            "text": "FP method chosen requiring a referral"
+            "text": "Reasons for Referral"
+          },
+          "meta_data": {
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "problem"
           },
           "options": [
             {
-              "name": "Male_condom",
+              "name": "side_effects",
+              "text": "Side Effects",
               "meta_data": {
                 "openmrs_entity": "",
-                "openmrs_entity_id": "164813AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "openmrs_entity_id": "side_effects",
                 "openmrs_entity_parent": ""
-              },
-              "text": "Male condom"
+              }
             },
             {
-              "name": "Female_condom",
+              "name": "complications",
+              "text": "Complications",
               "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "164814AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "complications",
                 "openmrs_entity_parent": ""
-              },
-              "text": "Female condom"
+              }
             },
             {
-              "name": "Male_sterilization",
+              "name": "discontinuation",
+              "text": "Discontinuation of FP Method",
               "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "1489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "discontinuation",
                 "openmrs_entity_parent": ""
-              },
-              "text": "Male sterilization"
+              }
             },
             {
-              "name": "None",
-              "is_exclusive": true,
+              "name": "other",
+              "text": "Others (Specify)",
               "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "164369AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": "other",
                 "openmrs_entity_parent": ""
-              },
-              "text": "None"
-            },
-            {
-              "name": "Not_applicable",
-              "is_exclusive": true,
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "1175AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              },
-              "text": "Not applicable"
+              }
             }
           ],
-          "required_status": "yes:Please select a family planning method",
+          "required_status": "yes:Please specify reason for FP services referral",
           "dependent_calculations": [
             "referral_date",
             "referral_time",
@@ -125,96 +114,19 @@
           ]
         },
         {
-          "name": "side_effects_sterilization",
-          "type": "multi_choice_checkbox",
-          "meta_data": {
-            "openmrs_entity": "side_effects_sterilization",
-            "openmrs_entity_id": "",
-            "openmrs_entity_parent": ""
-          },
-          "properties": {
-            "text": "Family planning side-effects"
-          },
-          "options": [
-            {
-              "name": "Incisional_bleeding",
-              "text": "Incisional bleeding",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "147241AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
-              "name": "Pus_Discharge_from_incision",
-              "text": "Pus/Discharge from incision",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "164495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
-              "name": "Swollen_around_the_incision",
-              "text": "Swollen around the incision",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "159012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
-              "name": "Others",
-              "text": "Others",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              }
-            },
-            {
-              "name": "None",
-              "text": "None",
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "164369AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              },
-              "is_exclusive": true
-            },
-            {
-              "name": "Not_applicable",
-              "text": "Not applicable",
-              "is_exclusive": true,
-              "meta_data": {
-                "openmrs_entity": "",
-                "openmrs_entity_id": "1175AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "openmrs_entity_parent": ""
-              }
-            }
-          ],
-          "dependent_calculations": [
-            "problem"
-          ],
-          "required_status": "yes:Family planning side-effects is required",
-          "subjects": "fp_method_accepted_referral:map"
-        },
-        {
           "name": "problem_other",
           "type": "text_input_edit_text",
+          "properties": {
+            "hint": "Other reasons",
+            "type": "name"
+          },
           "meta_data": {
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": ""
+            "openmrs_entity_id": "problem_other",
+            "openmrs_entity_parent": "problem"
           },
-          "properties": {
-            "hint": "Other side effects"
-          },
-          "required_status": "yes:Please specify other side effects",
-          "dependent_calculations": [
-            "problem"
-          ],
-          "subjects": "side_effects_sterilization:map"
+          "required_status": "true:Please specify other reasons",
+          "subjects": "problem:map"
         },
         {
           "name": "chw_referral_hf",

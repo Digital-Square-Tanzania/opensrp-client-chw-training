@@ -2,6 +2,7 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -53,23 +54,23 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
     public String evaluateSubTitle() {
         if (growthMonitoringSelectedKey.isEmpty()) return "";
 
-        if (palmPallorKey.contains("no") || palmPallorKey.contains("hapana")) {
+        if (palmPallorKey.equalsIgnoreCase("no") || palmPallorKey.equalsIgnoreCase("hapana")) {
             palmPallorValue = context.getString(R.string.no);
         }
 
-        if (palmPallorKey.contains("yes") || palmPallorKey.contains("ndio")) {
+        if (palmPallorKey.equalsIgnoreCase("yes") || palmPallorKey.equalsIgnoreCase("ndio")) {
             palmPallorValue = context.getString(R.string.yes);
         }
 
-        if (childGrowthMuacKey.contains("Red")) {
+        if (childGrowthMuacKey.equalsIgnoreCase("Red")) {
             childGrowthMuacValue = context.getString(R.string.palm_pallor_red);
         }
 
-        if (childGrowthMuacKey.contains("Green")) {
+        if (childGrowthMuacKey.equalsIgnoreCase("Green")) {
             childGrowthMuacValue = context.getString(R.string.palm_pallor_green);
         }
 
-        if (childGrowthMuacKey.contains("Yellow")) {
+        if (childGrowthMuacKey.equalsIgnoreCase("Yellow")) {
             childGrowthMuacValue = context.getString(R.string.palm_pallor_yellow);
         }
 
@@ -78,13 +79,14 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-
-        if (growthMonitoringSelectedKey.isEmpty() || palmPallorKey.isEmpty()) {
+        if (StringUtils.isBlank(childGrowthMuacKey) || StringUtils.isBlank(palmPallorKey)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        } else if (childGrowthMuacKey.contains("Red") && palmPallorKey.contains("palm_pallor_yes")) {
-            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        } else {
+        }
+
+        if (childGrowthMuacKey.equalsIgnoreCase("Green") && palmPallorKey.equalsIgnoreCase("no")) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
     }
 }

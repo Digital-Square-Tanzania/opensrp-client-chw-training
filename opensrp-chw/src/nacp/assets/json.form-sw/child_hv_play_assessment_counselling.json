@@ -50,35 +50,7 @@
     "title": "Tathmini maendeleo ya michezo na kufanya majadiliano",
     "fields": [
       {
-        "key": "visit_3_visit_16",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
-        "key": "visit_3_visit_17",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
         "key": "visit_17_visit_25",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
-        "key": "visit_2_visit_25",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "hidden"
-      },
-      {
-        "key": "visit_3_visit_25",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
@@ -152,13 +124,6 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali chagua angalau moja"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -294,14 +259,14 @@
         }
       },
       {
-        "key": "challenges_child_communication",
+        "key": "prepare_play_materials",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "challenges_child_communication",
+        "openmrs_entity_id": "prepare_play_materials",
         "type": "spinner",
-        "hint": "Kunachangamoto yoyote uliopata wakati wa kucheza na kuwasiliana na mtoto?",
+        "hint": "Taarifa kwa MJA :Uliza hili swali tu kama hii ni mara ya pili au zaidi kutembelea hii kaya \nJe, umetengeneza vifaa vya michezo tulivyokubaliana tembeleo lililopita?naomba nionyeshe ulivyovitumia kucheza na mwanao?",
         "values": [
-          "Ndiyo",
+          "Ndio",
           "Hapana"
         ],
         "keys": [
@@ -311,17 +276,6 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali chagua chaguo moja"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -330,9 +284,9 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "lesson_learned_previously",
         "type": "spinner",
-        "hint": "Ulitoa mrejesho wa tulijojifunza kipindi kilichopita kwa wanakaya wengine ?",
+        "hint": "Taarifa kwa MJA :Uliza hili swali tu kama hii ni mara ya pili au zaidi kutembelea hii kaya\nJe Ulitoa mrejesho wa tulijojifunza kipindi kilichopita kwa wanakaya wengine ?",
         "values": [
-          "Ndiyo",
+          "Ndio",
           "Hapana"
         ],
         "keys": [
@@ -342,17 +296,6 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali chagua chaguo moja"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -362,14 +305,7 @@
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "toaster_type": "warning",
-        "text": "Taarifa za Mja :Fuatilia endapo kulikuwa na changamoto yoyote ya ulinzi na usalama mliyokubaliana kama imetekelezwa kama bado saidia kupata ufumbuzi au kwenda mamlaka husika mf ofisi ya kata",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
+        "text": "<i><b>Taarifa kwa MJA</b> </i> :Fuatilia endapo kulikuwa na changamoto yoyote ya ulinzi na usalama mliyokubaliana kama imetekelezwa kama bado saidia kupata ufumbuzi au kwenda mamlaka husika mf ofisi ya kata"
       },
       {
         "key": "spacer",
@@ -386,9 +322,9 @@
         "openmrs_entity_id": "play_with_child",
         "type": "spinner",
         "hint": "Taarifa kwa MJA: Uliza \" Je! huwa unacheza na mwanao?",
-        "label_info_text": "Taarifa za MJA: Muombe mama/baba au mlezi acheze na mtoto wake. Lengo ni kuangalia jinsi mama/baba au mlezi anavyocheza na kuhusiana na mtoto wake kwenye mazingira ya kawaida. \nSema, “Sasa ningependa utumie dakika kadhaa kucheza na mtoto wako. Hii inaweza kujumuisha  aina yoyote ya mchezo. Unaweza kucheza na mtoto wako kwa njia yoyote ambayo ni ya kawaida kwako.\n\nTaarifa za MJA: Wakati mama anacheza na mtoto wake, usimuangalie moja kwa moja mama/baba/mlezi na/au mtoto. Angalia katika mwelekeo tofauti ili wasisumbuliwe na wewe lakini jaribu kuchunguza jinsi wanavyohusiana. Mjulishe mama/mlezi au baba kwamba utakuwa unafanya  jambo lingine wakati huo huo (kwa mfano, kuangalia karatasi).",
+        "label_info_text": "Taarifa kwa MJA: Muombe mama/baba au mlezi acheze na mtoto wake. Lengo ni kuangalia jinsi mama/baba au mlezi anavyocheza na kuhusiana na mtoto wake kwenye mazingira ya kawaida. \nSema, “Sasa ningependa utumie dakika kadhaa kucheza na mtoto wako. Hii inaweza kujumuisha  aina yoyote ya mchezo. Unaweza kucheza na mtoto wako kwa njia yoyote ambayo ni ya kawaida kwako.\n\nTaarifa kwa MJA: Wakati mama anacheza na mtoto wake, usimuangalie moja kwa moja mama/baba/mlezi na/au mtoto. Angalia katika mwelekeo tofauti ili wasisumbuliwe na wewe lakini jaribu kuchunguza jinsi wanavyohusiana. Mjulishe mama/mlezi au baba kwamba utakuwa unafanya  jambo lingine wakati huo huo (kwa mfano, kuangalia karatasi).",
         "values": [
-          "Ndiyo",
+          "Ndio",
           "Hapana"
         ],
         "keys": [
@@ -402,13 +338,6 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali chagua chaguo moja"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -417,9 +346,12 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "demonstrate_play_child",
         "type": "check_box",
-        "label": "Taarifa za MJA: Angalia jinsi mama/baba au mlezi anavyocheza na mtoto kisha uchague yote yaliyojiri:",
+        "label": "Taarifa kwa MJA: Angalia jinsi mama/baba au mlezi anavyocheza na mtoto kisha uchague yote yaliyojiri:",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_play_with_baby", ["chk_child_sleep"]
+        ],
         "options": [
           {
             "key": "chk_move_baby_arms_legs",
@@ -434,6 +366,12 @@
             "openmrs_entity_id": "chk_baby_attention_shaker_toy"
           },
           {
+            "key": "chk_play_with_baby",
+            "text": "Hachezi na mtoto",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_play_with_baby"
+          },
+          {
             "key": "chk_child_sleep",
             "text": "Mtoto amelala",
             "openmrs_entity": "concept",
@@ -443,6 +381,30 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali chagua angalau moja"
+        }
+      },
+      {
+        "key": "challenges_child_communication",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "challenges_child_communication",
+        "type": "spinner",
+        "hint": "Kunachangamoto yoyote uliopata wakati wa kucheza na kuwasiliana na mtoto?",
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "Yes",
+          "No": "No"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua chaguo moja"
         },
         "relevance": {
           "rules-engine": {
@@ -488,11 +450,9 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "label",
-        "text": "Taarifa za MJA: Sema, \"Kucheza na mtoto ni muhimu ili kusaidia katika ukuaji bora. Mtoto ambaye hana fursa ya kucheza, na kujifunza mambo mapya anaweza asifikie hatua zake zote za ukuaji. Ni muhimu kuhakikisha mtoto  anapata fursa nyingi za kucheza, kujifunza mambo mapya na kuiga vile ambavyo wengine wanafanya. Kwa mfano, wanapotikisa chekeche wanajifunza sauti inayotoka na wanajifunza kucheza na chekeche\".",
-        "text_color": "#2D2E2D",
-        "label_text_style": "italic",
-        "has_bg": true,
+        "text": "<i><b>Taarifa kwa MJA: Sema,</b> </i> \"Kucheza na mtoto ni muhimu ili kusaidia katika ukuaji bora. Mtoto ambaye hana fursa ya kucheza, na kujifunza mambo mapya anaweza asifikie hatua zake zote za ukuaji. Ni muhimu kuhakikisha mtoto  anapata fursa nyingi za kucheza, kujifunza mambo mapya na kuiga vile ambavyo wengine wanafanya.\".",
+        "type": "toaster_notes",
+        "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -514,18 +474,9 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "label",
-        "text": "Taarifa za MJA: Umefikia hatua ambayo utajadiliana na mama/baba au walezi juu ya shughuli za michezo zinazoendana na umri. Shughuli hizi kawaida zinahitaji ushirikiano wa moja kwa moja kati yako na mama/baba au mlezi. \nMuelekeze mama/baba au mlezi kufanya michezo na mawasiliano na mtoto wakati unaangalia. \nKumbuka wewe hautakiwi kucheza na mtoto",
-        "text_color": "#2D2E2D",
-        "label_text_style": "italic",
-        "has_bg": true,
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
+        "type": "toaster_notes",
+        "text": "<i><b>Taarifa kwa MJA:</b> </i> Umefikia hatua ambayo utajadiliana na mama/baba au walezi juu ya shughuli za michezo zinazoendana na umri. Shughuli hizi kawaida zinahitaji ushirikiano wa moja kwa moja kati yako na mama/baba au mlezi. \nMuelekeze mama/baba au mlezi kufanya michezo na mawasiliano na mtoto wakati unaangalia. \nKumbuka wewe hautakiwi kucheza na mtoto",
+        "toaster_type": "info"
       },
       {
         "key": "spacer",
@@ -541,18 +492,11 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
-        "text": "Taarifa za MJA: Sema, \"Sasa tutajadili kwa vitendo baadhi ya michezo mipya. Michezo hii itamsaidia mtoto wako kujifunza kupitia kuona, kusikia, kugusa, kusogea, kufikiri au kuhisi\".\nTaarifa za MJA: Rejea katika Bango Kitita la Malezi na uchague mchezo kulingana na umri wa mtoto",
+        "text": "Taarifa kwa MJA: Sema,\"Sasa tutajadili kwa vitendo baadhi ya michezo mipya. Michezo hii itamsaidia mtoto wako kujifunza kupitia kuona, kusikia, kugusa, kusogea, kufikiri au kuhisi\".Taarifa kwa MJA: Rejea katika Bango Kitita la Malezi na uchague mchezo kulingana na umri wa mtoto",
         "text_color": "#2D2E2D",
         "label_info_text": "• Iwapo mtoto hawezi kufanya mchezo, chagua katika kundi la umri mdogo au pendekeza njia za kurahisisha mchezo. \n• Ikiwa mtoto anaweza kufanya mchezo wa umri wake kwa urahisi, pendekeza njia za kufanya mchezo kuwa mgumu zaidi au uchague mchezo kwa mwenye umri mkubwa kidogo \n• Mhimize mlezi kuendelea kujihusisha na michezo hata wa kila siku ",
         "label_text_style": "italic",
-        "has_bg": true,
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
+        "has_bg": true
       },
       {
         "key": "bango_kitita_reference_skip_logic",

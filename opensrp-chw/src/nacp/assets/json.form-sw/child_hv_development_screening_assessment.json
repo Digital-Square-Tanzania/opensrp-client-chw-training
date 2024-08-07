@@ -178,6 +178,15 @@
             }
           }
         }
+      },
+      {
+        "key": "clinic_card_reference",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "<i><b>Taarifa kwa MJA: Sema,</b></i> Mama Kumbuka kurejea kitabu cha Afya ya mtoto (kadi ya kliniki) ukurasa namba <b>30, 31, 32, na 33 </b>kwa taarifa zaidi (zingatia umri wa mtoto)"
       }
     ]
   }

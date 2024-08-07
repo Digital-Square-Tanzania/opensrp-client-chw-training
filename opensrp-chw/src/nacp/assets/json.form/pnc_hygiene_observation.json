@@ -104,17 +104,18 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "defecation_location",
-        "type": "edit_text",
-        "label_info_title": "Hygiene Information",
-        "hint": "Where does your child defecate?"
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "Where does your child defecate?"
       },
       {
         "key": "feces_disposal",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "feces_disposal",
-        "type": "edit_text",
-        "hint": "Where do you dispose your child feces?"
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "Where do you dispose your child feces?"
       },
       {
         "key": "is_latrine_present",

@@ -104,16 +104,18 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "defecation_location",
-        "type": "edit_text",
-        "hint": "Mtoto wako anajisaidia wapi?"
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "Mtoto wako anajisaidia wapi?"
       },
       {
         "key": "feces_disposal",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "feces_disposal",
-        "type": "edit_text",
-        "hint": "Unatupa kinyesi cha mtoto wako wapi? (Mpe mama nafasi ya kujibu)"
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "Unatupa kinyesi cha mtoto wako wapi? (Mpe mama nafasi ya kujibu)"
       },
       {
         "key": "is_latrine_present",

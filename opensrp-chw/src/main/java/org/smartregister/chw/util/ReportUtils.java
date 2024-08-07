@@ -2,7 +2,6 @@ package org.smartregister.chw.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
@@ -10,6 +9,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import androidx.annotation.RequiresApi;
+import androidx.webkit.WebViewAssetLoader;
+
 import androidx.webkit.WebViewAssetLoader;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,7 @@ import org.smartregister.chw.domain.iccm_reports.IccmClientsReportObject;
 import org.smartregister.chw.domain.iccm_reports.IccmDispensingSummaryReportObject;
 import org.smartregister.chw.domain.iccm_reports.MalariaTestReportObject;
 import org.smartregister.chw.domain.mother_champion_report.MotherChampionReportObject;
+import org.smartregister.chw.domain.sbc_reports.SbcReportObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,7 +92,6 @@ public class ReportUtils {
         ReportUtils.reportPeriod = reportPeriod;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void printTheWebPage(WebView webView, Context context) {
 
         // Creating  PrintManager instance
@@ -207,6 +208,19 @@ public class ReportUtils {
             MalariaTestReportObject malariaTestReportObject = new MalariaTestReportObject(startDate);
             try {
                 return malariaTestReportObject.getIndicatorDataAsGson(malariaTestReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
+
+    public static class SbcReports {
+        public static String computeClientsReports(Date startDate) {
+            SbcReportObject sbcReportObject = new SbcReportObject(startDate);
+            try {
+                return sbcReportObject.getIndicatorDataAsGson(sbcReportObject.getIndicatorData());
             } catch (JSONException e) {
                 Timber.e(e);
             }

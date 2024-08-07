@@ -2,6 +2,8 @@ package org.smartregister.chw.util;
 
 import static org.smartregister.chw.util.FnInterfaces.KeyValue;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.view.Menu;
 import android.widget.DatePicker;
@@ -27,6 +29,7 @@ import org.smartregister.util.Utils;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import timber.log.Timber;
 
@@ -66,10 +69,10 @@ public class UtilsFlv {
     }
 
     public static void updateFpMenuItems(String baseEntityId, Menu menu) {
-        if (FpDao.isRegisteredForFp(baseEntityId)) {
-            menu.findItem(R.id.action_fp_change).setVisible(true);
-        } else {
+        if (!FpDao.isRegisteredForFp(baseEntityId)) {
             menu.findItem(R.id.action_fp_initiation).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_fp_initiation).setVisible(false);
         }
     }
 
@@ -146,7 +149,7 @@ public class UtilsFlv {
         return ex(()->jsonGet(new JSONObject(json),path));
     }
 
-    public static KeyValue<String> getFieldKeyValuePair(JSONObject field){
+    public static KeyValue<String,String> getFieldKeyValuePair(JSONObject field){
         return new KeyValue<>(
                 field.optString(JsonFormConstants.KEY),
                 field.optString(JsonFormConstants.VALUE));
@@ -168,5 +171,19 @@ public class UtilsFlv {
             return true; }
         catch (ParseException e) { return false; }
     }
-
+    public static String getEnglishString(Context context, int stringResId) {
+        // Save the current configuration
+        Configuration configuration = context.getResources().getConfiguration();
+        Locale savedLocale = configuration.locale;
+        // Set locale to the default (assumed to be English here)
+        configuration.setLocale(Locale.ENGLISH);
+        // Get a new context with the updated configuration
+        Context defaultContext = context.createConfigurationContext(configuration);
+        // Get the string from the default resources
+        String defaultString = defaultContext.getResources().getString(stringResId);
+        // Restore the original configuration
+        configuration.setLocale(savedLocale);
+        context.createConfigurationContext(configuration);
+        return defaultString;
+    }
 }

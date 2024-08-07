@@ -6,8 +6,8 @@ condition: "step1_spend_time_with.contains('chk_other_person')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_demonstrate_play_child
-description: Demonstrate play child
+name: step1_challenges_child_communication
+description: Play with child challenge
 priority: 1
 condition: "step1_play_with_child == 'Yes'"
 actions:
@@ -108,5 +108,12 @@ name: step1_spacer_bango_kitita
 description: Spacer bango kitita
 priority: 1
 condition: "step1_bango_kitita_reference_skip_logic == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_importance_of_child_play
+description: Interacts with child note
+priority: 1
+condition: "step1_demonstrate_play_child.contains('chk_play_with_baby')"
 actions:
   - "isRelevant = true"
