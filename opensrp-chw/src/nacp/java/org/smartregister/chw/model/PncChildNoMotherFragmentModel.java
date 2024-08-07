@@ -17,6 +17,7 @@ public class PncChildNoMotherFragmentModel extends PncRegisterFragmentModel {
         Set<String> columnList = new HashSet<>();
 
         columnList.add(tableName + "." + DBConstants.KEY.BASE_ENTITY_ID);
+        columnList.add(CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.DOB + " as " + ChwDBConstants.DELIVERY_DATE);
         columnList.add(tableName + "." + "other_caregiver_name");
         columnList.add(CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.RELATIONAL_ID + " as " + ChildDBConstants.KEY.RELATIONAL_ID);
         columnList.add(CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.FIRST_NAME);
@@ -48,6 +49,7 @@ public class PncChildNoMotherFragmentModel extends PncRegisterFragmentModel {
         //This children are moved to No Mother Children Register for continuation of PNC Visits
         return queryBuilder.mainCondition(mainCondition) + " UNION Select \n" +
                 "ec_pregnancy_outcome.id as _id , \n" +
+                "ec_family_member.dob as delivery_date , \n" +
                 "childFamilyMember.middle_name , \n" +
                 "childFamilyMember.first_name , \n" +
                 "childFamilyMember.gender , \n" +
