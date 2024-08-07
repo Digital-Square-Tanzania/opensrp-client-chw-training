@@ -168,7 +168,23 @@
         "v_required": {
           "value": "true",
           "err": "Please select one option"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
+      },
+      {
+        "key": "practice_play_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "CHW Information: Ask the following question only if this is the second visit or more."
       },
       {
         "key": "practice_play",
@@ -176,7 +192,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "practice_play",
         "type": "spinner",
-        "hint": "CHW information: Ask this question only if this is the second visit or moreAsk this question only if this is the second visit or more \n Did you practice the activities we discussed on the previous visit?",
+        "hint": "Did you practice the activities we discussed on the previous visit?",
         "values": [
           "Yes",
           "No"
@@ -188,10 +204,62 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
         }
       },
       {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "prepare_play_materials_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "CHW Information: Ask the following question only if this is the second visit or more."
+      },
+      {
         "key": "prepare_play_materials",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prepare_play_materials",
+        "type": "spinner",
+        "hint": "Did you prepare the play materials that we had agreed on from the previous visit? Can you show me how you play with your child?",
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "Yes",
+          "No": "No"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select one option"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "challenges_child_communication",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prepare_play_materials",
