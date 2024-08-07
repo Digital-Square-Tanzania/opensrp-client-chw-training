@@ -3,6 +3,7 @@ package org.smartregister.chw.interactor;
 import static org.smartregister.chw.anc.AncLibrary.getInstance;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
@@ -55,6 +56,7 @@ import org.smartregister.chw.pnc.PncLibrary;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.PNCVisitUtil;
+import org.smartregister.chw.util.UtilsFlv;
 import org.smartregister.immunization.domain.VaccineWrapper;
 import org.smartregister.util.DateUtil;
 import org.smartregister.util.JsonFormUtils;
@@ -897,12 +899,15 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     details = VisitUtils.getVisitGroups(getVisitDetailsRepository().getVisits(lastVisit.getVisitId()));
                 }
 
+                String key = UtilsFlv.getEnglishString(context, R.string.pnc_immunization_at_birth);
+                int start = key.indexOf("(");
+                key = key.substring(start + 1, key.indexOf(")", start));
                 BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, MessageFormat.format(context.getString(R.string.pnc_immunization_at_birth), baby.getFullName()))
                         .withOptional(false)
                         .withDetails(details)
                         .withBaseEntityID(baby.getBaseEntityID())
                         .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
-                        .withDestinationFragment(BaseHomeVisitImmunizationFragmentFlv.getInstance(view, baby.getBaseEntityID(), details, displays, false))
+                        .withDestinationFragment(BaseHomeVisitImmunizationFragmentFlv.getInstance(view, baby.getBaseEntityID(), details, displays, false, key))
                         .withHelper(new ImmunizationActionHelper(context, wrappers))
                         .build();
                 actionList.put(MessageFormat.format(context.getString(R.string.pnc_immunization_at_birth), baby.getFullName()), action);
@@ -1120,6 +1125,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     .withHelper(new ChildNewBornCareIntroductionActionHelper(context, visitID))
                     .build();
             actionList.put(MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()), action);
+            otherActionTitles.add(MessageFormat.format(context.getString(R.string.pnc_newborn_care_introduction), baby.getFullName()));
         }
     }
 
@@ -1134,6 +1140,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(new ChildDevelopmentScreeningActionHelper(visitID, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), "(" + baby.getFullName() + ")"), action);
+        otherActionTitles.add(MessageFormat.format(context.getString(R.string.pnc_child_development_screening_assessment), "(" + baby.getFullName() + ")"));
     }
 
     private void evaluatePlayAssessmentCounseling(Person baby) throws Exception {
@@ -1147,6 +1154,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(new ChildPlayAssessmentCounselingActionHelper(context, visitID, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "(" + baby.getFullName() + ")"), action);
+        otherActionTitles.add(MessageFormat.format(context.getString(R.string.pnc_child_play_assessment_counselling), "(" + baby.getFullName() + ")"));
     }
 
     private void evaluateCCDCommunicationAssessment(Person baby) throws Exception {
@@ -1160,6 +1168,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(new ChildCommunicationAssessmentCounselingActionHelper(getChildAgeInMonth(baby.getDob()), context, visitID, null))
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), "(" + baby.getFullName() + ")"), action);
+        otherActionTitles.add(MessageFormat.format(context.getString(R.string.pnc_child_communication_assessment), "(" + baby.getFullName() + ")"));
     }
 
     protected void evaluateCareGiverResponsiveness(Person baby) throws BaseAncHomeVisitAction.ValidationException {
@@ -1183,6 +1192,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withFormName(Constants.JsonForm.getChildHvCcdCareGiverResponsiveness())
                 .build();
         actionList.put(MessageFormat.format(title, "(" + baby.getFullName() + ")"), action);
+        otherActionTitles.add(MessageFormat.format(title, "(" + baby.getFullName() + ")"));
     }
 
     private void evaluateProblemSolving(Person baby) throws Exception {
@@ -1195,6 +1205,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(new ChildHVProblemSolvingHelper())
                 .build();
         actionList.put(MessageFormat.format(context.getString(R.string.child_problem_solving), "(" + baby.getFullName() + ")"), action);
+        otherActionTitles.add(MessageFormat.format(context.getString(R.string.child_problem_solving), "(" + baby.getFullName() + ")"));
     }
 
     private void evaluateChildSafety(Person baby) throws Exception {
@@ -1210,6 +1221,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(childHVChildSafetyActionHelper)
                 .build();
         actionList.put(MessageFormat.format(title, "(" + baby.getFullName() + ")"), childSafetyAction);
+        otherActionTitles.add(MessageFormat.format(title, "(" + baby.getFullName() + ")"));
     }
 
 
@@ -1278,6 +1290,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                         .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                         .build();
                 actionList.put(MessageFormat.format(title, "(" + baby.getFullName() + ")"), childPmtctAction);
+                otherActionTitles.add(MessageFormat.format(title, "(" + baby.getFullName() + ")"));
             }
         }
     }
@@ -1298,6 +1311,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                         .withHelper(malnutritionScreeningActionHelper)
                         .build();
                 actionList.put(MessageFormat.format(title, "(" + baby.getFullName() + ")"), malnutritionScreeningAction);
+                otherActionTitles.add(MessageFormat.format(title, "(" + baby.getFullName() + ")"));
             }
         }
     }

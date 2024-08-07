@@ -2,6 +2,7 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -78,6 +79,9 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+        if (StringUtils.isBlank(childGrowthMuacKey) || StringUtils.isBlank(palmPallorKey)) {
+            return BaseAncHomeVisitAction.Status.PENDING;
+        }
 
         if (childGrowthMuacKey.equalsIgnoreCase("Green") && palmPallorKey.equalsIgnoreCase("no")) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
