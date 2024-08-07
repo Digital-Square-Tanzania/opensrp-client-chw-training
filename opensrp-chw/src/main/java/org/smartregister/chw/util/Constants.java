@@ -174,10 +174,6 @@ public class Constants extends CoreConstants {
             return CHILD_HV_CORD_CARE;
         }
 
-        public static String getChildHvCordCare() {
-            return CHILD_HV_CORD_CARE;
-        }
-
         public static String getIccmMedicalHistory() {
             return ICCM_MEDICAL_HISTORY;
         }
