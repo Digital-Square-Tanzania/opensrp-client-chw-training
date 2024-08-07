@@ -30,6 +30,7 @@ public class Constants extends CoreConstants {
         public static String CLIENT_MOVED_LOCATION = "client_moved_location";
         public static final String NAME_OF_HF = "name_of_hf";
         public static final String STEP1 = "step1";
+        public static final String CAREGIVER_NAME = "caregiver_name";
     }
 
     public static class EncounterType {
@@ -252,6 +253,8 @@ public class Constants extends CoreConstants {
         public static final String PLAY_ASSESSMENT_COUNSELLING= "Play Assessment and Counselling";
         public static final String DEVELOPMENT_SCREENING_AND_ASSESSMENT = "Development Screening and Assessment";
         public static final String COMMUNICATION_ASSESSMENT_COUNSELLING= "Communication Assessment and Counselling";
+
+        public static final String PNC_NO_MOTHER_CHILD_REGISTRATION = "PNC No Mother Child Registration";
     }
 
     public static final class ActionList {
@@ -262,6 +265,7 @@ public class Constants extends CoreConstants {
         public static final String MOTHER_CHAMPION_FOLLOWUP = "ec_mother_champion_followup";
         public static final String SBCC = "ec_sbcc";
         public static final String CBHS_REGISTER = "ec_cbhs_register";
+        public static final String CHILD_NO_MOTHER = "ec_child_no_mother";
     }
 
     public static class DBConstants{

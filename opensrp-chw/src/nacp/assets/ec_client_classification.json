@@ -24,7 +24,16 @@
             "field_value": "Child Registration",
             "creates_case": [
               "ec_child",
-              "ec_family_member"
+              "ec_family_member",
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "PNC No Mother Child Registration",
+            "creates_case": [
+              "ec_child",
+              "ec_family_member",
+              "ec_child_no_mother"
             ]
           },
           {
