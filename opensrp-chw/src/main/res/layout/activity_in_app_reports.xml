@@ -249,8 +249,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:minHeight="150dp"
-                android:visibility="gone
-"
+                android:visibility="gone"
                 android:paddingVertical="30dp">
 
                 <ImageView
@@ -350,6 +349,62 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/iv_iccm_report"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTitle_iccm_reports" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sbc_reports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reports_bg_blue_green"
+                app:layout_constraintTop_toBottomOf="@id/iccm_reports"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:minHeight="150dp"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                android:paddingVertical="30dp">
+
+                <ImageView
+                    android:id="@+id/iv_sbc_report"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="sbc Icon"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_cbhs_summary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewTitle_sbc_reports"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/sbc_reports"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewSubtitle_sbc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_sbc_report"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewSubtitle_sbc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/sbc_reports_subtitle"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_sbc_report"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle_sbc_reports" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

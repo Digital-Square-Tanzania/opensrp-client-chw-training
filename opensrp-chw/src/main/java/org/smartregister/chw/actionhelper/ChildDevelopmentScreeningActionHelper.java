@@ -22,13 +22,9 @@ import timber.log.Timber;
 
 public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper {
     private final String visitId;
-
     private final ServiceWrapper serviceWrapper;
-
     private String jsonString;
-
     private final Map<String, Boolean> visitNumberMap = new HashMap<>();
-
     private String child_development_issues;
 
     public ChildDevelopmentScreeningActionHelper(String visitId, ServiceWrapper serviceWrapper) {
@@ -40,7 +36,7 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            child_development_issues = JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
+            child_development_issues = JsonFormUtils.getValue(jsonObject, "child_development_issues");
         } catch (JSONException e) {
             Timber.e(e);
         }
@@ -78,6 +74,10 @@ public class ChildDevelopmentScreeningActionHelper extends HomeVisitActionHelper
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         if (StringUtils.isBlank(child_development_issues)) {
             return BaseAncHomeVisitAction.Status.PENDING;
+        } else if ((child_development_issues.equalsIgnoreCase("None") || child_development_issues.equalsIgnoreCase("Hamna"))) {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else if (!child_development_issues.contains("chk_none")) {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }

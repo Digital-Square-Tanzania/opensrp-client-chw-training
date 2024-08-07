@@ -13,20 +13,20 @@ public class FnListTest {
 
         @Test
         public void testReduceSumOfIntegers() {
-            FnList<Integer> list = new FnList<>(new Integer[]{1, 2, 3, 4, 5});
+            FnList<Integer> list = FnList.from(new Integer[]{1, 2, 3, 4, 5});
             int sum = list.reduce(0,Integer::sum );
             Assert.assertEquals(15, sum);
         }
 
         @Test
         public void testReduceConcatenationOfStrings() {
-            FnList<String> list = new FnList<>(new String[]{"a", "b", "c"});
+            FnList<String> list = FnList.from(new String[]{"a", "b", "c"});
             String result = list.reduce("",(acc, item) -> acc + item);
             Assert.assertEquals("abc", result);
         }
         @Test
         public void testMapSquareIntegers() {
-            FnList<Integer> list = new FnList<>(new Integer[]{1, 2, 3, 4});
+            FnList<Integer> list = FnList.from(new Integer[]{1, 2, 3, 4});
             FnList<Integer> squaredList = list.map(i -> i * i);
 
             List<Integer> expected = Arrays.asList(1, 4, 9, 16);
@@ -35,7 +35,7 @@ public class FnListTest {
 
         @Test
         public void testMapStringToLength() {
-            FnList<String> list = new FnList<>(new String[]{"apple", "banana", "cherry"});
+            FnList<String> list = FnList.from(new String[]{"apple", "banana", "cherry"});
             FnList<Integer> lengthList = list.map(String::length);
             List<Integer> expected = Arrays.asList(5, 6, 6);
             Assert.assertEquals(expected, lengthList.list());
@@ -43,7 +43,7 @@ public class FnListTest {
 
         @Test
         public void testUniqueHappyPath() {
-            FnList<Integer> list = new FnList<>(new Integer[] {1, 2, 2, 3, 4, 4, 4});
+            FnList<Integer> list = FnList.from(new Integer[] {1, 2, 2, 3, 4, 4, 4});
             FnList<Integer> uniqueList = list.unique();
 
             // Convert uniqueList to a regular list for easier assertion
@@ -55,7 +55,7 @@ public class FnListTest {
 
         @Test
         public void testUniqueEmptyList() {
-            FnList<Integer> list = new FnList<>(new Integer[] {});
+            FnList<Integer> list = FnList.from(new Integer[] {});
             FnList<Integer> uniqueList = list.unique();
 
             Assert.assertFalse(uniqueList.iterator().hasNext());
@@ -63,7 +63,7 @@ public class FnListTest {
 
         @Test
         public void testUniqueNullValues() {
-            FnList<Integer> list = new FnList<>(new Integer[] {null, null, 3, null});
+            FnList<Integer> list = FnList.from(new Integer[] {null, null, 3, null});
             FnList<Integer> uniqueList = list.unique();
 
             List<Integer> result = new ArrayList<>();
@@ -74,7 +74,7 @@ public class FnListTest {
 
         @Test
         public void testUniqueAllDuplicates() {
-            FnList<Integer> list = new FnList<>(new Integer[] {5, 5, 5, 5});
+            FnList<Integer> list = FnList.from(new Integer[] {5, 5, 5, 5});
             FnList<Integer> uniqueList = list.unique();
 
             List<Integer> result = new ArrayList<>();
@@ -96,7 +96,7 @@ public class FnListTest {
 
         @Test
         public void mapShouldHandleEmptyList(){
-            FnList<Integer> emptyList = new FnList<>(new ArrayList<>());
+            FnList<Integer> emptyList = FnList.from(new ArrayList<>());
             List<String> result = emptyList.map(i -> "Empty: " + i).list();
 
             Assert.assertTrue(result.isEmpty());
@@ -121,14 +121,14 @@ public class FnListTest {
 
         @Test
         public void testReduceMultiplication() {
-            FnList<Integer> list = new FnList<>(new Integer[] {1, 2, 3, 4});
+            FnList<Integer> list = FnList.from(new Integer[] {1, 2, 3, 4});
             int result = list.reduce(1,(acc, item) -> acc * item);
             Assert.assertEquals(24, result);
         }
 
         @Test
         public void testReduceOnEmptyList() {
-            FnList<Integer> list = new FnList<>(new ArrayList<>());
+            FnList<Integer> list = FnList.from(new ArrayList<>());
             int result = list.reduce(0,Integer::sum);
             Assert.assertEquals(0, result);
         }

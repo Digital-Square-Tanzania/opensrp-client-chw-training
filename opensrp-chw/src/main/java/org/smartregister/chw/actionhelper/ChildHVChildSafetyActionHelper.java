@@ -7,7 +7,6 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
-import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
 
@@ -15,11 +14,6 @@ import timber.log.Timber;
 
 public class ChildHVChildSafetyActionHelper extends HomeVisitActionHelper {
     private String child_safety_counselled;
-    ServiceWrapper serviceWrapper;
-
-    public ChildHVChildSafetyActionHelper(ServiceWrapper serviceWrapper){
-        this.serviceWrapper = serviceWrapper;
-    }
 
     @Override
     public void onPayloadReceived(String s) {
@@ -58,7 +52,10 @@ public class ChildHVChildSafetyActionHelper extends HomeVisitActionHelper {
             return BaseAncHomeVisitAction.Status.PENDING;
         }
 
-        if (StringUtils.isNotBlank(child_safety_counselled)) {
+        if (StringUtils.isNotBlank(child_safety_counselled) &&
+                (child_safety_counselled.equalsIgnoreCase("Ndio") ||
+                        child_safety_counselled.equalsIgnoreCase("Yes") ||
+                        child_safety_counselled.equalsIgnoreCase("Ndiyo"))) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;

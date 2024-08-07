@@ -30,6 +30,8 @@ public class Constants extends CoreConstants {
         public static String CLIENT_MOVED_LOCATION = "client_moved_location";
         public static final String NAME_OF_HF = "name_of_hf";
         public static final String STEP1 = "step1";
+        public static final String MOTHER_AVAILABLE = "mother_available";
+        public static final String OTHER_CAREGIVER_NAME = "other_caregiver_name";
     }
 
     public static class EncounterType {
@@ -166,6 +168,7 @@ public class Constants extends CoreConstants {
       
         public static String getChildHvDevelopmentScreeningAssessment() {
             return CHILD_HV_DEVELOPMENT_SCREENING_ASSESSMENT;
+        }
 
         public static String getChildHvCordCare() {
             return CHILD_HV_CORD_CARE;
@@ -226,15 +229,27 @@ public class Constants extends CoreConstants {
 
     public static final class Events {
         public static final String UPDATE_MALARIA_CONFIGURATION = "Update Malaria Confirmation";
+
         public static final String MALARIA_CONFIRMATION = "malaria_confirmation";
+
         public static final String ANC_FIRST_FACILITY_VISIT = "ANC First Facility Visit";
+
         public static final String ANC_RECURRING_FACILITY_VISIT = "ANC Recurring Facility Visit";
+
         public static final String MOTHER_CHAMPION_FOLLOWUP = "Mother Champion Followup";
+
+        public static final String MOTHER_CHAMPION_SBCC_SESSIONS = "Mother Champion SBCC Sessions";
+
         public static final String CBHS_FOLLOWUP = "CBHS Followup";
+
         public static final String CBHS_CLOSE_VISITS = "CBHS Close Visits";
+
         public static final String AGYW_STRUCTURAL_SERVICES = "AGYW Structural Services";
+
         public static final String AGYW_BEHAVIORAL_SERVICES = "AGYW Behavioral Services";
+
         public static final String AGYW_BIO_MEDICAL_SERVICES = "AGYW Bio Medical Services";
+
         public static final String KVP_PREP_FOLLOWUP_VISIT = "Kvp PrEP Follow-up Visit";
         public static final String PLAY_ASSESSMENT_COUNSELLING= "Play Assessment and Counselling";
         public static final String DEVELOPMENT_SCREENING_AND_ASSESSMENT = "Development Screening and Assessment";
@@ -249,6 +264,7 @@ public class Constants extends CoreConstants {
         public static final String MOTHER_CHAMPION_FOLLOWUP = "ec_mother_champion_followup";
         public static final String SBCC = "ec_sbcc";
         public static final String CBHS_REGISTER = "ec_cbhs_register";
+        public static final String CHILD_NO_MOTHER = "ec_child_no_mother";
     }
 
     public static class DBConstants{
@@ -266,6 +282,7 @@ public class Constants extends CoreConstants {
            String CONDOM_DISTRIBUTION_REPORT = "condom_distribution_report";
            String AGYW_REPORT = "agyw_report";
            String ICCM_REPORT = "iccm_report";
+           String SBC_REPORT = "sbc_report";
         }
 
         public interface CDPReportKeys {
@@ -288,6 +305,7 @@ public class Constants extends CoreConstants {
             String ICCM_CLIENTS_REPORT_PATH = "iccm_reports/iccm-clients-monthly-report";
             String ICCM_DISPENSING_SUMMARY_PATH = "iccm_reports/iccm-dispensing-summary";
             String MALARIA_MONTHLY_REPORT_PATH = "iccm_reports/iccm-malaria-monthly-report";
+            String SBC_REPORT_PATH = "sbc-report";
         }
     }
 }

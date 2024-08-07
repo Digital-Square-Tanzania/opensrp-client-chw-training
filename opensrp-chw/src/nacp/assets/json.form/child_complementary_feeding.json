@@ -46,6 +46,13 @@
     "title": "Complimentary feeding counseling",
     "fields": [
       {
+        "key": "visit_8_visit_12",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "comp_feed_counselling_note_1",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -54,10 +61,17 @@
         "text": "Educate the mother on the importance of introducing the child to complementary foods at the age of 6 months. She should start with small portions depending on the age of the child and also consider advice, cleanliness, and also the available food types in the area she lives in.\n\n",
         "text_color": "#000000",
         "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_complementary_feeding_relevance.yml"
+            }
+          }
+        }
       },
       {
-        "key": "hygene_while_feeding",
+        "key": "hygiene_while_feeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
@@ -89,6 +103,28 @@
         "label_text_style": "italic",
         "has_bg": true,
         "bg_color": "#f595df"
+      },
+      {
+        "key": "comp_feed_counselling_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Was the mother counselled on complimentary feeding?",
+        "label_info_text": "Was the mother counselled on complimentary feeding?",
+        "values": [
+          "Yes",
+          "No"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "This value is required"
+        }
       }
     ]
   }

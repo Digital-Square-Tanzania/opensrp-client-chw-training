@@ -61,3 +61,10 @@ priority: 1
 condition: "step1_childs_hiv_status.contains('chk_hiv_test_positive')"
 actions:
   - "isRelevant = true"
+---
+name: step1_comfortable_sharing_child_hiv_status
+description: Check if Mother Agree to disclose her HIV Status
+priority: 1
+condition: "step1_comfortable_disclosing_hiv_status.contains('chk_hiv_disclosing_status_yes')"
+actions:
+  - "isRelevant = true"

@@ -1,0 +1,7 @@
+---
+name: step1_family_planning_education_prompt
+description: family_planning_education_prompt relevance
+priority: 1
+condition: "step1_family_planning_education_provided.equalsIgnoreCase('no')"
+actions:
+  - "isRelevant = true"

@@ -77,7 +77,7 @@
         "openmrs_entity_id": "communication_with_child",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "CHW information: Say, \"Do you communicate with your child?\"",
+        "hint": "CHW information(Ask this question only if it is the first visit): Say, \"Do you communicate with your child?\"",
         "label_info_text": "CHW information: Say, \"Do you communicate with your child?\"",
         "values": [
           "Yes",
@@ -90,10 +90,6 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one option"
         }
       },
       {
@@ -267,11 +263,48 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "comm_assessment_counselling_next_visit_message",
         "type": "label",
-        "text": "CHW information: Say, \"When i come back for the next visit, I would like to see the playing toy(s) that you have prepared and how you communicate and play with your child\".",
+        "text": "CHW information: Say, \"When I come back for the next visit, I would like to see the playing material(s) that you have prepared and how you communicate and play with your child\".",
         "text_color": "#000000",
         "has_bg": true,
         "bg_color": "#f595df",
         "label_text_style": "italic"
+      },
+      {
+        "key": "bango_kitita_reference_skip_logic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
+        "key": "spacer_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "10dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_communication_assessment_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "bango_kitita_reference",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_communication_assessment_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }

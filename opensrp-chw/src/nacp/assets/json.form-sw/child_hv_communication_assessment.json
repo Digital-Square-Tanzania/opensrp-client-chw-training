@@ -77,8 +77,8 @@
         "openmrs_entity_id": "communication_with_child",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "Taarifa za MJA: Sema, \"Je, unazungumza na mtoto wako?\"",
-        "label_info_text": "Taarifa za MJA: Sema, \"Je, unazungumza na mtoto wako?\"",
+        "hint": "Taarifa kwa MJA (Uliza hili swali tembeleo la kwanza tu): Sema, \"Je, unazungumza na mtoto wako?\"",
+        "label_info_text": "Taarifa kwa MJA: Sema, \"Je, unazungumza na mtoto wako?\"",
         "values": [
           "Ndio",
           "Hapana"
@@ -90,10 +90,6 @@
         "openmrs_choice_ids": {
           "Yes": "Yes",
           "No": "No"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali chagua chaguo moja"
         }
       },
       {
@@ -102,7 +98,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
-        "text": "Taarifa za MJA: Sema, \"Unaweza kunionesha jinsi unavyozungumza na mtoto wako?\n\nMJA kumbuka kumpa mama/baba au mlezi nafasi ya kuzungumza na mtoto wake\n\nUnafikiri mtoto wako anajifunza nini wakati unazungumza naye?",
+        "text": "Taarifa kwa MJA: Sema, \"Unaweza kunionesha jinsi unavyozungumza na mtoto wako?\n\nMJA kumbuka kumpa mama/baba au mlezi nafasi ya kuzungumza na mtoto wake\n\nUnafikiri mtoto wako anajifunza nini wakati unazungumza naye?",
         "text_color": "#000000",
         "label_text_style": "italic",
         "has_bg": true
@@ -130,7 +126,7 @@
           },
           {
             "key": "chk_sounds_and_gestures",
-            "text": "naigiza sauti na vitendo vya mtoto ili kupata tabasamu la mtoto",
+            "text": "Anaigiza sauti na vitendo vya mtoto ili kupata tabasamu la mtoto",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_sounds_and_gestures"
@@ -246,12 +242,12 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
-        "text": "Taarifa kwa MJA: Sema, \"Wasiliana na mtoto wako wakati wote unapokuwa naye! Mahusiano yenu ya kila siku yanaweza kuwa na mchango mkubwa kwa mtoto kujifunza sauti mpya, maneno na lugha kwa ujumla\".\nTaarifa za MJA: Bofya kitufe cha taarifa (kitufe chenye alama ya mshangao) ili kuona hatua unayohitaji kufuata ili kuelezea shughuli kwa mama/baba au mlezi.",
+        "text": "Taarifa kwa MJA: Sema, \"Wasiliana na mtoto wako wakati wote unapokuwa naye! Mahusiano yenu ya kila siku yanaweza kuwa na mchango mkubwa kwa mtoto kujifunza sauti mpya, maneno na lugha kwa ujumla\".\nTaarifa kwa MJA: Bofya kitufe cha taarifa (kitufe chenye alama ya mshangao) ili kuona hatua unayohitaji kufuata ili kuelezea shughuli kwa mama/baba au mlezi.",
         "text_color": "#2D2E2D",
         "label_text_style": "italic",
         "has_bg": true,
         "label_info_title": "Maelekezo kwa MJA",
-        "label_info_text": "-Muonyeshe mama/mlezi picha na ueleze shughuli (moja baada ya nyingine).\n- Acha mama/mlezi ajaribu shughuli.\n- Angalia mwingiliano na umsaidie mama/mlezi na mtoto kuwa na mwingiliano wenye mafanikio wa pande mbili. Mlezi LAZIMA azingatie, asikilize, na ajibu dalili za mtoto.\n- Iwapo mtoto hawezi kufanya shughuli, chagua kutoka katika kundi la umri mdogo au pendekeza njia za kurahisisha mchezo. Ikiwa mtoto yuko katika kiwango cha mwisho cha umri na anaweza kwa urahisi, pendekeza njia za kufanya shughuli ngumu zaidi au uchague shughuli kutoka kwa safu inayofuata ya wazee.\n- Mhimize mama/mlezi kuendelea kujihusisha na shughuli za kucheza katika utaratibu wao wa kila siku."
+        "label_info_text": "-Muonyeshe mama/mlezi picha na ueleze shughuli (moja baada ya nyingine).\n- Acha mama/mlezi ajaribu shughuli.\n- Angalia mahusiano na umsaidie mama/mlezi na mtoto kuwa na mahusiano wenye mafanikio wa pande mbili. Mlezi LAZIMA azingatie, asikilize, na ajibu dalili za mtoto.\n- Iwapo mtoto hawezi kufanya shughuli, chagua kutoka katika kundi la umri mdogo au pendekeza njia za kurahisisha mchezo. Ikiwa mtoto yuko katika kiwango cha mwisho cha umri na anaweza kwa urahisi, pendekeza njia za kufanya shughuli ngumu zaidi au uchague shughuli kutoka kwa safu inayofuata ya umri mkubwa zaidi.\n- Mhimize mama/mlezi kuendelea kujihusisha na shughuli za kucheza katika utaratibu wao wa kila siku."
       },
       {
         "key": "spacer",
@@ -267,11 +263,48 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "comm_assessment_counselling_next_visit_message",
         "type": "label",
-        "text": "Taarifa za MJA: Sema, \" Nikirudi tembeleo linalofuata, ningependa kuona mchezo au michezo ambayo umeandaa na kuona jinsi unavyocheza na mtoto wako\".",
+        "text": "Taarifa kwa MJA: Sema, \" Nikirudi tembeleo linalofuata, ningependa kuona vifaa vya michezo ambavyo umeandaa na kuona jinsi unavyowasiliana na kucheza na mtoto wako\".",
         "text_color": "#000000",
         "has_bg": true,
         "bg_color": "#f595df",
         "label_text_style": "italic"
+      },
+      {
+        "key": "bango_kitita_reference_skip_logic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
+        "key": "spacer_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "10dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_communication_assessment_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "bango_kitita_reference",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_communication_assessment_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }

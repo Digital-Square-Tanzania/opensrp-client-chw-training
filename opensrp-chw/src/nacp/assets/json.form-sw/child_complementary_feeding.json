@@ -46,6 +46,13 @@
     "title": "Kumlisha mtoto vyakula vya nyongeza",
     "fields": [
       {
+        "key": "visit_8_visit_12",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "comp_feed_counselling_note_1",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -54,10 +61,17 @@
         "text": "Muelimishe mama kuhusu umuhimu wa kuanza kumlisha mtoto chakula cha nyongeza akiwa na umri wa miezi 6. Anatakiwa aanze kwa kumpatia chakula kwa kiasi kidogokidogo kulingana na umri wake, kwa kuzingatia ushauri, usafi na upatikanaji wa vyakula hivyo katika eneo analoishi\n\n",
         "text_color": "#000000",
         "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_complementary_feeding_relevance.yml"
+            }
+          }
+        }
       },
       {
-        "key": "hygene_while_feeding",
+        "key": "hygiene_while_feeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
@@ -89,6 +103,28 @@
         "label_text_style": "italic",
         "has_bg": true,
         "bg_color": "#f595df"
+      },
+      {
+        "key": "comp_feed_counselling_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "Je mama ameshauriwa kuhusu vyakula vya nyongeza?",
+        "label_info_text": "Je mama ameshauriwa kuhusu vyakula vya nyongeza?",
+        "values": [
+          "Ndio",
+          "Hapana"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Jibu linahitajika"
+        }
       }
     ]
   }

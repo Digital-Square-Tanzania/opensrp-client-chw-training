@@ -1,0 +1,100 @@
+{
+  "count": "1",
+  "encounter_type": "CBD Health Education",
+  "validate_on_submit": true,
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Health Education",
+    "fields": [
+      {
+        "key": "family_planning_education_provided",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "family_planning_education_provided",
+        "type": "native_radio",
+        "label": "Was family planning health education provided?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "family_planning_education_prompt",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "family_planning_education_prompt",
+        "type": "toaster_notes",
+        "text": "Provide family planning health education",
+        "toaster_type": "info",
+        "toaster_info_text": "",
+        "toaster_info_title": "",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_cbd_followup_health_education_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -28,6 +28,8 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
         this.alert = alert;
     }
 
+    public CareGiverResponsivenessActionHelper() {}
+
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
         super.onJsonFormLoaded(jsonString, context, details);
@@ -39,9 +41,9 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray fields = JsonFormUtils.fields(jsonObject);
 
-            caregiver_interacts_with_child = JsonFormUtils.getFieldValue(fields, "caregiver_interacts_with_child");
-            caregiver_comfort_child = JsonFormUtils.getFieldValue(fields, "caregiver_comfort_child");
-            caregiver_response_cue = JsonFormUtils.getFieldValue(fields, "caregiver_response_cue");
+            caregiver_interacts_with_child = JsonFormUtils.getValue(jsonObject, "caregiver_interacts_with_child");
+            caregiver_comfort_child = JsonFormUtils.getValue(jsonObject, "caregiver_comfort_child");
+            caregiver_response_cue = JsonFormUtils.getValue(jsonObject, "caregiver_response_cue");
 
         } catch (JSONException e) {
             Timber.e(e);
@@ -55,12 +57,9 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-//        String CAREGIVER_INTERACTING_WITH_CHILD = "Moves toward and with child, and talks to or makes sounds with child, responds to child";
-//        String CAREGIVER_RESPONDS_TO_CUES = "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely";
         if (StringUtils.isBlank(caregiver_comfort_child) || StringUtils.isBlank(caregiver_interacts_with_child) || StringUtils.isBlank(caregiver_response_cue)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        } else if (caregiver_interacts_with_child.equalsIgnoreCase("responds_to_child") &&
-                "Yes".equalsIgnoreCase(caregiver_comfort_child) && caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues")) {
+        } else if (caregiver_interacts_with_child.equalsIgnoreCase("responds_to_child") && "Yes".equalsIgnoreCase(caregiver_comfort_child) && (caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues_by_looking_into_child_eyes") || caregiver_response_cue.equalsIgnoreCase("respond_to_child_cues_by_responding_child_action"))) {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         } else {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
@@ -69,7 +68,11 @@ public class CareGiverResponsivenessActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
-        return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;
+        if (alert != null) {
+            return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;
+        } else {
+            return null;
+        }
     }
 
     private boolean isOverDue() {
