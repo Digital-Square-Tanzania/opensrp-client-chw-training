@@ -1,9 +1,12 @@
 package org.smartregister.chw.activity;
 
+import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.presenter.BaseAncHomeVisitPresenter;
 import org.smartregister.chw.core.activity.CoreChildHomeVisitActivity;
 import org.smartregister.chw.core.interactor.CoreChildHomeVisitInteractor;
 import org.smartregister.chw.interactor.ChildHomeVisitInteractorFlv;
+
+import java.util.LinkedHashMap;
 
 public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
     @Override
@@ -17,4 +20,11 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
         ChildProfileActivity.startMe(this, memberObject, ChildProfileActivity.class);
     }
 
+    @Override
+    public void initializeActions(LinkedHashMap<String, BaseAncHomeVisitAction> map) {
+        actionList.clear();
+        actionList.putAll(map);
+        if(mAdapter!=null) mAdapter.notifyDataSetChanged();
+        super.initializeActions(map);
+    }
 }

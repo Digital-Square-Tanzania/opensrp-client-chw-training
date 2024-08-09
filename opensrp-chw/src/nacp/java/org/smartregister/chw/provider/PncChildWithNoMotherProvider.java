@@ -107,11 +107,11 @@ public class PncChildWithNoMotherProvider extends ChwPncRegisterProvider {
         if (commonRepository != null) {
             CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(pc.entityId());
             if (commonPersonObject != null) {
-                viewHolder.dueButton.setVisibility(android.view.View.VISIBLE);
+                viewHolder.dueButton.setVisibility(View.VISIBLE);
                 viewHolder.dueButton.setText(context.getString(org.smartregister.chw.opensrp_chw_anc.R.string.anc_home_visit));
                 viewHolder.dueButton.setAllCaps(true);
             } else {
-                viewHolder.dueButton.setVisibility(android.view.View.GONE);
+                viewHolder.dueButton.setVisibility(View.GONE);
             }
         }
     }
