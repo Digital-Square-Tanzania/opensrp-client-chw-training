@@ -32,6 +32,6 @@ public class PncChildNoMotherFragmentPresenter extends BasePncRegisterFragmentPr
 
     @Override
     public String getMainCondition() {
-        return "(julianday('now') - julianday(delivery_date)) <= 42";
+        return "(julianday('now') - julianday(ec_family_member.dob)) <= 42";
     }
 }
