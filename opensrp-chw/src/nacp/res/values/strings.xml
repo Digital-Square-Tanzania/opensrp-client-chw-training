@@ -562,7 +562,6 @@
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
     <string name="child_home_visit_pmtct">Prevention of Mother to Child transmission of HIV (PMTCT)</string>
     <string name="counselled_mother_for_comp_feeding">" Counselled mother for complementary feeding "</string>
-    <string name="bango_kitita_three_pages">Page %s%s%s and %s</string>
     <string name="malezi_bango_kitita_message">Please refer to the following pages in Bango Kitita Malezi III to explain the activities depending on the child age:</string>
     <string name="choose_date_mode">Choose Date mode</string>
     <string name="shared_date">Shared Date</string>
