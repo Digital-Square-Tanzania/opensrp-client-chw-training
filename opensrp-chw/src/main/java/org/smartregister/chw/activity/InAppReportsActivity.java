@@ -38,6 +38,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
     protected ConstraintLayout agywReports;
 
     protected ConstraintLayout iccmReports;
+    protected ConstraintLayout ecdReports;
 
     protected ConstraintLayout sbcReports;
 
@@ -61,6 +62,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         condomDistributionReports = findViewById(R.id.cdp_reports);
         agywReports = findViewById(R.id.agyw_reports);
         iccmReports = findViewById(R.id.iccm_reports);
+        ecdReports = findViewById(R.id.ecd_reports);
         sbcReports = findViewById(R.id.sbc_reports);
 
         AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
@@ -129,12 +131,14 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
             }
         }
 
+        ecdReports.setVisibility(View.VISIBLE);
 
         motherChampionReportsLayout.setOnClickListener(this);
         condomDistributionReports.setOnClickListener(this);
         cbhsReportsLayout.setOnClickListener(this);
         agywReports.setOnClickListener(this);
         iccmReports.setOnClickListener(this);
+        ecdReports.setOnClickListener(this);
         sbcReports.setOnClickListener(this);
     }
 
@@ -184,6 +188,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         }
         if (id == R.id.iccm_reports) {
             Intent intent = new Intent(this, IccmReportsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.ecd_reports) {
+            Intent intent = new Intent(this, ECDReportsActivity.class);
             startActivity(intent);
         }
         if (id == R.id.sbc_reports) {

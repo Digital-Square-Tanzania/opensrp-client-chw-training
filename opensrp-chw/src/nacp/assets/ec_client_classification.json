@@ -99,7 +99,8 @@
             "field_value": "Child Home Visit",
             "creates_case": [
               "ec_child",
-              "ec_child_activity"
+              "ec_child_activity",
+              "ec_ecd_activities"
             ]
           },
           {
@@ -759,6 +760,13 @@
             "field_value": "Monthly Social Media Report",
             "creates_case": [
               "ec_sbc_monthly_social_media_report"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "PNC Home Visit",
+            "creates_case": [
+              "ec_ecd_activities"
             ]
           }
         ]
