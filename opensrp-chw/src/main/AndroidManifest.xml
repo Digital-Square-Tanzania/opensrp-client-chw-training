@@ -8,6 +8,7 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/ChwTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:replace="android:theme">
         <activity
             android:name=".activity.LoginActivity"
