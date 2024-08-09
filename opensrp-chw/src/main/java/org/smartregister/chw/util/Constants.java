@@ -30,6 +30,8 @@ public class Constants extends CoreConstants {
         public static String CLIENT_MOVED_LOCATION = "client_moved_location";
         public static final String NAME_OF_HF = "name_of_hf";
         public static final String STEP1 = "step1";
+        public static final String MOTHER_AVAILABLE = "mother_available";
+        public static final String OTHER_CAREGIVER_NAME = "other_caregiver_name";
         public static final String CAREGIVER_NAME = "caregiver_name";
     }
 

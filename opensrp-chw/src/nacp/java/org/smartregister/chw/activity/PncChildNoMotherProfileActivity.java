@@ -9,7 +9,7 @@ import android.view.View;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.util.Constants;
-import org.smartregister.chw.dao.PersonDao;
+import timber.log.Timber;
 
 public class PncChildNoMotherProfileActivity extends ChildProfileActivity {
 
