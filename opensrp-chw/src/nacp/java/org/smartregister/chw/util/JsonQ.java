@@ -208,6 +208,7 @@ public class JsonQ {
     }
 
     public String str() {return str("");}
+    public int getInt(String path) {return Integer.parseInt(str(path).replaceAll("\\D+", ""));}
 
     public String str(String jsonPath, Object... args) {
         return str(String.format(jsonPath, args));
