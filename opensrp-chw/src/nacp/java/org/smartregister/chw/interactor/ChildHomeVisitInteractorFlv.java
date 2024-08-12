@@ -67,6 +67,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         this.serviceWrapperMap=serviceWrapperMap;
         try {
+            evaluateVisitLocation();
             if( isToddler() ) evaluateToddlerDanger(serviceWrapperMap);
             else evaluateNonDangerSignActions(true);
         }
@@ -94,13 +95,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Iterator<Map.Entry<String, BaseAncHomeVisitAction>> iterator = actionList.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, BaseAncHomeVisitAction> entry = iterator.next();
-            if (entry.getKey().equals(context.getString(R.string.child_danger_signs_baby))) continue;
+            if (entry.getKey().equals(context.getString(R.string.child_danger_signs_baby)) ||
+                    entry.getKey().equals(context.getString(R.string.pnc_hv_location))) continue;
             iterator.remove();
         }
     }
     private void evaluateNonDangerSignActions(Boolean noDangerSigns)throws  Exception{
         if(noDangerSigns) {
-            evaluateVisitLocation();
             evaluateImmunization();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
             evaluateVitaminA(serviceWrapperMap);
