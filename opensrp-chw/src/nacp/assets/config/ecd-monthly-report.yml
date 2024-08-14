@@ -102,7 +102,7 @@ indicators:
 	  AND ec_family_member.entity_type = 'ec_family_member' 
 	  AND (event.eventtype = 'Child Home Visit' OR event.eventType='PNC Home Visit')
 	  AND ec_family_member.gender = 'Male'
-	  ec_family_member.is_closed = 0
+	  AND ec_family_member.is_closed = 0
       AND (strftime('%Y', date(event.eventDate)) - strftime('%Y', date(ec_family_member.dob))) BETWEEN 10 AND 24
       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = date(substr(eventDate, 1, 4) || '-' || substr(eventDate, 6, 2) || '-' || '01')"
 
@@ -116,7 +116,7 @@ indicators:
 	  AND ec_family_member.entity_type = 'ec_family_member' 
 	  AND (event.eventtype = 'Child Home Visit' OR event.eventType='PNC Home Visit')
 	  AND ec_family_member.gender = 'Male'
-	  ec_family_member.is_closed = 0
+	  AND ec_family_member.is_closed = 0
       AND (strftime('%Y', date(event.eventDate)) - strftime('%Y', date(ec_family_member.dob))) > 24
       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = date(substr(eventDate, 1, 4) || '-' || substr(eventDate, 6, 2) || '-' || '01')"
 
@@ -130,7 +130,7 @@ indicators:
 	  AND ec_family_member.entity_type = 'ec_family_member' 
 	  AND (event.eventtype = 'Child Home Visit' OR event.eventType='PNC Home Visit')
 	  AND ec_family_member.gender = 'Female'
-	  ec_family_member.is_closed = 0
+	  AND ec_family_member.is_closed = 0
       AND (strftime('%Y', date(event.eventDate)) - strftime('%Y', date(ec_family_member.dob))) > 24
       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = date(substr(eventDate, 1, 4) || '-' || substr(eventDate, 6, 2) || '-' || '01')"
 
@@ -144,7 +144,7 @@ indicators:
 	  AND ec_family_member.entity_type = 'ec_family_member' 
 	  AND (event.eventtype = 'Child Home Visit' OR event.eventType='PNC Home Visit')
 	  AND ec_family_member.gender = 'Female'
-	  ec_family_member.is_closed = 0
+	  AND ec_family_member.is_closed = 0
       AND (strftime('%Y', date(event.eventDate)) - strftime('%Y', date(ec_family_member.dob))) BETWEEN 10 AND 24
       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = date(substr(eventDate, 1, 4) || '-' || substr(eventDate, 6, 2) || '-' || '01')"
 
@@ -166,7 +166,8 @@ indicators:
     indicatorQuery: "SELECT COUNT(DISTINCT ec_child.base_entity_id) FROM ec_child
       INNER JOIN event on event.baseEntityId = ec_child.base_entity_id
 	  INNER join ec_family_member on ec_family_member.base_entity_id = ec_child.mother_entity_id
-	  WHERE ec_child.is_closed = 0 and ec_family_member.entity_type = 'ec_family_member' AND (event.eventtype = 'Child Home Visit' OR event.eventType='PNC Home Visit')
+	  WHERE ec_child.is_closed = 0 and ec_family_member.entity_type = 'ec_family_member' 
+	  AND (event.eventtype = 'Child Home Visit' OR event.eventType='PNC Home Visit')
       AND (strftime('%Y', date(event.eventDate)) - strftime('%Y', date(ec_family_member.dob))) > 25
       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = date(substr(eventDate, 1, 4) || '-' || substr(eventDate, 6, 2) || '-' || '01')"
 
@@ -174,10 +175,10 @@ indicators:
     grouping: "ECD"
     description: "Idadi ya wazazi/walezi wenye umri kati ya miaka 10 hadi 25 waliotengeneza vifaa vya michezo kulingana na umri wa mtoto"
     indicatorQuery: "SELECT COUNT(DISTINCT ec_ecd_activities.entity_id) FROM ec_ecd_activities 
-      INNER JOIN ec_child on ec_child.base_entity_id = ec_ecd_activities.entity_id 
-      INNER JOIN event on event.baseEntityId = ec_child.base_entity_id 
+      INNER JOIN ec_child ON ec_child.base_entity_id = ec_ecd_activities.entity_id 
+      INNER JOIN event ON event.baseEntityId = ec_child.base_entity_id 
       INNER JOIN ec_family_member ON ec_family_member.base_entity_id = ec_child.mother_entity_id 
-      WHERE prepare_play_materials = 'Yes' OR prepare_play_materials = 'yes'
+      WHERE (prepare_play_materials = 'Yes' OR prepare_play_materials = 'yes')
       AND ec_child.is_closed = 0 
       AND ec_family_member.entity_type = 'ec_family_member' 
       AND (event.eventtype = 'Child Home Visit' OR event.eventType = 'PNC Home Visit') 
@@ -188,10 +189,10 @@ indicators:
     grouping: "ECD"
     description: "Idadi ya wazazi/walezi wenye umri zaidi ya miaka 25 waliotengeneza vifaa vya michezo kulingana na umri wa mtoto"
     indicatorQuery: "SELECT COUNT(DISTINCT ec_ecd_activities.entity_id) FROM ec_ecd_activities 
-      INNER JOIN ec_child on ec_child.base_entity_id = ec_ecd_activities.entity_id 
-      INNER JOIN event on event.baseEntityId = ec_child.base_entity_id 
+      INNER JOIN ec_child ON ec_child.base_entity_id = ec_ecd_activities.entity_id 
+      INNER JOIN event ON event.baseEntityId = ec_child.base_entity_id 
       INNER JOIN ec_family_member ON ec_family_member.base_entity_id = ec_child.mother_entity_id 
-      WHERE prepare_play_materials = 'Yes' || prepare_play_materials = 'yes'
+      WHERE (prepare_play_materials = 'Yes' || prepare_play_materials = 'yes')
       AND ec_child.is_closed = 0 
       AND ec_family_member.entity_type = 'ec_family_member' 
       AND (event.eventtype = 'Child Home Visit' OR event.eventType = 'PNC Home Visit') 
