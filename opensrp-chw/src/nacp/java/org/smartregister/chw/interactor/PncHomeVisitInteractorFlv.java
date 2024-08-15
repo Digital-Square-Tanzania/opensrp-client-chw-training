@@ -730,6 +730,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     .build();
 
             actionList.put(context.getString(R.string.pnc_skin_to_skin), action);
+            otherActionTitles.add(context.getString(R.string.pnc_skin_to_skin));
         }
     }
 
@@ -945,6 +946,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     .withFormName(Constants.JsonForm.getChildHvCordCare())
                     .build();
             actionList.put(MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()), action);
+            otherActionTitles.add(MessageFormat.format(context.getString(R.string.pnc_cord_care), baby.getFullName()));
         }
     }
 
@@ -1288,6 +1290,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                         .withFormName(Constants.JsonForm.getChildHVCCDIntroduction())
                         .build();
                 actionList.put(title, action);
+                otherActionTitles.add(MessageFormat.format(title, "(" + baby.getFullName() + ")"));
             }
         }
     }
