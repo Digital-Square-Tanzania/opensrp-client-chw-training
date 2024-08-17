@@ -629,4 +629,8 @@
     <string name="child_hv_breastfeeding">Ananyonyeshwa maziwa ya mama</string>
     <string name="map_cue">Alama ya eneo la makazi</string>
     <string name="street_name">Jina la mtaa au Kitongoji</string>
+    <!-- ECD visit History-->
+    <string name="ecd_reports_subtitle">Tazama ripoti ya MMMAM</string>
+    <string name="ecd_reports_title">Ripoti ya MMMAM</string>
+    <string name="ecd_client_report">Ripoti ya Mwezi MMMAM</string>
 </resources>
