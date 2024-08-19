@@ -30,18 +30,16 @@ public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
     }
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (hiv_test.contains("chk_hiv_test_no")) {
+        if (disclose_status.contains("chk_hiv_disclosing_status_no")) {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
 
-        if (hiv_test.contains("chk_hiv_test_yes")) {
-            if (disclose_status.contains("chk_hiv_disclosing_status_no") ||
-                    (disclose_status.contains("chk_hiv_disclosing_status_yes") && taking_art.contains("chk_taking_art_no"))) {
+        if (disclose_status.contains("chk_hiv_disclosing_status_yes")) {
+            if (hiv_test.contains("chk_hiv_test_no")) {
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             }
 
-            if (hiv_status.contains("chk_hiv_test_negative") ||
-                    (hiv_status.contains("chk_hiv_test_positive") && taking_art.contains("chk_taking_art_yes"))) {
+            if (hiv_status.contains("chk_hiv_test_negative") || (hiv_status.contains("chk_hiv_test_positive") && taking_art.contains("chk_taking_art_yes"))) {
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             }
         }

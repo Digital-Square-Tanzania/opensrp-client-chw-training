@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.Months;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,20 +24,29 @@ import org.smartregister.chw.actionhelper.ChildPlayAssessmentCounselingActionHel
 import org.smartregister.chw.actionhelper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
+import org.smartregister.chw.actionhelper.PNCVisitLocationActionHelper;
 import org.smartregister.chw.actionhelper.ToddlerDangerSignsBabyHelper;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
+import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.ChwAncJsonFormUtils;
 import org.smartregister.chw.util.Constants;
+import org.smartregister.chw.util.FnList;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.JsonQ;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 import org.smartregister.util.DateUtil;
 
 import java.text.MessageFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -45,10 +55,53 @@ import java.util.regex.Pattern;
 import timber.log.Timber;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
+    private Map<String, ServiceWrapper> serviceWrapperMap=new HashMap<>();
+    private BaseAncHomeVisitContract.InteractorCallBack callBack;
+
+    public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
+        this.callBack = callBack;
+        actionList = new LinkedHashMap<>();
+        return super.calculateActions(view,memberObject,callBack);
+    }
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
+        this.serviceWrapperMap=serviceWrapperMap;
         try {
-            evaluateToddlerDanger(serviceWrapperMap);
+            evaluateVisitLocation();
+            if( isToddler() ) evaluateToddlerDanger(serviceWrapperMap);
+            else evaluateNonDangerSignActions(true);
+        }
+        catch (BaseAncHomeVisitAction.ValidationException e) {throw (e);}
+        catch (Exception e) {Timber.e(e);}
+    }
+
+    protected void evaluateImmunization() throws Exception {
+        setVaccinesDefaultChecked(false);
+        super.evaluateImmunization();
+    }
+
+    private boolean isToddler(){
+        int fiveYears = 5 * 12;
+        int ageInMonths = Months.monthsBetween(new DateTime(memberObject.getDob()), DateTime.now()).getMonths();
+
+        JsonQ services=JsonQ.fromAsset(context,"recurring_service_types.json")
+                .get("[(@.type~'(?i).*toddler.*danger.*sign.*')].services[0,-1]");
+        int firstOffset = services.getInt("[0].schedule.due.offset");
+        int lastExpiry = services.getInt("[-1].schedule.expiry.offset");
+        return firstOffset <= ageInMonths && ageInMonths <= lastExpiry
+                && ageInMonths < fiveYears;
+    }
+    private void removeNonDangerSignActions(){
+        Iterator<Map.Entry<String, BaseAncHomeVisitAction>> iterator = actionList.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, BaseAncHomeVisitAction> entry = iterator.next();
+            if (entry.getKey().equals(context.getString(R.string.child_danger_signs_baby)) ||
+                    entry.getKey().equals(context.getString(R.string.pnc_hv_location))) continue;
+            iterator.remove();
+        }
+    }
+    private void evaluateNonDangerSignActions(Boolean noDangerSigns)throws  Exception{
+        if(noDangerSigns) {
             evaluateImmunization();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
             evaluateVitaminA(serviceWrapperMap);
@@ -67,19 +120,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
             evaluateDevelopmentScreening(serviceWrapperMap);
-
-        } catch (BaseAncHomeVisitAction.ValidationException e) {
-            throw (e);
-        } catch (Exception e) {
-            Timber.e(e);
         }
+        else removeNonDangerSignActions();
+        new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
     }
-
-    protected void evaluateImmunization() throws Exception {
-        setVaccinesDefaultChecked(false);
-        super.evaluateImmunization();
-    }
-
     private void evaluateMalariaPrevention() throws Exception {
         HomeVisitActionHelper malariaPreventionHelper = new HomeVisitActionHelper() {
             private String famllin1m5yr;
@@ -389,7 +433,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        ToddlerDangerSignsBabyHelper helper = new ToddlerDangerSignsBabyHelper(context, alert);
+        ToddlerDangerSignsBabyHelper helper = new ToddlerDangerSignsBabyHelper(context, alert, this::evaluateNonDangerSignActions);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
         JSONObject jsonObject = getFormJson(org.smartregister.chw.util.Constants.JsonForm.getChildHomeVisitDangerSignForm(), memberObject.getBaseEntityId());
 
@@ -614,6 +658,17 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_skin_to_skin)).withOptional(false).withDetails(details).withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED).withFormName(Constants.JsonForm.getSkinToSkin()).withHelper(actionHelper).withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE).withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE).withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate())))).build();
 
         actionList.put(context.getString(R.string.pnc_skin_to_skin), action);
+    }
+
+    private void evaluateVisitLocation() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_hv_location))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JsonForm.getPncHvLocation())
+                .withHelper(new PNCVisitLocationActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.pnc_hv_location), action);
     }
 
     public static int getChildAgeInMonth(Date dob) {

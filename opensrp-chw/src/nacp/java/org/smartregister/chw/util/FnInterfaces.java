@@ -35,6 +35,10 @@ public interface FnInterfaces {
         void take(T t,S s) throws Exception;
     }
 
+    interface Action<T> {
+        void apply(T t) throws Exception;
+    }
+
     class Mutable<V>{
         public V value;
         public Mutable(V value){this.value=value;}
@@ -50,7 +54,7 @@ public interface FnInterfaces {
         }
         // Pattern pattern = Pattern.compile("^\\W*(?<key>[a-z]\\w+)\\W+(?<value>\\w.*)");//api >=26;
 
-        public static KeyValue<String,String> create(String input){
+        public static KeyValue<String,String> create(String input) {
             Matcher m=PATTERN_KEY_VALUE.matcher(input != null ? input : "");
             return m.find()
                     ?new KeyValue<>(m.group(1),m.group(2))
