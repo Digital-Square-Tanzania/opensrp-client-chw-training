@@ -143,6 +143,11 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     }
 
     @Override
+    public boolean hasVmmc() {
+        return true;
+    }
+
+    @Override
     public boolean hasKvp() {
         return true;
     }

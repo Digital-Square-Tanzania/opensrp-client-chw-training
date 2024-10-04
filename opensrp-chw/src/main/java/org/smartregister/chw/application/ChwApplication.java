@@ -574,6 +574,8 @@ public class ChwApplication extends CoreChwApplication {
 
         boolean hasSbc();
 
+        boolean hasVmmc();
+
         String[] getFTSTables();
 
         Map<String, String[]> getFTSSearchMap();

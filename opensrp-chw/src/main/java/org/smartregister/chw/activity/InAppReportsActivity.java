@@ -41,6 +41,8 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
 
     protected ConstraintLayout sbcReports;
 
+    protected ConstraintLayout vmmcReports;
+
     @Override
     protected void onCreation() {
         ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
@@ -62,6 +64,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         agywReports = findViewById(R.id.agyw_reports);
         iccmReports = findViewById(R.id.iccm_reports);
         sbcReports = findViewById(R.id.sbc_reports);
+        vmmcReports = findViewById(R.id.vmmc_reports);
 
         AllSharedPreferences allSharedPreferences = Utils.getAllSharedPreferences();
         SharedPreferences preferences = allSharedPreferences.getPreferences();
@@ -101,6 +104,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
                     if (ChwApplication.getApplicationFlavor().hasCdp()) {
                         condomDistributionReports.setVisibility(View.VISIBLE);
                     }
+
+                    if (ChwApplication.getApplicationFlavor().hasVmmc()) {
+                        vmmcReports.setVisibility(View.VISIBLE);
+                    }
                     break;
             }
         } else {
@@ -127,6 +134,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
             if (ChwApplication.getApplicationFlavor().hasCdp()) {
                 condomDistributionReports.setVisibility(View.VISIBLE);
             }
+
+            if (ChwApplication.getApplicationFlavor().hasVmmc()) {
+                vmmcReports.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -136,6 +147,7 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         agywReports.setOnClickListener(this);
         iccmReports.setOnClickListener(this);
         sbcReports.setOnClickListener(this);
+        vmmcReports.setOnClickListener(this);
     }
 
     public void setUpToolbar() {
@@ -188,6 +200,10 @@ public class InAppReportsActivity extends SecuredActivity implements View.OnClic
         }
         if (id == R.id.sbc_reports) {
             Intent intent = new Intent(this, SbcReportsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.vmmc_reports) {
+            Intent intent = new Intent(this, VmmcReportsActivity.class);
             startActivity(intent);
         }
     }

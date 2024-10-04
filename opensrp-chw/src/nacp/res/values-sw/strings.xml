@@ -386,8 +386,10 @@
     <string name="condom_distribution_reports_subtitle">Tazama ripoti za usambazaji kondomu</string>
     <string name="condom_distribution_reports">Ripoti za usambazaji kondomu</string>
     <string name="cdp_reports">Ripoti za Kondomu</string>
+    <string name="vmmc_reports">VMMC REPORTS</string>
     <string name="cdp_issuing_report">Ripoti za kutoa kondomu</string>
     <string name="cdp_receiving_report">Ripoti za kupokea kondomu</string>
+    <string name="vmmc_waja_report">VMMC Waja Report</string>
     <string name="agyw_visit">Matembeleo ya Msichana Rika Balehe na Mwanamke Kijana</string>
 
 

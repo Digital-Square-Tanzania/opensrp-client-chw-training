@@ -24,6 +24,7 @@ import org.smartregister.chw.domain.iccm_reports.IccmDispensingSummaryReportObje
 import org.smartregister.chw.domain.iccm_reports.MalariaTestReportObject;
 import org.smartregister.chw.domain.mother_champion_report.MotherChampionReportObject;
 import org.smartregister.chw.domain.sbc_reports.SbcReportObject;
+import org.smartregister.chw.domain.vmmc_reports.VmmcWajaReportObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -228,4 +229,15 @@ public class ReportUtils {
         }
     }
 
+    public static class VmmcWajaReports {
+        public static String computeClientsReports(Date startDate) {
+            VmmcWajaReportObject vmmcWajaReportObject = new VmmcWajaReportObject(startDate);
+            try {
+                return vmmcWajaReportObject.getIndicatorDataAsGson(vmmcWajaReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
 }

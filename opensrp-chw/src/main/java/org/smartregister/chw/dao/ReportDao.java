@@ -444,6 +444,88 @@ public class ReportDao extends AbstractDao {
             return new ArrayList<>();
     }
 
+    public static List<Map<String, String>> getVmmcWajaReport(Date reportDate)
+    {
+        String sql = "WITH VMMC_CTE AS (\n" +
+                "    SELECT\n" +
+                "        ec_vmmc_procedure.mc_procedure_date,\n" +
+                "        ec_family_member.first_name,\n" +
+                "        ec_family_member.middle_name,\n" +
+                "        ec_family_member.last_name,\n" +
+                "        ec_vmmc_enrollment.vmmc_client_id,\n" +
+                "        ec_vmmc_procedure.surgeon_name,\n" +
+                "        ec_vmmc_procedure.assistant_name,\n" +
+                "        ec_vmmc_procedure.size_place,\n" +
+                "        ec_vmmc_procedure.start_time,\n" +
+                "        ec_vmmc_procedure.end_time,\n" +
+                "        ec_vmmc_procedure.aneathesia_administered,\n" +
+                "        ec_vmmc_procedure.type_of_adverse_event,\n" +
+                "\t\tec_vmmc_procedure.male_circumcision_method,\n" +
+                "        \n" +
+                "        ec_family_member.dob\n" +
+                "    FROM\n" +
+                "        ec_vmmc_enrollment\n" +
+                "    LEFT JOIN\n" +
+                "        ec_family_member ON ec_family_member.base_entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_services ON ec_vmmc_services.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_procedure ON ec_vmmc_procedure.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "        AND ec_vmmc_follow_up_visit.follow_up_visit_type = 'routine'\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "\tWHERE \n" +
+                "    date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =\n" +
+                "   date(substr(ec_vmmc_procedure.mc_procedure_date, 7, 4) || '-' || substr(ec_vmmc_procedure.mc_procedure_date, 4, 2) || '-' || '01')\t\n" +
+                ")\n" +
+                "\n" +
+                "SELECT\n" +
+                "    mc_procedure_date,\n" +
+                "    vmmc_client_id,\n" +
+                "    surgeon_name,\n" +
+                "    assistant_name,\n" +
+                "    size_place,\n" +
+                "    type_of_adverse_event,\n" +
+                "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
+                "    (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) AS age,\n" +
+                "\tMAX(male_circumcision_method) AS male_circumcision_method,\n" +
+                "    MAX(aneathesia_administered) AS aneathesia_administered,\n" +
+                "    MAX(start_time) AS start_time,\n" +
+                "    MAX(end_time) AS end_time\n" +
+                "        \n" +
+                "FROM VMMC_CTE\n" +
+                "GROUP BY\n" +
+                "    mc_procedure_date,\n" +
+                "    vmmc_client_id,\n" +
+                "    names,\n" +
+                "    dob\n" +
+                "ORDER BY mc_procedure_date  ASC;\n";
+
+        String queryDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
+
+        sql = sql.contains("%s") ? sql.replaceAll("%s", queryDate) : sql;
+
+        DataMap<Map<String, String>> map = cursor -> {
+            Map<String, String> data = new HashMap<>();
+            data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
+            data.put("names", cursor.getString(cursor.getColumnIndex("names")));
+            data.put("vmmc_client_id", cursor.getString(cursor.getColumnIndex("vmmc_client_id")));
+            data.put("age", cursor.getString(cursor.getColumnIndex("age")));
+            data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
+
+            return data;
+        };
+
+        List<Map<String, String>> res = readData(sql, map);
+
+
+        if (res != null && res.size() > 0) {
+            return res;
+        } else
+            return new ArrayList<>();
+    }
 
     @NonNull
     public static List<EligibleChild> eligibleChildrenReport(ArrayList<String> communityIds, Date dueDate) {
