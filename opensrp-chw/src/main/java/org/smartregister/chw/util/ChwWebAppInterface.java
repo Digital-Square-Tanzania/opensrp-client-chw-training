@@ -5,6 +5,8 @@ import static org.smartregister.util.Utils.getAllSharedPreferences;
 import android.content.Context;
 import android.webkit.JavascriptInterface;
 
+import org.smartregister.util.Log;
+
 public class ChwWebAppInterface {
     Context mContext;
 
@@ -18,6 +20,7 @@ public class ChwWebAppInterface {
 
     @JavascriptInterface
     public String getDataForReport() {
+        System.out.println("hereee1");
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.CBHS_REPORT)) {
             ReportUtils.setPrintJobName("cbhs_monthly_summary-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.CBHSReport.computeReport(ReportUtils.getReportDate(), mContext);
@@ -69,6 +72,7 @@ public class ChwWebAppInterface {
             ReportUtils.setPrintJobName("SBC_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.SbcReports.computeClientsReports(ReportUtils.getReportDate());
         }
+
 
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.VMMC_WAJA_REPORT)) {
             ReportUtils.setPrintJobName("VMMC_WAJA_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");

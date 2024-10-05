@@ -5,6 +5,7 @@ import android.content.Context;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
