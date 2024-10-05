@@ -451,8 +451,7 @@ public class ReportDao extends AbstractDao {
         String sql = "SELECT \n" +
                 "    efm.base_entity_id,\n" +
                 "    (efm.first_name || ' ' || efm.middle_name || ' ' || efm.last_name) AS names,\n" +
-                "    (strftime('%Y', 'now') - strftime('%Y', efm.dob)) - \n" +
-                "    (strftime('%m-%d', 'now') < strftime('%m-%d', efm.dob)) AS age,\n" +
+                "    CAST((julianday('now') - julianday(substr(efm.dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n"+
                 "    er.referral_status,\n" +
                 "    date(er.referral_date / 1000, 'unixepoch') AS referral_date\n" +
                 "FROM \n" +

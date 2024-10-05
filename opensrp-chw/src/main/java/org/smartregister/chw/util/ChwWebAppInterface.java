@@ -7,6 +7,8 @@ import android.webkit.JavascriptInterface;
 
 import org.smartregister.util.Log;
 
+import timber.log.Timber;
+
 public class ChwWebAppInterface {
     Context mContext;
 
@@ -36,6 +38,7 @@ public class ChwWebAppInterface {
 
     @JavascriptInterface
     public String getData(String key) {
+        Timber.e("hello"+key+"|"+reportType+"|"+Constants.ReportConstants.ReportTypes.VMMC_WAJA_REPORT);
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.AGYW_REPORT)) {
             ReportUtils.setPrintJobName("AGYW_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.AGYWReport.computeReport(ReportUtils.getReportDate());
