@@ -45,7 +45,8 @@
     </com.google.android.material.appbar.AppBarLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="32dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -417,7 +418,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:minHeight="150dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
                 android:visibility="gone"
                 android:paddingVertical="30dp">
 

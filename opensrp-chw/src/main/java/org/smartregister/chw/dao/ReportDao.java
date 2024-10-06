@@ -453,7 +453,7 @@ public class ReportDao extends AbstractDao {
                 "    (efm.first_name || ' ' || efm.middle_name || ' ' || efm.last_name) AS names,\n" +
                 "    CAST((julianday('now') - julianday(substr(efm.dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n"+
                 "    er.referral_status,\n" +
-                "    date(er.referral_date / 1000, 'unixepoch') AS referral_date\n" +
+                "    strftime('%d-%m-%Y', er.referral_date / 1000, 'unixepoch') AS referral_date\n" +
                 "FROM \n" +
                 "    ec_referral er\n" +
                 "JOIN \n" +
