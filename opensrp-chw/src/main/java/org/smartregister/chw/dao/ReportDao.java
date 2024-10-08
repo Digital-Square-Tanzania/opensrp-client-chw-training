@@ -448,21 +448,37 @@ public class ReportDao extends AbstractDao {
 
     public static List<Map<String, String>> getVmmcWajaReport(Date reportDate)
     {
-        String sql = "SELECT \n" +
-                "    efm.base_entity_id,\n" +
-                "    (efm.first_name || ' ' || efm.middle_name || ' ' || efm.last_name) AS names,\n" +
-                "    CAST((julianday('now') - julianday(substr(efm.dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n"+
-                "    er.referral_status,\n" +
-                "    strftime('%d-%m-%Y', er.referral_date / 1000, 'unixepoch') AS referral_date\n" +
-                "FROM \n" +
-                "    ec_referral er\n" +
-                "JOIN \n" +
-                "    ec_family_member efm ON efm.base_entity_id = er.entity_id\n" +
-                "WHERE\n" +
-                "    LOWER(er.chw_referral_service) LIKE '%vmmc%'\n" +
+        String sql = "WITH RankedEntities AS (\n" +
+                "    SELECT er.base_entity_id,\n" +
+                "           (efm.first_name || ' ' || efm.middle_name || ' ' || efm.last_name) AS names,\n" +
+                "           CAST((julianday('now') - julianday(substr(efm.dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
+                "           CASE\n" +
+                "               -- 'SUCCESSFUL' condition\n" +
+                "               WHEN task.code = 'Referral' AND task.business_status = 'Complete' AND task.business_status != 'Cancelled'\n" +
+                "               THEN 'SUCCESSFUL'\n"+
+                "               -- 'CANCELLED' condition\n" +
+                "               WHEN task.code = 'Referral' AND task.business_status = 'Cancelled' AND task.business_status != 'Complete'\n" +
+                "               THEN 'CANCELLED'\n" +
+                "               -- 'FAILED' condition\n" +
+                "               WHEN task.code = 'Referral' AND task.business_status = 'Expired' AND task.status = 'FAILED'\n" +
+                "               THEN 'FAILED'\n"+
+                "               -- Default to referral_status if none of the conditions match\n" +
+                "               ELSE er.referral_status\n"+
+                "           END AS referral_status,\n" +
+                "           strftime('%d-%m-%Y', er.referral_date / 1000, 'unixepoch') AS referral_date,\n" +
+                "           strftime('%d-%m-%Y', er.referral_appointment_date / 1000, 'unixepoch') AS referral_appointment_date,\n" +
+                "           ROW_NUMBER() OVER (PARTITION BY efm.base_entity_id ORDER BY er.referral_date DESC) AS rn\n" +
+                "    FROM ec_referral er\n" +
+                "    INNER JOIN ec_family_member efm ON efm.base_entity_id = er.entity_id\n" +
+                "    INNER JOIN task ON task.for = efm.base_entity_id\n" +
+                "    WHERE LOWER(task.focus) LIKE '%vmmc%'\n" +
                 "\tAND date(substr(datetime(er.referral_date / 1000, 'unixepoch'), 1, 4) || '-' ||\n" +
-                "             substr(datetime(er.referral_date / 1000, 'unixepoch'), 6, 2) || '-' || '01') = \n" +
-                "        date(substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01');";
+                "         substr(datetime(er.referral_date / 1000, 'unixepoch'), 6, 2) || '-' || '01') =\n" +
+                "         date(substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')\n" +
+                ")\n" +
+                "SELECT base_entity_id, names, age, referral_status, referral_date, referral_appointment_date\n" +
+                "FROM RankedEntities\n" +
+                "WHERE rn = 1;\n";
 
         String queryDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
 
