@@ -448,7 +448,7 @@ public class ReportDao extends AbstractDao {
 
     public static List<Map<String, String>> getVmmcWajaReport(Date reportDate)
     {
-        String sql = "WITH RankedEntities AS (\n" +
+        String sql = "WITH vmmcWajaReportCTE AS (\n" +
                 "    SELECT er.base_entity_id,\n" +
                 "           (efm.first_name || ' ' || efm.middle_name || ' ' || efm.last_name) AS names,\n" +
                 "           CAST((julianday('now') - julianday(substr(efm.dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
@@ -477,7 +477,7 @@ public class ReportDao extends AbstractDao {
                 "         date(substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')\n" +
                 ")\n" +
                 "SELECT base_entity_id, names, age, referral_status, referral_date, referral_appointment_date\n" +
-                "FROM RankedEntities\n" +
+                "FROM vmmcWajaReportCTE\n" +
                 "WHERE rn = 1;\n";
 
         String queryDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
