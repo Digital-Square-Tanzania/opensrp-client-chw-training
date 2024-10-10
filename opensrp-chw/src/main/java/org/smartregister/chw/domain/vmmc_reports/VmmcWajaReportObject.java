@@ -38,6 +38,7 @@ public class VmmcWajaReportObject extends ReportObject {
             reportJsonObject.put("id", ++i);
 
             reportJsonObject.put("referral_date", getVmmcClientDetails(getVmmcWajaReport, "referral_date"));
+            reportJsonObject.put("referral_appointment_date", getVmmcClientDetails(getVmmcWajaReport, "referral_appointment_date"));
             reportJsonObject.put("names", getVmmcClientDetails(getVmmcWajaReport, "names"));
             reportJsonObject.put("age", getVmmcClientDetails(getVmmcWajaReport, "age"));
             reportJsonObject.put("referral_status", getVmmcClientDetails(getVmmcWajaReport, "referral_status"));

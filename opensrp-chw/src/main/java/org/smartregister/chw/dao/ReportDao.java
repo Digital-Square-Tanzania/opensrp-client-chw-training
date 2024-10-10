@@ -487,6 +487,7 @@ public class ReportDao extends AbstractDao {
         DataMap<Map<String, String>> map = cursor -> {
             Map<String, String> data = new HashMap<>();
             data.put("referral_date", cursor.getString(cursor.getColumnIndex("referral_date")));
+            data.put("referral_appointment_date", cursor.getString(cursor.getColumnIndex("referral_appointment_date")));
             data.put("names", cursor.getString(cursor.getColumnIndex("names")));
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("referral_status", cursor.getString(cursor.getColumnIndex("referral_status")));
