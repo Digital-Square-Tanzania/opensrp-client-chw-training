@@ -605,5 +605,62 @@
     <!--    ICCM Visit History-->
     <string name="iccm_visit">Matembeleo ya huduma za iCCM</string>
 
+    <string name="menu_iccm">iCCM</string>
+    <string name="iccm_physical_examination">Physical Examination</string>
+    <string name="iccm_malaria">Malaria</string>
+    <string name="iccm_pneumonia">Nimonia</string>
+    <string name="iccm_diarrhea">Kuharisha</string>
+
+    <!--    ICCM Visit History-->
+    <string name="iccm_reports_title">Repoti za ICCM</string>
+    <string name="iccm_reports_subtitle">Tazama Ripoti za ICCM</string>
+    <string name="iccm_client_report">ICCM Clients Report</string>
+    <string name="iccm_dispensing_summary">ICCM Dispensing Summary</string>
+    <string name="iccm_malaria_report">Malaria Test Report</string>
+
+    <string name="iccm_medical_history">Mteja ana dalili zozote za hatari</string>
+    <string name="iccm_is_the_client_pregnant">Je mteja ni mjamzito</string>
+    <string name="iccm_other_medical_history">Dalili za hatari zinginezo</string>
+    <string name="iccm_interpretation_for_mrdt">Tafsiri ya matokeo ya kipimo cha haraka cha malaria (mRDT)</string>
+    <string name="iccm_interpretation_for_mrdt_two">Tafsiri ya matokeo ya kipimo cha haraka cha malaria (mRDT)</string>
+    <string name="iccm_mrdt_results">Majibu ya kipimo cha mRDT</string>
+    <string name="iccm_dispensed_alu_category">Aina ya ALU uliyopewa mteja</string>
+    <string name="iccm_number_of_alu_tablets_dispensed">Idadi ya vidonge vya ALU vilivyotolewa</string>
+    <string name="iccm_diarrhea_signs">Dalili za huharisha</string>
+    <string name="iccm_diarrhea_medication_dispensed">Dawa za Zinc na ORS zilizotolewa</string>
+    <string name="iccm_diarrhea_medication_dispensed_for_referred_clients">Dawa za ORS zilizotolewa</string>
+    <string name="iccm_number_of_ors_sachets_dispensed">Idadi ya pakiti za ORS zilizotolewa</string>
+    <string name="iccm_number_of_zinc_tablets_dispensed">Idadi ya vidonge vya Zinc vilivyotolewa</string>
+    <string name="iccm_number_of_zinc_ors_co_packs_dispensed">Idadi ya pakiti za Zinc ORS co-pack zilizotolewa</string>
+    <string name="iccm_reasons_for_not_dispensing_diarrhea_medication">Sababu kwa nini Zinc au ORS hazijatolewa</string>
+    <string name="iccm_other_reasons_for_not_dispensing_diarrhea_medication">Sababu nyinginezo kwa nini Zinc au ORS hazijatolewa</string>
+
+    <string name="iccm_fever">Homa</string>
+    <string name="iccm_vomiting">Kutapika</string>
+    <string name="iccm_poor_appetite">Kukosa hamu ya kula</string>
+    <string name="iccm_body_weakness">Mwili kukosa nguvu</string>
+    <string name="iccm_headache">Kuumwa kichwa</string>
+    <string name="iccm_joint_pain">Maumivu ya viungo vya mwili</string>
+    <string name="iccm_malaise">Maumivu ya mwili</string>
+    <string name="iccm_coughing">Kukohoa</string>
+    <string name="iccm_others">Dalili nyingine</string>
+    <string name="iccm_client_past_malaria_treatment_history">Je mteja alipimwa na kukutwa malaria na kupata matibabu ndani ya siku 14 zilizopita</string>
+    <string name="iccm_irritable_or_crying">Anahangaika au kulialia</string>
+    <string name="iccm_sunken_eyes">Macho kuingia ndani</string>
+    <string name="iccm_drinks_eagerly">Anakunywa kwa shauku</string>
+    <string name="iccm_struggles_to_drink">Anakunywa kwa shida</string>
+    <string name="iccm_skin_pinch_goes_back_slowly">Ngozi ikitomaswa inarudi polepole</string>
+    <string name="iccm_yes">Ndiyo</string>
+    <string name="iccm_no">Hapana</string>
+    <string name="iccm_ors">ORS</string>
+    <string name="iccm_zinc">Zinc</string>
+    <string name="iccm_zinc_ors_co_pack">Zinc ORS Co-pack</string>
+    <string name="iccm_none">Hajapewa dawa yoyote</string>
+    <string name="iccm_stock_out">Dawa zimeisha</string>
+
+    <string name="visit_in_progress">%s tembeleo bado linaendelea</string>
+
+    <string name="iccm_referral">Rufaa za huduma ya iCCM</string>
+
 
 </resources>

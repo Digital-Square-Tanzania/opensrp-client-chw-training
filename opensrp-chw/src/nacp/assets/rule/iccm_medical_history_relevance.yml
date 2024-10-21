@@ -26,3 +26,10 @@ priority: 1
 condition: "step1_is_pneumonia_suspect == 'true'"
 actions:
   - "isRelevant = true"
+---
+name: step1_is_the_client_pregnant
+description: is_the_client_pregnant relevance
+priority: 1
+condition: "global_sex == 'Female'"
+actions:
+  - "isRelevant = true"

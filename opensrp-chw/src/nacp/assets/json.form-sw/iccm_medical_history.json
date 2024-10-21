@@ -55,7 +55,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "is_the_client_pregnant",
-        "label": "Je mteja ni mjamzito??",
+        "label": "Je mteja ni mjamzito?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -77,6 +77,13 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali jibu swahi hili"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "iccm_medical_history_relevance.yml"
+            }
+          }
         }
       },
       {

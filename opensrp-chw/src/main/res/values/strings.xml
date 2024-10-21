@@ -482,6 +482,30 @@
     <string name="iccm_other_reasons_for_not_dispensing_diarrhea_medication">Other reasons for not dispensing Diarrhea Medication</string>
     <string name="visit_in_progress">%s visit still in progress</string>
 
+    <string name="iccm_fever">Fever</string>
+    <string name="iccm_vomiting">Vomiting</string>
+    <string name="iccm_poor_appetite">Poor Appetite</string>
+    <string name="iccm_body_weakness">Body Weakness</string>
+    <string name="iccm_headache">Headache</string>
+    <string name="iccm_joint_pain">Joint pain</string>
+    <string name="iccm_malaise">Malaise</string>
+    <string name="iccm_coughing">Coughing</string>
+    <string name="iccm_client_past_malaria_treatment_history">Has the client previously tested Positive for Malaria and received treatment in the past 14 days</string>
+    <string name="iccm_irritable_or_crying">Irritable or crying</string>
+    <string name="iccm_sunken_eyes">Sunken eyes</string>
+    <string name="iccm_drinks_eagerly">Drinks eagerly</string>
+    <string name="iccm_struggles_to_drink">Struggles to drink</string>
+    <string name="iccm_skin_pinch_goes_back_slowly">Skin pinch goes back slowly</string>
+    <string name="iccm_yes">Yes</string>
+    <string name="iccm_no">No</string>
+    <string name="iccm_ors">ORS</string>
+    <string name="iccm_zinc">Zinc</string>
+    <string name="iccm_zinc_ors_co_pack">Zinc ORS Co-pack</string>
+    <string name="iccm_none">None</string>
+    <string name="iccm_stock_out">Stock out</string>
+    <string name="iccm_others">Others</string>
+
+
     <string name="iccm_referral">iCCM Referral</string>
 
     <string name="palm_pallor_green">Green</string>

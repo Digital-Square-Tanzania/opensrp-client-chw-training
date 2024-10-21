@@ -1,5 +1,6 @@
 package org.smartregister.chw.actionhelper;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.GLOBAL;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.TYPE;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
 import static org.smartregister.chw.core.utils.Utils.getCommonPersonObjectClient;
@@ -70,6 +71,9 @@ public class IccmMedicalHistoryActionHelper implements BaseIccmVisitAction.IccmV
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+
+            jsonObject.getJSONObject(GLOBAL).put("sex",memberObject.getGender());
+
             JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
 
             JSONObject clientBaseEntityId = JsonFormUtils.getFieldJSONObject(fields, "iccm_enrollment_form_submission_id");
