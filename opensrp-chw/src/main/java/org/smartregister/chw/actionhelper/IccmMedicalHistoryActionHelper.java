@@ -37,20 +37,13 @@ import java.util.Map;
 import timber.log.Timber;
 
 public class IccmMedicalHistoryActionHelper implements BaseIccmVisitAction.IccmVisitActionHelper {
-    private String jsonPayload;
-
     private final String enrollmentFormSubmissionId;
-
     private final Context context;
-
     private final LinkedHashMap<String, BaseIccmVisitAction> actionList;
-
     private final BaseIccmVisitContract.InteractorCallBack callBack;
-
     private final Map<String, List<VisitDetail>> details;
-
     private final HashMap<String, Boolean> checkObject = new HashMap<>();
-
+    private String jsonPayload;
     private IccmMemberObject memberObject;
 
     public IccmMedicalHistoryActionHelper(Context context, String enrollmentFormSubmissionId, LinkedHashMap<String, BaseIccmVisitAction> actionList, Map<String, List<VisitDetail>> details, BaseIccmVisitContract.InteractorCallBack callBack) {
@@ -72,9 +65,16 @@ public class IccmMedicalHistoryActionHelper implements BaseIccmVisitAction.IccmV
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
 
-            jsonObject.getJSONObject(GLOBAL).put("sex",memberObject.getGender());
+            jsonObject.getJSONObject(GLOBAL).put("sex", memberObject.getGender());
 
             JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
+
+            if (memberObject.getGender().equalsIgnoreCase("male")) {
+                JSONObject isTheClientPregnant = JsonFormUtils.getFieldJSONObject(fields, "is_the_client_pregnant");
+                if (isTheClientPregnant != null) {
+                    isTheClientPregnant.put(TYPE, "hidden");
+                }
+            }
 
             JSONObject clientBaseEntityId = JsonFormUtils.getFieldJSONObject(fields, "iccm_enrollment_form_submission_id");
             if (clientBaseEntityId != null) {
