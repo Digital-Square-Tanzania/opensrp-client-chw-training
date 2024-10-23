@@ -222,17 +222,34 @@ android {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.5.44-MOH-SNAPSHOT@aar') {
+//    implementation('org.smartregister:opensrp-client-chw-core:1.5.44-MOH-SNAPSHOT@aar') {
+//        transitive = true
+//        exclude group: 'com.android.support', module: 'appcompat-v7'
+//        exclude group: 'androidx.legacy', module: 'legacy-support-v4'
+//        exclude group: 'androidx.appcompat', module: 'appcompat'
+//        exclude group: 'androidx.constraintlayout', module: 'constraintlayout'
+//        exclude group: 'com.google.guava', module: 'guava'
+//        exclude group: 'com.mcxiaoke.volley', module: 'library'
+//        exclude group: 'com.rengwuxian.materialedittext', module: 'library'
+//    }
+    implementation('org.smartregister:opensrp-client-chw-core:1.5.45-MOH-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
         exclude group: 'androidx.appcompat', module: 'appcompat'
         exclude group: 'androidx.constraintlayout', module: 'constraintlayout'
         exclude group: 'com.google.guava', module: 'guava'
+        exclude group: "org.koin", module: "koin-android"
+        exclude group: "org.koin", module: "koin-androidx-scope"
+        exclude group: "org.koin", module: "koin-androidx-viewmodel"
+        exclude group: "com.github.stephenc.jcip", module: "jcip-annotations"
+        exclude group: "com.nerdstone", module: "neat-android-stepper"
         exclude group: 'com.mcxiaoke.volley', module: 'library'
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
     }
     implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.1.0'
+    implementation 'com.getkeepsafe.relinker:relinker:1.4.3'
+    implementation 'org.mozilla:rhino:1.7.13'
     implementation('io.ona.kujaku:library:0.9.0') {
         exclude group: 'com.android.volley', module: 'volley'
         exclude group: 'stax', module: 'stax-api'
