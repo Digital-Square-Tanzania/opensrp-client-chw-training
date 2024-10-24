@@ -344,7 +344,7 @@
     <string name="suspected_malaria">Suspected Malaria</string>
 
     <!--Addo Minor Ailments-->
-    <string name="child_minor_ailments"> Child Minor Ailments ({0})</string>
+    <string name="child_minor_ailments"> Child Minor Ailments</string>
     <string name="anc_minor_ailments"> ANC Minor Ailments </string>
     <string name="pnc_minor_ailments"> PNC Minor Ailments </string>
     <string name="adolescent_minor_ailments"> Adolescent Minor Ailments </string>

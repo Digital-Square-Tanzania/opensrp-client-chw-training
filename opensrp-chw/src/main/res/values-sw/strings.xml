@@ -369,7 +369,7 @@
     <string name="suspected_malaria">Malaria inayodhaniwa</string>
 
     <!--Addo Minor Ailments-->
-    <string name="child_minor_ailments"> Maradhi ya mtoto : ({0})</string>
+    <string name="child_minor_ailments"> Maradhi ya mtoto</string>
     <string name="anc_minor_ailments"> Maradhi ya mama mjamzito </string>
     <string name="pnc_minor_ailments"> Maradhi ya mama liyejifungua </string>
     <string name="adolescent_minor_ailments"> Maradhi ya kijana balehe </string>
