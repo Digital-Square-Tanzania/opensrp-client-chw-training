@@ -221,10 +221,11 @@ android {
             enableSplit = false
         }
     }
+    ndkVersion '21.1.6352462'
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.5.43-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.6.0-MOH-SNAPSHOT-TESTING@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -233,30 +234,12 @@ dependencies {
         exclude group: 'com.google.guava', module: 'guava'
         exclude group: 'com.mcxiaoke.volley', module: 'library'
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
-
-        exclude group: 'org.smartregister', module: 'opensrp-client-chw-referral'
-        exclude group: 'org.smartregister', module: 'opensrp-client-chw-ld'
-
-    }
-
-    implementation('org.smartregister:opensrp-client-chw-referral:1.3.14-NACP-SNAPSHOT@aar') {
-        transitive = true
-        exclude group: 'org.smartregister', module: 'opensrp-client-core'
-        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
-        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'id.zelory', module: 'compressor'
-        exclude group: 'com.rengwuxian.materialedittext', module: 'library'
-    }
-
-    implementation('org.smartregister:opensrp-client-chw-ld:1.0.32-NACP-SNAPSHOT@aar') {
-        transitive = true
-        exclude group: 'org.smartregister', module: 'opensrp-client-core'
-        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
-        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'id.zelory', module: 'compressor'
-        exclude group: 'com.rengwuxian.materialedittext', module: 'library'
+        exclude group: 'com.github.chivorns.androidx', module: 'smartmaterialspinner'
+        exclude group: 'com.github.stephenc.jcip', module: 'jcip-annotations'
+        exclude group: 'io.insert-koin', module: 'koin-android'
+        exclude group: 'io.insert-koin', module: 'koin-androidx-scope'
+        exclude group: 'io.insert-koin', module: 'koin-androidx-viewmodel'
+        exclude group: 'io.insert-koin', module: 'koin-core'
     }
 
     implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.1.0'
