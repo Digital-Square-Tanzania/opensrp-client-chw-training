@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="login_title">Appli CFC</string>
     <string name="logo">logo</string>
 
@@ -301,7 +301,7 @@
 
     <string name="pnc_minor_ailment_mama"> Minor Ailment - Mama </string>
 
-    <string name="child_minor_ailment"> Minor Ailment - Baby </string>
+    <string name="child_minor_ailment" tools:ignore="ExtraTranslation"> Minor Ailment - Baby </string>
 
     <string name="pnc_health_facility_visit_within_fourty_eight_hours">Visit CPoN au centre de santé - dans les 48 heures</string>
     <string name="pnc_health_facility_visit_days_three_to_seven">Visit CPoN au centre de santé - jours 3-7</string>
