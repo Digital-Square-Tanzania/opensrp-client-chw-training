@@ -9,7 +9,6 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
-import org.smartregister.chw.referral.util.LocationUtils;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.domain.Location;
@@ -45,12 +44,12 @@ public class ReferralUtils extends CoreReferralUtils {
 
         NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(JsonFormUtils.gson.toJson(baseEvent)));
 
-        createReferralTask(allSharedPreferences, baseEntityId, baseEvent.getFormSubmissionId(), referralProblems, selectedFacility);
+        createReferralTask(allSharedPreferences, baseEntityId, baseEvent.getFormSubmissionId(), referralProblems, selectedFacility, referralType);
 
     }
 
-    private static void addReferralDetails(Event baseEvent, String referralType, String referralProblems){
-        if(baseEvent==null) return;
+    private static void addReferralDetails(Event baseEvent, String referralType, String referralProblems) {
+        if (baseEvent == null) return;
 
         long referralDate = System.currentTimeMillis();
         Map<String, Object> obsMap = new HashMap<>();
@@ -58,17 +57,17 @@ public class ReferralUtils extends CoreReferralUtils {
         obsMap.put("chw_referral_service", referralType);
         obsMap.put("referral_type", "community_to_facility_referral");
         obsMap.put("referral_date", referralDate);
-        obsMap.put("referral_time",new SimpleDateFormat("HH:mm:ss.SSS", Locale.ENGLISH).format(referralDate));
+        obsMap.put("referral_time", new SimpleDateFormat("HH:mm:ss.SSS", Locale.ENGLISH).format(referralDate));
         obsMap.put("problem", referralProblems);
 
-        for (String key:obsMap.keySet()) {
+        for (String key : obsMap.keySet()) {
             List<Object> value = Collections.singletonList(obsMap.get(key));
-            baseEvent.addObs(new Obs("concept", "text",key, "", value, value, "",key));
+            baseEvent.addObs(new Obs("concept", "text", key, "", value, value, "", key));
         }
 
     }
 
-    private static void createReferralTask(AllSharedPreferences allSharedPreferences, String baseEntityId, String formSubmissionId, String referralProblems, String selectedFacility) {
+    private static void createReferralTask(AllSharedPreferences allSharedPreferences, String baseEntityId, String formSubmissionId, String referralProblems, String selectedFacility, String referralFocus) {
 
         Task task = new Task();
         task.setIdentifier(UUID.randomUUID().toString());
@@ -79,7 +78,7 @@ public class ReferralUtils extends CoreReferralUtils {
         task.setPriority(3);
         task.setCode(CoreConstants.JsonAssets.REFERRAL_CODE);
         task.setDescription(referralProblems);
-        task.setFocus(CoreConstants.TASKS_FOCUS.ANC_DANGER_SIGNS);
+        task.setFocus(referralFocus);
         task.setForEntity(baseEntityId);
         DateTime now = new DateTime();
         task.setExecutionStartDate(now);
@@ -93,7 +92,7 @@ public class ReferralUtils extends CoreReferralUtils {
         CoreChwApplication.getInstance().getTaskRepository().addOrUpdate(task);
     }
 
-    public static void createLinkageTask(AllSharedPreferences sharedPreferences, String baseEntityId, String formSubmissionId, String minorAilments, String focus){
+    public static void createLinkageTask(AllSharedPreferences sharedPreferences, String baseEntityId, String formSubmissionId, String minorAilments, String focus) {
 
         Task task = new Task();
         task.setIdentifier(UUID.randomUUID().toString());
@@ -118,14 +117,14 @@ public class ReferralUtils extends CoreReferralUtils {
         CoreChwApplication.getInstance().getTaskRepository().addOrUpdate(task);
     }
 
-    private static String getWard(){
+    private static String getWard() {
         LocationRepository locationRepository = new LocationRepository();
         List<Location> locations = locationRepository.getAllLocations();
         String locationId = Context.getInstance().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
         return getParentLocationIdWithTags(locations, locationId, "Ward");
     }
 
-    private static String getParentLocationIdWithTags(List<Location> locations, String locationId, String tagName){
+    private static String getParentLocationIdWithTags(List<Location> locations, String locationId, String tagName) {
         LocationTagRepository locationTagReposity = new LocationTagRepository();
         List<LocationTag> allLocationTags = locationTagReposity.getAllLocationTags();
         for (Location location : locations) {
@@ -136,7 +135,7 @@ public class ReferralUtils extends CoreReferralUtils {
                 }
             }
             if (location.getId().equals(locationId)) {
-                for (LocationTag locationTag : locationTags){
+                for (LocationTag locationTag : locationTags) {
                     if (locationTag.getName().equalsIgnoreCase(tagName))
                         return location.getId();
                     else
