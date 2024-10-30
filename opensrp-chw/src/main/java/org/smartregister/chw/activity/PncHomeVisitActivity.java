@@ -128,7 +128,7 @@ public class PncHomeVisitActivity extends BasePncHomeVisitActivity {
                                 ReferralUtils.createLinkageTask(org.smartregister.Context.getInstance().allSharedPreferences(),
                                         memberObject.getBaseEntityId(), event.getFormSubmissionId(), minorAilments, org.smartregister.chw.util.Constants.AddoLinkage.PNC_TASK_FOCUS);
 
-                                Toast.makeText(getContext(), getContext().getString(org.smartregister.chw.R.string.linked_to_addo_message), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), getContext().getString(R.string.linked_to_addo_message), Toast.LENGTH_LONG).show();
                             }catch (Exception e){
                                 Timber.e(e);
                             }

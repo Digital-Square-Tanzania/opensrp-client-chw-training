@@ -1,11 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="login_title">Boresha Afya App</string>
     <string name="logo">Nembo</string>
 
     <string name="title_family_detail">Taarifa za kaya</string>
     <string name="not_done">Haujafanyika</string>
-    <string name="done">Umefanyika</string>
-    <string name="subtask_not_done">Haujafanyika</string>
+    <string name="done" tools:ignore="ExtraTranslation">Umefanyika</string>
+    <string name="subtask_not_done" tools:ignore="ExtraTranslation">Haujafanyika</string>
     <string name="not_provided">Haijatolewa</string>
 
     <string name="child_under_five">Mtoto chini ya miaka 5</string>
@@ -21,7 +21,7 @@
     <string name="family_has_service_overdue"><![CDATA[Kaya ina <font color=#FF0000>huduma zilizopitiliza muda wake </font></b>]]></string>
     <string name="view_upcoming_services">Angalia huduma zinazokaribia</string>
     <string name="upcoming_services">Huduma zinazokaribia</string>
-    <string name="delivery_kit">Kitanda cha utoaji</string>
+    <string name="delivery_kit" tools:ignore="ExtraTranslation">Kitanda cha utoaji</string>
     <string name="overdue_3_oct">Imepita(3 oct)</string>
     <string name="view_medical_history">Angalia historia ya matibabu</string>
     <string name="last_visit_40_days_ago">Tembeleo la mwisho %1$s iliyopita</string>
@@ -194,7 +194,7 @@
     <string name="anc_home_visit_remarks_and_comments">Maoni</string>
 
     <string name="anc_home_visit_anc_card_received">Amepewa kadi ya kliniki ya mama mjamzito</string>
-    <string name="anc_woman_delivery_kit_received">Vifaa vya kujifungua vimepokelewa</string>
+    <string name="anc_woman_delivery_kit_received" tools:ignore="ExtraTranslation">Vifaa vya kujifungua vimepokelewa</string>
     <string name="anc_home_visit_sleeping_under_llitn_net">Analala kwenye chandarua chenye viuwatilifu cha muda mrefu</string>
     <string name="anc_home_visit_counseling">Ushauri kuhusu kliniki ya wajawazito</string>
     <string name="anc_home_visit_tt_immunization">Pepopunda {0} chanjo</string>
@@ -369,7 +369,7 @@
     <string name="suspected_malaria">Malaria inayodhaniwa</string>
 
     <!--Addo Minor Ailments-->
-    <string name="child_minor_ailments"> Maradhi ya mtoto : ({0})</string>
+    <string name="child_minor_ailments"> Maradhi ya mtoto</string>
     <string name="anc_minor_ailments"> Maradhi ya mama mjamzito </string>
     <string name="pnc_minor_ailments"> Maradhi ya mama liyejifungua </string>
     <string name="adolescent_minor_ailments"> Maradhi ya kijana balehe </string>
