@@ -87,6 +87,7 @@ public class LinkageFollowUpActivity extends MalariaRegisterActivity {
             finish();
 
         }
+        finish();
 
     }
 
