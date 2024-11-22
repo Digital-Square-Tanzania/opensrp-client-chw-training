@@ -1,14 +1,13 @@
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath 'org.apache.commons:commons-lang3:3.10'
-        classpath 'io.fabric.tools:gradle:1.31.2'
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
     }
 }
 def githubProperties = new Properties()
@@ -17,6 +16,20 @@ if (rootProject.file("github.properties").exists()) {
 }
 allprojects {
     repositories {
+        // Mapbox Maven repository
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                // Do not change the username below.
+                // This should always be `mapbox` (not your username).
+                username = 'mapbox'
+                // Use the secret token you stored in gradle.properties as the password
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN']
+            }
+        }
         maven { url 'https://maven.google.com' }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         maven { url 'https://maven.fabric.io/public' }
@@ -31,6 +44,7 @@ allprojects {
             }
 
         }
+
         maven {
 
             name = "GitHubPackages"
@@ -53,6 +67,19 @@ allprojects {
                 password = githubProperties['gpr.key'] ?: System.getenv("GITHUB_TOKEN")
             }
 
+        }
+
+        maven {
+            name = "GitHubPackages"
+            /**
+             * Configure path of the package repository on Github using the GITHUB_USER_ID and * Git Repository */
+            url = uri("https://maven.pkg.github.com/ellykits/neat-android-stepper")
+            credentials {
+                /** get credentials from local.properties in root project folder file with
+                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN otherwise ** Set env variable GPR_USER & GPR_API_KEY**/
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
         }
 
         mavenLocal()
@@ -62,10 +89,11 @@ allprojects {
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'io.fabric'
 apply from: "jacoco.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
 
 jacoco {
     toolVersion = "0.8.5"
@@ -100,11 +128,6 @@ android {
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath = true
-            }
-        }
 
         if (project.rootProject.file("local.properties").exists()) {
             Properties properties = new Properties()
@@ -149,6 +172,7 @@ android {
             buildConfigField "int", "STOCK_USAGE_REPORT_MINUTES", '1440'
             buildConfigField "boolean", "USE_UNIFIED_REFERRAL_APPROACH", "true"
             buildConfigField "boolean", "BUILD_FOR_BORESHA_AFYA_SOUTH", "true"
+            testCoverageEnabled false
         }
 
         debug {
@@ -167,7 +191,7 @@ android {
             buildConfigField "int", "STOCK_USAGE_REPORT_MINUTES", '1440'
             buildConfigField "boolean", "USE_UNIFIED_REFERRAL_APPROACH", "true"
             buildConfigField "boolean", "BUILD_FOR_BORESHA_AFYA_SOUTH", "true"
-            testCoverageEnabled true
+            testCoverageEnabled false
         }
     }
 
@@ -225,7 +249,6 @@ android {
             buildConfigField "String", 'DEFAULT_LOCATION', '"Village Sublocations"'
             buildConfigField "String", 'DEFAULT_LOCATION_DEBUG', '"Village"'
             buildConfigField "long", "MAPBOX_DOWNLOAD_TILE_LIMIT", "6001"
-
             buildConfigField "int", "DATABASE_VERSION", '27'
         }
     }
@@ -247,7 +270,7 @@ android {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:1.6.0-BETA2-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.6.1-MOH-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
@@ -258,12 +281,11 @@ dependencies {
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
         exclude group: 'com.github.chivorns.androidx', module: 'smartmaterialspinner'
         exclude group: 'com.github.stephenc.jcip', module: 'jcip-annotations'
-        exclude group: 'io.insert-koin', module: 'koin-android'
-        exclude group: 'io.insert-koin', module: 'koin-androidx-scope'
-        exclude group: 'io.insert-koin', module: 'koin-androidx-viewmodel'
-        exclude group: 'io.insert-koin', module: 'koin-core'
         exclude group: 'com.ibm.fhir', module: 'fhir-model'
+        exclude group: 'com.emredavarci', module: 'circleprogressbar'
     }
+
+    implementation 'com.emredavarci:circleprogressbar:1.0.8-LOCAL-ALPHA@aar'
 
     implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.1.0'
     implementation('io.ona.kujaku:library:0.9.0') {
