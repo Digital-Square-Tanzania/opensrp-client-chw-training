@@ -81,7 +81,9 @@ allprojects {
                 password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
             }
         }
-
+        flatDir {
+            dirs 'libs'
+        }
         mavenLocal()
     }
 }
@@ -91,7 +93,6 @@ apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
 apply from: "jacoco.gradle"
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
 
@@ -283,6 +284,7 @@ dependencies {
         exclude group: 'com.github.stephenc.jcip', module: 'jcip-annotations'
         exclude group: 'com.ibm.fhir', module: 'fhir-model'
         exclude group: 'com.emredavarci', module: 'circleprogressbar'
+        exclude group: 'org.koin'
     }
 
     implementation 'com.emredavarci:circleprogressbar:1.0.8-LOCAL-ALPHA@aar'
@@ -301,6 +303,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
     //Do not upgrade to 24.jre-1 due to compatibility issues
     implementation 'com.google.guava:guava:20.0'
     implementation 'androidx.webkit:webkit:1.7.0'
@@ -312,7 +316,9 @@ dependencies {
 
     implementation 'com.github.lecho:hellocharts-android:1.5.8@aar'
 
-    testImplementation "org.koin:koin-test:2.0.1"
+    implementation 'org.mozilla:rhino:1.7.15' // Use the latest version if available
+
+    testImplementation "io.insert-koin:koin-test:2.0.1"
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.12.4'
     testImplementation 'org.robolectric:robolectric:4.3.1'
