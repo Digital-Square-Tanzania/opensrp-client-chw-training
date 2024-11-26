@@ -5,17 +5,52 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
+import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.core.interactor.CoreAncHomeVisitInteractor;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.ReferralUtils;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import timber.log.Timber;
 
 public class AncHomeVisitInteractor extends CoreAncHomeVisitInteractor {
 
     Context context;
+
+    @Override
+    public void calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) {
+        // update the local database incase of manual date adjustment
+
+        final Runnable runnable = () -> {
+
+            try {
+                VisitUtils.processVisits(memberObject.getBaseEntityId());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+
+            final LinkedHashMap<String, BaseAncHomeVisitAction> actionList = new LinkedHashMap<>();
+
+            try {
+                for (Map.Entry<String, BaseAncHomeVisitAction> entry : getFlavor().calculateActions(view, memberObject, callBack).entrySet()) {
+                    actionList.put(entry.getKey(), entry.getValue());
+                }
+            } catch (BaseAncHomeVisitAction.ValidationException e) {
+                Timber.e(e);
+            }
+
+            appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+        };
+
+        appExecutors.diskIO().execute(runnable);
+    }
+
     public AncHomeVisitInteractor(Context context) {
         this.context = context;
         setFlavor(new AncHomeVisitInteractorFlv());

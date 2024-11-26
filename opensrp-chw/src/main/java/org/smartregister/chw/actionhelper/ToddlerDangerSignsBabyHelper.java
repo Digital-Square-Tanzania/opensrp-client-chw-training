@@ -1,6 +1,7 @@
 package org.smartregister.chw.actionhelper;
 
 import static org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue;
+import static org.smartregister.chw.util.JsonFormUtils.getValue;
 
 import android.content.Context;
 
@@ -21,6 +22,7 @@ public class ToddlerDangerSignsBabyHelper extends HomeVisitActionHelper {
     private  static final String NONE="(?i)hakuna|none";
     private  static final String YES_OR_EMPTY="(?i)yes|ndio|ndiyo|";
     private String danger_signs_present_child;
+    private String toddler_referral_health_facility;
 
     private final Context context;
 
@@ -65,7 +67,7 @@ public class ToddlerDangerSignsBabyHelper extends HomeVisitActionHelper {
             if(dangerSignConsumer==null){return super.postProcess(jsonPayload);}
             JSONObject form=new JSONObject(jsonPayload);
             boolean noDangerSigns = danger_signs_present_child.matches(NONE);
-            boolean goFacility = !noDangerSigns && getCheckBoxValue(form,"toddler_referral_health_facility").matches(YES_OR_EMPTY);
+            boolean goFacility = !noDangerSigns && getValue(form,"toddler_referral_health_facility").matches(YES_OR_EMPTY);
             dangerSignConsumer.take(form,danger_signs_present_child,goFacility);
         } catch (Exception e) {Timber.e(e);}
         return super.postProcess(jsonPayload);
@@ -86,5 +88,7 @@ public class ToddlerDangerSignsBabyHelper extends HomeVisitActionHelper {
     public void setDangerSignsResultsListener(ToddlerDangerSignsConsumer c){
         dangerSignConsumer=c;
     }
-    public interface ToddlerDangerSignsConsumer { void take(JSONObject dangerSignPayload, String dangerSigns, boolean goFacility);}
+    public interface ToddlerDangerSignsConsumer {
+        void take(JSONObject dangerSignPayload, String dangerSigns, boolean goFacility);
+    }
 }

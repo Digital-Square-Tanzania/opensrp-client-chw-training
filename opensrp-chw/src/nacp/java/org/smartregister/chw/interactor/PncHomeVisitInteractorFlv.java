@@ -4,6 +4,7 @@ import static org.smartregister.chw.anc.AncLibrary.getInstance;
 import static org.smartregister.chw.core.utils.CoreConstants.TASKS_FOCUS.PNC_DANGER_SIGNS;
 import static org.smartregister.chw.interactor.FacilitySelectionActionHelper.ReferralHelperInfo;
 import static org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue;
+import static org.smartregister.chw.util.JsonFormUtils.getValue;
 
 import android.content.Context;
 import android.os.Handler;
@@ -52,6 +53,8 @@ import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.PNCVisitUtil;
 import org.smartregister.immunization.domain.VaccineWrapper;
 import org.smartregister.util.JsonFormUtils;
+
+import java.sql.Time;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,6 +82,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     FacilitySelectionActionHelper referralHelper =new FacilitySelectionActionHelper(new ArrayList<>());
     private  static final String NONE="(?i)hakuna|none|chk_none";
     private  static final String YES_OR_EMPTY="(?i)yes|ndio|ndiyo|";
+    private boolean gotoFacility = false;
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
         this.callBack = callBack;
@@ -261,13 +265,11 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             boolean noDangerSigns = noDangerSignsAfterFillingActions();
             boolean hasOtherAction =  actionList.containsKey(context.getString(R.string.pnc_counselling));
 
-            if (noDangerSigns) {
+            if (noDangerSigns || !gotoFacility) {
                 try {evaluateOtherActions();}
                 catch (Exception e) {Timber.e(e);}
                 actionList.remove(context.getString(R.string.home_visit_facility_referral));
-            }
-
-            else{
+            }else{
                 evaluateFacilityReferral();
                 if (hasOtherAction) {
                     for (String actionTitle : otherActionTitles) {
@@ -321,13 +323,13 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                     String actionName = context.getString(R.string.pnc_danger_signs_mother);
                     String referralStepName = actionName.replaceAll("^.*?-(.*)", "$1-" + context.getString(R.string.home_visit_facility_referral));
                     danger_signs_present_mama = getCheckBoxValue(form, "danger_signs_present_mama");
-                    String motherReferral = getCheckBoxValue(form, "mother_referral_health_facility");
+                    String motherReferral = getValue(form, "mother_referral_health_facility");
 
                     boolean hasDangerSigns = !danger_signs_present_mama.matches(NONE);
-                    boolean goFacility = hasDangerSigns && motherReferral.matches(YES_OR_EMPTY);
+                    gotoFacility = hasDangerSigns && motherReferral.matches(YES_OR_EMPTY);
                     haveDangerSigns.put(actionName,hasDangerSigns);
 
-                    if(goFacility) {
+                    if(gotoFacility) {
                         referralHelper.addInfo(new ReferralHelperInfo(
                                 PNC_DANGER_SIGNS,
                                 memberObject.getBaseEntityId(),
