@@ -152,9 +152,11 @@ public class ClientReferralActivity extends SecuredActivity implements ClientRef
                     CoreReferralUtils.createReferralEvent(Utils.getAllSharedPreferences(),
                             jsonString, encounterTypeToTableMap.get(encounterType), baseEntityId);
                     Utils.showToast(this, this.getString(R.string.referral_submitted));
+                    finish();
                 }
             } catch (Exception e) {
                 Timber.e(e, "ClientReferralActivity --> onActivityResult");
+                finish();
             }
     }
 }
