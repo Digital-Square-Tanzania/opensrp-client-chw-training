@@ -75,7 +75,7 @@ public class LinkageFollowUpActivity extends MalariaRegisterActivity {
                 JSONObject jsonForm = registrationFormParams.getMiddle();
                 String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
 
-                if ("Linkage Followup".equals(encounter_type)) {
+                if (Constants.EncounterType.LINKAGE_FOLLOWUP.equals(encounter_type)) {
                     completeReferralTask(jsonString);
                 }
 
