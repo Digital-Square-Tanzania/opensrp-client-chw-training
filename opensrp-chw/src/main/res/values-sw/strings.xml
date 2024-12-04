@@ -339,9 +339,9 @@
     <string name="pnc_danger_signs_baby_task">Dalili za hatari - Mtoto </string>
     <string name="pnc_skin_to_skin">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC)</string>
 
-    <string name="pnc_minor_ailment_mama"> Maradhi ya mama </string>
+    <string name="pnc_minor_ailment_mama"> Dalili ndogondogo </string>
 
-    <string name="child_minor_illness"> Maradhi ya mtoto ({0}) </string>
+    <string name="child_minor_illness"> Dalili ndogondogo za mtoto ({0}) </string>
 
     <string name="pnc_health_facility_visit_within_fourty_eight_hours">Hudhurio katika kituo cha kutolea huduma za afya kwa huduma ya mtoto na mama baada ya kujifungua - ndani ya masaa 48</string>
     <string name="pnc_health_facility_visit_days_three_to_seven">Hudhurio katika kituo cha kutolea huduma za afya kwa huduma ya mtoto na mama baada ya kujifungua - siku 3 - 7</string>
@@ -369,10 +369,10 @@
     <string name="suspected_malaria">Malaria inayodhaniwa</string>
 
     <!--Addo Minor Ailments-->
-    <string name="child_minor_ailments"> Maradhi ya mtoto</string>
-    <string name="anc_minor_ailments"> Maradhi ya mama mjamzito </string>
-    <string name="pnc_minor_ailments"> Maradhi ya mama liyejifungua </string>
-    <string name="adolescent_minor_ailments"> Maradhi ya kijana balehe </string>
+    <string name="child_minor_ailments"> Dalili ndogondogo </string>
+    <string name="anc_minor_ailments"> Dalili ndogondogo </string>
+    <string name="pnc_minor_ailments"> Dalili ndogondogo </string>
+    <string name="adolescent_minor_ailments"> Dalili ndogondogo </string>
 
     <string name="linked_to_addo_message"> Ameunganishwa kwa DLDM</string>
 
