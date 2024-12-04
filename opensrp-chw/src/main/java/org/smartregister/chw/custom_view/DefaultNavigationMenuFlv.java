@@ -14,7 +14,7 @@ import java.util.Locale;
 public abstract class DefaultNavigationMenuFlv implements NavigationMenu.Flavour {
     @Override
     public List<Pair<String, Locale>> getSupportedLanguages() {
-        return Arrays.asList(Pair.of("English", Locale.ENGLISH), Pair.of("Français", Locale.FRENCH));
+        return Arrays.asList(Pair.of("English", Locale.ENGLISH), Pair.of("Kiswahili", new Locale("sw")));
     }
 
     @Override
