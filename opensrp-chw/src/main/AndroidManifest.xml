@@ -35,7 +35,14 @@
         <activity
             android:name=".activity.KvpPrEPProfileActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
-
+        <activity
+            android:name=".activity.KvpReportsViewActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.KvpReportsActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpPrEPVisitActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
@@ -455,6 +462,46 @@
         <activity
             android:name=".activity.IccmMedicalHistoryActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AsrhRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AsrhMemberProfileActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AsrhMedicalHistoryActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AsrhVisitActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AsrhReportsViewActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AsrhReportsActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CecapRegisterActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CecapMemberProfileActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CecapMedicalHistoryActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CecapMobilizationSessionDetailsActivity" android:theme="@style/ChwTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapReportsViewActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CecapReportsActivity"
+            android:exported="false"
+            android:theme="@style/ChwTheme.NoActionBar" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -489,6 +536,7 @@
         <service android:name="org.smartregister.growthmonitoring.service.intent.WeightForHeightIntentService" />
         <service android:name="org.smartregister.chw.core.sync.intent.SyncClientEventsPerTaskIntentService" />
         <service android:name=".sync.intent.PncCloseDateIntentService" />
+        <service android:name=".sync.CloseAsrhMembershipIntentService" />
 
         <receiver
             android:name="org.smartregister.view.receiver.ConnectivityChangeReceiver"
